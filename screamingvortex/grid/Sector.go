@@ -3,7 +3,6 @@ package grid
 import (
   "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
   "math/rand"
-  "strconv"
 )
 
 type Sector struct {
@@ -143,28 +142,4 @@ func (sector *Sector) trimToLargestBlob(blobSizes []int) {
       sector.Grid[i][j].VoidNonMatchingLabel(largestBlobLabel)
     }
   }
-}
-
-func systemConnectionsToString(system *System) string {
-  spaces := 3
-  connection_output := ""
-  if !system.IsVoidSpace() {
-    connections := len(system.Routes)
-    if connections < 10 {
-      spaces -= 1
-    } else if connections < 100 {
-      spaces -= 2
-    } else {
-      spaces = 0
-    }
-
-    connection_output = strconv.Itoa(connections)
-  }
-
-  spacing := ""
-  for i := 0; i < spaces; i++ {
-      spacing += " "
-  }
-
-  return spacing + connection_output
 }
