@@ -25,7 +25,7 @@ func createTestObjs(depth int, branches int) ([][]*System) {
       if i == 0 || relative_j >= branches {
         relative_j = 0
         base_j += 1
-        if i-1 >= 0 && base_j < len(systems[i-1]) {
+        if i > 0 && base_j < len(systems[i-1]) {
           baseSystem = systems[i-1][base_j]
         } else {
           baseSystem = systems[i][0]

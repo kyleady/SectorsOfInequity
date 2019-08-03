@@ -59,7 +59,7 @@ func (system *System) ConnectTo(targetSystem *System) {
 }
 
 func (system *System) LabelBlob(label int) int {
-  if !system.LabelIsUnset() {
+  if system.blobLabel == system.TheVoidLabel() || system.blobLabel >= 0 {
     return 0
   }
 
