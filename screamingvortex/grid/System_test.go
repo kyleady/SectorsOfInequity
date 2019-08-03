@@ -188,19 +188,24 @@ func TestSystemLabelBlob(t *testing.T) {
 func TestSystemVoidNonMatchingLabel(t *testing.T) {
   maxDepth := 5
   maxBranches := 5
-  blob := createTestObjs(rand.Intn(maxDepth - 2) + 2, rand.Intn(maxBranches - 2) + 2)
+  depth := rand.Intn(maxDepth - 3) + 3
+  branches := rand.Intn(maxBranches - 3) + 3
+  blob := createTestObjs(depth, branches)
   label := rand.Intn(10)
-  blob[0][0].LabelBlob(label)
-  systemThatShouldVoid = blob[1][0]
-  systemThatShouldNotVoid = blob[1][1]
+  blob[rand.Intn(depth-1)+1][rand.Intn(branches-1)+1].LabelBlob(label)
+  systemThatShouldVoid := blob[rand.Intn(depth-1)+1][rand.Intn(branches-1)+1]
+  systemThatShouldNotVoid := blob[rand.Intn(depth-1)+1][rand.Intn(branches-1)+1]
+  for systemThatShouldVoid == systemThatShouldNotVoid {
+    systemThatShouldNotVoid = blob[rand.Intn(depth-1)+1][rand.Intn(branches-1)+1]
+  }
 
-  routesBeforeRemoval = len(systemThatShouldVoid.Routes)
+  routesBeforeRemoval := len(systemThatShouldVoid.Routes)
 
   systemThatShouldVoid.VoidNonMatchingLabel(label + 1)
   systemThatShouldNotVoid.VoidNonMatchingLabel(label)
 
   if !systemThatShouldVoid.IsVoidSpace() {
-    t.Errorf("The system's label is not void. System: %d, Expected: 0", systemThatShouldVoid.Label(), systemThatShouldVoid.TheVoidLabel())
+    t.Errorf("The system's label is not void. System: %d, Expected: %d", systemThatShouldVoid.Label(), systemThatShouldVoid.TheVoidLabel())
   }
 
   if len(systemThatShouldVoid.Routes) != 0 {
@@ -208,10 +213,10 @@ func TestSystemVoidNonMatchingLabel(t *testing.T) {
   }
 
   if systemThatShouldNotVoid.IsVoidSpace() {
-    t.Errorf("The system's label is void. System: %d, Expected: 0", systemThatShouldNotVoid.Label(), label)
+    t.Errorf("The system's label is void. System: %d, Expected: %d", systemThatShouldNotVoid.Label(), label)
   }
 
-  if len(systemThatShouldVoid.Routes) == 0 {
+  if len(systemThatShouldNotVoid.Routes) == 0 {
     t.Errorf("The system's routes were removed. System: 0, Expected: %d", routesBeforeRemoval)
   }
 }
