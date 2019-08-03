@@ -10,19 +10,36 @@ import (
 type Sector struct {
   Grid [][]System
   config *config.GridConfig
+  rand *rand.Rand
 }
 
 func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   sector.config = gridConfig
 
+  source := rand.NewSource(sector.config.Seed)
+  sector.rand = rand.New(source)
+
+  fmt.Println("\nUnformed")
   LogSector(sector)
+
   sector.createGrid()
+  fmt.Println("\nCreated")
   LogSector(sector)
+
   sector.populateGrid()
+  fmt.Println("\nPopulated")
   LogSector(sector)
+
   sector.connectSystems()
+  fmt.Println("\nConnected")
   LogSector(sector)
-  sector.trimToLargestBlob()
+
+  blobSizes := sector.labelBlobsAndGetSizes()
+  fmt.Println("\nLabeled")
+  LogSector(sector)
+
+  sector.trimToLargestBlob(blobSizes)
+  fmt.Println("\nTrimmed")
   LogSector(sector)
 }
 
@@ -43,7 +60,7 @@ func (sector *Sector) populateGrid() {
 
 func (sector *Sector) createSystem(i int, j int) {
   system := new(System)
-  if roll := rand.Float64(); roll < sector.config.PopulationRate {
+  if roll := sector.rand.Float64(); roll < sector.config.PopulationRate {
     system.InitializeAt(i, j)
   } else {
     system.SetToVoidSpace()
@@ -59,8 +76,8 @@ func (sector *Sector) connectSystems() {
     for j, system := range row {
       for r_i := -reach; r_i <= reach; r_i++ {
         for r_j := -reach; r_j <= reach; r_j++ {
-          if roll := rand.Float64(); roll < sector.connectionChance(r_i, r_j) {
-            targetSystem := sector.GetSystem(i+r_i, j+r_j)
+          if roll := sector.rand.Float64(); roll < sector.connectionChance(r_i, r_j) {
+            targetSystem := sector.getSystem(i+r_i, j+r_j)
             system.ConnectTo(targetSystem)
           }
         }
@@ -93,7 +110,7 @@ func (sector *Sector) connectionChance(r_i int, r_j int) float64 {
   return chance
 }
 
-func (sector *Sector) GetSystem(i int, j int) *System {
+func (sector *Sector) getSystem(i int, j int) *System {
   if i < 0 || i >= sector.config.Height {
     return nil
   }
@@ -108,37 +125,43 @@ func (sector *Sector) GetSystem(i int, j int) *System {
 func (sector *Sector) labelBlobsAndGetSizes() []int {
   currentLabel := 0
   blobSizes := make([]int, 0)
-  for i, row := range sector.Grid {
-    fmt.Println("<==>")
-    for j, system := range row {
+  for i := range sector.Grid {
+    for j := range sector.Grid[i] {
+      blobSize := sector.Grid[i][j].LabelBlob(currentLabel)
+      if sector.Grid[i][j].IsVoidSpace() {
+        fmt.Println("Void", len(sector.Grid[i][j].Routes), currentLabel, sector.Grid[i][j].Label())
+      } else {
+        fmt.Println(sector.Grid[i][j].Location, len(sector.Grid[i][j].Routes), currentLabel, sector.Grid[i][j].Label())
+      }
 
-      system = sector.Grid[i][j]
-      blobSize := system.LabelBlob(currentLabel)
-      fmt.Println(i, j, currentLabel, blobSize)
-      if blobSize > 0 {
+      if blobSize != 0 {
         blobSizes = append(blobSizes, blobSize)
         currentLabel++
       }
     }
   }
 
+  fmt.Println("Blob Sizes", blobSizes)
   return blobSizes
 }
 
-func (sector *Sector) trimToLargestBlob() {
-  blobSizes := sector.labelBlobsAndGetSizes()
-  largestBlobSize := 0
-  largestBlobLabel := -1
+func (sector *Sector) trimToLargestBlob(blobSizes []int) {
+  largestBlobSize := -100
+  largestBlobLabel := -100
+  totalSize := 0
   for blobLabel, blobSize := range blobSizes {
+    totalSize += blobSize
     if blobSize > largestBlobSize {
       largestBlobSize = blobSize
       largestBlobLabel = blobLabel
     }
   }
 
-  for _, row := range sector.Grid {
-    for _, system := range row {
-      system.VoidNonMatchingLabel(largestBlobLabel)
+  fmt.Println("Largest Blob Size:", largestBlobSize, "Largest Blob Label:", largestBlobLabel, "Total Size:", totalSize)
+
+  for i := range sector.Grid {
+    for j := range sector.Grid[i] {
+      sector.Grid[i][j].VoidNonMatchingLabel(largestBlobLabel)
     }
   }
 }
@@ -152,7 +175,11 @@ func LogSector(sector *Sector) {
   for _, row := range sector.Grid {
     for _, system := range row {
       //output += systemConnectionsToString(&system)
-      output += " " + strconv.Itoa(system.Label())
+      output += " {"
+      output += strconv.Itoa(system.Label())
+      output += ","
+      output += strconv.Itoa(len(system.Routes))
+      output += "}"
       if !system.IsVoidSpace() {
         systems++
       }
