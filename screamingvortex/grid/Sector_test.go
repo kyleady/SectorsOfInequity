@@ -19,7 +19,7 @@ func TestSectorRandomize(t *testing.T) {
 
       if system.Label() >= 0 {
         if theOneLabel >= 0 && theOneLabel != system.Label() {
-          t.Errorf("The sector has more than one surviving label. Label: %d, Expected: %d", system.Location.X, system.Location.Y, system.Label(), theOneLabel)
+          t.Errorf("The sector has more than one surviving label. Label: %d, Expected: %d", system.Label(), theOneLabel)
         } else if theOneLabel < 0 {
           theOneLabel = system.Label()
         }

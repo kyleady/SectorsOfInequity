@@ -3,7 +3,6 @@ package grid
 import (
   "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
   "math/rand"
-  "fmt"
   "strconv"
 )
 
@@ -19,28 +18,11 @@ func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   source := rand.NewSource(sector.config.Seed)
   sector.rand = rand.New(source)
 
-  fmt.Println("\nUnformed")
-  LogSector(sector)
-
   sector.createGrid()
-  fmt.Println("\nCreated")
-  LogSector(sector)
-
   sector.populateGrid()
-  fmt.Println("\nPopulated")
-  LogSector(sector)
-
   sector.connectSystems()
-  fmt.Println("\nConnected")
-  LogSector(sector)
-
   blobSizes := sector.labelBlobsAndGetSizes()
-  fmt.Println("\nLabeled")
-  LogSector(sector)
-
   sector.trimToLargestBlob(blobSizes)
-  fmt.Println("\nTrimmed")
-  LogSector(sector)
 }
 
 func (sector *Sector) createGrid() {
@@ -72,16 +54,19 @@ func (sector *Sector) createSystem(i int, j int) {
 func (sector *Sector) connectSystems() {
   reach := sector.config.ConnectionRange
 
-  for i, row := range sector.Grid {
-    for j, system := range row {
+  for i := range sector.Grid {
+    for j := range sector.Grid[i] {
+
+      // Attempt to connect the system @{i,j} to all systems within reach
       for r_i := -reach; r_i <= reach; r_i++ {
         for r_j := -reach; r_j <= reach; r_j++ {
           if roll := sector.rand.Float64(); roll < sector.connectionChance(r_i, r_j) {
             targetSystem := sector.getSystem(i+r_i, j+r_j)
-            system.ConnectTo(targetSystem)
+            sector.Grid[i][j].ConnectTo(targetSystem)
           }
         }
       }
+
     }
   }
 }
@@ -97,9 +82,11 @@ func (sector *Sector) connectionChance(r_i int, r_j int) float64 {
     abs_j = - r_j
   }
 
-  reach := abs_i
+  var reach int
   if abs_j > abs_i {
     reach = abs_j
+  } else {
+    reach = abs_i
   }
 
   chance := sector.config.ConnectionRate
@@ -128,11 +115,6 @@ func (sector *Sector) labelBlobsAndGetSizes() []int {
   for i := range sector.Grid {
     for j := range sector.Grid[i] {
       blobSize := sector.Grid[i][j].LabelBlob(currentLabel)
-      if sector.Grid[i][j].IsVoidSpace() {
-        fmt.Println("Void", len(sector.Grid[i][j].Routes), currentLabel, sector.Grid[i][j].Label())
-      } else {
-        fmt.Println(sector.Grid[i][j].Location, len(sector.Grid[i][j].Routes), currentLabel, sector.Grid[i][j].Label())
-      }
 
       if blobSize != 0 {
         blobSizes = append(blobSizes, blobSize)
@@ -141,7 +123,6 @@ func (sector *Sector) labelBlobsAndGetSizes() []int {
     }
   }
 
-  fmt.Println("Blob Sizes", blobSizes)
   return blobSizes
 }
 
@@ -157,38 +138,11 @@ func (sector *Sector) trimToLargestBlob(blobSizes []int) {
     }
   }
 
-  fmt.Println("Largest Blob Size:", largestBlobSize, "Largest Blob Label:", largestBlobLabel, "Total Size:", totalSize)
-
   for i := range sector.Grid {
     for j := range sector.Grid[i] {
       sector.Grid[i][j].VoidNonMatchingLabel(largestBlobLabel)
     }
   }
-}
-
-
-
-
-func LogSector(sector *Sector) {
-  systems := 0
-  output := ""
-  for _, row := range sector.Grid {
-    for _, system := range row {
-      //output += systemConnectionsToString(&system)
-      output += " {"
-      output += strconv.Itoa(system.Label())
-      output += ","
-      output += strconv.Itoa(len(system.Routes))
-      output += "}"
-      if !system.IsVoidSpace() {
-        systems++
-      }
-    }
-    output += "\n"
-  }
-
-  fmt.Println(output)
-  fmt.Println("Systems: " + strconv.Itoa(systems))
 }
 
 func systemConnectionsToString(system *System) string {
