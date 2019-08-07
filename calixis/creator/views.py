@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
+import requests
 
 def index(request):
-    return HttpResponse("Some text.")
+    r = requests.post('http://127.0.0.1:8080/grid/', json={})
+    output = r.json()
+    return JsonResponse(output)
