@@ -11,6 +11,7 @@ import (
 
 func gridHandler(writer http.ResponseWriter, req *http.Request) {
     log.Print(req)
+    
     decoder := json.NewDecoder(req.Body)
     gridConfig := new(config.GridConfig)
     gridConfig.SetToDefault()
@@ -35,6 +36,4 @@ func gridHandler(writer http.ResponseWriter, req *http.Request) {
 func main() {
     http.HandleFunc("/grid/", gridHandler)
     log.Fatal(http.ListenAndServe(":8080", nil))
-
-
 }
