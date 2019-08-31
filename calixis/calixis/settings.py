@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from .utils.secrets import AwsSecrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '#b4#f-63p08q-^jqz(zq*n=nx^aukz_#a3fkk09r8(tr+v(9#b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -72,11 +73,16 @@ WSGI_APPLICATION = 'calixis.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+secrets = AwsSecrets(environment='dev', region_name='us-west-1')
+koronus = secrets.fetch_json(resource='koronus', secret='root')
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.{engine}'.format(engine=koronus['engine']),
+        'NAME': koronus['dbInstanceIdentifier'],
+        'USER': koronus['username'],
+        'PASSWORD': koronus['password'],
+        'HOST': koronus['host'],
+        'PORT': koronus['port'],
     }
 }
 
