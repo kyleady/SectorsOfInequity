@@ -1,0 +1,15 @@
+<h1>{{ full_name }}</h1>
+{% if model_list %}
+    <ul>
+    {% for model in model_list %}
+        <li><a href="{% url detail_url model.id %}">
+          {{ model.name }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p><i>No config has been generated.</i></p>
+{% endif %}
+<p>
+  <button onclick="window.location.href = '{% url new_url %}'"> New </button>
+</p>
