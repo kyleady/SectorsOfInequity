@@ -29,3 +29,10 @@ for subapp in subapps:
             name=views.new_url
         )
     )
+    urlpatterns.append(
+        path(
+            '{name}/test/<int:model_id>/'.format(name=subapp['name']),
+            views.test,
+            name=views.test_url
+        )
+    )

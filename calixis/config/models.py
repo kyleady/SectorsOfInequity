@@ -21,7 +21,7 @@ class BaseConfig(models.Model):
 class Grid(BaseConfig):
     height = models.PositiveSmallIntegerField(default=20, blank=True)
     width = models.PositiveSmallIntegerField(default=20, blank=True)
-    connectionRange =models.FloatField(default=0.5, blank=True)
+    connectionRange =models.PositiveSmallIntegerField(default=5, blank=True)
     populationRate = models.FloatField(default=0.5, blank=True)
     connectionRate = models.FloatField(default=0.5, blank=True)
     rangeRateMultiplier = models.FloatField(default=0.5, blank=True)

@@ -1,5 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.forms import modelform_factory
+from django.http import HttpResponse
+import requests
+import json
 
 class Views:
     def __init__(self, full_name, app, name, Model):
@@ -16,6 +19,10 @@ class Views:
             title=self.title
         )
         self.detail_url = '{app}-{title}-detail'.format(
+            app=self.app,
+            title=self.title
+        )
+        self.test_url = '{app}-{title}-test'.format(
             app=self.app,
             title=self.title
         )
@@ -71,3 +78,28 @@ class Views:
         }
 
         return render(request, template, context)
+
+    def test(self, request, model_id):
+        template = '{title}/test.html'.format(
+            title=self.title
+        )
+
+        screaming_vortex_url = 'http://{host}/{path}'.format(
+            host='localhost:8080',
+            path=self.title
+        )
+
+        template_id = None
+        model = get_object_or_404(self.Model, pk=model_id)
+
+        screaming_vortex_json = {
+            'config_id': model_id,
+            'template_id': None,
+        }
+        screaming_vortex_response = requests.post(
+            screaming_vortex_url,
+            data=json.dumps(screaming_vortex_json),
+        )
+        screaming_vortex_response.raise_for_status()
+        print(screaming_vortex_response.json())
+        return HttpResponse("OK")

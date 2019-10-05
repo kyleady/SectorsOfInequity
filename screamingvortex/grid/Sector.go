@@ -3,6 +3,7 @@ package grid
 import (
   "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
   "math/rand"
+  "time"
 )
 
 type Sector struct {
@@ -14,7 +15,7 @@ type Sector struct {
 func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   sector.config = gridConfig
 
-  source := rand.NewSource(sector.config.Seed)
+  source := rand.NewSource(time.Now().UnixNano())
   sector.rand = rand.New(source)
 
   sector.createGrid()

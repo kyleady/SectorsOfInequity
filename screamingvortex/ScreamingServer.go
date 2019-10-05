@@ -3,6 +3,8 @@ package main
 import (
     "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
     "github.com/kyleady/SectorsOfInequity/screamingvortex/grid"
+    "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+    "github.com/kyleady/SectorsOfInequity/screamingvortex/messages"
 
     "encoding/json"
     "log"
@@ -10,20 +12,30 @@ import (
 )
 
 func gridHandler(writer http.ResponseWriter, req *http.Request) {
-    log.Print(req)
-    
     decoder := json.NewDecoder(req.Body)
-    gridConfig := new(config.GridConfig)
-    gridConfig.SetToDefault()
-    inputErr := decoder.Decode(gridConfig)
+    calixisMsg := new(messages.FromCalixis)
+    inputErr := decoder.Decode(calixisMsg)
     if inputErr != nil {
         http.Error(writer, "Input\n" + inputErr.Error(), http.StatusInternalServerError)
         return
     }
 
+    client := &utilities.Client{
+      Environment: "dev",
+      Region: "us-west-1",
+      Resource: "koronus",
+      Secret: "root",
+    }
+    client.Open()
+    defer client.Close()
+
+    gridConfig := new(config.GridConfig)
+    client.Fetch(gridConfig, calixisMsg.ConfigId)
+
     sector := new(grid.Sector)
     sector.Randomize(gridConfig)
-    jsSector, outputErr := json.Marshal(&sector)
+
+    jsSector, outputErr := json.Marshal(*sector)
     if outputErr != nil {
       http.Error(writer, "Output\n" + outputErr.Error(), http.StatusInternalServerError)
       return
@@ -34,6 +46,6 @@ func gridHandler(writer http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-    http.HandleFunc("/grid/", gridHandler)
+    http.HandleFunc("/grid", gridHandler)
     log.Fatal(http.ListenAndServe(":8080", nil))
 }
