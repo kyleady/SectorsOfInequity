@@ -55,17 +55,18 @@ func showBlob(blob [][]*System) string {
 
 func TestSystemInitializeAt(t *testing.T) {
   system := new(System)
-  location := Coords{rand.Intn(100), rand.Intn(100)}
+  randX := rand.Intn(100)
+  randY := rand.Intn(100)
 
-  system.InitializeAt(location.X, location.Y)
+  system.InitializeAt(randX, randY)
 
 
   if system.Label() != system.TheUnsetLabel() {
     t.Errorf("System's label was not initialized to the UnsetLabel. Label: %d, UnsetLabel: %d", system.Label(), system.TheUnsetLabel())
   }
 
-  if system.Location != location {
-    t.Errorf("System's location does not match the initilization coords. System: {%d,%d}, Location: {%d, %d}", system.Location.X, system.Location.Y, location.X, location.Y)
+  if system.X != randX || system.Y != randY {
+    t.Errorf("System's location does not match the initilization coords. System: {%d,%d}, Location: {%d, %d}", system.X, system.Y, randX, randY)
   }
 
   if len(system.Routes) != 0 {
@@ -85,48 +86,50 @@ func TestSystemSetToVoidSpace(t *testing.T) {
 func TestSystemConnectTo(t *testing.T) {
   systemA := new(System)
   systemB := new(System)
-  locationA := Coords{rand.Intn(100), rand.Intn(100)}
-  locationB := Coords{rand.Intn(100), rand.Intn(100)}
+  xA := rand.Intn(100)
+  yA := rand.Intn(100)
+  xB := rand.Intn(100)
+  yB := rand.Intn(100)
 
-  systemA.InitializeAt(locationA.X, locationA.Y)
+  systemA.InitializeAt(xA, yA)
   systemA.ConnectTo(systemA)
   if len(systemA.Routes) != 0 {
     t.Errorf("A system should not be allowed to connect to itself. Routes: %d", len(systemA.Routes))
   }
 
-  systemA.InitializeAt(locationA.X, locationA.Y)
+  systemA.InitializeAt(xA, yA)
   systemA.ConnectTo(nil)
   if len(systemA.Routes) != 0 {
     t.Errorf("A system should not be allowed to connect to itself. Routes: %d", len(systemA.Routes))
   }
 
   systemA.SetToVoidSpace()
-  systemB.InitializeAt(locationB.X, locationB.Y)
+  systemB.InitializeAt(xB, yB)
   systemA.ConnectTo(systemB)
   if len(systemA.Routes) != 0 || len(systemB.Routes) != 0 {
     t.Errorf("Void space should not be allowed to connect. Void Routes: %d, SystemB Routes: %d", len(systemA.Routes), len(systemB.Routes))
   }
 
-  systemA.InitializeAt(locationA.X, locationA.Y)
+  systemA.InitializeAt(xA, yA)
   systemB.SetToVoidSpace()
   systemA.ConnectTo(systemB)
   if len(systemA.Routes) != 0 || len(systemB.Routes) != 0 {
     t.Errorf("A system should not be allowed to connect to void space. SystemA Routes: %d, Void Routes: %d", len(systemA.Routes), len(systemB.Routes))
   }
 
-  systemA.InitializeAt(locationA.X, locationA.Y)
-  systemB.InitializeAt(locationB.X, locationB.Y)
+  systemA.InitializeAt(xA, yA)
+  systemB.InitializeAt(xB, yB)
   systemA.ConnectTo(systemB)
   if len(systemA.Routes) != 1 || len(systemB.Routes) != 1 {
     t.Errorf("Connecting two systems should add a route to both systems. SystemA Routes: %d, SystemB Routes: %d", len(systemA.Routes), len(systemB.Routes))
   }
 
-  if systemA.Routes[0].TargetCoords != locationB || systemB.Routes[0].TargetCoords != locationA {
-    t.Errorf("The routes between two systems should point to each other. SystemA TargetCoords: {%d,%d}, SystemB TargetCoords: {%d,%d}, SystemA Location: {%d,%d}, SystemB Location{%d,%d}", systemA.Routes[0].TargetCoords.X, systemA.Routes[0].TargetCoords.Y, systemB.Routes[0].TargetCoords.X, systemB.Routes[0].TargetCoords.Y, systemA.Location.X, systemA.Location.Y, systemB.Location.X, systemB.Location.Y)
+  if systemA.Routes[0].X != xB || systemB.Routes[0].X != xA || systemA.Routes[0].Y != yB || systemB.Routes[0].Y != yA {
+    t.Errorf("The routes between two systems should point to each other. SystemA TargetCoords: {%d,%d}, SystemB TargetCoords: {%d,%d}, SystemA Location: {%d,%d}, SystemB Location{%d,%d}", systemA.Routes[0].X, systemA.Routes[0].Y, systemB.Routes[0].X, systemB.Routes[0].Y, systemA.X, systemA.Y, systemB.X, systemB.Y)
   }
 
-  systemA.InitializeAt(locationA.X, locationA.Y)
-  systemB.InitializeAt(locationB.X, locationB.Y)
+  systemA.InitializeAt(xA, yA)
+  systemB.InitializeAt(xB, yB)
   systemA.ConnectTo(systemB)
   systemB.ConnectTo(systemA)
   systemA.ConnectTo(systemB)

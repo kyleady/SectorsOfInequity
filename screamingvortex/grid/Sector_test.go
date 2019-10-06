@@ -10,18 +10,20 @@ func TestSectorRandomize(t *testing.T) {
   sector := new(Sector)
   sector.Randomize(sectorConfig)
 
-  theOneLabel := -100
-  for _, row := range sector.Grid {
+  theSurvivingLabel := -100
+  systemCount := 0
+  for _, row := range sector.grid {
     for _, system := range row {
       if system.Label() == system.TheUnsetLabel() {
-        t.Errorf("Grid System {%d, %d} has not been properly labeled.", system.Location.X, system.Location.Y)
+        t.Errorf("Grid System {%d, %d} has not been properly labeled.", system.X, system.Y)
       }
 
       if system.Label() >= 0 {
-        if theOneLabel >= 0 && theOneLabel != system.Label() {
-          t.Errorf("The sector has more than one surviving label. Label: %d, Expected: %d", system.Label(), theOneLabel)
-        } else if theOneLabel < 0 {
-          theOneLabel = system.Label()
+        systemCount++
+        if theSurvivingLabel >= 0 && theSurvivingLabel != system.Label() {
+          t.Errorf("The sector has more than one surviving label. Label: %d, Expected: %d", system.Label(), theSurvivingLabel)
+        } else if theSurvivingLabel < 0 {
+          theSurvivingLabel = system.Label()
         }
       }
 
@@ -35,7 +37,11 @@ func TestSectorRandomize(t *testing.T) {
     }
   }
 
-  if theOneLabel < 0 {
-    t.Errorf("No blobs were found. Possible but improbable. Each and every system would need to be empty space. Label: %d", theOneLabel)
+  if theSurvivingLabel < 0 {
+    t.Errorf("No blobs were found. Possible but improbable. Each and every system would need to be empty space. Label: %d", theSurvivingLabel)
+  }
+
+  if systemCount != len(sector.Systems) {
+    t.Errorf("The number of surviving systems on the grid does not equal the recorded surviving systems in the sector. %d != %d", systemCount, len(sector.Systems))
   }
 }

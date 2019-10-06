@@ -3,15 +3,15 @@ package grid
 type Route struct {
   sourceSystem *System
   targetSystem *System
-  SourceCoords Coords
-  TargetCoords Coords
+  X int
+  Y int
 }
 
 func (route *Route) InitFromSystems(sourceSystem *System, targetSystem *System) *Route {
   route.sourceSystem = sourceSystem
   route.targetSystem = targetSystem
-  route.SourceCoords = sourceSystem.Location
-  route.TargetCoords = targetSystem.Location
+  route.X = targetSystem.X
+  route.Y = targetSystem.Y
 
   return route
 }

@@ -3,13 +3,15 @@ package grid
 import "testing"
 
 func createRouteTestObjs() (*Route, *System, *System) {
-  locationA := Coords{3, 4}
-  locationB := Coords{0, 8}
+  xA := 3
+  yA := 4
+  xB := 0
+  yB := 8
 
   systemA := new(System)
-  systemA.Location = locationA
+  systemA.InitializeAt(xA, yA)
   systemB := new(System)
-  systemB.Location = locationB
+  systemB.InitializeAt(xB, yB)
 
   route := new(Route)
   route.InitFromSystems(systemA, systemB)
@@ -23,21 +25,12 @@ func TestRouteInitializeFromSystems(t *testing.T) {
   route := new(Route)
   route.InitFromSystems(systemA, systemB)
 
-  if route.SourceCoords != systemA.Location {
-    t.Errorf("Route Source Coords did not match Source System Coords. Route: {%d,%d}, System: {%d, %d}",
-      route.SourceCoords.X,
-      route.SourceCoords.Y,
-      systemA.Location.X,
-      systemA.Location.Y,
-    )
-  }
-
-  if route.TargetCoords != systemB.Location {
+  if route.X != systemB.X || route.Y != systemB.Y {
     t.Errorf("Route Target Coords did not match Target System Coords. Route: {%d,%d}, System: {%d, %d}",
-      route.TargetCoords.X,
-      route.TargetCoords.Y,
-      systemB.Location.X,
-      systemB.Location.Y,
+      route.X,
+      route.Y,
+      systemB.X,
+      systemB.Y,
     )
   }
 }
@@ -67,21 +60,12 @@ func TestRouteCreateReverse(t *testing.T) {
 
   inverseRoute := route.CreateReverse()
 
-  if inverseRoute.SourceCoords != route.TargetCoords {
+  if inverseRoute.SourceSystem().X != route.X || inverseRoute.SourceSystem().Y != route.Y {
     t.Errorf("Inverse Source Coords did not match original Target Coords. Inverse: {%d,%d}, Original: {%d, %d}",
-      inverseRoute.SourceCoords.X,
-      inverseRoute.SourceCoords.Y,
-      route.TargetCoords.X,
-      route.TargetCoords.Y,
-    )
-  }
-
-  if inverseRoute.TargetCoords != route.SourceCoords {
-    t.Errorf("Inverse Target Coords did not match original Source Coords. Inverse: {%d,%d}, Original: {%d, %d}",
-      inverseRoute.TargetCoords.X,
-      inverseRoute.TargetCoords.Y,
-      route.SourceCoords.X,
-      route.SourceCoords.Y,
+      inverseRoute.SourceSystem().X,
+      inverseRoute.SourceSystem().Y,
+      route.X,
+      route.Y,
     )
   }
 

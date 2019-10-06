@@ -29,7 +29,7 @@ class Views:
         self.Form = modelform_factory(self.Model, fields='__all__')
 
     def index(self, request):
-        template = '{title}/index.html'.format(
+        template = 'index.html'.format(
             title=self.title
         )
         context = {
@@ -42,7 +42,7 @@ class Views:
         return render(request, template, context)
 
     def detail(self, request, model_id):
-        template = '{title}/detail.html'.format(
+        template = 'detail.html'.format(
             title=self.title
         )
         model = get_object_or_404(self.Model, pk=model_id)
@@ -62,7 +62,7 @@ class Views:
         return render(request, template, context)
 
     def new(self, request):
-        template = '{title}/detail.html'.format(
+        template = 'detail.html'.format(
             title=self.title
         )
         if request.POST:
@@ -80,7 +80,7 @@ class Views:
         return render(request, template, context)
 
     def test(self, request, model_id):
-        template = '{title}/test.html'.format(
+        template = 'test.html'.format(
             title=self.title
         )
 
@@ -94,7 +94,7 @@ class Views:
 
         screaming_vortex_json = {
             'config_id': model_id,
-            'template_id': None,
+            'skeleton_id': None,
         }
         screaming_vortex_response = requests.post(
             screaming_vortex_url,

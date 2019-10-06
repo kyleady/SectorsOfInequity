@@ -1,7 +1,8 @@
 package grid
 
 type System struct {
-  Location Coords
+  X int
+  Y int
   Routes []Route
   blobLabel int
 }
@@ -27,7 +28,8 @@ func (system *System) LabelIsUnset() bool {
 }
 
 func (system *System) InitializeAt(i int, j int) {
-  system.Location = Coords{i, j}
+  system.X = i
+  system.Y = j
   system.Routes = make([]Route, 0)
   system.blobLabel = system.TheUnsetLabel()
 }

@@ -7,7 +7,8 @@ import (
 )
 
 type Sector struct {
-  Grid [][]System
+  Systems []System
+  grid [][]System
   config *config.GridConfig
   rand *rand.Rand
 }
@@ -23,17 +24,18 @@ func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   sector.connectSystems()
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
+  sector.saveSystems()
 }
 
 func (sector *Sector) createGrid() {
-  sector.Grid = make([][]System, sector.config.Height)
-  for i := range sector.Grid {
-    sector.Grid[i] = make([]System, sector.config.Width)
+  sector.grid = make([][]System, sector.config.Height)
+  for i := range sector.grid {
+    sector.grid[i] = make([]System, sector.config.Width)
   }
 }
 
 func (sector *Sector) populateGrid() {
-  for i, row := range sector.Grid {
+  for i, row := range sector.grid {
     for j := range row {
       sector.createSystem(i, j)
     }
@@ -48,21 +50,21 @@ func (sector *Sector) createSystem(i int, j int) {
     system.SetToVoidSpace()
   }
 
-  sector.Grid[i][j] = *system
+  sector.grid[i][j] = *system
 }
 
 func (sector *Sector) connectSystems() {
   reach := sector.config.ConnectionRange
 
-  for i := range sector.Grid {
-    for j := range sector.Grid[i] {
+  for i := range sector.grid {
+    for j := range sector.grid[i] {
 
       // Attempt to connect the system @{i,j} to all systems within reach
       for r_i := -reach; r_i <= reach; r_i++ {
         for r_j := -reach; r_j <= reach; r_j++ {
           if roll := sector.rand.Float64(); roll < sector.connectionChance(r_i, r_j) {
             targetSystem := sector.getSystem(i+r_i, j+r_j)
-            sector.Grid[i][j].ConnectTo(targetSystem)
+            sector.grid[i][j].ConnectTo(targetSystem)
           }
         }
       }
@@ -106,15 +108,15 @@ func (sector *Sector) getSystem(i int, j int) *System {
     return nil
   }
 
-  return &sector.Grid[i][j]
+  return &sector.grid[i][j]
 }
 
 func (sector *Sector) labelBlobsAndGetSizes() []int {
   currentLabel := 0
   blobSizes := make([]int, 0)
-  for i := range sector.Grid {
-    for j := range sector.Grid[i] {
-      blobSize := sector.Grid[i][j].LabelBlob(currentLabel)
+  for i := range sector.grid {
+    for j := range sector.grid[i] {
+      blobSize := sector.grid[i][j].LabelBlob(currentLabel)
 
       if blobSize != 0 {
         blobSizes = append(blobSizes, blobSize)
@@ -138,9 +140,19 @@ func (sector *Sector) trimToLargestBlob(blobSizes []int) {
     }
   }
 
-  for i := range sector.Grid {
-    for j := range sector.Grid[i] {
-      sector.Grid[i][j].VoidNonMatchingLabel(largestBlobLabel)
+  for i := range sector.grid {
+    for j := range sector.grid[i] {
+      sector.grid[i][j].VoidNonMatchingLabel(largestBlobLabel)
+    }
+  }
+}
+
+func (sector *Sector) saveSystems() {
+  for i := range sector.grid {
+    for j := range sector.grid {
+      if sector.grid[i][j].IsVoidSpace() == false {
+        sector.Systems = append(sector.Systems, sector.grid[i][j])
+      }
     }
   }
 }
