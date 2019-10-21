@@ -1,5 +1,4 @@
-bin/*
-
+*.pyc
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
