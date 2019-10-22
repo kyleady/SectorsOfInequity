@@ -3,6 +3,7 @@ from django.forms import modelform_factory
 from django.http import HttpResponse
 import requests
 import json
+import os
 
 class Views:
     def __init__(self, full_name, app, name, Model):
@@ -27,6 +28,8 @@ class Views:
             title=self.title
         )
         self.Form = modelform_factory(self.Model, fields='__all__')
+
+        self.screaming_vortex_host = os.environ.get('SCREAMING_VORTEX_HOST')
 
     def index(self, request):
         template = 'index.html'.format(
@@ -85,7 +88,7 @@ class Views:
         )
 
         screaming_vortex_url = 'http://{host}/{path}'.format(
-            host='localhost:8080',
+            host=self.screaming_vortex_host,
             path=self.title
         )
 
@@ -101,5 +104,4 @@ class Views:
             data=json.dumps(screaming_vortex_json),
         )
         screaming_vortex_response.raise_for_status()
-        print(screaming_vortex_response.json())
-        return HttpResponse("OK")
+        return HttpResponse(screaming_vortex_response.text)
