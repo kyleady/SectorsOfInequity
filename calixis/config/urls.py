@@ -1,9 +1,10 @@
 from django.urls import path
 from .views import Views
-from .models import Grid
+from .models import Grid, Sector
 
 subapps = [
-    { 'full_name': 'Grid Config', 'app': 'config', 'name': 'grid', 'Model': Grid },
+    { 'full_name': 'Grid Config',   'app': 'config', 'name': 'grid',   'Model': Grid },
+    { 'full_name': 'Sector Config', 'app': 'config', 'name': 'sector', 'Model': Sector },
 ]
 urlpatterns = []
 for subapp in subapps:

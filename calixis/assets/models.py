@@ -15,14 +15,4 @@ class BaseAsset(models.Model):
     def __str__(self):
         return self.name
 
-class GridSector(BaseAsset):
-     pass
-
-class GridSystem(BaseAsset):
-    sector = models.ForeignKey(GridSector, on_delete=models.CASCADE)
-    x = models.PositiveSmallIntegerField()
-    y = models.PositiveSmallIntegerField()
-
-class GridRoute(BaseAsset):
-    start = models.ForeignKey(GridSystem, on_delete=models.CASCADE, related_name='start')
-    end = models.ForeignKey(GridSystem, on_delete=models.CASCADE, related_name='end')
+    name = models.CharField(default="-", max_length=25)

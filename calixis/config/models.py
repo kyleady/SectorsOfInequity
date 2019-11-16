@@ -25,3 +25,15 @@ class Grid(BaseConfig):
     populationRate = models.FloatField(default=0.5, blank=True)
     connectionRate = models.FloatField(default=0.5, blank=True)
     rangeRateMultiplier = models.FloatField(default=0.5, blank=True)
+
+class Sector(BaseConfig):
+     name = models.CharField(default="-", max_length=39)
+
+class SectorSystem(models.Model):
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
+    x = models.PositiveSmallIntegerField()
+    y = models.PositiveSmallIntegerField()
+
+class SectorRoute(models.Model):
+    start = models.ForeignKey(SectorSystem, on_delete=models.CASCADE, related_name='start')
+    end = models.ForeignKey(SectorSystem, on_delete=models.CASCADE, related_name='end')
