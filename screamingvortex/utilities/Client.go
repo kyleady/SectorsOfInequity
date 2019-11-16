@@ -52,13 +52,12 @@ func (client *Client) Open() {
 }
 
 func (client *Client) Fetch(obj SQLInterface, id int64) {
-  _, names, addresses := listFields(obj)
-  query := fmt.Sprintf("SELECT %s FROM %s WHERE id = ?;",
-    strings.Join(names, ","), obj.TableName())
+  query := fetchQuery(obj, "id = ?")
   rows, err := client.db.Query(query, id)
   if err != nil {
   	panic(err)
   }
+  _, _, addresses := listFields(obj, true)
   for rows.Next() {
   	err := rows.Scan(addresses...)
   	if err != nil {
@@ -67,8 +66,46 @@ func (client *Client) Fetch(obj SQLInterface, id int64) {
   }
 }
 
+func (client *Client) FetchAll(asInterface interface{}, whereClause string, whereValues ...interface{}) {
+  asSlice := reflect.ValueOf(asInterface).Elem()
+  asSlice.Set(reflect.MakeSlice(asSlice.Type(), 0, 0))
+  generatedObj := reflect.New(asSlice.Type().Elem())
+  var obj SQLInterface
+  arrayOf := "?"
+  if generatedObj.Elem().Kind() == reflect.Ptr {
+    arrayOf = "pointers"
+    generatedObj = reflect.New(asSlice.Type().Elem().Elem())
+    obj = generatedObj.Interface().(SQLInterface)
+  } else {
+    arrayOf = "structs"
+    obj = generatedObj.Interface().(SQLInterface)
+  }
+  query := fetchQuery(obj, whereClause)
+  rows, err := client.db.Query(query, whereValues...)
+  if err != nil {
+  	panic(err)
+  }
+  for rows.Next() {
+    if arrayOf == "pointers" {
+      generatedObj = reflect.New(asSlice.Type().Elem().Elem())
+    } else if arrayOf == "structs" {
+      generatedObj = reflect.New(asSlice.Type().Elem())
+    }
+    _, _, addresses := listFields(generatedObj.Interface(), true)
+    err := rows.Scan(addresses...)
+    if err != nil {
+  		panic(err)
+  	}
+    if arrayOf == "pointers" {
+      asSlice.Set(reflect.Append(asSlice, generatedObj))
+    } else {
+      asSlice.Set(reflect.Append(asSlice, generatedObj.Elem()))
+    }
+  }
+}
+
 func (client *Client) Update(obj SQLInterface) {
-  values, names, _ := listFields(obj)
+  values, names, _ := listFields(obj, false)
   query := fmt.Sprintf("UPDATE %s SET %s%s WHERE id = ?;",
     obj.TableName(),
     strings.Join(names, " = ?, "),
@@ -83,26 +120,87 @@ func (client *Client) Update(obj SQLInterface) {
 }
 
 func (client *Client) Save(obj SQLInterface) {
-  values, names, _ := listFields(obj)
-  questionMarks := make([]string, len(names))
-  for i := 0; i < len(names); i++ {
-    questionMarks[i] = "?"
-  }
-  query := fmt.Sprintf("INSERT INTO %s (%s) VALUES (%s) RETURNING id;",
-    obj.TableName(),
-    strings.Join(names, ","),
-    strings.Join(questionMarks, ","),
-  )
-  rows, err := client.db.Query(query, values...)
+  query := saveQuery(obj, 1)
+  values, _, _ := listFields(obj, false)
+  result, err := client.db.Exec(query, values...)
   if err != nil {
   	panic(err)
   }
-  for rows.Next() {
-  	err := rows.Scan(obj.GetId())
-  	if err != nil {
-  		panic(err)
-  	}
+  insert_id, err := result.LastInsertId()
+  if err != nil {
+  	panic(err)
   }
+  *(obj.GetId()) = insert_id
+}
+
+func (client *Client) SaveAll(asInterface interface{}) {
+  objs := reflect.ValueOf(asInterface).Elem()
+  if objs.Len() <= 0 {
+    return
+  }
+
+  var obj SQLInterface
+  objValue := objs.Index(0)
+  arrayOf := "?"
+  if objValue.Kind() == reflect.Ptr {
+    arrayOf = "pointers"
+    obj = objValue.Interface().(SQLInterface)
+  } else {
+    arrayOf = "structs"
+    obj = objValue.Addr().Interface().(SQLInterface)
+  }
+  query := saveQuery(obj, objs.Len())
+
+  all_values := make([]interface{}, 0, objs.Len())
+  all_ids := make([]*int64, 0, objs.Len())
+  for i := 0; i < objs.Len(); i++ {
+    objValue := objs.Index(i)
+    var obj SQLInterface
+    if arrayOf == "pointers" {
+      obj = objValue.Interface().(SQLInterface)
+    } else if arrayOf == "structs" {
+      obj = objValue.Addr().Interface().(SQLInterface)
+    }
+    values, _, _ := listFields(obj, false)
+    all_values = append(all_values, values...)
+    all_ids = append(all_ids, obj.GetId())
+  }
+
+  result, err := client.db.Exec(query, all_values...)
+  if err != nil {
+  	panic(err)
+  }
+  insert_id, err := result.LastInsertId()
+  if err != nil {
+  	panic(err)
+  }
+
+  for i := 0; i < objs.Len(); i++ {
+    *all_ids[i] = insert_id + int64(i)
+  }
+}
+
+func fetchQuery(obj SQLInterface, whereClause string) string {
+  _, names, _ := listFields(obj, true)
+  return fmt.Sprintf("SELECT %s FROM %s WHERE %s;",
+    strings.Join(names, ","), obj.TableName(), whereClause)
+}
+
+func saveQuery(obj SQLInterface, objCount int) string {
+  _, names, _ := listFields(obj, false)
+  questionMarks := make([]string, len(names), len(names))
+  for i := 0; i < len(names); i++ {
+    questionMarks[i] = "?"
+  }
+  parens := make([]string, objCount, objCount)
+  for i := 0; i < objCount; i++ {
+    parens[i] = fmt.Sprintf("(%s)", strings.Join(questionMarks, ","))
+  }
+  return fmt.Sprintf("INSERT INTO %s (%s) VALUES %s;",
+    obj.TableName(),
+    strings.Join(names, ","),
+    strings.Join(parens, ","),
+  )
 }
 
 func (client *Client) Delete(obj SQLInterface) {
@@ -152,21 +250,41 @@ func (client *Client) populateSecrets() {
   client.dbName = client.Resource
 }
 
-func listFields (obj interface{}) ([]interface{}, []string, []interface{}) {
-  rValue := reflect.ValueOf(obj).Elem()
-  rType := reflect.TypeOf(obj).Elem()
-  fieldCount := rValue.NumField()
+func listFields (obj interface{}, includeId bool) ([]interface{}, []string, []interface{}) {
+  rValue := reflect.ValueOf(obj)
+  rType := reflect.TypeOf(obj)
+  if rType.Kind() == reflect.Ptr {
+    rValue = rValue.Elem()
+    rType = rType.Elem()
+  }
+  if rType.Kind() == reflect.Ptr {
+    rValue = rValue.Elem()
+    rType = rType.Elem()
+  }
+
+  fieldCount := 0
+  fieldCount = rValue.NumField()
   addresses := make([]interface{}, fieldCount)
   values := make([]interface{}, fieldCount)
   names := make([]string, fieldCount)
+  included := 0
   for i := 0; i < fieldCount; i++ {
-    field := rValue.Field(i)
-    values[i] = field
-    names[i] = rType.Field(i).Tag.Get("sql")
-    addresses[i] = field.Addr().Interface()
+    sqlname := rType.Field(i).Tag.Get("sql")
+    if !includeId && sqlname == "id" {
+      continue
+    }
+
+    if len(sqlname) > 0 {
+      field := rValue.Field(i)
+      values[included] = field.Interface()
+      names[included] = sqlname
+      addresses[included] = field.Addr().Interface()
+
+      included++
+    }
   }
 
-  return values, names, addresses
+  return values[:included], names[:included], addresses[:included]
 }
 
 type svcResponse struct {
