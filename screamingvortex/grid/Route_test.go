@@ -13,8 +13,7 @@ func createRouteTestObjs() (*Route, *System, *System) {
   systemB := new(System)
   systemB.InitializeAt(xB, yB)
 
-  route := new(Route)
-  route.InitFromSystems(systemA, systemB)
+  route := CreateRoute(systemA, systemB)
 
   return route, systemA, systemB
 }
@@ -22,8 +21,7 @@ func createRouteTestObjs() (*Route, *System, *System) {
 func TestRouteInitializeFromSystems(t *testing.T) {
   _, systemA, systemB := createRouteTestObjs()
 
-  route := new(Route)
-  route.InitFromSystems(systemA, systemB)
+  route := CreateRoute(systemA, systemB)
 
   if route.X != systemB.X || route.Y != systemB.Y {
     t.Errorf("Route Target Coords did not match Target System Coords. Route: {%d,%d}, System: {%d, %d}",

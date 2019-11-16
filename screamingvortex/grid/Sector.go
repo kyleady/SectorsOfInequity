@@ -1,22 +1,88 @@
 package grid
 
 import (
+  "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
   "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
   "math/rand"
   "time"
 )
 
 type Sector struct {
-  Systems []System
-  grid [][]System
+  Id int64 `sql:"id"`
+  Name string `sql:"name"`
+  Systems []*System
+  grid [][]*System
   config *config.GridConfig
   rand *rand.Rand
 }
 
+func (sector *Sector) TableName() string {
+  return "config_sector"
+}
+
+func (sector *Sector) GetId() *int64 {
+  return &sector.Id
+}
+
+func (sector *Sector) SaveTo(client utilities.ClientInterface) {
+  client.Save(sector)
+  sector.saveSystems(client)
+  sector.saveSystemRoutes(client)
+}
+
+func (sector *Sector) saveSystems(client utilities.ClientInterface) {
+  for _, system := range sector.Systems {
+    system.SectorId = sector.Id
+  }
+  client.SaveAll(&sector.Systems)
+}
+
+func (sector *Sector) saveSystemRoutes(client utilities.ClientInterface) {
+  for _, system := range sector.Systems {
+    for _, route := range system.Routes {
+      route.StartId = system.Id
+      route.EndId = -1
+      for _, endSystem := range sector.Systems {
+        if route.targetSystem == endSystem {
+          route.EndId = endSystem.Id
+          break
+        }
+      }
+    }
+    client.SaveAll(&system.Routes)
+  }
+}
+
+func LoadFrom(client utilities.ClientInterface, id int64) *Sector {
+  sector := &Sector{}
+  client.Fetch(sector, id)
+  client.FetchAll(&sector.Systems, "sector_id = ?", sector.Id)
+  for system_i := range sector.Systems {
+    system_ptr := sector.Systems[system_i]
+    client.FetchAll(&system_ptr.Routes, "start_id = ?", system_ptr.Id)
+    for route_i := range system_ptr.Routes {
+      route_ptr := system_ptr.Routes[route_i]
+      route_ptr.sourceSystem = system_ptr
+      for endSystem_i := range sector.Systems {
+        endSystem_ptr := sector.Systems[endSystem_i]
+        if route_ptr.EndId == endSystem_ptr.Id {
+          route_ptr.targetSystem = endSystem_ptr
+          route_ptr.X = endSystem_ptr.X
+          route_ptr.Y = endSystem_ptr.Y
+          break
+        }
+      }
+    }
+  }
+  return sector
+}
+
 func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   sector.config = gridConfig
+  t := time.Now()
+  sector.Name = gridConfig.Name + t.Format("20060102150405")
 
-  source := rand.NewSource(time.Now().UnixNano())
+  source := rand.NewSource(t.UnixNano())
   sector.rand = rand.New(source)
 
   sector.createGrid()
@@ -24,13 +90,13 @@ func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   sector.connectSystems()
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
-  sector.saveSystems()
+  sector.gridToList()
 }
 
 func (sector *Sector) createGrid() {
-  sector.grid = make([][]System, sector.config.Height)
+  sector.grid = make([][]*System, sector.config.Height)
   for i := range sector.grid {
-    sector.grid[i] = make([]System, sector.config.Width)
+    sector.grid[i] = make([]*System, sector.config.Width)
   }
 }
 
@@ -50,7 +116,7 @@ func (sector *Sector) createSystem(i int, j int) {
     system.SetToVoidSpace()
   }
 
-  sector.grid[i][j] = *system
+  sector.grid[i][j] = system
 }
 
 func (sector *Sector) connectSystems() {
@@ -108,7 +174,7 @@ func (sector *Sector) getSystem(i int, j int) *System {
     return nil
   }
 
-  return &sector.grid[i][j]
+  return sector.grid[i][j]
 }
 
 func (sector *Sector) labelBlobsAndGetSizes() []int {
@@ -147,9 +213,10 @@ func (sector *Sector) trimToLargestBlob(blobSizes []int) {
   }
 }
 
-func (sector *Sector) saveSystems() {
+func (sector *Sector)gridToList() {
+  sector.Systems = make([]*System, 0)
   for i := range sector.grid {
-    for j := range sector.grid {
+    for j := range sector.grid[i] {
       if sector.grid[i][j].IsVoidSpace() == false {
         sector.Systems = append(sector.Systems, sector.grid[i][j])
       }

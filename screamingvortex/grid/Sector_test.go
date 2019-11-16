@@ -2,10 +2,11 @@ package grid
 
 import "testing"
 import "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
+import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "encoding/json"
 
 func TestSectorRandomize(t *testing.T) {
-  sectorConfig := new(config.GridConfig)
-  sectorConfig.SetToDefault()
+  sectorConfig := config.ExampleGridConfig()
 
   sector := new(Sector)
   sector.Randomize(sectorConfig)
@@ -28,11 +29,17 @@ func TestSectorRandomize(t *testing.T) {
       }
 
       if len(system.Routes) == 0 && !system.IsVoidSpace() {
-        t.Errorf("Grid System is not connected to other systems. This is possible but improbable if there is only one system in the blob.")
+        t.Errorf("Grid System is not connected to other systems. This is possible but improbable if there is only one system in the blob. Label: %d", theSurvivingLabel)
       }
 
       if len(system.Routes) > 0 && system.IsVoidSpace() {
         t.Errorf("Void Space is still connected to other systems.")
+      }
+
+      for _, route := range system.Routes {
+        if route.TargetSystem().Label() != theSurvivingLabel {
+          t.Errorf("Route is connected to system outside the main label. TargetSystem: %v", route.TargetSystem())
+        }
       }
     }
   }
@@ -43,5 +50,32 @@ func TestSectorRandomize(t *testing.T) {
 
   if systemCount != len(sector.Systems) {
     t.Errorf("The number of surviving systems on the grid does not equal the recorded surviving systems in the sector. %d != %d", systemCount, len(sector.Systems))
+  }
+}
+
+func TestLoadFrom(t *testing.T) {
+  client := &utilities.ClientMock{}
+  client.Open()
+  defer client.Close()
+  client.AddTable_((&Sector{}).TableName())
+  client.AddTable_((&System{}).TableName())
+  client.AddTable_((&Route{}).TableName())
+
+  gridConfig := config.ExampleGridConfig()
+  sectorConfig := &Sector{}
+  sectorConfig.Randomize(gridConfig)
+  blankConfig := &Sector{}
+  originalJson, _ := json.MarshalIndent(sectorConfig, "", "    ")
+  blankJson, _ := json.MarshalIndent(blankConfig, "", "    ")
+  if string(originalJson) == string(blankJson) {
+    t.Errorf("Example sectorConfig == blank sectorConfig:\n%+v\n", sectorConfig)
+  }
+
+  sectorConfig.SaveTo(client)
+  loadedConfig := LoadFrom(client, sectorConfig.Id)
+  sectorJson, _ := json.MarshalIndent(sectorConfig, "", "    ")
+  loadedJson, _ := json.MarshalIndent(loadedConfig, "", "    ")
+  if string(sectorJson) != string(loadedJson) {
+    t.Errorf("Loaded sectorConfig does not equal example sectorConfig after LoadFrom()\nRandomized:\n%s\nSaved:\n%s\nLoaded:\n%s", originalJson, sectorJson, loadedJson)
   }
 }
