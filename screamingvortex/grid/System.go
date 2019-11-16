@@ -1,10 +1,20 @@
 package grid
 
 type System struct {
-  X int
-  Y int
-  Routes []Route
+  Id int64 `sql:"id"`
+  X int `sql:"x"`
+  Y int `sql:"y"`
+  SectorId int64 `sql:"sector_id"`
+  Routes []*Route
   blobLabel int
+}
+
+func (system *System) TableName() string {
+  return "config_sectorsystem"
+}
+
+func (system *System) GetId() *int64 {
+  return &system.Id
 }
 
 func (system *System) TheVoidLabel() int {
@@ -30,12 +40,12 @@ func (system *System) LabelIsUnset() bool {
 func (system *System) InitializeAt(i int, j int) {
   system.X = i
   system.Y = j
-  system.Routes = make([]Route, 0)
+  system.Routes = make([]*Route, 0)
   system.blobLabel = system.TheUnsetLabel()
 }
 
 func (system *System) SetToVoidSpace() {
-  system.Routes = make([]Route, 0)
+  system.Routes = make([]*Route, 0)
   system.blobLabel = system.TheVoidLabel()
 }
 
@@ -54,8 +64,7 @@ func (system *System) ConnectTo(targetSystem *System) {
     }
   }
 
-  newRoute := *new(Route)
-  newRoute.InitFromSystems(system, targetSystem)
+  newRoute := CreateRoute(system, targetSystem)
   system.Routes = append(system.Routes, newRoute)
   targetSystem.Routes = append(targetSystem.Routes, newRoute.CreateReverse())
 }

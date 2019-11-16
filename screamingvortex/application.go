@@ -19,6 +19,7 @@ func gridHandler(writer http.ResponseWriter, req *http.Request) {
         http.Error(writer, "Input\n" + inputErr.Error(), http.StatusInternalServerError)
         return
     }
+    id := calixisMsg.ConfigId
 
     client := &utilities.Client{
       Environment: "dev",
@@ -29,20 +30,13 @@ func gridHandler(writer http.ResponseWriter, req *http.Request) {
     client.Open()
     defer client.Close()
 
-    gridConfig := new(config.GridConfig)
-    client.Fetch(gridConfig, calixisMsg.ConfigId)
+    gridConfig := config.LoadFrom(client, id)
 
-    sector := new(grid.Sector)
-    sector.Randomize(gridConfig)
+    sectorConfig := new(grid.Sector)
+    sectorConfig.Randomize(gridConfig)
+    sectorConfig.SaveTo(client)
 
-    jsSector, outputErr := json.Marshal(*sector)
-    if outputErr != nil {
-      http.Error(writer, "Output\n" + outputErr.Error(), http.StatusInternalServerError)
-      return
-    }
-
-    writer.Header().Set("Content-Type", "application/json")
-    writer.Write(jsSector)
+    writer.Write([]byte("OK"))
 }
 
 func main() {
