@@ -20,7 +20,7 @@ for subapp in subapps:
         urlpatterns.append(
             path(
                 '{name}/<int:model_id>/'.format(name=subapp['name']),
-                views.sector,
+                views.sector_detail,
                 name=views.detail_url
             )
         )

@@ -65,8 +65,8 @@ class Views:
 
         return render(request, template, context)
 
-    def sector(self, request, model_id):
-        template = 'sector.html'
+    def sector_detail(self, request, model_id):
+        template = 'sector_detail.html'
         sector_model = get_object_or_404(self.Model, pk=model_id)
 
         if request.POST:
