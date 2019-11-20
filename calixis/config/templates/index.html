@@ -3,7 +3,7 @@
     <ul>
     {% for model in model_list %}
         <li><a href="{% url detail_url model.id %}">
-          {{ model.name }}
+          {{ model }}
         </a></li>
     {% endfor %}
     </ul>

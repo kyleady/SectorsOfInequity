@@ -78,19 +78,22 @@ class Views:
         route_models = self.SubModels[1].objects.filter(start__in=system_models)
 
         system_coords = []
+        region_colors = {}
         max_x = 0
         max_y = 0
         for system_model in system_models:
             system_coords.append({
                 "x": system_model.x,
                 "y": system_model.y,
-                "region_id": "system_model.region_id",
+                "region_id": system_model.region_id,
             })
 
             if system_model.x > max_x:
                 max_x = system_model.x
             if system_model.y > max_y:
                 max_y = system_model.y
+
+            region_colors[system_model.region_id] = ''
 
         route_coords = []
         for route_model in route_models:
@@ -118,6 +121,7 @@ class Views:
             'full_name': self.full_name,
             'system_coords': system_coords,
             'route_coords': route_coords,
+            'region_colors': region_colors,
             'canvas': {
                 'max_x': None,
                 'max_y': None,
@@ -125,7 +129,7 @@ class Views:
                 'offset_y': 10,
                 'spacing_x': 50,
                 'spacing_y': 50,
-                'radius': 5
+                'radius': 10
             },
             'form': self.Form(instance=sector_model)
         }
