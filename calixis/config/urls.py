@@ -1,8 +1,10 @@
 from django.urls import path
 from .views import Views
-from .models import Grid, Sector, SectorSystem, SectorRoute
+from .models import Grid, Sector, SectorSystem, SectorRoute, Region, WeightedRegion
 
 subapps = [
+    { 'full_name': 'Region Config', 'app': 'config', 'name': 'region', 'Model': Region },
+    { 'full_name': 'Weighted Region', 'app': 'config', 'name': 'weighted-region', 'Model': WeightedRegion },
     { 'full_name': 'Grid Config',   'app': 'config', 'name': 'grid',   'Model': Grid },
     { 'full_name': 'Sector Config', 'app': 'config', 'name': 'sector', 'Model': Sector, 'SubModels': [SectorSystem, SectorRoute] },
 ]

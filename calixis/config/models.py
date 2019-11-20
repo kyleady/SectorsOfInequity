@@ -17,6 +17,21 @@ class BaseConfig(models.Model):
 
     name = models.CharField(default="-", max_length=25)
 
+class Region(BaseConfig):
+    pass
+
+class WeightedRegion(models.Model):
+    weight = models.SmallIntegerField()
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "({weight}) {region_name}".format(weight=self.weight, region_name=self.region.name)
+
+    def __repr__(self):
+        return json.dumps(model_to_dict(
+            self,
+            fields=[field.name for field in self._meta.fields]
+        ))
 
 class Grid(BaseConfig):
     height = models.PositiveSmallIntegerField(default=20, blank=True)
@@ -25,14 +40,16 @@ class Grid(BaseConfig):
     populationRate = models.FloatField(default=0.5, blank=True)
     connectionRate = models.FloatField(default=0.5, blank=True)
     rangeRateMultiplier = models.FloatField(default=0.5, blank=True)
+    weightedRegions = models.ManyToManyField(WeightedRegion, blank=True)
 
 class Sector(BaseConfig):
-     name = models.CharField(default="-", max_length=39)
+    name = models.CharField(default="-", max_length=39)
 
 class SectorSystem(models.Model):
     sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
     x = models.PositiveSmallIntegerField()
     y = models.PositiveSmallIntegerField()
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
 
 class SectorRoute(models.Model):
     start = models.ForeignKey(SectorSystem, on_delete=models.CASCADE, related_name='start')
