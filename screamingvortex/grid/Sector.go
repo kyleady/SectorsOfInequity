@@ -80,7 +80,7 @@ func LoadFrom(client utilities.ClientInterface, id int64) *Sector {
 func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   sector.config = gridConfig
   t := time.Now()
-  sector.Name = gridConfig.Name + t.Format("20060102150405")
+  sector.Name = gridConfig.Name + t.Format("_20060102150405")
 
   source := rand.NewSource(t.UnixNano())
   sector.rand = rand.New(source)
@@ -91,6 +91,7 @@ func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
   sector.gridToList()
+  sector.randomizeRegionIds(&gridConfig.WeightedRegions)
 }
 
 func (sector *Sector) createGrid() {
@@ -213,7 +214,7 @@ func (sector *Sector) trimToLargestBlob(blobSizes []int) {
   }
 }
 
-func (sector *Sector)gridToList() {
+func (sector *Sector) gridToList() {
   sector.Systems = make([]*System, 0)
   for i := range sector.grid {
     for j := range sector.grid[i] {
@@ -221,5 +222,11 @@ func (sector *Sector)gridToList() {
         sector.Systems = append(sector.Systems, sector.grid[i][j])
       }
     }
+  }
+}
+
+func (sector *Sector) randomizeRegionIds(weightedRegions *[]*config.WeightedRegion) {
+  for _, system := range sector.Systems {
+    system.RegionId = utilities.WeightedRoll(weightedRegions, sector.rand).(int64)
   }
 }

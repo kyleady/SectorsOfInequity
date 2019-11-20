@@ -5,6 +5,7 @@ type System struct {
   X int `sql:"x"`
   Y int `sql:"y"`
   SectorId int64 `sql:"sector_id"`
+  RegionId int64 `sql:"region_id"`
   Routes []*Route
   blobLabel int
 }
@@ -38,6 +39,8 @@ func (system *System) LabelIsUnset() bool {
 }
 
 func (system *System) InitializeAt(i int, j int) {
+  system.RegionId = 1
+
   system.X = i
   system.Y = j
   system.Routes = make([]*Route, 0)

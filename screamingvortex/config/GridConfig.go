@@ -11,6 +11,7 @@ type GridConfig struct {
   PopulationRate float64 `sql:"populationRate"`
   ConnectionRate float64 `sql:"connectionRate"`
   RangeRateMultiplier float64 `sql:"rangeRateMultiplier"`
+  WeightedRegions []*WeightedRegion
 }
 
 func (config *GridConfig) TableName() string {
@@ -24,18 +25,28 @@ func (config *GridConfig) GetId() *int64 {
 func LoadFrom(client utilities.ClientInterface, id int64) *GridConfig {
   gridConfig := new(GridConfig)
   client.Fetch(gridConfig, id)
+  client.FetchAll(&gridConfig.WeightedRegions, "id IN (SELECT weightedregion_id FROM config_grid_weightedRegions WHERE grid_id = 1)", )
   return gridConfig
 }
 
-func ExampleGridConfig() *GridConfig{
-  return &GridConfig{
-    314159265,      //Id int64 `sql:"id"`
-    "Test Config",  //Name string `sql:"name"`
-    20,             //Height int `sql:"height"`
-    21,             //Width int `sql:"width"`
-    5,              //ConnectionRange int `sql:"connectionRange"`
-    0.24,           //PopulationRate float64 `sql:"populationRate"`
-    0.25,           //ConnectionRate float64 `sql:"connectionRate"`
-    0.26,           //RangeRateMultiplier float64 `sql:"rangeRateMultiplier"`
-  }
+type WeightedRegion struct {
+  Id int64 `sql:"id"`
+  Weight int `sql:"weight"`
+  RegionId int64 `sql:"region_id"`
+}
+
+func (weightedRegion *WeightedRegion) TableName() string {
+  return "config_weightedregion"
+}
+
+func (weightedRegion *WeightedRegion) GetId() *int64 {
+  return &weightedRegion.Id
+}
+
+func (weightedRegion *WeightedRegion) GetWeight() int {
+  return weightedRegion.Weight
+}
+
+func (weightedRegion *WeightedRegion) GetValue() interface{} {
+  return weightedRegion.RegionId
 }
