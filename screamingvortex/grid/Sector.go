@@ -91,7 +91,7 @@ func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
   sector.gridToList()
-  sector.randomizeRegionIds(&gridConfig.WeightedRegions)
+  sector.genClumpedRegionIds()
 }
 
 func (sector *Sector) createGrid() {
@@ -225,8 +225,91 @@ func (sector *Sector) gridToList() {
   }
 }
 
-func (sector *Sector) randomizeRegionIds(weightedRegions *[]*config.WeightedRegion) {
-  for _, system := range sector.Systems {
-    system.RegionId = utilities.WeightedRoll(weightedRegions, sector.rand).(int64)
+func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*System, *System, int, int) {
+  systemListIndexA := rand.Intn(len(sector.Systems))
+  var regionA int64
+  var systemA *System
+  var systemIndexA int
+  for regionId, systemIndexList := range listByRegion {
+    if systemListIndexA < len(systemIndexList) {
+      systemIndexA = systemIndexList[systemListIndexA]
+      systemA = sector.Systems[systemIndexA]
+      regionA = regionId
+      break
+    } else {
+      systemListIndexA -= len(systemIndexList)
+    }
+  }
+
+  systemListIndexB := rand.Intn(len(sector.Systems) - len(listByRegion[regionA]))
+  var systemB *System
+  var systemIndexB int
+  for regionId, systemIndexList := range listByRegion {
+    if regionId == regionA {
+      continue
+    }
+
+    if systemListIndexB < len(systemIndexList) {
+      systemIndexB = systemIndexList[systemListIndexB]
+      systemB = sector.Systems[systemIndexB]
+      break
+    } else {
+      systemListIndexB -= len(systemIndexList)
+    }
+  }
+
+  return systemA, systemB, systemListIndexA, systemListIndexB
+}
+
+func (sector *Sector) genClumpedRegionIds() {
+  listByRegion := make(map[int64][]int)
+  for systemIndex, system := range sector.Systems {
+    randRegion := utilities.WeightedRoll(&sector.config.WeightedRegions, sector.rand).(int64)
+    system.RegionId = randRegion
+    listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
+  }
+
+  if len(sector.Systems) <= 2 {
+    return
+  }
+
+  if len(listByRegion) <= 1 {
+    return
+  }
+
+  maxSwitches := int(float64(len(sector.Systems)) * sector.config.SmoothingFactor)
+  for i := 0; i < maxSwitches; i++ {
+    systemA, systemB, systemListIndexA, systemListIndexB := sector.getTwoDifferentSystems(listByRegion)
+    regionA := systemA.RegionId
+    regionB := systemB.RegionId
+    vBefore := 0
+    vAfter := 0
+    for _, route := range systemA.Routes {
+      if route.TargetSystem().RegionId == regionA {
+        vBefore += 1
+      } else if route.TargetSystem().RegionId == regionB {
+        if route.TargetSystem() != systemB {
+          vAfter += 1
+        }
+      }
+    }
+
+    for _, route := range systemB.Routes {
+      if route.TargetSystem().RegionId == regionB {
+        vBefore += 1
+      } else if route.TargetSystem().RegionId == regionA {
+        if route.TargetSystem() != systemA {
+          vAfter += 1
+        }
+      }
+    }
+
+    if vAfter >= vBefore {
+      placeHolder := listByRegion[regionA][systemListIndexA]
+      listByRegion[regionA][systemListIndexA] = listByRegion[regionB][systemListIndexB]
+      listByRegion[regionB][systemListIndexB] = placeHolder
+      systemA.RegionId = regionB
+      systemB.RegionId = regionA
+    }
   }
 }

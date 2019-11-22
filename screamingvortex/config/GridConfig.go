@@ -11,7 +11,28 @@ type GridConfig struct {
   PopulationRate float64 `sql:"populationRate"`
   ConnectionRate float64 `sql:"connectionRate"`
   RangeRateMultiplier float64 `sql:"rangeRateMultiplier"`
+  SmoothingFactor float64 `sql:"smoothingFactor"`
   WeightedRegions []*WeightedRegion
+}
+
+func TestGridConfig() *GridConfig {
+  weightedRegions := []*WeightedRegion{
+    &WeightedRegion{1, 3, 2320},
+    &WeightedRegion{2, 2, 320},
+    &WeightedRegion{3, 4, 3499},
+  }
+  return &GridConfig{
+    1234,             //Id int64 `sql:"id"`
+    "test config",    //Name string `sql:"name"`
+    20,               //Height int `sql:"height"`
+    20,               //Width int `sql:"width"`
+    3,                //ConnectionRange int `sql:"connectionRange"`
+    0.75,             //PopulationRate float64 `sql:"populationRate"`
+    0.53,             //RangeRateMultiplier float64 `sql:"rangeRateMultiplier"`
+    0.51,             //ConnectionRate float64 `sql:"connectionRate"`
+    2.0,              //SmoothingFactor float64 `sql:"smoothingFactor"`
+    weightedRegions,  //WeightedRegions []*WeightedRegion
+  }
 }
 
 func (config *GridConfig) TableName() string {
