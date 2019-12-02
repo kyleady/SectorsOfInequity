@@ -61,6 +61,7 @@ class SectorViews(DefaultViews):
             'model': sector_model,
             'new_url': self.new_url,
             'detail_url': self.detail_url,
+            'delete_url': self.delete_url,
             'full_name': self.full_name,
             'system_coords': system_coords,
             'route_coords': route_coords,
