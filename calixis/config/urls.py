@@ -39,3 +39,10 @@ for subapp in subapps:
             name=views.new_url
         )
     )
+    urlpatterns.append(
+        path(
+            '{name}/delete/<int:model_id>'.format(name=subapp['name']),
+            views.delete,
+            name=views.delete_url
+        )
+    )
