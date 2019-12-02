@@ -41,6 +41,7 @@ class Grid(BaseConfig):
     connectionRate = models.FloatField(default=0.5, blank=True)
     rangeRateMultiplier = models.FloatField(default=0.5, blank=True)
     weightedRegions = models.ManyToManyField(WeightedRegion, blank=True)
+    smoothingFactor = models.FloatField(default=0.5, blank=True)
 
 class Sector(BaseConfig):
     name = models.CharField(default="-", max_length=39)

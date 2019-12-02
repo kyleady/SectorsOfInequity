@@ -6,7 +6,7 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 import "encoding/json"
 
 func TestSectorRandomize(t *testing.T) {
-  sectorConfig := config.ExampleGridConfig()
+  sectorConfig := config.TestGridConfig()
 
   sector := new(Sector)
   sector.Randomize(sectorConfig)
@@ -61,7 +61,7 @@ func TestLoadFrom(t *testing.T) {
   client.AddTable_((&System{}).TableName())
   client.AddTable_((&Route{}).TableName())
 
-  gridConfig := config.ExampleGridConfig()
+  gridConfig := config.TestGridConfig()
   sectorConfig := &Sector{}
   sectorConfig.Randomize(gridConfig)
   blankConfig := &Sector{}
