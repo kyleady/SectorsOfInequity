@@ -1,48 +1,84 @@
 from django.urls import path
 from .views.default import DefaultViews
 from .views.sector import SectorViews
-from .submodels.config import Config_Grid, Config_Sector, Config_Sector_System, Config_Sector_Route, Config_Region
-from .submodels.weighted import Weighted_Config_Region
+from .models import *
 
-subapps = [
-    { 'full_name': 'Region Config', 'app': 'config', 'name': 'region', 'Model': Config_Region },
-    { 'full_name': 'Weighted Region', 'app': 'config', 'name': 'weighted-region', 'Model': Weighted_Config_Region },
-    { 'full_name': 'Grid Config',   'app': 'config', 'name': 'grid',   'Model': Config_Grid },
-    { 'full_name': 'Sector Config', 'app': 'config', 'name': 'sector', 'Model': Config_Sector, 'custom': { 'SubModels': [Config_Sector_System, Config_Sector_Route], 'Grid': Config_Grid }, 'Views': SectorViews },
+app = 'plan'
+subapp = 'config'
+config_models = [
+    { 'full_name': 'System Config', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Config_System },
+    { 'full_name': 'Region Config', 'app': app, 'subapp': subapp, 'name': 'region', 'Model': Config_Region },
+    { 'full_name': 'Grid Config',   'app': app, 'subapp': subapp, 'name': 'grid',   'Model': Config_Grid },
+    { 'full_name': 'Sector Config', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Config_Sector,
+        'custom': { 'SubModels': [Config_Sector_System, Config_Sector_Route], 'Grid': Config_Grid }, 'Views': SectorViews
+    },
 ]
+
+subapp = 'inspiration'
+inspiration_models = [
+    { 'full_name': 'System Inspiration', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Inspiration_System },
+]
+
+subapp = 'perterbation'
+perterbation_models = [
+    { 'full_name': 'System Perterbataion', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Perterbation_System },
+]
+
+subapp = 'weighted'
+weighted_models = [
+    { 'full_name': 'Weighted Region Config', 'app': app, 'subapp': subapp, 'name': 'config-region', 'Model': Weighted_Config_Region },
+    { 'full_name': 'Weighted System Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration-system', 'Model': Weighted_Inspiration_System },
+]
+
+all_models = config_models + inspiration_models + perterbation_models + weighted_models
+
+
+{ 'full_name': 'Weighted Region', 'app': app, 'name': 'config-region', 'Model': Weighted_Config_Region },
 urlpatterns = []
-for subapp in subapps:
-    if 'Views' in subapp:
-        CustomViews = subapp['Views']
-        del subapp['Views']
-        views = CustomViews(**subapp)
+for model in all_models:
+    if 'Views' in model:
+        CustomViews = model['Views']
+        del model['Views']
+        views = CustomViews(**model)
     else:
-        views = DefaultViews(**subapp)
+        views = DefaultViews(**model)
 
     urlpatterns.append(
         path(
-            '{name}/'.format(name=subapp['name']),
+            '{subapp}/{name}/'.format(
+                subapp=model['subapp'],
+                name=model['name'],
+            ),
             views.index,
             name=views.index_url
         )
     )
     urlpatterns.append(
         path(
-            '{name}/<int:model_id>/'.format(name=subapp['name']),
+            '{subapp}/{name}/<int:model_id>/'.format(
+                subapp=model['subapp'],
+                name=model['name'],
+            ),
             views.detail,
             name=views.detail_url
         )
     )
     urlpatterns.append(
         path(
-            '{name}/new/'.format(name=subapp['name']),
+            '{subapp}/{name}/new/'.format(
+                subapp=model['subapp'],
+                name=model['name'],
+            ),
             views.new,
             name=views.new_url
         )
     )
     urlpatterns.append(
         path(
-            '{name}/delete/<int:model_id>'.format(name=subapp['name']),
+            '{subapp}/{name}/delete/<int:model_id>'.format(
+                subapp=model['subapp'],
+                name=model['name'],
+            ),
             views.delete,
             name=views.delete_url
         )

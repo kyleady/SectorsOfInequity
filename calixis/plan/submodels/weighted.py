@@ -25,6 +25,6 @@ class Weighted_Config_Region(BaseWeighted):
     parent = models.ForeignKey(Config_Grid, on_delete=models.CASCADE)
 
 
-class Weighted_Inspiration_Region(BaseWeighted):
+class Weighted_Inspiration_System(BaseWeighted):
     value = models.ForeignKey(Inspiration_System, on_delete=models.CASCADE)
     parent = models.ForeignKey(Config_System, on_delete=models.CASCADE)

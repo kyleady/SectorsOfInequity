@@ -36,7 +36,7 @@ func TestGridConfig() *GridConfig {
 }
 
 func (config *GridConfig) TableName() string {
-  return "config_grid"
+  return "plan_config_grid"
 }
 
 func (config *GridConfig) GetId() *int64 {
@@ -57,7 +57,7 @@ type WeightedRegion struct {
 }
 
 func (weightedRegion *WeightedRegion) TableName() string {
-  return "config_weightedregion"
+  return "plan_weighted_config_region"
 }
 
 func (weightedRegion *WeightedRegion) GetId() *int64 {
