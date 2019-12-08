@@ -1,13 +1,14 @@
 from django.urls import path
 from .views.default import DefaultViews
 from .views.sector import SectorViews
-from .models import Grid, Sector, SectorSystem, SectorRoute, Region, WeightedRegion
+from .submodels.config import Config_Grid, Config_Sector, Config_Sector_System, Config_Sector_Route, Config_Region
+from .submodels.weighted import Weighted_Config_Region
 
 subapps = [
-    { 'full_name': 'Region Config', 'app': 'config', 'name': 'region', 'Model': Region },
-    { 'full_name': 'Weighted Region', 'app': 'config', 'name': 'weighted-region', 'Model': WeightedRegion },
-    { 'full_name': 'Grid Config',   'app': 'config', 'name': 'grid',   'Model': Grid },
-    { 'full_name': 'Sector Config', 'app': 'config', 'name': 'sector', 'Model': Sector, 'custom': { 'SubModels': [SectorSystem, SectorRoute], 'Grid': Grid }, 'Views': SectorViews },
+    { 'full_name': 'Region Config', 'app': 'config', 'name': 'region', 'Model': Config_Region },
+    { 'full_name': 'Weighted Region', 'app': 'config', 'name': 'weighted-region', 'Model': Weighted_Config_Region },
+    { 'full_name': 'Grid Config',   'app': 'config', 'name': 'grid',   'Model': Config_Grid },
+    { 'full_name': 'Sector Config', 'app': 'config', 'name': 'sector', 'Model': Config_Sector, 'custom': { 'SubModels': [Config_Sector_System, Config_Sector_Route], 'Grid': Config_Grid }, 'Views': SectorViews },
 ]
 urlpatterns = []
 for subapp in subapps:
