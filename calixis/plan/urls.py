@@ -1,6 +1,8 @@
 from django.urls import path
 from .views.default import DefaultViews
 from .views.sector import SectorViews
+from .views.app_views import AppViews
+from .views.subapp_views import SubappViews
 from .models import *
 
 app = 'plan'
@@ -81,5 +83,48 @@ for model in all_models:
             ),
             views.delete,
             name=views.delete_url
+        )
+    )
+
+app_views = AppViews(title='Sector Planning', name='plan', subapps=[
+                'config',
+                'weighted',
+                'inspiration',
+                'perterbation',
+            ])
+
+urlpatterns.append(
+    path(
+        '',
+        app_views.app,
+        name=app_views.app_url
+    )
+)
+
+all_subapp_views = [
+                SubappViews(title='Config', name='config', app='plan', models=[
+                    'system',
+                    'region',
+                    'grid',
+                    'sector',
+                ]),
+                SubappViews(title='Weighted', name='weighted', app='plan', models=[
+                    'config-region',
+                    'inspiration-system',
+                ]),
+                SubappViews(title='Inspiration', name='inspiration', app='plan', models=[
+                    'system',
+                ]),
+                SubappViews(title='Perterbations', name='perterbation', app='plan', models=[
+                    'system',
+                ]),
+]
+
+for subapp_views in all_subapp_views:
+    urlpatterns.append(
+        path(
+            '{subapp}'.format(subapp=subapp_views.name),
+            subapp_views.subapp,
+            name=subapp_views.subapp_url
         )
     )

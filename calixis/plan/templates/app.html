@@ -1,0 +1,12 @@
+<h1>{{ title }}</h1>
+{% if subappinfo_list %}
+    <ul>
+    {% for subappinfo in subappinfo_list %}
+        <li><a href="{% url subappinfo.url %}">
+          {{ subappinfo.name }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p><i>No subapps exist.</i></p>
+{% endif %}

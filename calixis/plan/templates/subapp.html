@@ -1,0 +1,12 @@
+<h1>{{ title }}</h1>
+{% if modelinfo_list %}
+    <ul>
+    {% for modelinfo in modelinfo_list %}
+        <li><a href="{% url modelinfo.url %}">
+          {{ modelinfo.name }}
+        </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p><i>No models exist.</i></p>
+{% endif %}
