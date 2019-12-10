@@ -36,7 +36,7 @@ func TestGridConfig() *GridConfig {
 }
 
 func (config *GridConfig) TableName() string {
-  return "config_grid"
+  return "plan_config_grid"
 }
 
 func (config *GridConfig) GetId() *int64 {
@@ -46,18 +46,18 @@ func (config *GridConfig) GetId() *int64 {
 func LoadFrom(client utilities.ClientInterface, id int64) *GridConfig {
   gridConfig := new(GridConfig)
   client.Fetch(gridConfig, id)
-  client.FetchAll(&gridConfig.WeightedRegions, "id IN (SELECT weightedregion_id FROM config_grid_weightedRegions WHERE grid_id = 1)", )
+  client.FetchAll(&gridConfig.WeightedRegions, "parent_id = ?", id)
   return gridConfig
 }
 
 type WeightedRegion struct {
   Id int64 `sql:"id"`
   Weight int `sql:"weight"`
-  RegionId int64 `sql:"region_id"`
+  RegionId int64 `sql:"value_id"`
 }
 
 func (weightedRegion *WeightedRegion) TableName() string {
-  return "config_weightedregion"
+  return "plan_weighted_config_region"
 }
 
 func (weightedRegion *WeightedRegion) GetId() *int64 {

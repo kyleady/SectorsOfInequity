@@ -5,26 +5,31 @@ import json
 import os
 
 class DefaultViews:
-    def __init__(self, full_name, app, name, Model, custom=None):
+    def __init__(self, full_name, app, subapp, name, Model, custom=None):
         self.full_name = full_name
         self.title = name
         self.app = app
+        self.subapp = subapp
         self.Model = Model
         self.custom = custom
-        self.new_url = '{app}-{title}-new'.format(
+        self.new_url = '{app}-{subapp}-{title}-new'.format(
             app=self.app,
+            subapp=self.subapp,
             title=self.title
         )
-        self.index_url = '{app}-{title}-index'.format(
+        self.index_url = '{app}-{subapp}-{title}-index'.format(
             app=self.app,
+            subapp=self.subapp,
             title=self.title
         )
-        self.detail_url = '{app}-{title}-detail'.format(
+        self.detail_url = '{app}-{subapp}-{title}-detail'.format(
             app=self.app,
+            subapp=self.subapp,
             title=self.title
         )
-        self.delete_url = '{app}-{title}-delete'.format(
+        self.delete_url = '{app}-{subapp}-{title}-delete'.format(
             app=self.app,
+            subapp=self.subapp,
             title=self.title
         )
         self.Form = modelform_factory(self.Model, fields='__all__')
