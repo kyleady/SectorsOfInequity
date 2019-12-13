@@ -53,7 +53,7 @@ func TestSectorRandomize(t *testing.T) {
   }
 }
 
-func TestLoadFrom(t *testing.T) {
+func TestLoadSectorFrom(t *testing.T) {
   client := &utilities.ClientMock{}
   client.Open()
   defer client.Close()
@@ -72,10 +72,10 @@ func TestLoadFrom(t *testing.T) {
   }
 
   sectorConfig.SaveTo(client)
-  loadedConfig := LoadFrom(client, sectorConfig.Id)
+  loadedConfig := LoadSectorFrom(client, sectorConfig.Id)
   sectorJson, _ := json.MarshalIndent(sectorConfig, "", "    ")
   loadedJson, _ := json.MarshalIndent(loadedConfig, "", "    ")
   if string(sectorJson) != string(loadedJson) {
-    t.Errorf("Loaded sectorConfig does not equal example sectorConfig after LoadFrom()\nRandomized:\n%s\nSaved:\n%s\nLoaded:\n%s", originalJson, sectorJson, loadedJson)
+    t.Errorf("Loaded sectorConfig does not equal example sectorConfig after LoadSectorFrom()\nRandomized:\n%s\nSaved:\n%s\nLoaded:\n%s", originalJson, sectorJson, loadedJson)
   }
 }

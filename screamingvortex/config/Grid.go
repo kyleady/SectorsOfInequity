@@ -43,7 +43,7 @@ func (config *Grid) GetId() *int64 {
   return &config.Id
 }
 
-func LoadFrom(client utilities.ClientInterface, id int64) *Grid {
+func LoadGridFrom(client utilities.ClientInterface, id int64) *Grid {
   gridConfig := new(Grid)
   client.Fetch(gridConfig, id)
   client.FetchAll(&gridConfig.WeightedRegions, "parent_id = ?", id)

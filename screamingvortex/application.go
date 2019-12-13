@@ -30,7 +30,7 @@ func gridHandler(writer http.ResponseWriter, req *http.Request) {
     client.Open()
     defer client.Close()
 
-    gridConfig := config.LoadFrom(client, id)
+    gridConfig := config.LoadGridFrom(client, id)
 
     sectorConfig := new(grid.Sector)
     sectorConfig.Randomize(gridConfig)

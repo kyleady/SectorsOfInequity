@@ -53,7 +53,7 @@ func (sector *Sector) saveSystemRoutes(client utilities.ClientInterface) {
   }
 }
 
-func LoadFrom(client utilities.ClientInterface, id int64) *Sector {
+func LoadSectorFrom(client utilities.ClientInterface, id int64) *Sector {
   sector := &Sector{}
   client.Fetch(sector, id)
   client.FetchAll(&sector.Systems, "sector_id = ?", sector.Id)
