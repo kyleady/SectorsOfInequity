@@ -2,7 +2,7 @@ package config
 
 import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 
-type GridConfig struct {
+type Grid struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   Height int `sql:"height"`
@@ -15,13 +15,13 @@ type GridConfig struct {
   WeightedRegions []*WeightedRegion
 }
 
-func TestGridConfig() *GridConfig {
+func TestGrid() *Grid {
   weightedRegions := []*WeightedRegion{
     &WeightedRegion{1, 3, 2320},
     &WeightedRegion{2, 2, 320},
     &WeightedRegion{3, 4, 3499},
   }
-  return &GridConfig{
+  return &Grid{
     1234,             //Id int64 `sql:"id"`
     "test config",    //Name string `sql:"name"`
     20,               //Height int `sql:"height"`
@@ -35,16 +35,16 @@ func TestGridConfig() *GridConfig {
   }
 }
 
-func (config *GridConfig) TableName() string {
+func (config *Grid) TableName() string {
   return "plan_config_grid"
 }
 
-func (config *GridConfig) GetId() *int64 {
+func (config *Grid) GetId() *int64 {
   return &config.Id
 }
 
-func LoadFrom(client utilities.ClientInterface, id int64) *GridConfig {
-  gridConfig := new(GridConfig)
+func LoadFrom(client utilities.ClientInterface, id int64) *Grid {
+  gridConfig := new(Grid)
   client.Fetch(gridConfig, id)
   client.FetchAll(&gridConfig.WeightedRegions, "parent_id = ?", id)
   return gridConfig

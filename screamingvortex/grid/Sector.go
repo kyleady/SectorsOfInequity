@@ -12,7 +12,7 @@ type Sector struct {
   Name string `sql:"name"`
   Systems []*System
   grid [][]*System
-  config *config.GridConfig
+  config *config.Grid
   rand *rand.Rand
 }
 
@@ -77,7 +77,7 @@ func LoadFrom(client utilities.ClientInterface, id int64) *Sector {
   return sector
 }
 
-func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
+func (sector *Sector) Randomize(gridConfig *config.Grid) {
   sector.config = gridConfig
   t := time.Now()
   sector.Name = gridConfig.Name + t.Format("_20060102150405")
