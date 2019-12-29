@@ -3,8 +3,8 @@ package utilities
 type ClientInterface interface {
   Open()
   Close()
-  Fetch(obj SQLInterface, id int64)
-  FetchAll(asInterface interface{}, whereClause string, whereValues ...interface{})
-  Save(obj SQLInterface)
-  SaveAll(asInterface interface{})
+  Fetch(obj SQLInterface, tableType string, id int64)
+  FetchAll(asInterface interface{}, tableType string, whereClause string, whereValues ...interface{})
+  Save(obj SQLInterface, tableType string)
+  SaveAll(asInterface interface{}, tableType string)
 }

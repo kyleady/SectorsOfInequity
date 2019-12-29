@@ -20,7 +20,7 @@ func CreateRoute(sourceSystem *System, targetSystem *System) *Route {
   return route
 }
 
-func (route *Route) TableName() string {
+func (route *Route) TableName(routeType string) string {
   return "plan_config_sector_route"
 }
 

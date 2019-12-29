@@ -51,8 +51,8 @@ func (client *Client) Open() {
   client.db = db
 }
 
-func (client *Client) Fetch(obj SQLInterface, id int64) {
-  query := fetchQuery(obj, "id = ?")
+func (client *Client) Fetch(obj SQLInterface, tableType string, id int64) {
+  query := fetchQuery(obj, tableType, "id = ?")
   rows, err := client.db.Query(query, id)
   if err != nil {
   	panic(err)
@@ -66,7 +66,7 @@ func (client *Client) Fetch(obj SQLInterface, id int64) {
   }
 }
 
-func (client *Client) FetchAll(asInterface interface{}, whereClause string, whereValues ...interface{}) {
+func (client *Client) FetchAll(asInterface interface{}, tableType string, whereClause string, whereValues ...interface{}) {
   asSlice := reflect.ValueOf(asInterface).Elem()
   asSlice.Set(reflect.MakeSlice(asSlice.Type(), 0, 0))
   generatedObj := reflect.New(asSlice.Type().Elem())
@@ -80,7 +80,7 @@ func (client *Client) FetchAll(asInterface interface{}, whereClause string, wher
     arrayOf = "structs"
     obj = generatedObj.Interface().(SQLInterface)
   }
-  query := fetchQuery(obj, whereClause)
+  query := fetchQuery(obj, tableType, whereClause)
   rows, err := client.db.Query(query, whereValues...)
   if err != nil {
   	panic(err)
@@ -104,10 +104,10 @@ func (client *Client) FetchAll(asInterface interface{}, whereClause string, wher
   }
 }
 
-func (client *Client) Update(obj SQLInterface) {
+func (client *Client) Update(obj SQLInterface, tableType string) {
   values, names, _ := listFields(obj, false)
   query := fmt.Sprintf("UPDATE %s SET %s%s WHERE id = ?;",
-    obj.TableName(),
+    obj.TableName(tableType),
     strings.Join(names, " = ?, "),
     " = ?",
   )
@@ -119,8 +119,8 @@ func (client *Client) Update(obj SQLInterface) {
   }
 }
 
-func (client *Client) Save(obj SQLInterface) {
-  query := saveQuery(obj, 1)
+func (client *Client) Save(obj SQLInterface, tableType string) {
+  query := saveQuery(obj, tableType, 1)
   values, _, _ := listFields(obj, false)
   result, err := client.db.Exec(query, values...)
   if err != nil {
@@ -133,7 +133,7 @@ func (client *Client) Save(obj SQLInterface) {
   *(obj.GetId()) = insert_id
 }
 
-func (client *Client) SaveAll(asInterface interface{}) {
+func (client *Client) SaveAll(asInterface interface{}, tableType string) {
   objs := reflect.ValueOf(asInterface).Elem()
   if objs.Len() <= 0 {
     return
@@ -149,7 +149,7 @@ func (client *Client) SaveAll(asInterface interface{}) {
     arrayOf = "structs"
     obj = objValue.Addr().Interface().(SQLInterface)
   }
-  query := saveQuery(obj, objs.Len())
+  query := saveQuery(obj, tableType, objs.Len())
 
   all_values := make([]interface{}, 0, objs.Len())
   all_ids := make([]*int64, 0, objs.Len())
@@ -180,13 +180,13 @@ func (client *Client) SaveAll(asInterface interface{}) {
   }
 }
 
-func fetchQuery(obj SQLInterface, whereClause string) string {
+func fetchQuery(obj SQLInterface, tableType string, whereClause string) string {
   _, names, _ := listFields(obj, true)
   return fmt.Sprintf("SELECT %s FROM %s WHERE %s;",
-    strings.Join(names, ","), obj.TableName(), whereClause)
+    strings.Join(names, ","), obj.TableName(tableType), whereClause)
 }
 
-func saveQuery(obj SQLInterface, objCount int) string {
+func saveQuery(obj SQLInterface, tableType string, objCount int) string {
   _, names, _ := listFields(obj, false)
   questionMarks := make([]string, len(names), len(names))
   for i := 0; i < len(names); i++ {
@@ -197,15 +197,15 @@ func saveQuery(obj SQLInterface, objCount int) string {
     parens[i] = fmt.Sprintf("(%s)", strings.Join(questionMarks, ","))
   }
   return fmt.Sprintf("INSERT INTO %s (%s) VALUES %s;",
-    obj.TableName(),
+    obj.TableName(tableType),
     strings.Join(names, ","),
     strings.Join(parens, ","),
   )
 }
 
-func (client *Client) Delete(obj SQLInterface) {
+func (client *Client) Delete(obj SQLInterface, tableType string) {
   query := fmt.Sprintf("DELETE FROM %s WHERE id = ?;",
-    obj.TableName(),
+    obj.TableName(tableType),
   )
   _, err := client.db.Exec(query, *obj.GetId())
   if err != nil {

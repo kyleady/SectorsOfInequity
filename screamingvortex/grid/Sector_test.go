@@ -57,9 +57,9 @@ func TestLoadSectorFrom(t *testing.T) {
   client := &utilities.ClientMock{}
   client.Open()
   defer client.Close()
-  client.AddTable_((&Sector{}).TableName())
-  client.AddTable_((&System{}).TableName())
-  client.AddTable_((&Route{}).TableName())
+  client.AddTable_((&Sector{}).TableName(""))
+  client.AddTable_((&System{}).TableName(""))
+  client.AddTable_((&Route{}).TableName(""))
 
   gridConfig := config.TestGrid()
   sectorConfig := &Sector{}
