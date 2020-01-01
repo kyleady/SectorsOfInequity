@@ -264,7 +264,7 @@ func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*Sys
 func (sector *Sector) genClumpedRegionIds() {
   listByRegion := make(map[int64][]int)
   for systemIndex, system := range sector.Systems {
-    randRegion := utilities.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
     system.RegionId = randRegion
     listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
   }
