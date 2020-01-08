@@ -17,9 +17,10 @@ class BaseAsset(models.Model):
         return self.name
 
     name = models.CharField(default="-", max_length=25)
+    parent = None
 
 class Asset_Sector(BaseAsset):
     pass
 
 class Asset_System(BaseAsset):
-    sector = models.ForeignKey(Asset_Sector, on_delete=models.CASCADE)
+    parent = models.ForeignKey(Asset_Sector, on_delete=models.CASCADE)

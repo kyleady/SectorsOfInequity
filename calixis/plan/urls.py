@@ -1,6 +1,7 @@
 from django.urls import path
 from .views.default import DefaultViews
-from .views.sector import SectorViews
+from .views.sector_asset import AssetSectorViews
+from .views.sector_grid import GridSectorViews
 from .views.app_views import AppViews
 from .views.subapp_views import SubappViews
 from .models import *
@@ -8,7 +9,9 @@ from .models import *
 app = 'plan'
 subapp = 'asset'
 asset_models = [
-    { 'full_name': 'Sector', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Asset_Sector },
+    { 'full_name': 'Sector', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Asset_Sector,
+        'custom': { 'Config': Config_Sector }, 'Views': AssetSectorViews
+    },
     { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System },
 ]
 
@@ -18,7 +21,7 @@ config_models = [
     { 'full_name': 'Region Config', 'app': app, 'subapp': subapp, 'name': 'region', 'Model': Config_Region },
     { 'full_name': 'Grid Config',   'app': app, 'subapp': subapp, 'name': 'grid',   'Model': Config_Grid },
     { 'full_name': 'Sector Config', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Config_Sector,
-        'custom': { 'SubModels': [Config_Sector_System, Config_Sector_Route], 'Grid': Config_Grid }, 'Views': SectorViews
+        'custom': { 'SubModels': [Config_Sector_System, Config_Sector_Route], 'Grid': Config_Grid }, 'Views': GridSectorViews
     },
 ]
 
@@ -40,7 +43,8 @@ perterbation_models = [
 subapp = 'roll'
 roll_models = [
     { 'full_name': 'System Feature Count', 'app': app, 'subapp': subapp, 'name': 'system-features', 'Model': Roll_System_Features },
-    { 'full_name': 'System Star Count', 'app': app, 'subapp': subapp, 'name': 'system-stars', 'Model': Roll_System_Stars },
+    { 'full_name': 'System Star Cluster Count', 'app': app, 'subapp': subapp, 'name': 'system-clusters', 'Model': Roll_System_Star_Clusters },
+    { 'full_name': 'System Feature Roll', 'app': app, 'subapp': subapp, 'name': 'system-feature', 'Model': Roll_Inspiration_System_Feature },
 ]
 
 subapp = 'weighted'
@@ -151,7 +155,8 @@ all_subapp_views = [
                 ]),
                 SubappViews(title='Rolls', name='roll', app='plan', models=[
                     'system-features',
-                    'system-stars',
+                    'system-clusters',
+                    'system-feature',
                 ]),
                 SubappViews(title='Weighted', name='weighted', app='plan', models=[
                     'config-region',

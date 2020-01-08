@@ -4,6 +4,7 @@ from django.core.validators import int_list_validator
 import json
 
 from .config import Config_System
+from .inspiration import Inspiration_System_Feature
 
 # Abstract Models
 class BaseRoll(models.Model):
@@ -77,15 +78,18 @@ class BaseRoll(models.Model):
 
         return True
 
+    parent = None
     dice_count = models.PositiveSmallIntegerField()
     dice_size = models.PositiveSmallIntegerField()
     base = models.IntegerField()
     multiplier = models.IntegerField()
     keep_highest = models.IntegerField()
 
+class Roll_System_Features(BaseRoll):
+    parent = models.ForeignKey(Config_System, on_delete=models.CASCADE)
 
-class Roll_System_Features(models.Model):
-    system = models.ForeignKey(Config_System, on_delete=models.CASCADE)
+class Roll_System_Star_Clusters(BaseRoll):
+    parent = models.ForeignKey(Config_System, on_delete=models.CASCADE)
 
-class Roll_System_Stars(models.Model):
-    system = models.ForeignKey(Config_System, on_delete=models.CASCADE)
+class Roll_Inspiration_System_Feature(BaseRoll):
+    parent = models.ForeignKey(Inspiration_System_Feature, on_delete=models.CASCADE)

@@ -19,6 +19,7 @@ class BaseInspiration(models.Model):
 
     name = models.CharField(default="-", max_length=25)
     description = models.CharField(default="-", max_length=1000)
+    perterbation = None
 
 
 class Inspiration_System_Feature(BaseInspiration):
