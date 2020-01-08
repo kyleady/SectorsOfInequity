@@ -23,8 +23,8 @@ func (roll *Roll) TableName(rollType string) string {
   switch rollType {
   case RollSystemFeaturesTag():
     return "plan_roll_system_features"
-  case RollSystemStarsTag():
-    return "plan_roll_system_stars"
+  case RollSystemStarClustersTag():
+    return "plan_roll_system_star_clusters"
   case InspirationSystemFeatureTag():
     return "plan_roll_inspiration_system_feature"
   default:
@@ -36,10 +36,7 @@ func (roll *Roll) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
-func RollSystemFeaturesTag() string { return "system features" }
-func RollSystemStarsTag() string { return "system stars" }
-
-func (roll *Roll) roll(rRand *rand.Rand) int {
+func (roll *Roll) Roll(rRand *rand.Rand) int {
     result := 0
 
     diceFrequency := make(map[int]int)
@@ -79,10 +76,10 @@ func (roll *Roll) roll(rRand *rand.Rand) int {
     return result
 }
 
-func RollRollArray(rolls []*Roll, rRand *rand.Rand) int {
+func RollAll(rolls []*Roll, rRand *rand.Rand) int {
   result := 0
   for _, roll := range rolls {
-    result += roll.roll(rRand)
+    result += roll.Roll(rRand)
   }
 
   return result

@@ -25,9 +25,6 @@ func (weightedValue *WeightedValue) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
-func WeightedRegionConfigTag() string { return "region config" }
-func WeightedSystemInspirationTag() string { return "system inspiration" }
-
 func RollWeightedValues(weightedValues []*WeightedValue, rRand *rand.Rand) int64 {
   totalWeight := 0
   for _, weightedValue := range weightedValues {
