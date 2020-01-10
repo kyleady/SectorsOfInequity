@@ -2,6 +2,7 @@ from django.db import models
 from django.forms.models import model_to_dict
 from django.core.validators import int_list_validator
 import json
+import re
 
 from .asset import Asset_System
 from .inspiration import Inspiration_System_Feature
@@ -18,10 +19,10 @@ class BaseDetail(models.Model):
         ))
 
     def __str__(self):
-        roll_list = rolls.split(',')
+        roll_list = self.rolls.split(',')
         text = self.inspiration.description
         for roll in roll_list:
-            text = re.replace(r'\[\[[^\]]\]\]', roll, text)
+            text = re.sub(r'\[\[[^\]]\]\]', roll, text)
         return text
 
     rolls = models.CharField(validators=[int_list_validator], max_length=100)

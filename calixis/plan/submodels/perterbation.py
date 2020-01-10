@@ -2,7 +2,7 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .config import Config_Region
+from .config import BasePerterbation
 
-class Perterbation_System(Config_Region):
+class Perterbation_System(BasePerterbation):
     pass
