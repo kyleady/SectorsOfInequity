@@ -25,6 +25,13 @@ func (weightedValue *WeightedValue) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
+func (weightedValue *WeightedValue) Clone() *WeightedValue {
+  clonedWeightedValue := new(WeightedValue)
+  clonedWeightedValue.Weight = weightedValue.Weight
+  clonedWeightedValue.Value  = weightedValue.Value
+  return clonedWeightedValue
+}
+
 func RollWeightedValues(weightedValues []*WeightedValue, rRand *rand.Rand) int64 {
   totalWeight := 0
   for _, weightedValue := range weightedValues {
@@ -47,6 +54,26 @@ func RollWeightedValues(weightedValues []*WeightedValue, rRand *rand.Rand) int64
   }
 
   panic("RollWeightedValues should always return a value!")
+}
+
+func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
+  newWeightedValues := make([]*WeightedValue, len(firstWeightedValues))
+  for i, firstWeightedValue := range firstWeightedValues {
+    newWeightedValues[i] = firstWeightedValue.Clone()
+  }
+
+  for _, secondWeightedValue := range secondWeightedValues {
+    for _, newWeightedValue := range newWeightedValues {
+      if newWeightedValue.Value == secondWeightedValue.Value {
+        newWeightedValue.Weight += secondWeightedValue.Weight
+        continue
+      }
+    }
+
+    newWeightedValues = append(newWeightedValues, secondWeightedValue.Clone())
+  }
+
+  return newWeightedValues
 }
 
 func FetchAllWeightedValues(client utilities.ClientInterface, weightedValues *[]*WeightedValue, weightedType string, parentId int64) {

@@ -9,7 +9,7 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 type Detail struct {
   Id int64 `sql:"id"`
   InspirationId int64 `sql:"inspiration_id"`
-  ParentId int64 `sql:"parent_id"`
+  ParentId int64 `sql:"asset_id"`
   RollsAsString string `sql:"rolls"`
   Type string
 }

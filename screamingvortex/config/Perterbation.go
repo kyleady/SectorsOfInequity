@@ -15,6 +15,7 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
   perterbation := new(Perterbation)
   perterbation.Manager = CreateEmptyManager(client)
   perterbation.Rand = rRand
+  perterbation.SystemConfig = CreateEmptySystemConfig()
   return perterbation
 }
 
@@ -51,6 +52,7 @@ func (basePerterbation *Perterbation) AddInspiration(inspirationType string, ins
 func (basePerterbation *Perterbation) AddPerterbation(perterbationType string, perterbationId int64) *Perterbation {
   newPerterbation := new(Perterbation)
   newPerterbation.Rand = basePerterbation.Rand
+  newPerterbation.Manager = basePerterbation.Manager
   modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationType, perterbationId)
 
   newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
