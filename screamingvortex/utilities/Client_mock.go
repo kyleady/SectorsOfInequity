@@ -35,11 +35,11 @@ func (client *ClientMock) AddTable_(tablename string) {
   client.tmpDB[tablename] = make([]SQLInterface, 0)
 }
 
-func (client *ClientMock) Fetch(obj SQLInterface, id int64) {
+func (client *ClientMock) Fetch(obj SQLInterface, tableType string, id int64) {
   client.checkConnection()
-  fetchQuery(obj, "id = ?")
+  fetchQuery(obj, tableType, "id = ?")
   _, _, addresses := listFields(obj, true)
-  values, _, _ := listFields(client.tmpDB[obj.TableName()][id], true)
+  values, _, _ := listFields(client.tmpDB[obj.TableName(tableType)][id], true)
   assignAll(values, addresses)
 }
 
@@ -60,7 +60,7 @@ func assignAll(values []interface{}, addresses []interface{}) {
   }
 }
 
-func (client *ClientMock) FetchAll(asInterface interface{}, whereClause string, whereValues ...interface{}) {
+func (client *ClientMock) FetchAll(asInterface interface{}, tableType string, whereClause string, whereValues ...interface{}) {
   client.checkConnection()
   asSlice := reflect.ValueOf(asInterface).Elem()
   asSlice.Set(reflect.MakeSlice(asSlice.Type(), 0, 0))
@@ -78,8 +78,8 @@ func (client *ClientMock) FetchAll(asInterface interface{}, whereClause string, 
     arrayOf = "structs"
     obj = generatedObj.Interface().(SQLInterface)
   }
-  tmpTable := client.tmpDB[obj.TableName()]
-  fetchQuery(obj, whereClause)
+  tmpTable := client.tmpDB[obj.TableName(tableType)]
+  fetchQuery(obj, tableType, whereClause)
 
   re := regexp.MustCompile(`\s*(\w+)\s*=\s*\?`)
   conditionMatches := re.FindAllStringSubmatch(whereClause, -1)
@@ -115,19 +115,20 @@ func (client *ClientMock) FetchAll(asInterface interface{}, whereClause string, 
   }
 }
 
-func (client *ClientMock) Update(obj SQLInterface) {
+func (client *ClientMock) Update(obj SQLInterface, tableType string) {
   panic("Not yet implemented")
 }
 
-func (client *ClientMock) Save(obj SQLInterface) {
+func (client *ClientMock) Save(obj SQLInterface, tableType string) {
   client.checkConnection()
-  saveQuery(obj, 1)
-  insert_id := len(client.tmpDB[obj.TableName()])
+  saveQuery(obj, tableType, 1)
+  tableName := obj.TableName(tableType)
+  insert_id := len(client.tmpDB[tableName])
   *(obj.GetId()) = int64(insert_id)
-  client.tmpDB[obj.TableName()] = append(client.tmpDB[obj.TableName()], obj)
+  client.tmpDB[tableName] = append(client.tmpDB[tableName], obj)
 }
 
-func (client *ClientMock) SaveAll(asInterface interface{}) {
+func (client *ClientMock) SaveAll(asInterface interface{}, tableType string) {
   client.checkConnection()
   objs := reflect.ValueOf(asInterface).Elem()
   if objs.Len() <= 0 {
@@ -141,8 +142,9 @@ func (client *ClientMock) SaveAll(asInterface interface{}) {
   } else {
     obj = objValue.Addr().Interface().(SQLInterface)
   }
-  saveQuery(obj, objs.Len())
-  insert_id := len(client.tmpDB[obj.TableName()])
+  saveQuery(obj, tableType, objs.Len())
+  tableName := obj.TableName(tableType)
+  insert_id := len(client.tmpDB[tableName])
   for i := 0; i < objs.Len(); i++ {
     objValue := objs.Index(i)
     var obj SQLInterface
@@ -152,7 +154,7 @@ func (client *ClientMock) SaveAll(asInterface interface{}) {
       obj = objValue.Addr().Interface().(SQLInterface)
     }
     *(obj.GetId()) = int64(insert_id + i)
-    client.tmpDB[obj.TableName()] = append(client.tmpDB[obj.TableName()], obj)
+    client.tmpDB[tableName] = append(client.tmpDB[tableName], obj)
   }
 }
 
@@ -164,6 +166,6 @@ func (client *ClientMock) Print(tablename string) {
   }
 }
 
-func (client *ClientMock) Delete(obj SQLInterface) {
+func (client *ClientMock) Delete(obj SQLInterface, tableType string) {
   panic("Not yet implemented")
 }

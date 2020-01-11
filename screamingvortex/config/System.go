@@ -1,0 +1,42 @@
+package config
+
+import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "fmt"
+
+type System struct {
+  WeightedInspirations []*WeightedValue
+  SystemFeaturesRolls []*Roll
+  SystemStarClustersRolls []*Roll
+}
+
+func (system *System) TableName(systemType string) string {
+  return "plan_config_system"
+}
+
+func (system *System) GetId() *int64 {
+  panic("GetId() not implemented. Config should not be editted.")
+}
+
+func CreateEmptySystemConfig() *System {
+  system := new(System)
+  system.WeightedInspirations = make([]*WeightedValue, 0)
+  system.SystemFeaturesRolls = make([]*Roll, 0)
+  system.SystemStarClustersRolls = make([]*Roll, 0)
+  return system
+}
+
+func (system *System) AddPerterbation(perterbation *System) *System {
+  newSystem := new(System)
+  newSystem.SystemFeaturesRolls = append(system.SystemFeaturesRolls, perterbation.SystemFeaturesRolls...)
+  newSystem.SystemStarClustersRolls = append(system.SystemStarClustersRolls, perterbation.SystemStarClustersRolls...)
+  newSystem.WeightedInspirations = StackWeightedValues(system.WeightedInspirations, perterbation.WeightedInspirations)
+  return newSystem
+}
+
+func LoadSystemConfigFrom(client utilities.ClientInterface, id int64) *System {
+  systemConfig := new(System)
+  FetchAllWeightedValues(client, &systemConfig.WeightedInspirations, WeightedSystemInspirationTag(), id)
+  FetchAllRolls(client, &systemConfig.SystemFeaturesRolls, RollSystemFeaturesTag(), id)
+  FetchAllRolls(client, &systemConfig.SystemStarClustersRolls, RollSystemStarClustersTag(), id)
+  return systemConfig
+}

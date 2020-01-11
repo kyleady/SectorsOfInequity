@@ -12,11 +12,11 @@ type Sector struct {
   Name string `sql:"name"`
   Systems []*System
   grid [][]*System
-  config *config.GridConfig
+  config *config.Grid
   rand *rand.Rand
 }
 
-func (sector *Sector) TableName() string {
+func (sector *Sector) TableName(sectorType string) string {
   return "plan_config_sector"
 }
 
@@ -25,7 +25,7 @@ func (sector *Sector) GetId() *int64 {
 }
 
 func (sector *Sector) SaveTo(client utilities.ClientInterface) {
-  client.Save(sector)
+  client.Save(sector, "")
   sector.saveSystems(client)
   sector.saveSystemRoutes(client)
 }
@@ -34,7 +34,7 @@ func (sector *Sector) saveSystems(client utilities.ClientInterface) {
   for _, system := range sector.Systems {
     system.SectorId = sector.Id
   }
-  client.SaveAll(&sector.Systems)
+  client.SaveAll(&sector.Systems, "")
 }
 
 func (sector *Sector) saveSystemRoutes(client utilities.ClientInterface) {
@@ -49,17 +49,17 @@ func (sector *Sector) saveSystemRoutes(client utilities.ClientInterface) {
         }
       }
     }
-    client.SaveAll(&system.Routes)
+    client.SaveAll(&system.Routes, "")
   }
 }
 
-func LoadFrom(client utilities.ClientInterface, id int64) *Sector {
+func LoadSectorFrom(client utilities.ClientInterface, id int64) *Sector {
   sector := &Sector{}
-  client.Fetch(sector, id)
-  client.FetchAll(&sector.Systems, "sector_id = ?", sector.Id)
+  client.Fetch(sector, "", id)
+  client.FetchAll(&sector.Systems, "", "sector_id = ?", sector.Id)
   for system_i := range sector.Systems {
     system_ptr := sector.Systems[system_i]
-    client.FetchAll(&system_ptr.Routes, "start_id = ?", system_ptr.Id)
+    client.FetchAll(&system_ptr.Routes, "", "start_id = ?", system_ptr.Id)
     for route_i := range system_ptr.Routes {
       route_ptr := system_ptr.Routes[route_i]
       route_ptr.sourceSystem = system_ptr
@@ -77,7 +77,7 @@ func LoadFrom(client utilities.ClientInterface, id int64) *Sector {
   return sector
 }
 
-func (sector *Sector) Randomize(gridConfig *config.GridConfig) {
+func (sector *Sector) Randomize(gridConfig *config.Grid) {
   sector.config = gridConfig
   t := time.Now()
   sector.Name = gridConfig.Name + t.Format("_20060102150405")
@@ -264,7 +264,7 @@ func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*Sys
 func (sector *Sector) genClumpedRegionIds() {
   listByRegion := make(map[int64][]int)
   for systemIndex, system := range sector.Systems {
-    randRegion := utilities.WeightedRoll(&sector.config.WeightedRegions, sector.rand).(int64)
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
     system.RegionId = randRegion
     listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
   }

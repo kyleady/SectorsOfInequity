@@ -6,7 +6,7 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 import "encoding/json"
 
 func TestSectorRandomize(t *testing.T) {
-  sectorConfig := config.TestGridConfig()
+  sectorConfig := config.TestGrid()
 
   sector := new(Sector)
   sector.Randomize(sectorConfig)
@@ -53,15 +53,15 @@ func TestSectorRandomize(t *testing.T) {
   }
 }
 
-func TestLoadFrom(t *testing.T) {
+func TestLoadSectorFrom(t *testing.T) {
   client := &utilities.ClientMock{}
   client.Open()
   defer client.Close()
-  client.AddTable_((&Sector{}).TableName())
-  client.AddTable_((&System{}).TableName())
-  client.AddTable_((&Route{}).TableName())
+  client.AddTable_((&Sector{}).TableName(""))
+  client.AddTable_((&System{}).TableName(""))
+  client.AddTable_((&Route{}).TableName(""))
 
-  gridConfig := config.TestGridConfig()
+  gridConfig := config.TestGrid()
   sectorConfig := &Sector{}
   sectorConfig.Randomize(gridConfig)
   blankConfig := &Sector{}
@@ -72,10 +72,10 @@ func TestLoadFrom(t *testing.T) {
   }
 
   sectorConfig.SaveTo(client)
-  loadedConfig := LoadFrom(client, sectorConfig.Id)
+  loadedConfig := LoadSectorFrom(client, sectorConfig.Id)
   sectorJson, _ := json.MarshalIndent(sectorConfig, "", "    ")
   loadedJson, _ := json.MarshalIndent(loadedConfig, "", "    ")
   if string(sectorJson) != string(loadedJson) {
-    t.Errorf("Loaded sectorConfig does not equal example sectorConfig after LoadFrom()\nRandomized:\n%s\nSaved:\n%s\nLoaded:\n%s", originalJson, sectorJson, loadedJson)
+    t.Errorf("Loaded sectorConfig does not equal example sectorConfig after LoadSectorFrom()\nRandomized:\n%s\nSaved:\n%s\nLoaded:\n%s", originalJson, sectorJson, loadedJson)
   }
 }

@@ -10,7 +10,7 @@ type System struct {
   blobLabel int
 }
 
-func (system *System) TableName() string {
+func (system *System) TableName(systemType string) string {
   return "plan_config_sector_system"
 }
 

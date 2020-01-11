@@ -22,9 +22,25 @@ class BaseConfig(models.Model):
 class Config_System(BaseConfig):
     pass
 
-# RegionConfig Model
-class Config_Region(BaseConfig):
+class BasePerterbation(models.Model):
+    class Meta:
+        abstract = True
+
+    def __repr__(self):
+        return json.dumps(model_to_dict(
+            self,
+            fields=[field.name for field in self._meta.fields]
+        ))
+
+    def __str__(self):
+        return self.name
+
+    name = models.CharField(default="-", max_length=25)
     system = models.ForeignKey(Config_System, on_delete=models.CASCADE)
+
+# RegionConfig Model
+class Config_Region(BasePerterbation):
+    pass
 
 # GridConfig Model
 class Config_Grid(BaseConfig):
