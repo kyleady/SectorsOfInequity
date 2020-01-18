@@ -1,15 +1,14 @@
 from django.db import models
 
-from .config import Config_Region, Config_Grid, Config_System
-from .inspiration import Inspiration_System_Feature
+from .config import Config_Grid, Config_System
+from .perterbation import Perterbation
+from .inspiration import Inspiration
 
 class BaseWeighted(models.Model):
     class Meta:
         abstract = True
 
     weight = models.SmallIntegerField()
-    value = None
-    parent = None
 
     def __str__(self):
         return "({weight}) {value_name}".format(weight=self.weight, value_name=self.value.name)
@@ -20,11 +19,10 @@ class BaseWeighted(models.Model):
             fields=[field.name for field in self._meta.fields]
         ))
 
-class Weighted_Config_Region(BaseWeighted):
-    value = models.ForeignKey(Config_Region, on_delete=models.CASCADE)
+class Weighted_Inspiration(BaseWeighted):
+    value = models.ForeignKey(Inspiration, on_delete=models.CASCADE)
+    systems = models.ManyToManyField(Config_System)
+
+class Weighted_Perterbation(BaseWeighted):
+    value = models.ForeignKey(Perterbation, on_delete=models.CASCADE)
     parent = models.ForeignKey(Config_Grid, on_delete=models.CASCADE)
-
-
-class Weighted_Inspiration_System(BaseWeighted):
-    value = models.ForeignKey(Inspiration_System_Feature, on_delete=models.CASCADE)
-    parent = models.ForeignKey(Config_System, on_delete=models.CASCADE)

@@ -2,12 +2,10 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .perterbation import Perterbation_System
+from .perterbation import Perterbation
+from .roll import Roll
 
-class BaseInspiration(models.Model):
-    class Meta:
-        abstract = True
-
+class Inspiration(models.Model):
     def __repr__(self):
         return json.dumps(model_to_dict(
             self,
@@ -19,8 +17,5 @@ class BaseInspiration(models.Model):
 
     name = models.CharField(default="-", max_length=25)
     description = models.CharField(default="-", max_length=1000)
-    perterbation = None
-
-
-class Inspiration_System_Feature(BaseInspiration):
-    perterbation = models.ForeignKey(Perterbation_System, on_delete=models.CASCADE)
+    rolls = models.ManyToManyField(Roll, related_name='rolls')
+    perterbation = models.ForeignKey(Perterbation, on_delete=models.CASCADE)

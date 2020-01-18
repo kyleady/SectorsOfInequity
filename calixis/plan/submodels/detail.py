@@ -4,14 +4,10 @@ from django.core.validators import int_list_validator
 import json
 import re
 
-from .asset import Asset_System
-from .inspiration import Inspiration_System_Feature
+from .inspiration import Inspiration
 
 # Abstract Models
-class BaseDetail(models.Model):
-    class Meta:
-        abstract = True
-
+class Detail(models.Model):
     def __repr__(self):
         return json.dumps(model_to_dict(
             self,
@@ -26,10 +22,4 @@ class BaseDetail(models.Model):
         return text
 
     rolls = models.CharField(validators=[int_list_validator], max_length=100)
-    asset = None
-    inspiration = None
-
-
-class Detail_System_Feature(BaseDetail):
-    asset = models.ForeignKey(Asset_System, on_delete=models.CASCADE)
-    inspiration = models.ForeignKey(Inspiration_System_Feature, on_delete=models.CASCADE)
+    inspiration = models.ForeignKey(Inspiration, on_delete=models.CASCADE)

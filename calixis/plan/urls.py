@@ -10,7 +10,7 @@ app = 'plan'
 subapp = 'asset'
 asset_models = [
     { 'full_name': 'Sector', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Asset_Sector,
-        'custom': { 'Config': Config_Sector }, 'Views': AssetSectorViews
+        'custom': { 'Config': Grid_Sector }, 'Views': AssetSectorViews
     },
     { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System },
 ]
@@ -18,39 +18,33 @@ asset_models = [
 subapp = 'config'
 config_models = [
     { 'full_name': 'System Config', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Config_System },
-    { 'full_name': 'Region Config', 'app': app, 'subapp': subapp, 'name': 'region', 'Model': Config_Region },
+    { 'full_name': 'Perterbation', 'app': app, 'subapp': subapp, 'name': 'perterbation', 'Model': Perterbation },
     { 'full_name': 'Grid Config',   'app': app, 'subapp': subapp, 'name': 'grid',   'Model': Config_Grid },
-    { 'full_name': 'Sector Config', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Config_Sector,
-        'custom': { 'SubModels': [Config_Sector_System, Config_Sector_Route], 'Grid': Config_Grid }, 'Views': GridSectorViews
+    { 'full_name': 'Sector Config', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Grid_Sector,
+        'custom': { 'SubModels': [Grid_System, Grid_Route], 'Grid': Config_Grid }, 'Views': GridSectorViews
     },
 ]
 
 subapp = 'detail'
 detail_models = [
-    { 'full_name': 'System Feature Detail', 'app': app, 'subapp': subapp, 'name': 'system-feature', 'Model': Detail_System_Feature },
+    { 'full_name': 'Detail', 'app': app, 'subapp': subapp, 'name': 'detail', 'Model': Detail },
 ]
 
 subapp = 'inspiration'
 inspiration_models = [
-    { 'full_name': 'System Feature Inspiration', 'app': app, 'subapp': subapp, 'name': 'system-feature', 'Model': Inspiration_System_Feature },
+    { 'full_name': 'Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration', 'Model': Inspiration },
 ]
 
-subapp = 'perterbation'
-perterbation_models = [
-    { 'full_name': 'System Perterbataion', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Perterbation_System },
-]
 
 subapp = 'roll'
 roll_models = [
-    { 'full_name': 'System Feature Count', 'app': app, 'subapp': subapp, 'name': 'system-features', 'Model': Roll_System_Features },
-    { 'full_name': 'System Star Cluster Count', 'app': app, 'subapp': subapp, 'name': 'system-clusters', 'Model': Roll_System_Star_Clusters },
-    { 'full_name': 'System Feature Roll', 'app': app, 'subapp': subapp, 'name': 'system-feature', 'Model': Roll_Inspiration_System_Feature },
+    { 'full_name': 'Roll', 'app': app, 'subapp': subapp, 'name': 'roll', 'Model': Roll },
 ]
 
 subapp = 'weighted'
 weighted_models = [
-    { 'full_name': 'Weighted Region Config', 'app': app, 'subapp': subapp, 'name': 'config-region', 'Model': Weighted_Config_Region },
-    { 'full_name': 'Weighted System Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration-system', 'Model': Weighted_Inspiration_System },
+    { 'full_name': 'Weighted Perterbation', 'app': app, 'subapp': subapp, 'name': 'perterbation', 'Model': Weighted_Perterbation },
+    { 'full_name': 'Weighted Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration', 'Model': Weighted_Inspiration },
 ]
 
 
@@ -60,11 +54,9 @@ all_models = (
     config_models +
     detail_models +
     inspiration_models +
-    perterbation_models +
     roll_models +
     weighted_models)
 
-{ 'full_name': 'Weighted Region', 'app': app, 'name': 'config-region', 'Model': Weighted_Config_Region },
 urlpatterns = []
 for model in all_models:
     if 'Views' in model:
@@ -122,7 +114,6 @@ app_views = AppViews(title='Sector Planning', name='plan', subapps=[
                 'weighted',
                 'inspiration',
                 'roll',
-                'perterbation',
             ])
 
 urlpatterns.append(
@@ -134,33 +125,23 @@ urlpatterns.append(
 )
 
 all_subapp_views = [
-                SubappViews(title='Assets', name='asset', app='plan', models=[
-                    'sector',
-                    'system',
+                SubappViews(title='Assets', name=asset_models[0]['subapp'], app=asset_models[0]['app'], models=[
+                    model['name'] for model in asset_models
                 ]),
-                SubappViews(title='Config', name='config', app='plan', models=[
-                    'system',
-                    'region',
-                    'grid',
-                    'sector',
+                SubappViews(title='Config',name=config_models[0]['subapp'], app=config_models[0]['app'], models=[
+                    model['name'] for model in config_models
                 ]),
-                SubappViews(title='Details', name='detail', app='plan', models=[
-                    'system-feature'
+                SubappViews(title='Details', name=detail_models[0]['subapp'], app=detail_models[0]['app'], models=[
+                    model['name'] for model in detail_models
                 ]),
-                SubappViews(title='Inspiration', name='inspiration', app='plan', models=[
-                    'system-feature',
+                SubappViews(title='Inspiration', name=inspiration_models[0]['subapp'], app=inspiration_models[0]['app'], models=[
+                    model['name'] for model in inspiration_models
                 ]),
-                SubappViews(title='Perterbations', name='perterbation', app='plan', models=[
-                    'system',
+                SubappViews(title='Rolls', name=roll_models[0]['subapp'], app=roll_models[0]['app'], models=[
+                    model['name'] for model in roll_models
                 ]),
-                SubappViews(title='Rolls', name='roll', app='plan', models=[
-                    'system-features',
-                    'system-clusters',
-                    'system-feature',
-                ]),
-                SubappViews(title='Weighted', name='weighted', app='plan', models=[
-                    'config-region',
-                    'inspiration-system',
+                SubappViews(title='Weighted', name=weighted_models[0]['subapp'], app=weighted_models[0]['app'], models=[
+                    model['name'] for model in weighted_models
                 ]),
 ]
 
