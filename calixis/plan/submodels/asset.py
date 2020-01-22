@@ -21,8 +21,13 @@ class BaseAsset(models.Model):
     name = models.CharField(default="-", max_length=25)
     parent = None
 
+
+class Asset_Star_Cluster(BaseAsset):
+    pass
+
 class Asset_System(BaseAsset):
     details = models.ManyToManyField(Detail, related_name='details')
+    star_clusters = models.ManyToManyField(Asset_Star_Cluster, related_name='star_clusters')
 
 class Asset_Sector(BaseAsset):
     systems = models.ManyToManyField(Asset_System, related_name='systems')

@@ -2,7 +2,7 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .config import Config_System
+from .config import Config_System, Config_Star_Cluster
 
 class Perterbation(models.Model):
     def __repr__(self):
@@ -16,3 +16,4 @@ class Perterbation(models.Model):
 
     name = models.CharField(default="-", max_length=25)
     system = models.ForeignKey(Config_System, on_delete=models.CASCADE)
+    star_cluster = models.ForeignKey(Config_Star_Cluster, on_delete=models.CASCADE)

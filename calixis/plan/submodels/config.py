@@ -20,12 +20,13 @@ class BaseConfig(models.Model):
 
     name = models.CharField(default="-", max_length=25)
 
-# SystemConfig Model
+class Config_Star_Cluster(BaseConfig):
+    star_count = models.ManyToManyField(Roll, related_name='star_count')
+
 class Config_System(BaseConfig):
     system_feature_count = models.ManyToManyField(Roll, related_name='system_feature_count')
     star_cluster_count = models.ManyToManyField(Roll, related_name='star_cluster_count')
 
-# GridConfig Model
 class Config_Grid(BaseConfig):
     height = models.PositiveSmallIntegerField(default=20, blank=True)
     width = models.PositiveSmallIntegerField(default=20, blank=True)

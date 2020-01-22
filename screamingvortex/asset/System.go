@@ -7,7 +7,7 @@ type System struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   Features []*Detail
-  //StarClusters []*StarCluster
+  StarClusters []*StarCluster
 }
 
 func (system *System) TableName(systemType string) string {
@@ -37,20 +37,20 @@ func (system *System) SaveChildren(client utilities.ClientInterface, parentId in
     client.Save(&utilities.SystemToDetailLink{ParentId: system.Id, ChildId: feature.Id}, "")
   }
 
-  //client.SaveAll(&system.StarClusters, "")
-  //for _, starCluster := range system.StarClusters {
-  //  starCluster.SaveChildren(client, system.Id)
-  //}
+  client.SaveAll(&system.StarClusters, "")
+  for _, starCluster := range system.StarClusters {
+    client.Save(&utilities.SystemToStarClusterLink{ParentId: system.Id, ChildId: starCluster.Id}, "")
+    //starCluster.SaveChildren(client, system.Id)
+  }
 }
 
 func RandomSystem(perterbation *config.Perterbation, prefix string, index int) *System {
   systemConfig := perterbation.SystemConfig
 
   system := new(System)
-  //newPrefix :=
-  SetNameAndGetPrefix(system, prefix, index)
+  newPrefix := SetNameAndGetPrefix(system, prefix, index)
   numberOfSystemFeatures := config.RollAll(systemConfig.SystemFeaturesRolls, perterbation.Rand)
-  //numberOfStarClusters := config.RollAll(systemConfig.SystemStarsRolls, perterbation.Rand)
+  numberOfStarClusters := config.RollAll(systemConfig.SystemStarClustersRolls, perterbation.Rand)
 
   for i := 1; i <= numberOfSystemFeatures; i++ {
     inspirationId := config.RollWeightedValues(systemConfig.WeightedInspirations, perterbation.Rand)
@@ -61,11 +61,11 @@ func RandomSystem(perterbation *config.Perterbation, prefix string, index int) *
     perterbation = newPerterbation
   }
 
-  //for i := 1; i <= numberOfStarClusters; i++ {
-  //  starCluster := RandomStarCluster(perterbation, newPrefix, i)
-  //
-  //  system.StarClusters = append(system.StarClusters, starCluster)
-  //}
+  for i := 1; i <= numberOfStarClusters; i++ {
+    starCluster := RandomStarCluster(perterbation, newPrefix, i)
+
+    system.StarClusters = append(system.StarClusters, starCluster)
+  }
 
   return system
 }

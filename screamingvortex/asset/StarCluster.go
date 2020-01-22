@@ -6,7 +6,6 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 type StarCluster struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
-  ParentId int64 `sql:"parent_id"`
 }
 
 func (starCluster *StarCluster) TableName(starClusterType string) string {
@@ -29,11 +28,14 @@ func (starCluster *StarCluster) SaveTo(client utilities.ClientInterface) {
   client.Save(starCluster, "")
 }
 
-
 func RandomStarCluster(perterbation *config.Perterbation, prefix string, index int) *StarCluster {
+  //starClusterConfig := perterbation.StarClusterConfig
+
   starCluster := new(StarCluster)
   //newPrefix :=
   SetNameAndGetPrefix(starCluster, prefix, index)
+
+  //numberOfStars := config.RollAll(starClusterConfig.StarsRolls, perterbation.Rand)
 
   return starCluster
 }

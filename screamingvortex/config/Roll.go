@@ -38,16 +38,18 @@ func (roll *Roll) Roll(rRand *rand.Rand) int {
 
     diceToIgnore := 0
     dieStart := 1
-    dieFinish := roll.DiceSize
+    dieFinish := roll.DiceSize + 1
+    dieIncrement := 1
     if roll.KeepHighest > 0 {
       diceToIgnore = roll.DiceCount - roll.KeepHighest
     } else if roll.KeepHighest < 0 {
       diceToIgnore = roll.DiceCount + roll.KeepHighest
       dieStart = roll.DiceSize
-      dieFinish = 1
+      dieFinish = 1 - 1
+      dieIncrement = -1
     }
 
-    for die := dieStart; die <= dieFinish; die++ {
+    for die := dieStart; die != dieFinish; die += dieIncrement {
       if diceToIgnore > diceFrequency[die] {
         diceToIgnore -= diceFrequency[die]
         diceFrequency[die] = 0

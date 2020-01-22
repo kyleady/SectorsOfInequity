@@ -6,7 +6,9 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 
 type Perterbation struct {
   SystemId int64 `sql:"system_id"`
+  StarClusterId int64 `sql:"star_cluster_id"`
   SystemConfig *System
+  StarClusterConfig *StarCluster
   Manager *ConfigManager
   Rand *rand.Rand
 }
@@ -16,6 +18,7 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
   perterbation.Manager = CreateEmptyManager(client)
   perterbation.Rand = rRand
   perterbation.SystemConfig = CreateEmptySystemConfig()
+  perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
   return perterbation
 }
 
@@ -23,7 +26,7 @@ func LoadPerterbationFrom(client utilities.ClientInterface, id int64) *Perterbat
   perterbation := new(Perterbation)
   client.Fetch(perterbation, "", id)
   perterbation.SystemConfig = LoadSystemConfigFrom(client, perterbation.SystemId)
-
+  perterbation.StarClusterConfig = LoadStarClusterConfigFrom(client, perterbation.StarClusterId)
   return perterbation
 }
 
@@ -49,6 +52,7 @@ func (basePerterbation *Perterbation) AddPerterbation(perterbationId int64) *Per
   modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationId)
 
   newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
+  newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
 
   return newPerterbation
 }
