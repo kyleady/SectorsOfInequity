@@ -11,13 +11,13 @@ type WeightedValue struct {
 
 func (weightedValue *WeightedValue) TableName(weightedType string) string {
   switch weightedType {
-  case WeightedRegionConfigTag():
-    return "plan_weighted_config_region"
-  case WeightedSystemInspirationTag():
-    return "plan_weighted_inspiration_system"
+  case WeightedPerterbationTag():
+    return "plan_weighted_perterbation"
+  case WeightedInspirationTag():
+    return "plan_weighted_inspiration"
 
   default:
-    panic("Unexpected regionType.")
+    panic("Unexpected weightedType: " + weightedType)
   }
 }
 
@@ -76,6 +76,15 @@ func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
   return newWeightedValues
 }
 
-func FetchAllWeightedValues(client utilities.ClientInterface, weightedValues *[]*WeightedValue, weightedType string, parentId int64) {
-  client.FetchAll(weightedValues, weightedType, "parent_id = ?", parentId)
+func FetchAllWeightedPerterbations(client utilities.ClientInterface, weightedValues *[]*WeightedValue, parentId int64) {
+  client.FetchAll(weightedValues, WeightedPerterbationTag(), "parent_id = ?", parentId)
 }
+
+func FetchAllWeightedInspirations(client utilities.ClientInterface, weightedValues *[]*WeightedValue, parentId int64, tableName string, valueName string) {
+  weightTableName := new(WeightedValue).TableName(WeightedInspirationTag())
+  client.FetchMany(weightedValues, parentId, weightTableName, tableName, valueName, WeightedInspirationTag(), true)
+}
+
+
+func WeightedPerterbationTag() string { return "weighted perterbation" }
+func WeightedInspirationTag() string { return "weighted inspiration" }

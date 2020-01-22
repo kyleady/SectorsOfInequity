@@ -2,6 +2,8 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
+from .detail import Detail
+
 # Abstract Models
 class BaseAsset(models.Model):
     class Meta:
@@ -19,8 +21,8 @@ class BaseAsset(models.Model):
     name = models.CharField(default="-", max_length=25)
     parent = None
 
-class Asset_Sector(BaseAsset):
-    pass
-
 class Asset_System(BaseAsset):
-    parent = models.ForeignKey(Asset_Sector, on_delete=models.CASCADE)
+    details = models.ManyToManyField(Detail, related_name='details')
+
+class Asset_Sector(BaseAsset):
+    systems = models.ManyToManyField(Asset_System, related_name='systems')

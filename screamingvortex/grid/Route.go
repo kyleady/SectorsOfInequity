@@ -21,7 +21,7 @@ func CreateRoute(sourceSystem *System, targetSystem *System) *Route {
 }
 
 func (route *Route) TableName(routeType string) string {
-  return "plan_config_sector_route"
+  return "plan_grid_route"
 }
 
 func (route *Route) GetId() *int64 {

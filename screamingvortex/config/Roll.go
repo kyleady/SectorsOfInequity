@@ -20,16 +20,7 @@ func LoadRollFrom(client utilities.ClientInterface, rollType string, id int64) *
 }
 
 func (roll *Roll) TableName(rollType string) string {
-  switch rollType {
-  case RollSystemFeaturesTag():
-    return "plan_roll_system_features"
-  case RollSystemStarClustersTag():
-    return "plan_roll_system_star_clusters"
-  case InspirationSystemFeatureTag():
-    return "plan_roll_inspiration_system_feature"
-  default:
-    panic("Unexpected rollType.")
-  }
+  return "plan_roll"
 }
 
 func (roll *Roll) GetId() *int64 {
@@ -85,6 +76,7 @@ func RollAll(rolls []*Roll, rRand *rand.Rand) int {
   return result
 }
 
-func FetchAllRolls(client utilities.ClientInterface, rolls *[]*Roll, rollType string, parentId int64) {
-  client.FetchAll(rolls, rollType, "parent_id = ?", parentId)
+func FetchAllRolls(client utilities.ClientInterface, rolls *[]*Roll, parentId int64, tableName string, valueName string) {
+  rollTableName := new(Roll).TableName("")
+  client.FetchMany(rolls, parentId, tableName, rollTableName, valueName, "", false)
 }

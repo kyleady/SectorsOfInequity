@@ -3,14 +3,7 @@ from django.forms.models import model_to_dict
 from django.core.validators import int_list_validator
 import json
 
-from .config import Config_System
-from .inspiration import Inspiration_System_Feature
-
-# Abstract Models
-class BaseRoll(models.Model):
-    class Meta:
-        abstract = True
-
+class Roll(models.Model):
     def __repr__(self):
         return json.dumps(model_to_dict(
             self,
@@ -29,18 +22,22 @@ class BaseRoll(models.Model):
                         keep_highest=self.keep_highest
                     )
         elif self.keep_highest < 0:
-            text += "dh{drop_highest}".format(
+            text += "kl{drop_highest}".format(
                         drop_highest=-1*self.keep_highest
                     )
-        if self.base > 0:
-            text += "+{base}".format(
-                        base=self.base
+
+        if self.multiplier != 1:
+            text = "{multiplier}x({text})".format(
+                        multiplier=self.multiplier,
+                        text=text
                     )
-        elif self.base < 0:
+        if self.base > 0 and text != "":
+            text += "+"
+        if self.base != 0:
             text += "{base}".format(
                         base=self.base
                     )
-        elif text == "":
+        if text == "":
             text = "0"
         return text
 
@@ -63,7 +60,7 @@ class BaseRoll(models.Model):
         if roll_match[2]:
             if roll_match[2] == "kh":
                 keep_highest = int(roll_match[3])
-            elif roll_match[2] == "dh":
+            elif roll_match[2] == "kl":
                 keep_highest = -1 * int(roll_match[3])
         else:
             keep_highest = 0
@@ -78,18 +75,8 @@ class BaseRoll(models.Model):
 
         return True
 
-    parent = None
     dice_count = models.PositiveSmallIntegerField()
     dice_size = models.PositiveSmallIntegerField()
     base = models.IntegerField()
     multiplier = models.IntegerField()
     keep_highest = models.IntegerField()
-
-class Roll_System_Features(BaseRoll):
-    parent = models.ForeignKey(Config_System, on_delete=models.CASCADE)
-
-class Roll_System_Star_Clusters(BaseRoll):
-    parent = models.ForeignKey(Config_System, on_delete=models.CASCADE)
-
-class Roll_Inspiration_System_Feature(BaseRoll):
-    parent = models.ForeignKey(Inspiration_System_Feature, on_delete=models.CASCADE)

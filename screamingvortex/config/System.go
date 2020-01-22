@@ -1,7 +1,6 @@
 package config
 
 import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
-import "fmt"
 
 type System struct {
   WeightedInspirations []*WeightedValue
@@ -34,9 +33,9 @@ func (system *System) AddPerterbation(perterbation *System) *System {
 }
 
 func LoadSystemConfigFrom(client utilities.ClientInterface, id int64) *System {
-  systemConfig := new(System)
-  FetchAllWeightedValues(client, &systemConfig.WeightedInspirations, WeightedSystemInspirationTag(), id)
-  FetchAllRolls(client, &systemConfig.SystemFeaturesRolls, RollSystemFeaturesTag(), id)
-  FetchAllRolls(client, &systemConfig.SystemStarClustersRolls, RollSystemStarClustersTag(), id)
-  return systemConfig
+  system := new(System)
+  FetchAllWeightedInspirations(client, &system.WeightedInspirations, id, system.TableName(""), "systems")
+  FetchAllRolls(client, &system.SystemFeaturesRolls, id, system.TableName(""), "system_feature_count")
+  FetchAllRolls(client, &system.SystemStarClustersRolls, id, system.TableName(""), "star_cluster_count")
+  return system
 }

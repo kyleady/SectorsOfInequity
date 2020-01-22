@@ -5,7 +5,6 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 
 type System struct {
   Id int64 `sql:"id"`
-  ParentId int64 `sql:"parent_id"`
   Name string `sql:"name"`
   Features []*Detail
   //StarClusters []*StarCluster
@@ -27,26 +26,20 @@ func (system *System) SetName(name string) {
   system.Name = name
 }
 
-func (system *System) SaveTo(client utilities.ClientInterface) {
+func (system *System) SaveTo(client utilities.ClientInterface, parentId int64) {
   client.Save(system, "")
-  system.SaveChildren(client)
+  system.SaveChildren(client, parentId)
 }
 
-func (system *System) SaveChildren(client utilities.ClientInterface) {
+func (system *System) SaveChildren(client utilities.ClientInterface, parentId int64) {
+  client.SaveAll(&system.Features, "")
   for _, feature := range system.Features {
-    feature.ParentId = system.Id
+    client.Save(&utilities.SystemToDetailLink{ParentId: system.Id, ChildId: feature.Id}, "")
   }
-  client.SaveAll(&system.Features, config.InspirationSystemFeatureTag())
-  //for _, feature := range system.Features {
-  //  feature.SaveChildren(client)
-  //}
 
-  //for _, starCluster := range system.StarClusters {
-  //  starCluster.ParentId = system.Id
-  //}
   //client.SaveAll(&system.StarClusters, "")
   //for _, starCluster := range system.StarClusters {
-  //  starCluster.SaveChildren(client)
+  //  starCluster.SaveChildren(client, system.Id)
   //}
 }
 
@@ -61,7 +54,7 @@ func RandomSystem(perterbation *config.Perterbation, prefix string, index int) *
 
   for i := 1; i <= numberOfSystemFeatures; i++ {
     inspirationId := config.RollWeightedValues(systemConfig.WeightedInspirations, perterbation.Rand)
-    inspiration, newPerterbation := perterbation.AddInspiration(config.InspirationSystemFeatureTag(), inspirationId)
+    inspiration, newPerterbation := perterbation.AddInspiration(inspirationId)
     systemFeature := RandomDetail(inspiration, perterbation.Rand)
 
     system.Features = append(system.Features, systemFeature)

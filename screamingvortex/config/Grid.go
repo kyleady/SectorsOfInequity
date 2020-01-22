@@ -44,6 +44,6 @@ func (config *Grid) GetId() *int64 {
 func LoadGridFrom(client utilities.ClientInterface, id int64) *Grid {
   gridConfig := new(Grid)
   client.Fetch(gridConfig, "", id)
-  FetchAllWeightedValues(client, &gridConfig.WeightedRegions, WeightedRegionConfigTag(), id)
+  FetchAllWeightedPerterbations(client, &gridConfig.WeightedRegions, id)
   return gridConfig
 }
