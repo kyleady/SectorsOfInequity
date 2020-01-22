@@ -31,12 +31,10 @@ func (sector *Sector) SaveTo(client utilities.ClientInterface) {
 }
 
 func (sector *Sector) SaveChildren(client utilities.ClientInterface) {
-  for _, system := range sector.Systems {
-    system.ParentId = sector.Id
-  }
   client.SaveAll(&sector.Systems, "")
   for _, system := range sector.Systems {
-    system.SaveChildren(client)
+    client.Save(&utilities.SectorToSystemLink{0, sector.Id, system.Id}, "")
+    system.SaveChildren(client, sector.Id)
   }
 }
 
@@ -50,7 +48,7 @@ func RandomSector(sectorGrid *grid.Sector, client *utilities.Client) *Sector {
   rRand := rand.New(randSource)
   emptyPerterbation := config.CreateEmptyPerterbation(client, rRand)
   for i, systemGrid := range sectorGrid.Systems {
-    systemPerterbation := emptyPerterbation.AddPerterbation(config.PerterbationRegionTag(), systemGrid.RegionId)
+    systemPerterbation := emptyPerterbation.AddPerterbation(systemGrid.RegionId)
     system := RandomSystem(systemPerterbation, "", i)
 
     sector.Systems = append(sector.Systems, system)

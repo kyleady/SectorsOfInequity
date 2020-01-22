@@ -1,8 +1,10 @@
 package utilities
 
+import "fmt"
 import "reflect"
 import "regexp"
-import "fmt"
+import "strings"
+
 
 type ClientMock struct {
   Environment string
@@ -113,6 +115,26 @@ func (client *ClientMock) FetchAll(asInterface interface{}, tableType string, wh
       }
     }
   }
+}
+
+func (client *ClientMock) FetchMany(asInterface interface{}, parentId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool) {
+  childTableNameWithoutAppName := strings.Replace(childTableName, "plan_", "", 1)
+  parentTableNameWithoutAppName := strings.Replace(parentTableName, "plan_", "", 1)
+
+  if reverseAccess {
+    tmpVariable := childTableNameWithoutAppName
+    childTableNameWithoutAppName = parentTableNameWithoutAppName
+    parentTableNameWithoutAppName = tmpVariable
+  }
+
+  whereClause := fmt.Sprintf("id IN (SELECT %_id FROM %s_%s WHERE %s_id = ?)",
+                              childTableNameWithoutAppName,
+                              parentTableName,
+                              valueName,
+                              parentTableNameWithoutAppName,
+                            )
+
+  client.FetchAll(asInterface, childType, whereClause, parentId)
 }
 
 func (client *ClientMock) Update(obj SQLInterface, tableType string) {

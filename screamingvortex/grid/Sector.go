@@ -17,7 +17,7 @@ type Sector struct {
 }
 
 func (sector *Sector) TableName(sectorType string) string {
-  return "plan_config_sector"
+  return "plan_grid_sector"
 }
 
 func (sector *Sector) GetId() *int64 {

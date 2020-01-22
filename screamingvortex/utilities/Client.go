@@ -104,6 +104,26 @@ func (client *Client) FetchAll(asInterface interface{}, tableType string, whereC
   }
 }
 
+func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool) {
+  childTableNameWithoutAppName := strings.Replace(childTableName, "plan_", "", 1)
+  parentTableNameWithoutAppName := strings.Replace(parentTableName, "plan_", "", 1)
+
+  if reverseAccess {
+    tmpVariable := childTableNameWithoutAppName
+    childTableNameWithoutAppName = parentTableNameWithoutAppName
+    parentTableNameWithoutAppName = tmpVariable
+  }
+
+  whereClause := fmt.Sprintf("id IN (SELECT %s_id FROM %s_%s WHERE %s_id = ?)",
+                              childTableNameWithoutAppName,
+                              parentTableName,
+                              valueName,
+                              parentTableNameWithoutAppName,
+                            )
+
+  client.FetchAll(asInterface, childType, whereClause, parentId)
+}
+
 func (client *Client) Update(obj SQLInterface, tableType string) {
   values, names, _ := listFields(obj, false)
   query := fmt.Sprintf("UPDATE %s SET %s%s WHERE id = ?;",

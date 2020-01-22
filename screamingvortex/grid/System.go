@@ -11,7 +11,7 @@ type System struct {
 }
 
 func (system *System) TableName(systemType string) string {
-  return "plan_config_sector_system"
+  return "plan_grid_system"
 }
 
 func (system *System) GetId() *int64 {
