@@ -23,7 +23,7 @@ class BaseAsset(models.Model):
 
 
 class Asset_Star_Cluster(BaseAsset):
-    pass
+    stars = models.ManyToManyField(Detail, related_name='stars')
 
 class Asset_System(BaseAsset):
     details = models.ManyToManyField(Detail, related_name='details')

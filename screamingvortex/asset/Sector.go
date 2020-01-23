@@ -33,8 +33,8 @@ func (sector *Sector) SaveTo(client utilities.ClientInterface) {
 func (sector *Sector) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&sector.Systems, "")
   for _, system := range sector.Systems {
-    client.Save(&utilities.SectorToSystemLink{0, sector.Id, system.Id}, "")
-    system.SaveChildren(client, sector.Id)
+    client.Save(&utilities.SectorToSystemLink{ParentId: sector.Id, ChildId: system.Id}, "")
+    system.SaveChildren(client)
   }
 }
 
