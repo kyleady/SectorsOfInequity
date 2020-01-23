@@ -1,6 +1,6 @@
 from django.db import models
 
-from .config import Config_Grid, Config_System
+from .config import Config_Grid, Config_System, Config_Star_Cluster
 from .perterbation import Perterbation
 from .inspiration import Inspiration
 
@@ -22,6 +22,7 @@ class BaseWeighted(models.Model):
 class Weighted_Inspiration(BaseWeighted):
     value = models.ForeignKey(Inspiration, on_delete=models.CASCADE)
     systems = models.ManyToManyField(Config_System)
+    star_clusters = models.ManyToManyField(Config_Star_Cluster)
 
 class Weighted_Perterbation(BaseWeighted):
     value = models.ForeignKey(Perterbation, on_delete=models.CASCADE)

@@ -26,12 +26,12 @@ func (system *System) SetName(name string) {
   system.Name = name
 }
 
-func (system *System) SaveTo(client utilities.ClientInterface, parentId int64) {
+func (system *System) SaveTo(client utilities.ClientInterface) {
   client.Save(system, "")
-  system.SaveChildren(client, parentId)
+  system.SaveChildren(client)
 }
 
-func (system *System) SaveChildren(client utilities.ClientInterface, parentId int64) {
+func (system *System) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&system.Features, "")
   for _, feature := range system.Features {
     client.Save(&utilities.SystemToDetailLink{ParentId: system.Id, ChildId: feature.Id}, "")
@@ -40,7 +40,7 @@ func (system *System) SaveChildren(client utilities.ClientInterface, parentId in
   client.SaveAll(&system.StarClusters, "")
   for _, starCluster := range system.StarClusters {
     client.Save(&utilities.SystemToStarClusterLink{ParentId: system.Id, ChildId: starCluster.Id}, "")
-    //starCluster.SaveChildren(client, system.Id)
+    starCluster.SaveChildren(client)
   }
 }
 

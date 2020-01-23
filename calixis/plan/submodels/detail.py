@@ -15,6 +15,9 @@ class Detail(models.Model):
         ))
 
     def __str__(self):
+        return self.inspiration.name
+
+    def get_description(self):
         roll_list = self.rolls.split(',')
         text = self.inspiration.description
         for roll in roll_list:

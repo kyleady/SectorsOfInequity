@@ -16,6 +16,22 @@ func (link *SectorToSystemLink) GetId() *int64 {
 
 //
 
+type StarClusterToDetailLink struct {
+  Id int64 `sql:"id"`
+  ParentId int64 `sql:"asset_star_cluster_id"`
+  ChildId int64 `sql:"detail_id"`
+}
+
+func (link *StarClusterToDetailLink) TableName(linkType string) string {
+  return "plan_asset_star_cluster_stars"
+}
+
+func (link *StarClusterToDetailLink) GetId() *int64 {
+  return &link.Id
+}
+
+//
+
 type SystemToDetailLink struct {
   Id int64 `sql:"id"`
   ParentId int64 `sql:"asset_system_id"`
