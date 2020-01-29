@@ -8,6 +8,7 @@ type System struct {
   RegionId int64 `sql:"region_id"`
   Routes []*Route
   blobLabel int
+  systemIndex int
 }
 
 func (system *System) TableName(systemType string) string {

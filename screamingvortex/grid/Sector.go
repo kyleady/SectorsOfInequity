@@ -92,12 +92,16 @@ func (sector *Sector) Randomize(gridConfig *config.Grid) {
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
   sector.gridToList()
-  if(sector.config.SmoothingFactor > 1) {
-    sector.genSmoothRegionIds()
+  smoothingFactor := sector.config.SmoothingFactor
+  listByRegion := make(map[int64][]int)
+  if(smoothingFactor >= 1) {
+    listByRegion = sector.genClumpedRegionIds()
+    smoothingFactor--
   } else {
-    sector.genClumpedRegionIds()
+    listByRegion = sector.genScatteredRegionIds()
   }
 
+  sector.smoothRegionIds(listByRegion, smoothingFactor)
 }
 
 func (sector *Sector) createGrid() {
@@ -225,6 +229,7 @@ func (sector *Sector) gridToList() {
   for i := range sector.grid {
     for j := range sector.grid[i] {
       if sector.grid[i][j].IsVoidSpace() == false {
+        sector.grid[i][j].systemIndex = len(sector.Systems)
         sector.Systems = append(sector.Systems, sector.grid[i][j])
       }
     }
@@ -267,7 +272,7 @@ func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*Sys
   return systemA, systemB, systemListIndexA, systemListIndexB
 }
 
-func (sector *Sector) genClumpedRegionIds() {
+func (sector *Sector) genScatteredRegionIds() map[int64][]int {
   listByRegion := make(map[int64][]int)
   for systemIndex, system := range sector.Systems {
     randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
@@ -275,6 +280,10 @@ func (sector *Sector) genClumpedRegionIds() {
     listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
   }
 
+  return listByRegion
+}
+
+func (sector *Sector) smoothRegionIds(listByRegion map[int64][]int, smoothingFactor float64) {
   if len(sector.Systems) <= 2 {
     return
   }
@@ -340,7 +349,8 @@ func (sector *Sector) getRandomUnsetSystem(systemsSet int) *System {
   panic(fmt.Sprintf("One system should always be returned. {systemsSet=%d, len(sector.Systems)=%d}", systemsSet, len(sector.Systems)))
 }
 
-func (sector *Sector) genSmoothRegionIds() {
+func (sector *Sector) genClumpedRegionIds() map[int64][]int {
+  listByRegion := make(map[int64][]int)
   //determine the number of systems in each region
   regionFrequency := make(map[int64]int)
   for range sector.Systems {
@@ -387,6 +397,7 @@ func (sector *Sector) genSmoothRegionIds() {
     for i := 0; i < regionFrequency[regionId]; i++ {
       //mark that system as in the current region
       selectedSystem.RegionId = regionId
+      listByRegion[regionId] = append(listByRegion[regionId], selectedSystem.systemIndex)
       systemsSet++
 
       //remove all occurences of that system from list of adjacent systems
@@ -423,4 +434,6 @@ func (sector *Sector) genSmoothRegionIds() {
       }
     }
   }
+
+  return listByRegion
 }
