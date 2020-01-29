@@ -127,7 +127,7 @@ func (client *ClientMock) FetchMany(asInterface interface{}, parentId int64, par
     parentTableNameWithoutAppName = tmpVariable
   }
 
-  whereClause := fmt.Sprintf("id IN (SELECT %_id FROM %s_%s WHERE %s_id = ?)",
+  whereClause := fmt.Sprintf("id IN (SELECT %s_id FROM %s_%s WHERE %s_id = ?)",
                               childTableNameWithoutAppName,
                               parentTableName,
                               valueName,
