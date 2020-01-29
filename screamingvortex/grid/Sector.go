@@ -5,6 +5,7 @@ import (
   "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
   "math/rand"
   "time"
+  "fmt"
 )
 
 type Sector struct {
@@ -91,7 +92,16 @@ func (sector *Sector) Randomize(gridConfig *config.Grid) {
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
   sector.gridToList()
-  sector.genClumpedRegionIds()
+  smoothingFactor := sector.config.SmoothingFactor
+  listByRegion := make(map[int64][]int)
+  if(smoothingFactor >= 1) {
+    listByRegion = sector.genClumpedRegionIds()
+    smoothingFactor--
+  } else {
+    listByRegion = sector.genScatteredRegionIds()
+  }
+
+  sector.smoothRegionIds(listByRegion, smoothingFactor)
 }
 
 func (sector *Sector) createGrid() {
@@ -219,6 +229,7 @@ func (sector *Sector) gridToList() {
   for i := range sector.grid {
     for j := range sector.grid[i] {
       if sector.grid[i][j].IsVoidSpace() == false {
+        sector.grid[i][j].systemIndex = len(sector.Systems)
         sector.Systems = append(sector.Systems, sector.grid[i][j])
       }
     }
@@ -261,7 +272,7 @@ func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*Sys
   return systemA, systemB, systemListIndexA, systemListIndexB
 }
 
-func (sector *Sector) genClumpedRegionIds() {
+func (sector *Sector) genScatteredRegionIds() map[int64][]int {
   listByRegion := make(map[int64][]int)
   for systemIndex, system := range sector.Systems {
     randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
@@ -269,6 +280,10 @@ func (sector *Sector) genClumpedRegionIds() {
     listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
   }
 
+  return listByRegion
+}
+
+func (sector *Sector) smoothRegionIds(listByRegion map[int64][]int, smoothingFactor float64) {
   if len(sector.Systems) <= 2 {
     return
   }
@@ -312,4 +327,113 @@ func (sector *Sector) genClumpedRegionIds() {
       systemB.RegionId = regionA
     }
   }
+}
+
+func (sector *Sector) getRandomUnsetSystem(systemsSet int) *System {
+  randomIndex := sector.rand.Intn(len(sector.Systems) - systemsSet)
+
+  if systemsSet == 0 {
+    return sector.Systems[randomIndex]
+  } else {
+    for _, system := range sector.Systems {
+      if system.RegionId == int64(system.TheUnsetLabel()) {
+        if randomIndex == 0 {
+          return system
+        } else {
+          randomIndex--
+        }
+      }
+    }
+  }
+
+  panic(fmt.Sprintf("One system should always be returned. {systemsSet=%d, len(sector.Systems)=%d}", systemsSet, len(sector.Systems)))
+}
+
+func (sector *Sector) genClumpedRegionIds() map[int64][]int {
+  listByRegion := make(map[int64][]int)
+  //determine the number of systems in each region
+  regionFrequency := make(map[int64]int)
+  for range sector.Systems {
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
+    regionFrequency[randRegion]++
+  }
+
+  //create ordered list of regions, from most populous to least
+  regionFrequencyCopy := make(map[int64]int)
+  for regionId, freq := range regionFrequency {
+    regionFrequencyCopy[regionId] = freq
+  }
+
+
+  orderedRegionIdByFrequency := make([]int64, len(regionFrequency), len(regionFrequency))
+  currentIndex := 0
+  for range regionFrequency {
+    maxFreq := -1
+    maxRegionId := int64(-1)
+    for regionId, freq := range regionFrequencyCopy {
+      if freq > maxFreq {
+        maxFreq = freq
+        maxRegionId = regionId
+      }
+    }
+
+    orderedRegionIdByFrequency[currentIndex] = maxRegionId
+    regionFrequencyCopy[maxRegionId] = -1
+    currentIndex++
+  }
+
+  //loop through each region, from most populous to least
+  systemsSet := 0
+  adjacentSystems := []*System{}
+  for _, regionId := range orderedRegionIdByFrequency {
+    //reset adjacentSystems
+    adjacentSystems = []*System{}
+
+    //randomly choose starting system
+    selectedSystem := sector.getRandomUnsetSystem(systemsSet)
+    selectedIndex := -1
+
+    //mark a system as part of this region, for each system in the region
+    for i := 0; i < regionFrequency[regionId]; i++ {
+      //mark that system as in the current region
+      selectedSystem.RegionId = regionId
+      listByRegion[regionId] = append(listByRegion[regionId], selectedSystem.systemIndex)
+      systemsSet++
+
+      //remove all occurences of that system from list of adjacent systems
+      if selectedIndex >= 0 {
+        for adjacentIndex := 0; adjacentIndex < len(adjacentSystems); adjacentIndex++ {
+          if adjacentSystems[adjacentIndex] == selectedSystem {
+            adjacentSystems = append(adjacentSystems[:adjacentIndex], adjacentSystems[adjacentIndex+1:]...)
+            adjacentIndex--;
+          }
+        }
+      }
+
+      //add all newly adjacent systems that are not yet in a region
+      for _, route := range selectedSystem.Routes {
+        adjacentSystem := route.TargetSystem()
+        if adjacentSystem.RegionId == int64(adjacentSystem.TheUnsetLabel()) {
+          adjacentSystems = append(adjacentSystems, adjacentSystem)
+        }
+      }
+
+      //check if you have run out of adjacent systems
+      if systemsSet < len(sector.Systems) {
+        if len(adjacentSystems) == 0 {
+          //randomly choose new starting system
+          selectedSystem = sector.getRandomUnsetSystem(systemsSet)
+          selectedIndex = -1
+
+          //mark that system as part of the current region
+        } else {
+          //randomly choose an adjacent system
+          selectedIndex = sector.rand.Intn(len(adjacentSystems))
+          selectedSystem = adjacentSystems[selectedIndex]
+        }
+      }
+    }
+  }
+
+  return listByRegion
 }

@@ -41,6 +41,10 @@ func TestSectorRandomize(t *testing.T) {
           t.Errorf("Route is connected to system outside the main label. TargetSystem: %v", route.TargetSystem())
         }
       }
+
+      if system.RegionId == int64(system.TheUnsetLabel()) {
+        t.Errorf("Grid System {%d, %d} has not been properly given a RegionId.", system.X, system.Y)
+      }
     }
   }
 
