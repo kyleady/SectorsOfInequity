@@ -1,12 +1,13 @@
 package config
 
+import "database/sql"
 import "math/rand"
 
 import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 
 type Perterbation struct {
-  SystemId int64 `sql:"system_id"`
-  StarClusterId int64 `sql:"star_cluster_id"`
+  SystemId sql.NullInt64 `sql:"system_id"`
+  StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
   SystemConfig *System
   StarClusterConfig *StarCluster
   Manager *ConfigManager
@@ -15,7 +16,9 @@ type Perterbation struct {
 
 func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perterbation {
   perterbation := new(Perterbation)
-  perterbation.Manager = CreateEmptyManager(client)
+  if client != nil {
+    perterbation.Manager = CreateEmptyManager(client)
+  }
   perterbation.Rand = rRand
   perterbation.SystemConfig = CreateEmptySystemConfig()
   perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
@@ -25,8 +28,18 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
 func LoadPerterbationFrom(client utilities.ClientInterface, id int64) *Perterbation {
   perterbation := new(Perterbation)
   client.Fetch(perterbation, "", id)
-  perterbation.SystemConfig = LoadSystemConfigFrom(client, perterbation.SystemId)
-  perterbation.StarClusterConfig = LoadStarClusterConfigFrom(client, perterbation.StarClusterId)
+  if perterbation.SystemId.Valid {
+    perterbation.SystemConfig = LoadSystemConfigFrom(client, perterbation.SystemId.Int64)
+  } else {
+    perterbation.SystemConfig = CreateEmptySystemConfig()
+  }
+
+  if perterbation.StarClusterId.Valid {
+    perterbation.StarClusterConfig = LoadStarClusterConfigFrom(client, perterbation.StarClusterId.Int64)
+  } else {
+    perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
+  }
+
   return perterbation
 }
 
@@ -40,16 +53,29 @@ func (perterbation *Perterbation) GetId() *int64 {
 
 func (basePerterbation *Perterbation) AddInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
   inspiration := basePerterbation.Manager.GetInspiration(inspirationId)
-  newPerterbation := basePerterbation.AddPerterbation(inspiration.PerterbationId)
+  var newPerterbation *Perterbation
+  if(inspiration.PerterbationId.Valid) {
+    newPerterbation = basePerterbation.AddPerterbation(inspiration.PerterbationId.Int64)
+  } else {
+    newPerterbation = basePerterbation.Copy()
+  }
 
   return inspiration, newPerterbation
 }
 
+func (basePerterbation *Perterbation) Copy() *Perterbation {
+  return basePerterbation.addPerterbation(CreateEmptyPerterbation(nil, nil))
+}
+
 func (basePerterbation *Perterbation) AddPerterbation(perterbationId int64) *Perterbation {
+  modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationId)
+  return basePerterbation.addPerterbation(modifyingPerterbation)
+}
+
+func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Perterbation) *Perterbation {
   newPerterbation := new(Perterbation)
   newPerterbation.Rand = basePerterbation.Rand
   newPerterbation.Manager = basePerterbation.Manager
-  modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationId)
 
   newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
   newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
