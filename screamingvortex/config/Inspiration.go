@@ -1,10 +1,12 @@
 package config
 
+import "database/sql"
+
 import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 
 type Inspiration struct {
   Id int64 `sql:"id"`
-  PerterbationId int64 `sql:"perterbation_id"`
+  PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   InspirationRolls []*Roll
 }
 

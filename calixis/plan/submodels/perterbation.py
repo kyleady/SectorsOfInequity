@@ -15,5 +15,5 @@ class Perterbation(models.Model):
         return self.name
 
     name = models.CharField(default="-", max_length=25)
-    system = models.ForeignKey(Config_System, on_delete=models.CASCADE)
-    star_cluster = models.ForeignKey(Config_Star_Cluster, on_delete=models.CASCADE)
+    system = models.ForeignKey(Config_System, null=True, blank=True, on_delete=models.CASCADE)
+    star_cluster = models.ForeignKey(Config_Star_Cluster, null=True, blank=True, on_delete=models.CASCADE)

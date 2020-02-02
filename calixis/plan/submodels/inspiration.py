@@ -18,4 +18,4 @@ class Inspiration(models.Model):
     name = models.CharField(default="-", max_length=25)
     description = models.CharField(default="-", max_length=1000)
     rolls = models.ManyToManyField(Roll, related_name='rolls')
-    perterbation = models.ForeignKey(Perterbation, on_delete=models.CASCADE)
+    perterbation = models.ForeignKey(Perterbation, null=True, blank=True, on_delete=models.CASCADE)
