@@ -38,7 +38,7 @@ func (sector *Sector) SaveChildren(client utilities.ClientInterface) {
   }
 }
 
-func RandomSector(sectorGrid *grid.Sector, client *utilities.Client) *Sector {
+func RandomSector(sectorGrid *grid.Sector, client *utilities.Client, job *utilities.Job) *Sector {
   sector := new(Sector)
   t := time.Now()
   sector.Name = sectorGrid.Name + t.Format("_20060102150405")
@@ -52,6 +52,7 @@ func RandomSector(sectorGrid *grid.Sector, client *utilities.Client) *Sector {
     system := RandomSystem(systemPerterbation, "", i)
 
     sector.Systems = append(sector.Systems, system)
+    job.Step(client)
   }
 
   return sector

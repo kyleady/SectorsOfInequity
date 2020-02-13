@@ -125,18 +125,23 @@ func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentT
 }
 
 func (client *Client) Update(obj SQLInterface, tableType string) {
-  values, names, _ := listFields(obj, false)
-  query := fmt.Sprintf("UPDATE %s SET %s%s WHERE id = ?;",
-    obj.TableName(tableType),
-    strings.Join(names, " = ?, "),
-    " = ?",
-  )
+  values, _, _ := listFields(obj, false)
+  query := updateQuery(obj, tableType)
 
   args := append(values, *obj.GetId())
   _, err := client.db.Exec(query, args...)
   if err != nil {
   	panic(err)
   }
+}
+
+func updateQuery(obj SQLInterface, tableType string) string {
+  _, names, _ := listFields(obj, false)
+  return fmt.Sprintf("UPDATE %s SET %s%s WHERE id = ?;",
+    obj.TableName(tableType),
+    strings.Join(names, " = ?, "),
+    " = ?",
+  )
 }
 
 func (client *Client) Save(obj SQLInterface, tableType string) {

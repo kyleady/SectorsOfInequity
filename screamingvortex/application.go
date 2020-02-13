@@ -12,16 +12,16 @@ import (
     "net/http"
 )
 
-func extractConfigId(writer http.ResponseWriter, req *http.Request) int64 {
+func extractIds(writer http.ResponseWriter, req *http.Request) (int64, int64) {
   decoder := json.NewDecoder(req.Body)
   calixisMsg := new(messages.FromCalixis)
   inputErr := decoder.Decode(calixisMsg)
   if inputErr != nil {
       http.Error(writer, "Input\n" + inputErr.Error(), http.StatusInternalServerError)
-      return -1
+      return -1, -1
   }
 
-  return calixisMsg.ConfigId
+  return calixisMsg.ConfigId, calixisMsg.JobId
 }
 
 func createClient() *utilities.Client {
@@ -34,32 +34,42 @@ func createClient() *utilities.Client {
 }
 
 func gridHandler(writer http.ResponseWriter, req *http.Request) {
-    id := extractConfigId(writer, req)
-    if id < 0 { return }
-    client := createClient()
-    client.Open()
-    defer client.Close()
+    configId, jobId := extractIds(writer, req)
+    if configId < 0 { return }
 
-    gridConfig := config.LoadGridFrom(client, id)
+    go func() {
+      client := createClient()
+      client.Open()
+      defer client.Close()
 
-    sectorGrid := new(grid.Sector)
-    sectorGrid.Randomize(gridConfig)
-    sectorGrid.SaveTo(client)
+      gridConfig := config.LoadGridFrom(client, configId)
+
+      job := utilities.CreateJob(jobId, 3)
+      sectorGrid := new(grid.Sector)
+      sectorGrid.Randomize(gridConfig, client, job)
+      sectorGrid.SaveTo(client)
+      job.Complete(client, sectorGrid.Id)
+    }()
 
     writer.Write([]byte("OK"))
 }
 
 func sectorHandler(writer http.ResponseWriter, req *http.Request) {
-    id := extractConfigId(writer, req)
-    if id < 0 { return }
-    client := createClient()
-    client.Open()
-    defer client.Close()
+    configId, jobId := extractIds(writer, req)
+    if configId < 0 { return }
 
-    sectorGrid := grid.LoadSectorFrom(client, id)
+    go func() {
+      client := createClient()
+      client.Open()
+      defer client.Close()
 
-    sectorAsset := asset.RandomSector(sectorGrid, client)
-    sectorAsset.SaveTo(client)
+      sectorGrid := grid.LoadSectorFrom(client, configId)
+
+      job := utilities.CreateJob(jobId, len(sectorGrid.Systems))
+      sectorAsset := asset.RandomSector(sectorGrid, client, job)
+      sectorAsset.SaveTo(client)
+      job.Complete(client, sectorAsset.Id)
+    }()
 
     writer.Write([]byte("OK"))
 }
