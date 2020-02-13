@@ -90,14 +90,18 @@ class GridSectorViews(DefaultViews):
         if request.POST:
             form = GenerateSectorConfigForm(request.POST)
             form.is_valid()
-            config_id = form.cleaned_data['config'].id
+            config = form.cleaned_data['config']
+            Job = self.custom['Job']
+            jobType = Job.JobType.GRID
+            job = Job(jobType=jobType, config_id=config.id)
+            job.save()
             screaming_vortex_url = 'http://{host}/{path}'.format(
                 host=self.screaming_vortex_host,
                 path='grid'
             )
             screaming_vortex_json = {
-                'config_id': config_id,
-                'skeleton_id': None,
+                'config_id': config.id,
+                'job_id': job.id,
             }
             screaming_vortex_response = requests.post(
                 screaming_vortex_url,

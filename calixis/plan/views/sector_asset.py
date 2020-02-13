@@ -13,14 +13,18 @@ class AssetSectorViews(DefaultViews):
         if request.POST:
             form = GenerateSectorAssetForm(request.POST)
             form.is_valid()
-            config_id = form.cleaned_data['config'].id
+            config = form.cleaned_data['config']
+            Job = self.custom['Job']
+            jobType = Job.JobType.SECTOR
+            job = Job(jobType=jobType, config_id=config.id)
+            job.save()
             screaming_vortex_url = 'http://{host}/{path}'.format(
                 host=self.screaming_vortex_host,
                 path='sector'
             )
             screaming_vortex_json = {
-                'config_id': config_id,
-                'skeleton_id': None,
+                'config_id': config.id,
+                'job_id': job.id,
             }
             screaming_vortex_response = requests.post(
                 screaming_vortex_url,

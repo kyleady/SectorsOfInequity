@@ -10,7 +10,7 @@ app = 'plan'
 subapp = 'asset'
 asset_models = [
     { 'full_name': 'Sector', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Asset_Sector,
-        'custom': { 'Config': Grid_Sector }, 'Views': AssetSectorViews
+        'custom': { 'Config': Grid_Sector, 'Job': Job }, 'Views': AssetSectorViews
     },
     { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System },
     { 'full_name': 'Star Cluster', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Asset_Star_Cluster },
@@ -23,7 +23,7 @@ config_models = [
     { 'full_name': 'Perterbation', 'app': app, 'subapp': subapp, 'name': 'perterbation', 'Model': Perterbation },
     { 'full_name': 'Grid Config',   'app': app, 'subapp': subapp, 'name': 'grid',   'Model': Config_Grid },
     { 'full_name': 'Sector Config', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Grid_Sector,
-        'custom': { 'SubModels': [Grid_System, Grid_Route], 'Grid': Config_Grid }, 'Views': GridSectorViews
+        'custom': { 'SubModels': [Grid_System, Grid_Route], 'Grid': Config_Grid, 'Job': Job  }, 'Views': GridSectorViews
     },
 ]
 
@@ -49,6 +49,11 @@ weighted_models = [
     { 'full_name': 'Weighted Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration', 'Model': Weighted_Inspiration },
 ]
 
+subapp = 'job'
+job_models = [
+    { 'full_name': 'Job', 'app': app, 'subapp': subapp, 'name': 'job', 'Model': Job },
+]
+
 
 
 all_models = (
@@ -57,7 +62,8 @@ all_models = (
     detail_models +
     inspiration_models +
     roll_models +
-    weighted_models)
+    weighted_models +
+    job_models)
 
 urlpatterns = []
 for model in all_models:
@@ -116,6 +122,7 @@ app_views = AppViews(title='Sector Planning', name='plan', subapps=[
                 'weighted',
                 'inspiration',
                 'roll',
+                'job'
             ])
 
 urlpatterns.append(
@@ -144,6 +151,9 @@ all_subapp_views = [
                 ]),
                 SubappViews(title='Weighted', name=weighted_models[0]['subapp'], app=weighted_models[0]['app'], models=[
                     model['name'] for model in weighted_models
+                ]),
+                SubappViews(title='Job', name=job_models[0]['subapp'], app=job_models[0]['app'], models=[
+                    model['name'] for model in job_models
                 ]),
 ]
 
