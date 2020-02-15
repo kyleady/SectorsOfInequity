@@ -6,10 +6,20 @@ import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
 import "encoding/json"
 
 func TestSectorRandomize(t *testing.T) {
+  client := &utilities.ClientMock{}
+  client.Open()
+  defer client.Close()
+  client.AddTable_((&utilities.Job{}).TableName(""))
+
+  job := utilities.CreateJob(0, 3)
+  client.Save(job, "")
+
   sectorConfig := config.TestGrid()
 
   sector := new(Sector)
-  sector.Randomize(sectorConfig)
+  sector.Randomize(sectorConfig, client, job)
+
+  client.Fetch(job, "", job.Id)
 
   theSurvivingLabel := -100
   systemCount := 0
@@ -55,6 +65,10 @@ func TestSectorRandomize(t *testing.T) {
   if systemCount != len(sector.Systems) {
     t.Errorf("The number of surviving systems on the grid does not equal the recorded surviving systems in the sector. %d != %d", systemCount, len(sector.Systems))
   }
+
+  if job.PercentComplete != 100 {
+    t.Errorf("Job did not complete. Job: %v", job)
+  }
 }
 
 func TestLoadSectorFrom(t *testing.T) {
@@ -64,10 +78,14 @@ func TestLoadSectorFrom(t *testing.T) {
   client.AddTable_((&Sector{}).TableName(""))
   client.AddTable_((&System{}).TableName(""))
   client.AddTable_((&Route{}).TableName(""))
+  client.AddTable_((&utilities.Job{}).TableName(""))
+
+  job := utilities.CreateJob(0, 3)
+  client.Save(job, "")
 
   gridConfig := config.TestGrid()
   sectorConfig := &Sector{}
-  sectorConfig.Randomize(gridConfig)
+  sectorConfig.Randomize(gridConfig, client, job)
   blankConfig := &Sector{}
   originalJson, _ := json.MarshalIndent(sectorConfig, "", "    ")
   blankJson, _ := json.MarshalIndent(blankConfig, "", "    ")

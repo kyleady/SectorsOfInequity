@@ -4,6 +4,7 @@ import "fmt"
 import "reflect"
 import "regexp"
 import "strings"
+import "database/sql"
 
 
 type ClientMock struct {
@@ -56,6 +57,10 @@ func assignAll(values []interface{}, addresses []interface{}) {
       *address = values[i].(string)
     case *float64:
       *address = values[i].(float64)
+    case *sql.NullString:
+      *address = values[i].(sql.NullString)
+    case * sql.NullInt64:
+      *address = values[i].(sql.NullInt64)
     default:
       panic("Unknown type")
     }
@@ -138,7 +143,10 @@ func (client *ClientMock) FetchMany(asInterface interface{}, parentId int64, par
 }
 
 func (client *ClientMock) Update(obj SQLInterface, tableType string) {
-  panic("Not yet implemented")
+  client.checkConnection()
+  updateQuery(obj, tableType)
+  tableName := obj.TableName(tableType)
+  client.tmpDB[tableName][*obj.GetId()] = obj
 }
 
 func (client *ClientMock) Save(obj SQLInterface, tableType string) {

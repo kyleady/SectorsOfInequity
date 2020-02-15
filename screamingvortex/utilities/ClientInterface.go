@@ -8,4 +8,5 @@ type ClientInterface interface {
   FetchMany(asInterface interface{}, parentId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool)
   Save(obj SQLInterface, tableType string)
   SaveAll(asInterface interface{}, tableType string)
+  Update(obj SQLInterface, tableType string)
 }

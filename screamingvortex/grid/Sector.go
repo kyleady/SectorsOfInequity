@@ -78,7 +78,7 @@ func LoadSectorFrom(client utilities.ClientInterface, id int64) *Sector {
   return sector
 }
 
-func (sector *Sector) Randomize(gridConfig *config.Grid) {
+func (sector *Sector) Randomize(gridConfig *config.Grid, client utilities.ClientInterface, job *utilities.Job) {
   sector.config = gridConfig
   t := time.Now()
   sector.Name = gridConfig.Name + t.Format("_20060102150405")
@@ -86,12 +86,14 @@ func (sector *Sector) Randomize(gridConfig *config.Grid) {
   source := rand.NewSource(t.UnixNano())
   sector.rand = rand.New(source)
 
+
   sector.createGrid()
   sector.populateGrid()
   sector.connectSystems()
   blobSizes := sector.labelBlobsAndGetSizes()
   sector.trimToLargestBlob(blobSizes)
   sector.gridToList()
+  job.Step(client)
   smoothingFactor := sector.config.SmoothingFactor
   listByRegion := make(map[int64][]int)
   if(smoothingFactor >= 1) {
@@ -100,8 +102,10 @@ func (sector *Sector) Randomize(gridConfig *config.Grid) {
   } else {
     listByRegion = sector.genScatteredRegionIds()
   }
+  job.Step(client)
 
   sector.smoothRegionIds(listByRegion, smoothingFactor)
+  job.Step(client)
 }
 
 func (sector *Sector) createGrid() {
