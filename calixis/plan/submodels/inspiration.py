@@ -4,6 +4,10 @@ import json
 
 from .perterbation import Perterbation
 from .roll import Roll
+from .tag import Tag
+
+class Inspiration_Nested(models.Model):
+    count = models.ManyToManyField(Roll, related_name='count')
 
 class Inspiration(models.Model):
     def __repr__(self):
@@ -19,3 +23,5 @@ class Inspiration(models.Model):
     description = models.CharField(default="-", max_length=1000)
     rolls = models.ManyToManyField(Roll, related_name='rolls')
     perterbation = models.ForeignKey(Perterbation, null=True, blank=True, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag)
+    nested_inspirations = models.ManyToManyField(Inspiration_Nested, related_name='nested_inspirations')
