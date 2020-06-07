@@ -96,7 +96,7 @@ func (sector *Sector) Randomize(gridConfig *config.Grid, client utilities.Client
   job.Step(client)
   smoothingFactor := sector.config.SmoothingFactor
   listByRegion := make(map[int64][]int)
-  if(smoothingFactor >= 1) {
+  if smoothingFactor >= 1 {
     listByRegion = sector.genClumpedRegionIds()
     smoothingFactor--
   } else {

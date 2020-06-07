@@ -54,7 +54,7 @@ func (perterbation *Perterbation) GetId() *int64 {
 func (basePerterbation *Perterbation) AddInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
   inspiration := basePerterbation.Manager.GetInspiration(inspirationId)
   var newPerterbation *Perterbation
-  if(inspiration.PerterbationId.Valid) {
+  if inspiration.PerterbationId.Valid {
     newPerterbation = basePerterbation.AddPerterbation(inspiration.PerterbationId.Int64)
   } else {
     newPerterbation = basePerterbation.Copy()
