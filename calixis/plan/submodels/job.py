@@ -2,9 +2,6 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .config import Config_Grid
-from .grid import Grid_Sector
-
 class Job(models.Model):
     class JobType:
         GRID = 'GD'

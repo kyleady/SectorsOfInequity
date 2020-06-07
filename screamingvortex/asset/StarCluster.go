@@ -38,7 +38,7 @@ func (starCluster *StarCluster) SaveChildren(client utilities.ClientInterface) {
   }
 }
 
-func RandomStarCluster(perterbation *config.Perterbation, prefix string, index int) interface{} {
+func RandomStarCluster(perterbation *config.Perterbation, prefix string, index int) *StarCluster {
   starClusterConfig := perterbation.StarClusterConfig
 
   starCluster := new(StarCluster)

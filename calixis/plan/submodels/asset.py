@@ -2,8 +2,6 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .detail import Detail
-
 # Abstract Models
 class BaseAsset(models.Model):
     class Meta:
@@ -23,10 +21,10 @@ class BaseAsset(models.Model):
 
 
 class Asset_Star_Cluster(BaseAsset):
-    stars = models.ManyToManyField(Detail, related_name='stars')
+    stars = models.ManyToManyField('Detail', related_name='stars')
 
 class Asset_System(BaseAsset):
-    details = models.ManyToManyField(Detail, related_name='details')
+    details = models.ManyToManyField('Detail', related_name='details')
     star_clusters = models.ManyToManyField(Asset_Star_Cluster, related_name='star_clusters')
 
 class Asset_Sector(BaseAsset):

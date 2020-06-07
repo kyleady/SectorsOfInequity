@@ -82,7 +82,7 @@ func FetchAllWeightedPerterbations(client utilities.ClientInterface, weightedVal
 
 func FetchAllWeightedInspirations(client utilities.ClientInterface, weightedValues *[]*WeightedValue, parentId int64, tableName string, valueName string) {
   weightTableName := new(WeightedValue).TableName(WeightedInspirationTag())
-  client.FetchMany(weightedValues, parentId, weightTableName, tableName, valueName, WeightedInspirationTag(), true)
+  client.FetchMany(weightedValues, parentId, tableName, weightTableName, valueName, WeightedInspirationTag(), false)
 }
 
 

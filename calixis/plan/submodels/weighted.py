@@ -1,9 +1,5 @@
 from django.db import models
 
-from .config import Config_Grid, Config_System, Config_Star_Cluster
-from .perterbation import Perterbation
-from .inspiration import Inspiration, Inspiration_Nested
-
 class BaseWeighted(models.Model):
     class Meta:
         abstract = True
@@ -20,11 +16,8 @@ class BaseWeighted(models.Model):
         ))
 
 class Weighted_Inspiration(BaseWeighted):
-    value = models.ForeignKey(Inspiration, on_delete=models.CASCADE)
-    systems = models.ManyToManyField(Config_System)
-    star_clusters = models.ManyToManyField(Config_Star_Cluster)
-    nested_inspirations = models.ManyToManyField(Inspiration_Nested)
+    value = models.ForeignKey('Inspiration', on_delete=models.CASCADE)
 
 class Weighted_Perterbation(BaseWeighted):
-    value = models.ForeignKey(Perterbation, on_delete=models.CASCADE)
-    parent = models.ForeignKey(Config_Grid, on_delete=models.CASCADE)
+    value = models.ForeignKey('Perterbation', on_delete=models.CASCADE)
+    parent = models.ForeignKey('Config_Grid', on_delete=models.CASCADE)

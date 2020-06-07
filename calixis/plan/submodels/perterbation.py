@@ -2,9 +2,6 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .config import Config_System, Config_Star_Cluster
-from .tag import Tag
-
 class Perterbation(models.Model):
     def __repr__(self):
         return json.dumps(model_to_dict(
@@ -16,6 +13,6 @@ class Perterbation(models.Model):
         return self.name
 
     name = models.CharField(default="-", max_length=25)
-    tags = models.ManyToManyField(Tag)
-    system = models.ForeignKey(Config_System, null=True, blank=True, on_delete=models.CASCADE)
-    star_cluster = models.ForeignKey(Config_Star_Cluster, null=True, blank=True, on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag')
+    system = models.ForeignKey('Config_System', null=True, blank=True, on_delete=models.CASCADE)
+    star_cluster = models.ForeignKey('Config_Star_Cluster', null=True, blank=True, on_delete=models.CASCADE)

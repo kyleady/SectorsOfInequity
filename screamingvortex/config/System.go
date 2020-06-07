@@ -34,7 +34,7 @@ func (system *System) AddPerterbation(perterbation *System) *System {
 
 func LoadSystemConfigFrom(client utilities.ClientInterface, id int64) *System {
   system := new(System)
-  FetchAllWeightedInspirations(client, &system.WeightedInspirations, id, system.TableName(""), "systems")
+  FetchAllWeightedInspirations(client, &system.WeightedInspirations, id, system.TableName(""), "system_feature_inspirations")
   FetchAllRolls(client, &system.SystemFeaturesRolls, id, system.TableName(""), "system_feature_count")
   FetchAllRolls(client, &system.SystemStarClustersRolls, id, system.TableName(""), "star_cluster_count")
   return system

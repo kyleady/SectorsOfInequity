@@ -32,6 +32,6 @@ func (starCluster *StarCluster) AddPerterbation(perterbation *StarCluster) *Star
 func LoadStarClusterConfigFrom(client utilities.ClientInterface, id int64) *StarCluster {
   starCluster := new(StarCluster)
   FetchAllRolls(client, &starCluster.StarsRolls, id, starCluster.TableName(""), "star_count")
-  FetchAllWeightedInspirations(client, &starCluster.WeightedStarTypes, id, starCluster.TableName(""), "star_clusters")
+  FetchAllWeightedInspirations(client, &starCluster.WeightedStarTypes, id, starCluster.TableName(""), "star_inspirations")
   return starCluster
 }
