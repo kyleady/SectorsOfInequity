@@ -35,6 +35,7 @@ func (system *System) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&system.Features, "")
   for _, feature := range system.Features {
     client.Save(&utilities.SystemToDetailLink{ParentId: system.Id, ChildId: feature.Id}, "")
+    feature.SaveChildren(client)
   }
 
   client.SaveAll(&system.StarClusters, "")
@@ -49,21 +50,11 @@ func RandomSystem(perterbation *config.Perterbation, prefix string, index int) *
 
   system := new(System)
   newPrefix := SetNameAndGetPrefix(system, prefix, index)
-  numberOfSystemFeatures := config.RollAll(systemConfig.SystemFeaturesRolls, perterbation.Rand)
+
+  system.Features, perterbation = RollDetails(systemConfig.SystemFeaturesRolls, systemConfig.WeightedInspirations, perterbation)
   numberOfStarClusters := config.RollAll(systemConfig.SystemStarClustersRolls, perterbation.Rand)
-
-  for i := 1; i <= numberOfSystemFeatures; i++ {
-    inspirationId := config.RollWeightedValues(systemConfig.WeightedInspirations, perterbation.Rand)
-    inspiration, newPerterbation := perterbation.AddInspiration(inspirationId)
-    systemFeature := RandomDetail(inspiration, perterbation.Rand)
-
-    system.Features = append(system.Features, systemFeature)
-    perterbation = newPerterbation
-  }
-
   for i := 1; i <= numberOfStarClusters; i++ {
     starCluster := RandomStarCluster(perterbation, newPrefix, i)
-
     system.StarClusters = append(system.StarClusters, starCluster)
   }
 

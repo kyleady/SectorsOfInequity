@@ -34,6 +34,7 @@ func (starCluster *StarCluster) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&starCluster.Stars, "")
   for _, star := range starCluster.Stars {
     client.Save(&utilities.StarClusterToDetailLink{ParentId: starCluster.Id, ChildId: star.Id}, "")
+    star.SaveChildren(client)
   }
 }
 
@@ -43,16 +44,11 @@ func RandomStarCluster(perterbation *config.Perterbation, prefix string, index i
   starCluster := new(StarCluster)
   //newPrefix :=
   SetNameAndGetPrefix(starCluster, prefix, index)
-
-  numberOfStars := config.RollAll(starClusterConfig.StarsRolls, perterbation.Rand)
-  for i := 1; i <= numberOfStars; i++ {
-    inspirationId := config.RollWeightedValues(starClusterConfig.WeightedStarTypes, perterbation.Rand)
-    inspiration, newPerterbation := perterbation.AddInspiration(inspirationId)
-    star := RandomDetail(inspiration, perterbation.Rand)
-
-    starCluster.Stars = append(starCluster.Stars, star)
-    perterbation = newPerterbation
-  }
+  starCluster.Stars, perterbation = RollDetails(
+    starClusterConfig.StarsRolls,
+    starClusterConfig.WeightedStarTypes,
+    perterbation,
+  )
 
   return starCluster
 }
