@@ -38,7 +38,7 @@ func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*con
   return details, perterbation
 }
 
-func RollAssets(rollableAssetCount []*config.Roll, newPrefix string, perterbation *config.Perterbation, assetGenerator func(*config.Perterbation, string, int) interface{}) []interface{} {
+func RollAssets(rollableAssetCount []*config.Roll, newPrefix string, perterbation *config.Perterbation, assetGenerator func(*config.Perterbation, string, int) interface{}) interface{} {
   assets := []interface{}{}
   numberOfAssets := config.RollAll(rollableAssetCount, perterbation.Rand)
   for i := 1; i <= numberOfAssets; i++ {
