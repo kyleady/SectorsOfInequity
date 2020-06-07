@@ -105,6 +105,17 @@ func (client *Client) FetchAll(asInterface interface{}, tableType string, whereC
 }
 
 func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool) {
+  whereClause := fmt.Sprintf("id IN (%s)", client.manyClause(
+      parentTableName,
+      childTableName,
+      valueName,
+      reverseAccess,
+    ))
+
+  client.FetchAll(asInterface, childType, whereClause, parentId)
+}
+
+func (client *Client) manyClause(parentTableName string, childTableName string, valueName string, reverseAccess bool) string {
   childTableNameWithoutAppName := strings.Replace(childTableName, "plan_", "", 1)
   parentTableNameWithoutAppName := strings.Replace(parentTableName, "plan_", "", 1)
 
@@ -114,14 +125,13 @@ func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentT
     parentTableNameWithoutAppName = tmpVariable
   }
 
-  whereClause := fmt.Sprintf("id IN (SELECT %s_id FROM %s_%s WHERE %s_id = ?)",
+  return fmt.Sprintf("SELECT %s_id FROM %s_%s WHERE %s_id = ?",
                               childTableNameWithoutAppName,
                               parentTableName,
                               valueName,
                               parentTableNameWithoutAppName,
                             )
 
-  client.FetchAll(asInterface, childType, whereClause, parentId)
 }
 
 func (client *Client) Update(obj SQLInterface, tableType string) {

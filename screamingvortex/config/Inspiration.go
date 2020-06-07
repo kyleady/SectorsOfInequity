@@ -8,12 +8,22 @@ type Inspiration struct {
   Id int64 `sql:"id"`
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   InspirationRolls []*Roll
+  NestedInspirations []*NestedInspiration
 }
 
 func LoadInspirationFrom(client utilities.ClientInterface, id int64) *Inspiration {
   inspiration := new(Inspiration)
   client.Fetch(inspiration, "", id)
   FetchAllRolls(client, &inspiration.InspirationRolls, id, inspiration.TableName(""), "rolls")
+  exampleNestedInspiration := &NestedInspiration{}
+  client.FetchMany(&inspiration.NestedInspirations, id, exampleNestedInspiration.TableName(""), inspiration.TableName(""), "inspirations", "", true)
+  totalWeightedInspirations := 0
+  for _, nestedInspiration := range inspiration.NestedInspirations {
+    FetchAllRolls(client, &nestedInspiration.CountRolls, nestedInspiration.Id, nestedInspiration.TableName(""), "count")
+    FetchAllWeightedInspirations(client, &nestedInspiration.WeightedInspirations, nestedInspiration.Id, nestedInspiration.TableName(""), "weighted_inspirations")
+    totalWeightedInspirations += len(nestedInspiration.WeightedInspirations)
+  }
+
   return inspiration
 }
 
@@ -22,5 +32,19 @@ func (inspiration *Inspiration) TableName(inspirationType string) string {
 }
 
 func (inspiration *Inspiration) GetId() *int64 {
+  panic("GetId() not implemented. Config should not be editted.")
+}
+
+type NestedInspiration struct {
+  Id int64 `sql:"id"`
+  CountRolls []*Roll
+  WeightedInspirations []*WeightedValue
+}
+
+func (nestedInspiration *NestedInspiration) TableName(nestedInspirationType string) string {
+  return "plan_inspiration_nested"
+}
+
+func (nestedInspiration *NestedInspiration) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }

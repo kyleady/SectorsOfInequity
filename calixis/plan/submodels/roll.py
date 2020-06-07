@@ -41,11 +41,18 @@ class Roll(models.Model):
             text = "0"
         return text
 
-    def parse(self, roll_str):
-        roll_match = re.match("(?:(\d*)d(\d+))?(?:(kh|dh)(\d+))?(+|-|)(\d*)", roll_str)
+    @classmethod
+    def parse(cls, roll_str):
+        roll_match = re.match("(?:(\d*)(?:d|D)(\d+))?(?:(kh|dh)(\d+))?(+|-|)(\d*)", roll_str)
 
         if not roll_match:
-            return False
+            return None
+
+        dice_count = 0
+        dice_size = 0
+        keep_highest = 0
+        base = 0
+        multiplier = 1
 
         if roll_match[1]:
             dice_size = int(roll_match[1])
@@ -53,30 +60,29 @@ class Roll(models.Model):
                 dice_count = int(roll_match[0])
             else:
                 dice_count = 1
-        else:
-            dice_count = 0
-            dice_size = 0
 
         if roll_match[2]:
             if roll_match[2] == "kh":
                 keep_highest = int(roll_match[3])
             elif roll_match[2] == "kl":
                 keep_highest = -1 * int(roll_match[3])
-        else:
-            keep_highest = 0
 
         if roll_match[5]:
             if roll_match[4] != "-":
                 base = int(roll_match[5])
             else:
                 base = -1 * int(roll_match[5])
-        else:
-            base = 0
 
-        return True
+        return cls(
+            dice_count=dice_count,
+            dice_size=dice_size,
+            keep_highest=keep_highest,
+            base=base,
+            multiplier=multiplier,
+        )
 
-    dice_count = models.PositiveSmallIntegerField()
-    dice_size = models.PositiveSmallIntegerField()
-    base = models.IntegerField()
-    multiplier = models.IntegerField()
-    keep_highest = models.IntegerField()
+    dice_count = models.PositiveSmallIntegerField(blank=True, default=0)
+    dice_size = models.PositiveSmallIntegerField(blank=True, default=6)
+    base = models.IntegerField(blank=True, default=0)
+    multiplier = models.IntegerField(blank=True, default=1)
+    keep_highest = models.IntegerField(blank=True, default=0)

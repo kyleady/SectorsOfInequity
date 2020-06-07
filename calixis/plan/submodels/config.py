@@ -2,8 +2,6 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-from .roll import Roll
-
 # Abstract Models
 class BaseConfig(models.Model):
     class Meta:
@@ -21,11 +19,13 @@ class BaseConfig(models.Model):
     name = models.CharField(default="-", max_length=25)
 
 class Config_Star_Cluster(BaseConfig):
-    star_count = models.ManyToManyField(Roll, related_name='star_count')
+    star_count = models.ManyToManyField('Roll', related_name='star_count')
+    star_inspirations = models.ManyToManyField('Weighted_Inspiration')
 
 class Config_System(BaseConfig):
-    system_feature_count = models.ManyToManyField(Roll, related_name='system_feature_count')
-    star_cluster_count = models.ManyToManyField(Roll, related_name='star_cluster_count')
+    system_feature_count = models.ManyToManyField('Roll', related_name='system_feature_count')
+    system_feature_inspirations = models.ManyToManyField('Weighted_Inspiration')
+    star_cluster_count = models.ManyToManyField('Roll', related_name='star_cluster_count')
 
 class Config_Grid(BaseConfig):
     height = models.PositiveSmallIntegerField(default=20, blank=True)

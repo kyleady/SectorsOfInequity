@@ -4,9 +4,6 @@ from django.core.validators import int_list_validator
 import json
 import re
 
-from .inspiration import Inspiration
-
-# Abstract Models
 class Detail(models.Model):
     def __repr__(self):
         return json.dumps(model_to_dict(
@@ -25,4 +22,5 @@ class Detail(models.Model):
         return text
 
     rolls = models.CharField(validators=[int_list_validator], max_length=100)
-    inspiration = models.ForeignKey(Inspiration, on_delete=models.CASCADE)
+    inspiration = models.ForeignKey('Inspiration', on_delete=models.CASCADE)
+    parent_detail = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
