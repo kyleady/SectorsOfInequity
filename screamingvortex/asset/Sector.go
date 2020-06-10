@@ -3,9 +3,9 @@ package asset
 import "math/rand"
 import "time"
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/grid"
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/config"
+import "screamingvortex/grid"
+import "screamingvortex/utilities"
 
 type Sector struct {
   Id int64 `sql:"id"`

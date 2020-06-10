@@ -1,8 +1,8 @@
 package grid
 
 import "testing"
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/config"
+import "screamingvortex/utilities"
 import "encoding/json"
 
 func TestSectorRandomize(t *testing.T) {

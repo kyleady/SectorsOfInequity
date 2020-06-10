@@ -1,4 +1,4 @@
-module github.com/kyleady/SectorsOfInequity/screamingvortex
+module screamingvortex
 
 go 1.12
 

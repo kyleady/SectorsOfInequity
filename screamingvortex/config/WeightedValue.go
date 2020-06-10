@@ -2,7 +2,7 @@ package config
 
 import "math/rand"
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/utilities"
 
 type WeightedValue struct {
   Weight int `sql:"weight"`

@@ -1,6 +1,6 @@
 package config
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/utilities"
 
 type ConfigManager struct {
   cachedPerterbations map[int64]*Perterbation

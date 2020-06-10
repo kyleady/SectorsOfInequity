@@ -1,11 +1,11 @@
 package main
 
 import (
-    "github.com/kyleady/SectorsOfInequity/screamingvortex/asset"
-    "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
-    "github.com/kyleady/SectorsOfInequity/screamingvortex/grid"
-    "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
-    "github.com/kyleady/SectorsOfInequity/screamingvortex/messages"
+    "screamingvortex/asset"
+    "screamingvortex/config"
+    "screamingvortex/grid"
+    "screamingvortex/utilities"
+    "screamingvortex/messages"
 
     "encoding/json"
     "log"

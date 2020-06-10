@@ -1,8 +1,8 @@
 package grid
 
 import (
-  "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
-  "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
+  "screamingvortex/utilities"
+  "screamingvortex/config"
   "math/rand"
   "time"
   "fmt"

@@ -3,7 +3,7 @@ package config
 import "database/sql"
 import "math/rand"
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/utilities"
 
 type Perterbation struct {
   SystemId sql.NullInt64 `sql:"system_id"`

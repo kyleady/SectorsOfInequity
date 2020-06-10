@@ -2,7 +2,7 @@ package config
 
 import "database/sql"
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/utilities"
 
 type Inspiration struct {
   Id int64 `sql:"id"`

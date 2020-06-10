@@ -2,7 +2,7 @@ package asset
 
 import "strconv"
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
+import "screamingvortex/config"
 
 type AssetInterface interface {
   SetName(name string)

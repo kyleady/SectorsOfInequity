@@ -4,8 +4,8 @@ import "database/sql"
 import "math/rand"
 import "strconv"
 
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/config"
-import "github.com/kyleady/SectorsOfInequity/screamingvortex/utilities"
+import "screamingvortex/config"
+import "screamingvortex/utilities"
 
 type Detail struct {
   Id int64 `sql:"id"`
