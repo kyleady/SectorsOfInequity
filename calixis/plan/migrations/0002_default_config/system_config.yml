@@ -1,0 +1,919 @@
+- _type: Config_System
+  name: Default
+  star_cluster_count:
+    - _type: Roll
+      _exists: true
+      base: 0
+      dice_count: 20
+      dice_size: 10
+      keep_highest: -1
+  system_feature_count:
+    - _type: Roll
+      _exists: true
+      base: 0
+      dice_count: 1
+      dice_size: 5
+  system_feature_inspirations:
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Bountiful
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Gravity Tides
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Haven
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ill-Omened
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Pirate Den
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ruined Empire
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Starfarers
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Stellar Anomaly
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Warp Stasis
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Warp Turbulence
+
+
+- _type: Tag
+  name: System Feature
+
+- _type: Tag
+  name: Bountiful
+
+- _type: Inspiration
+  name: Bountiful
+  description: "A System with this System Feature has been blessed with an
+          abundance of rare and unusual materials. The formation of
+          the nearby stars might have bled off an unusual amount of
+          exotic materials, or the System could have become saturated
+          with such resources as passing meteors and comets became
+          trapped in their gravity wells. However it came about, the area
+          is now a veritable storehouse of mineral treasures, waiting to
+          be tapped in the name of profit. Habitable worlds within such
+          an area are highly prized as possible colony sites, although
+          well-equipped Rogue Traders have been known to set up
+          their mining operations on worlds that would not normally
+          allow human settlement."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Bountiful
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "Add 2D3kl1-1 Asteroid Belts to each Solar Zone."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Bountiful
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "Increase the number of Mineral Resources by 2D6kl1-1
+                          for Asteroid Belts and Asteroid Clusters."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Bountiful
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (3)
+            description: "Increase the number of Mineral Resources by 1 for
+                          Planets."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Bountiful
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (4)
+            description: "Increase the number of Exotic Resources by 2D3kl1-1
+                          for Planets."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Bountiful
+
+- _type: Tag
+  name: Gravity Tides
+
+- _type: Inspiration
+  name: Gravity Tides
+  description: "In most systems, the pull of gravity is a constant and unchangeable
+          fact of the universe, surer than the light of the stars in the sky.
+          However, in some regions of space, the cataclysmic turmoil of
+          certain fundamental forces causes gravitational fields to churn
+          like a storm-wracked sea. Fierce gravity riptides have been
+          known to tear apart the hulls of voidships too incautious to
+          head the warnings of their augers, and some of the worst such
+          anomalies become bleak legends among experienced helmsmen.
+          Tales of the Invisible Reef and the Mouth of the Void are a staple
+          of gossiping voidsmen in Port Wander. Some tides of gravity
+          are gentler, and can be a boon to crews desperate for planetfall,
+          swiftly bearing vessels along hidden currents in space. These
+          streams are resources as treasured as the riptides are feared."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Gravity Tides
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "Add 2D6kl1 Gravity Tides to each Solar Zone."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Gravity Tides
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "The gravity wells surrounding Planets in this System
+                      churn like whirlpools, battering orbiting vessels with
+                      their fluctuations. Safely entering orbit with a voidship
+                      requires a Difficult (–10) Pilot (Space Craft) Test,
+                      causing the loss of 1 point of Hull Integrity for every
+                      two Degrees of Failure. Small craft can enter and exit
+                      the gravity well only after the pilot passes a Very Hard
+                      (–30) Pilot (Flyers) Test. Every full day spent in orbit
+                      requires an additional Pilot Test."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Gravity Tides
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (3)
+            description: "Travel between Planets within this System takes half
+                      the usual time."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Gravity Tides
+
+- _type: Tag
+  name: Haven
+
+- _type: Inspiration
+  name: Haven
+  description: "If the tales of a typical voidship crew on shore leave were
+          to be believed, it might be surmised that all unexplored
+          territory in the galaxy fell into two simple categories. Of
+          the nightmarish systems that suffer no intrusion, the tales
+          are often closer to the mark than their tellers might realise.
+          Though the undisturbed rings of idyllic paradise worlds
+          orbiting soothingly stars tend to exist only in the tales of
+          drunken voidsmen, the persistence of such hopes cannot be
+          entirely attributed to optimism. After all, Particularly fortunate
+          vessels sometimes pull into systems so brimming with
+          habitable worlds as to defy conventional understanding.
+          The crews which make such finds are not always as fortunate
+          as they imagine, as the inhabitants of such worlds often take
+          a dim view of the idea that their home belongs to a complete
+          stranger by right of divine providence, and frequently have
+          enough resources to make their displeasure known. Even
+          finding such a voidfarer’s paradise in pristine condition can
+          cause trouble, if word gets out to rival interests. The rarity
+          of such finds makes theft or conquest an easier method of
+          acquisition than discovery. Those captains who do manage to
+          claim, hold, and exploit their find inevitably find their names
+          working into the growing legends of the Expanse."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Haven
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "Add 1 Planet to each Solar Zone."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Haven
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "Planets within the System’s Primary Biosphere receive
+                      +1 to the result of the roll on Atmospheric Presence and +2 to
+                      the result of the roll on Atmospheric Composition."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Haven
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (3)
+            description: "Planets in this System add +2 to the result of any roll they
+                      make on Habitability."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Haven
+
+- _type: Tag
+  name: Ill-Omened
+
+- _type: Inspiration
+  name: Ill-Omened
+  description: "There are places throughout the galaxy that are blighted by
+          unseen forces, undetectable by the finest sensors the Adeptus
+          Mechanicus can construct, unknowable to the calculations
+          of their best cogitators, and even imperceptible to the Warpattuned
+          eyes of Navigators. For whatever reason, some
+          regions are simply cursed. Places truly bearing the mark of a
+          curse are exceedingly rare. Still, for every such unfathomable
+          anomaly, there are hundreds of clusters hanging under a
+          shroud of legend and circumstance just as capable of ruining
+          the fortunes of an unprepared Rogue Trader.
+          Some of the most famous parts of the Expanse are
+          little better understood than the eternal gloom of the Far
+          Corpse Stars. For generations, they have been the subject
+          of dread rumour sparked by the smallest scrap of charnel
+          truth. Whole crews have mutinied upon hearing they were
+          to embark for the Noctis Cluster, the Crimson Labyrinth, or
+          the Silver Vaults. Despite all this, there are still many who
+          are mad enough to brave the light of these stars in hope of
+          vast treasures, or to drown out their baleful influence with
+          the Emperor’s light. Some such efforts have been launched
+          simply by the ego of a successful captain, who could not
+          tolerate the idea that such a place was barred to him.
+          Apply the following to Systems with this System Feature:
+
+          • Any ship entering the System for the first time loses 1d5
+          Morale, unless one of the Explorers passes a Challenging
+          (+0) Charm or Intimidate Test. If the nature and
+          reputation of the System was known to the crew ahead
+          of time, the Test difficulty and Morale loss for failure
+          might be higher at the GM’s discretion.
+
+          • All Morale loss suffered within this System is increased
+          by 1, as the crew attribute whatever misfortune they
+          suffer to the malevolent will of their surroundings. This
+          does not apply to Morale lost for entering a System the
+          first time (even the most fearful voidsman’s imagination
+          can only concoct so many horrors!).
+
+          • Any Fear Tests made within the System are made at an
+          additional –10 penalty."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Ill-Omened
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "When spending a Fate Point within this System, roll
+                      1d10. On a 1, it has no effect. If it was spent to alter a
+                      Test in some way, it counts as the only Fate Point that can
+                      be used for that Test as normal, even though it had no
+                      effect. Void Born Explorers recover still Fate Points lost
+                      in this manner (thanks to the result of 9) as normal."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Ill-Omened
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "All Willpower Tests made within this System are made
+                      at a –10 penalty."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Ill-Omened
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (3)
+            description: "Whenever an Explorer would gain Insanity Points
+                      while within this System, double the amount of
+                      Insanity Points he gains."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Ill-Omened
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (4)
+            description: "Attempting to use Psychic Techniques from the
+                      Divination Discipline to gain information about the
+                      System or anything within it requires the user to
+                      pass a Difficult (–10) Fear Test before he
+                      can attempt the Focus Power Test."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Ill-Omened
+
+- _type: Tag
+  name: Pirate Den
+
+- _type: Inspiration
+  name: Pirate Den
+  description: "A powerful pirate fleet is based within this area, possibly
+          making use of its worlds for resources, or even slave labour.
+          Most such fleets are comprised of base traitors and rogues of
+          the sort that plague the shipping of more civilised regions.
+          Some are exiles from some other civilisation deep in the
+          Expanse, while others might be flotillas of Chaos reavers, Eldar
+          Corsair armadas, or a ramshackle tide of Ork Freebooters.
+          Whatever the nature of the threat, such raiders know the ins
+          and outs of every part of the System, and generally fight
+          tooth and nail to defend their territory and loot.
+          Randomize Pirate Race, Base, Captain, and Fleet."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Pirate Den
+
+- _type: Tag
+  name: Ruined Empire
+
+- _type: Inspiration
+  name: Ruined Empire
+  description: "The remnants of ancient civilisations, both human and alien,
+          are strewn across the Koronus Expanse. Entire dynasties have
+          made their fortune off the plunder of the Egarian Dominion
+          or the once-proud worlds of the Eldar. Others have been
+          utterly ruined when they unearthed a Yu’vath relic from a
+          catacomb better left undisturbed. The most coveted secrets
+          of the Engine-Orders of Zayth are but shadows of the
+          knowledge once held by the people of that world. And for
+          every one of these examples of past glory, there are a dozen
+          worlds housing the mouldering cities of a civilisation not yet
+          known to the Imperium. Many of these once-proud empires
+          bear the scars from their destruction in a long forgotten war,
+          while others leave no apparent evidence as to their end."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Ruined Empire
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "Increase the Abundance of any Xenos Ruins by 1d10+5.
+                      Significantly increase odds of one race being source of ruins.
+                      Add one ruin to each Planet, Starship Graveyard, and Derelict
+                      Station."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Ruined Empire
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "Increase the Abundance of any Archeotech by 1d10+5.
+                      Add one Archeotech to each Planet, Starship Graveyard, and
+                      Derelict Station."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Ruined Empire
+
+- _type: Tag
+  name: Starfarers
+
+- _type: Inspiration
+  name: Starfarers
+  description: "Not all of the Expanse’s lost treasures are entombed behind
+            long abandoned walls, or hidden behind a pall of ancient
+            doom. Throughout a number of systems, thriving cultures
+            expand beyond their native worlds and take to the stars,
+            to claim resources rightfully belonging to the Imperium of
+            Man. When such nascent empires belong to humanity, it is
+            the duty of any Rogue Trader who encounters them to teach
+            them the word and will of the Emperor. Those belonging
+            to a xenos race are supposed to be stamped out before they
+            can become a serious threat, although some Rogue Traders
+            prefer to pass off that responsibility to any others they can
+            find, and seek a more profitable venture.
+
+            • If the System contains less than four Planets after all System
+            Elements have been generated, the GM should add additional
+            Planets until the Region contains at least four Planets.
+
+            • A common civilisation is spread across 1d5+3 System
+            Features in this System. This might be either a non-
+            Imperial human nation or a race of previously unknown,
+            sentient xenos. During the Planet Creation process for
+            this System, all Planets with a native civilisation are
+            automatically inhabited by the appropriate species at
+            a Development level of Voidfarers, Colony, or Orbital
+            Habitation, as appropriate. At least one Planet has a native
+            population at the Voidfarers Development level. Any
+            Habitable Planet not populated by the Starfarers generates
+            Inhabitants normally. If there are not enough Planets in the
+            System for each Starfarer colony to have its own Planet,
+            multiple habitations can be placed on the same planets, or
+            on Asteroids, in Starship Graveyards, or in other System
+            Features as the Game Master sees fit."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Starfarers
+
+- _type: Tag
+  name: Stellar Anomaly
+
+- _type: Inspiration
+  name: Stellar Anomaly
+  description: "Among the Imperial citizens privileged with the opportunity
+          to consider matters beyond their own world, most are aware
+          of some basic tenets about the way the void is made up. It
+          is known to these erudite few that all planets orbit a star
+          which is the centre of a vast system of other bodies, and that
+          these systems are part of a larger galaxy, which is part of
+          the manifest destiny of all Mankind. They know these simple
+          truths because noble and trustworthy officials of the Imperium
+          have told them so, well aware that spreading knowledge of
+          the full complexity of reality would only cause trouble.
+          Many star systems throughout the galaxy are
+          themselves in orbit of a variety of bizarre phenomena,
+          with little in common other than their incredible mass
+          and gravity. Some orbital objects have long been familiar
+          to Mankind, such as black holes and other artefacts of
+          the life and death of stars. Others are known only by
+          obscure classifications from the Dark Age of Technology,
+          and many exist completely outside human understanding.
+          Many of the most well-known and well-defined sub-
+          Sectors and star clusters are centred around a noteworthy
+          celestial object. These objects frequently serve the same
+          purpose on astromantic charts and the secret rutters
+          of the Navigator Houses as terrestrial landmarks
+          might serve on a surface map.
+
+          • Reduce the number of Planets generated by 2, as the
+          presence of a Stellar Anomaly tends to disrupt the
+          formation of any bodies smaller than itself.
+
+          • Scholastic Lore (Astromancy) and Navigation (Stellar)
+          Tests made to plot routes through the System, or to
+          determine position within it, receive a +10 bonus.
+
+          • The massive forces exerted by a Stellar Anomaly
+          sometimes seems to stabilise local Warp routes, though
+          many dismiss this as voidsmen’s superstition and no
+          record exists of any Navigator’s comment on the matter.
+          Ships travelling through the System only need to roll
+          for Warp Travel Encounters for every seven full days of
+          travel (or once, for a trip of under seven days). However,
+          the same forces make the necessity of occasional drops
+          into realspace for course adjustment into an additional
+          hazard. On any result of doubles when rolling for a
+          Warp Travel encounter, the vessel runs afoul of a hazard
+          in realspace instead of applying the normally generated
+          result. The effects of such hazards can be extrapolated
+          from similar System Elements, such as Gravity Riptides,
+          Radiation Bursts, or Solar Flares."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Stellar Anomaly
+
+- _type: Tag
+  name: Warp Stasis
+
+- _type: Inspiration
+  name: Warp Stasis
+  description: "All voidsmen worth the name are familiar with the
+          unpredictable and often deadly consequences of Warp
+          travel, and can recite all manner of prayers and superstitious
+          charms to protect them from the wrath of the churning
+          currents. To some of the more weathered among them,
+          however, the klaxons and sirens of a straining Geller
+          Field are almost welcome, compared to the idea of being
+          caught in one of the “shallow” regions of the Sea of Souls.
+          Travels across such regions often leave a ship becalmed in
+          a sluggish current, unable to drop to realspace for fear of
+          exiting inside a star or black hole, and equally unable to
+          make progress towards a system to refill the dwindling
+          supplies and stores. There are few fates more horrifying
+          than a life spent adrift in the depths of the Warp."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Warp Stasis
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "Travel to and from the System is becalmed. Double the
+                      base travel time of any trip entering or leaving the area.
+                      The time required to send Astrotelepathic messages into
+                      or out of the System is likewise doubled. In addition,
+                      pushing a coherent message across its boundaries
+                      requires incredible focus; Astropaths suffer a –3
+                      penalty to their Psy Rating for the purposes of
+                      sending Astrotelepathic messages from this System."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Stasis
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "Focus Power and Psyniscience Tests within the System
+                      are made at a –10 penalty."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Stasis
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (3)
+            description: "Psychic Techniques cannot be used at the Push level
+                      within the System."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Stasis
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (4)
+            description: "When rolling on Psychic Phenomena within this System,
+                      roll twice and use the lower result."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Stasis
+
+- _type: Tag
+  name: Warp Turbulence
+
+- _type: Inspiration
+  name: Warp Turbulence
+  description: "Many a Navigator has breathed a sigh of relief after braving and
+          besting the Maw, only to choke on it as the roiling currents of
+          the Expanse proper come into view. The untamed tides beyond
+          the great Warp storms are less forgiving than many of the wellcharted
+          routes of the Imperium, and among them are many
+          shoals and reefs ready to rend asunder the intruding reality of
+          any passing voidship. Unfortunately, a number of choice and
+          valuable worlds lie within the boundaries of these hazards, and
+          more than one Rogue Trader has lost his ship and his life seeking
+          to claim them. These cautionary tales do little to warn away
+          those emboldened by the rare example of legendary captains
+          who have wrested riches out of the grasp of the Warp.
+
+          • Navigators suffer a –10 penalty to Navigation (Warp)
+          Tests for Warp Jumps that begin or end in this System."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+
+    - _type: Tag
+      _exists: true
+      name: Warp Turbulence
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 0
+          dice_count: 1
+          dice_size: 4
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (1)
+            description: "Add +10 to all rolls for on Psychic
+                          Phenomena made within the System."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Turbulence
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (2)
+            description: "Whenever an Explorer would gain
+                          Corruption Points within the System,
+                          increase the amount gained by 1."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Turbulence
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (3)
+            description: "Add +1 to the Psy Rating of any Psychic
+                          Technique used at the Unfettered or Push levels."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Turbulence
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            name: (4)
+            description: "One of the Planets in the System is
+                          engulfed in a permanent Warp storm, rendering
+                          it inaccessible to all but the most
+                          dedicated (and insane) of travellers.
+                          Navigation (Warp) Tests made within
+                          this System suffer a –20 penalty due
+                          to the difficulty of plotting courses
+                          around this hazard."
+            tags:
+              - _type: Tag
+                _exists: true
+                name: System Feature
+
+              - _type: Tag
+                _exists: true
+                name: Warp Turbulence

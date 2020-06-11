@@ -1,0 +1,274 @@
+- _type: Config_Star_Cluster
+  name: Default
+  star_count:
+    - _type: Roll
+      _exists: true
+      base: 0
+      dice_count: 20
+      dice_size: 10
+      keep_highest: -1
+  star_inspirations:
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Mighty
+
+    - _type: Weighted_Inspiration
+      weight: 3
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Vigorous
+
+    - _type: Weighted_Inspiration
+      weight: 3
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Luminous
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Dull
+
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Anomalous
+
+- _type: Tag
+  name: Star Type
+
+- _type: Tag
+  name: Star Size
+
+- _type: Inspiration
+  name: Mighty
+  description: "The fierce light of this star dominates its system utterly. Its
+                coloration is likely to be blue or blue-white. The
+                Inner Cauldron is dominant, and the Primary Biosphere is weak."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Type
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Dwarf
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moderate
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Giant
+
+- _type: Inspiration
+  name: Vigorous
+  description: "A steady illumination burns forth from the heart of this star.
+                Its coloration is likely to be a pure white."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Type
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Dwarf
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moderate
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Giant
+
+- _type: Inspiration
+  name: Luminous
+  description: "Though it is has been long aeons since this star has shone at its
+                brightest, a constant glow nonetheless provides
+                for the system. It is likely to be yellow or yellow-orange in
+                colour. The Inner Cauldron is weak."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Type
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Dwarf
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moderate
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Giant
+
+- _type: Inspiration
+  name: Dull
+  description: "The end of the star’s life advances inexorably, although it can
+                still burn for millennia yet. Many stars of this type are of a
+                vast size, seemingly incongruous with their wan light. Its
+                coloration is likely a sullen red. The Outer Reaches are Dominant."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Type
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Dwarf
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moderate
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Giant
+
+- _type: Inspiration
+  name: Anomalous
+  description: "The star is an unnatural outlier, shedding a strange light that
+                behaves in ways it should not. Its light can be of any colour,
+                even one that is not typical for a star, from bilious green to
+                barely-visible purple. The Game Master can choose to make one
+                Solar Zone dominant or weak at his discretion."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Type
+
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Dwarf
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moderate
+
+        - _type: Weighted_Inspiration
+          weight: 1
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Giant
+
+- _type: Inspiration
+  name: Dwarf
+  description: "A smaller variant of the star that has retained less mass in
+                its orbit."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Size
+
+- _type: Inspiration
+  name: Moderate
+  description: "A shining example of this star class."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Size
+
+- _type: Inspiration
+  name: Giant
+  description: "A larger variant of the star that has gathered an immense
+                amount of material in orbit."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Size

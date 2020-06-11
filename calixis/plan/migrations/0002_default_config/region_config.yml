@@ -1,0 +1,47 @@
+- _type: Tag
+  name: Region
+
+- _type: Perterbation
+  name: Imperial Space
+  system:
+    _type: Config_System
+    _exists: true
+    name: Default
+  star_cluster:
+    _type: Config_Star_Cluster
+    _exists: true
+    name: Default
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Region
+
+- _type: Perterbation
+  name: The Warp
+  system:
+    _type: Config_System
+    _exists: true
+    name: Default
+  star_cluster:
+    _type: Config_Star_Cluster
+    _exists: true
+    name: Default
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Region
+
+- _type: Perterbation
+  name: Tyranid Space
+  system:
+    _type: Config_System
+    _exists: true
+    name: Default
+  star_cluster:
+    _type: Config_Star_Cluster
+    _exists: true
+    name: Default
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Region
