@@ -10,3 +10,23 @@
   dice_count: 20
   dice_size: 10
   keep_highest: -1
+- _type: Roll
+  base: 5
+  dice_count: 1
+  dice_size: 5
+- _type: Roll
+  base: 10
+  dice_count: 2
+  dice_size: 10
+- _type: Roll
+  base: 50
+  dice_count: 3
+  dice_size: 10
+- _type: Roll
+  base: 150
+  dice_count: 4
+  dice_size: 10
+- _type: Roll
+  base: 250
+  dice_count: 5
+  dice_size: 10

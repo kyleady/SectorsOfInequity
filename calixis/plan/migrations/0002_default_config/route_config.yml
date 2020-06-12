@@ -1,0 +1,118 @@
+- _type: Config_Route
+  name: Default
+  type_inspirations:
+    - _type: Weighted_Inspiration
+      weight: 3
+      value:
+        _type: Inspiration
+        name: Stable Route
+        description: "Gain +10 bonus on any Tests to chart this route."
+    - _type: Weighted_Inspiration
+      weight: 2
+      value:
+        _type: Inspiration
+        name: Indirect Path
+        description: "Double the Duration."
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Haunted Passage
+        description: "Double the Duration and add +10 to any rolls made for Warp Travel Hallucinations."
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Surly Route
+        description: "Double the Duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Untraceable Trail
+        description: "Double the Duration and the route cannot be charted."
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Lightless Path
+        description: "Double the Duration and the Astronomican is obscured for the trip."
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Byzantine Route
+        description: "Triple the Duration."
+  days_inspirations:
+    - _type: Weighted_Inspiration
+      weight: 2
+      value:
+        _type: Inspiration
+        name: Days
+        description: "[[0]]"
+        rolls:
+          - _type: Roll
+            _exists: true
+            base: 0
+            dice_count: 1
+            dice_size: 5
+    - _type: Weighted_Inspiration
+      weight: 2
+      value:
+        _type: Inspiration
+        name: Days
+        description: "[[0]]"
+        rolls:
+          - _type: Roll
+            _exists: true
+            base: 5
+            dice_count: 1
+            dice_size: 5
+    - _type: Weighted_Inspiration
+      weight: 2
+      value:
+        _type: Inspiration
+        name: Days
+        description: "[[0]]"
+        rolls:
+          - _type: Roll
+            _exists: true
+            base: 10
+            dice_count: 2
+            dice_size: 10
+    - _type: Weighted_Inspiration
+      weight: 2
+      value:
+        _type: Inspiration
+        name: Days
+        description: "[[0]]"
+        rolls:
+          - _type: Roll
+            _exists: true
+            base: 50
+            dice_count: 3
+            dice_size: 10
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Days
+        description: "[[0]]"
+        rolls:
+          - _type: Roll
+            _exists: true
+            base: 150
+            dice_count: 4
+            dice_size: 10
+    - _type: Weighted_Inspiration
+      weight: 1
+      value:
+        _type: Inspiration
+        name: Days
+        description: "[[0]]"
+        rolls:
+          - _type: Roll
+            _exists: true
+            base: 250
+            dice_count: 5
+            dice_size: 10
