@@ -11,6 +11,10 @@
     _type: Config_Star_Cluster
     _exists: true
     name: Default
+  route:
+    _type: Config_Route
+    _exists: true
+    name: Default
   tags:
     - _type: Tag
       _exists: true
@@ -26,6 +30,10 @@
     _type: Config_Star_Cluster
     _exists: true
     name: Default
+  route:
+    _type: Config_Route
+    _exists: true
+    name: Default
   tags:
     - _type: Tag
       _exists: true
@@ -39,6 +47,10 @@
     name: Default
   star_cluster:
     _type: Config_Star_Cluster
+    _exists: true
+    name: Default
+  route:
+    _type: Config_Route
     _exists: true
     name: Default
   tags:

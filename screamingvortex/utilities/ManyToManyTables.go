@@ -61,3 +61,35 @@ func (link *SystemToStarClusterLink) TableName(linkType string) string {
 func (link *SystemToStarClusterLink) GetId() *int64 {
   return &link.Id
 }
+
+//
+
+type SystemToRouteLink struct {
+  Id int64 `sql:"id"`
+  ParentId int64 `sql:"asset_system_id"`
+  ChildId int64 `sql:"asset_route_id"`
+}
+
+func (link *SystemToRouteLink) TableName(linkType string) string {
+  return "plan_asset_system_routes"
+}
+
+func (link *SystemToRouteLink) GetId() *int64 {
+  return &link.Id
+}
+
+//
+
+type RouteToTargetSystemLink struct {
+  Id int64 `sql:"id"`
+  ParentId int64 `sql:"asset_route_id"`
+  ChildId int64 `sql:"asset_system_id"`
+}
+
+func (link *RouteToTargetSystemLink) TableName(linkType string) string {
+  return "plan_asset_route_target_systems"
+}
+
+func (link *RouteToTargetSystemLink) GetId() *int64 {
+  return &link.Id
+}

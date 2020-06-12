@@ -22,6 +22,10 @@ class Config_Star_Cluster(BaseConfig):
     star_count = models.ManyToManyField('Roll', related_name='star_count')
     star_inspirations = models.ManyToManyField('Weighted_Inspiration')
 
+class Config_Route(BaseConfig):
+    type_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='type_inspirations')
+    days_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='days_inspirations') 
+
 class Config_System(BaseConfig):
     system_feature_count = models.ManyToManyField('Roll', related_name='system_feature_count')
     system_feature_inspirations = models.ManyToManyField('Weighted_Inspiration')

@@ -36,20 +36,31 @@ func (sector *Sector) SaveChildren(client utilities.ClientInterface) {
     client.Save(&utilities.SectorToSystemLink{ParentId: sector.Id, ChildId: system.Id}, "")
     system.SaveChildren(client)
   }
+
+  for _, system := range sector.Systems {
+    for _, route := range system.Routes {
+      for _, targetSystem := range sector.Systems {
+        if route.TargetId == targetSystem.GridId {
+          client.Save(&utilities.RouteToTargetSystemLink{ParentId: route.Id, ChildId: targetSystem.Id}, "")
+          break
+        }
+      }
+    }
+  }
 }
 
-func RandomSector(sectorGrid *grid.Sector, client *utilities.Client, job *utilities.Job) *Sector {
+func RandomSector(gridSector *grid.Sector, client *utilities.Client, job *utilities.Job) *Sector {
   sector := new(Sector)
   t := time.Now()
-  sector.Name = sectorGrid.Name + t.Format("_20060102150405")
+  sector.Name = gridSector.Name + t.Format("_20060102150405")
 
 
   randSource := rand.NewSource(t.UnixNano())
   rRand := rand.New(randSource)
   emptyPerterbation := config.CreateEmptyPerterbation(client, rRand)
-  for i, systemGrid := range sectorGrid.Systems {
-    systemPerterbation := emptyPerterbation.AddPerterbation(systemGrid.RegionId)
-    system := RandomSystem(systemPerterbation, "", i)
+  for i, gridSystem := range gridSector.Systems {
+    systemPerterbation := emptyPerterbation.AddPerterbation(gridSystem.RegionId)
+    system := RandomSystem(systemPerterbation, "", i, gridSystem)
 
     sector.Systems = append(sector.Systems, system)
     job.Step(client)

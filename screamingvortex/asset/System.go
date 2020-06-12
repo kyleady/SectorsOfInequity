@@ -1,13 +1,16 @@
 package asset
 
 import "screamingvortex/config"
+import "screamingvortex/grid"
 import "screamingvortex/utilities"
 
 type System struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
+  GridId int64
   Features []*Detail
   StarClusters []*StarCluster
+  Routes []*Route
 }
 
 func (system *System) TableName(systemType string) string {
@@ -43,13 +46,23 @@ func (system *System) SaveChildren(client utilities.ClientInterface) {
     client.Save(&utilities.SystemToStarClusterLink{ParentId: system.Id, ChildId: starCluster.Id}, "")
     starCluster.SaveChildren(client)
   }
+
+  for _, route := range system.Routes {
+    route.SaveParents(client)
+  }
+  client.SaveAll(&system.Routes, "")
+  for _, route := range system.Routes {
+    client.Save(&utilities.SystemToRouteLink{ParentId: system.Id, ChildId: route.Id}, "")
+  }
 }
 
-func RandomSystem(perterbation *config.Perterbation, prefix string, index int) *System {
+func RandomSystem(perterbation *config.Perterbation, prefix string, index int, gridSystem *grid.System) *System {
   systemConfig := perterbation.SystemConfig
 
   system := new(System)
   newPrefix := SetNameAndGetPrefix(system, prefix, index)
+
+  system.GridId = gridSystem.Id
 
   system.Features, perterbation = RollDetails(systemConfig.SystemFeaturesRolls, systemConfig.WeightedInspirations, perterbation)
 
@@ -57,6 +70,12 @@ func RandomSystem(perterbation *config.Perterbation, prefix string, index int) *
   for i := 1; i <= numberOfStarClusters; i++ {
     starCluster := RandomStarCluster(perterbation, newPrefix, i)
     system.StarClusters = append(system.StarClusters, starCluster)
+  }
+
+  for i, gridRoute := range gridSystem.Routes {
+    route := RandomRoute(perterbation, newPrefix, i+1)
+    route.TargetId = gridRoute.EndId
+    system.Routes = append(system.Routes, route)
   }
 
   return system

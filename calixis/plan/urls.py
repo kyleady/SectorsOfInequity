@@ -14,10 +14,12 @@ asset_models = [
     },
     { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System },
     { 'full_name': 'Star Cluster', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Asset_Star_Cluster },
+    { 'full_name': 'Route', 'app': app, 'subapp': subapp, 'name': 'route', 'Model': Asset_Route },
 ]
 
 subapp = 'config'
 config_models = [
+    { 'full_name': 'Route Config',  'app': app, 'subapp': subapp, 'name': 'route',  'Model': Config_Route },
     { 'full_name': 'Star Cluster Config', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Config_Star_Cluster },
     { 'full_name': 'System Config', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Config_System },
     { 'full_name': 'Perterbation', 'app': app, 'subapp': subapp, 'name': 'perterbation', 'Model': Perterbation },

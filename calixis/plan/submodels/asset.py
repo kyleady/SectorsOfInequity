@@ -23,9 +23,15 @@ class BaseAsset(models.Model):
 class Asset_Star_Cluster(BaseAsset):
     stars = models.ManyToManyField('Detail', related_name='stars')
 
+class Asset_Route(BaseAsset):
+    type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='type')
+    days = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='days')
+    target_systems = models.ManyToManyField('Asset_System', related_name='target_systems')
+
 class Asset_System(BaseAsset):
     details = models.ManyToManyField('Detail', related_name='details')
     star_clusters = models.ManyToManyField(Asset_Star_Cluster, related_name='star_clusters')
+    routes = models.ManyToManyField(Asset_Route, related_name='routes')
 
 class Asset_Sector(BaseAsset):
     systems = models.ManyToManyField(Asset_System, related_name='systems')

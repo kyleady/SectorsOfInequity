@@ -8,8 +8,10 @@ import "screamingvortex/utilities"
 type Perterbation struct {
   SystemId sql.NullInt64 `sql:"system_id"`
   StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
+  RouteId sql.NullInt64 `sql:"route_id"`
   SystemConfig *System
   StarClusterConfig *StarCluster
+  RouteConfig *Route
   Manager *ConfigManager
   Rand *rand.Rand
 }
@@ -22,6 +24,7 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
   perterbation.Rand = rRand
   perterbation.SystemConfig = CreateEmptySystemConfig()
   perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
+  perterbation.RouteConfig = CreateEmptyRouteConfig()
   return perterbation
 }
 
@@ -38,6 +41,12 @@ func LoadPerterbationFrom(client utilities.ClientInterface, id int64) *Perterbat
     perterbation.StarClusterConfig = LoadStarClusterConfigFrom(client, perterbation.StarClusterId.Int64)
   } else {
     perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
+  }
+
+  if perterbation.RouteId.Valid {
+    perterbation.RouteConfig = LoadRouteConfigFrom(client, perterbation.RouteId.Int64)
+  } else {
+    perterbation.RouteConfig = CreateEmptyRouteConfig()
   }
 
   return perterbation
@@ -79,6 +88,7 @@ func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Per
 
   newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
   newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
+  newPerterbation.RouteConfig = basePerterbation.RouteConfig.AddPerterbation(modifyingPerterbation.RouteConfig)
 
   return newPerterbation
 }
