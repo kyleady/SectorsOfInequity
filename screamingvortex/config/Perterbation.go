@@ -9,9 +9,12 @@ type Perterbation struct {
   SystemId sql.NullInt64 `sql:"system_id"`
   StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
   RouteId sql.NullInt64 `sql:"route_id"`
+
   SystemConfig *System
   StarClusterConfig *StarCluster
   RouteConfig *Route
+  ZoneConfigs *Zones
+
   Manager *ConfigManager
   Rand *rand.Rand
 }
@@ -25,6 +28,7 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
   perterbation.SystemConfig = CreateEmptySystemConfig()
   perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
   perterbation.RouteConfig = CreateEmptyRouteConfig()
+  perterbation.ZoneConfigs = new(Zones)
   return perterbation
 }
 
@@ -48,6 +52,8 @@ func LoadPerterbationFrom(client utilities.ClientInterface, id int64) *Perterbat
   } else {
     perterbation.RouteConfig = CreateEmptyRouteConfig()
   }
+
+  perterbation.ZoneConfigs = LoadZoneConfigsFrom(client, id)
 
   return perterbation
 }
@@ -89,6 +95,7 @@ func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Per
   newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
   newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
   newPerterbation.RouteConfig = basePerterbation.RouteConfig.AddPerterbation(modifyingPerterbation.RouteConfig)
+  newPerterbation.ZoneConfigs = basePerterbation.ZoneConfigs.AddPerterbation(modifyingPerterbation.ZoneConfigs)
 
   return newPerterbation
 }

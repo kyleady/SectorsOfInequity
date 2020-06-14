@@ -60,7 +60,7 @@ func RandomSector(gridSector *grid.Sector, client *utilities.Client, job *utilit
   emptyPerterbation := config.CreateEmptyPerterbation(client, rRand)
   for i, gridSystem := range gridSector.Systems {
     systemPerterbation := emptyPerterbation.AddPerterbation(gridSystem.RegionId)
-    system := RandomSystem(systemPerterbation, "", i, gridSystem)
+    system := RandomSystem(systemPerterbation, "", i+1, gridSystem)
 
     sector.Systems = append(sector.Systems, system)
     job.Step(client)
