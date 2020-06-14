@@ -20,8 +20,12 @@ class BaseAsset(models.Model):
     parent = None
 
 
+class Asset_Zone(BaseAsset):
+    distance = models.SmallIntegerField()
+
 class Asset_Star_Cluster(BaseAsset):
     stars = models.ManyToManyField('Detail', related_name='stars')
+    zones = models.ManyToManyField('Asset_Zone', related_name='zones')
 
 class Asset_Route(BaseAsset):
     type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='type')

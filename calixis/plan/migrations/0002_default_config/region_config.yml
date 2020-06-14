@@ -15,6 +15,16 @@
     _type: Config_Route
     _exists: true
     name: Default
+  zones:
+    - _type: Config_Zone
+      _exists: true
+      name: Default IC
+    - _type: Config_Zone
+      _exists: true
+      name: Default PB
+    - _type: Config_Zone
+      _exists: true
+      name: Default OR
   tags:
     - _type: Tag
       _exists: true
@@ -34,6 +44,16 @@
     _type: Config_Route
     _exists: true
     name: Default
+  zones:
+    - _type: Config_Zone
+      _exists: true
+      name: Default IC
+    - _type: Config_Zone
+      _exists: true
+      name: Default PB
+    - _type: Config_Zone
+      _exists: true
+      name: Default OR
   tags:
     - _type: Tag
       _exists: true
@@ -53,6 +73,16 @@
     _type: Config_Route
     _exists: true
     name: Default
+  zones:
+    - _type: Config_Zone
+      _exists: true
+      name: Default IC
+    - _type: Config_Zone
+      _exists: true
+      name: Default PB
+    - _type: Config_Zone
+      _exists: true
+      name: Default OR
   tags:
     - _type: Tag
       _exists: true
