@@ -1,0 +1,12 @@
+- _type: Config_Zone
+  name: Default IC
+  type: Inner Cauldron
+  distance: 0
+- _type: Config_Zone
+  name: Default PB
+  type: Primary Biosphere
+  distance: 1
+- _type: Config_Zone
+  name: Default OR
+  type: Outer Reaches
+  distance: 2

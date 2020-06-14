@@ -93,3 +93,19 @@ func (link *RouteToTargetSystemLink) TableName(linkType string) string {
 func (link *RouteToTargetSystemLink) GetId() *int64 {
   return &link.Id
 }
+
+//
+
+type StarClusterToZoneLink struct {
+  Id int64 `sql:"id"`
+  ParentId int64 `sql:"asset_star_cluster_id"`
+  ChildId int64 `sql:"asset_zone_id"`
+}
+
+func (link *StarClusterToZoneLink) TableName(linkType string) string {
+  return "plan_asset_star_cluster_zones"
+}
+
+func (link *StarClusterToZoneLink) GetId() *int64 {
+  return &link.Id
+}

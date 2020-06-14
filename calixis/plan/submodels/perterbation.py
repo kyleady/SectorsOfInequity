@@ -17,3 +17,4 @@ class Perterbation(models.Model):
     system = models.ForeignKey('Config_System', null=True, blank=True, on_delete=models.CASCADE)
     star_cluster = models.ForeignKey('Config_Star_Cluster', null=True, blank=True, on_delete=models.CASCADE)
     route = models.ForeignKey('Config_Route', null=True, blank=True, on_delete=models.CASCADE)
+    zones = models.ManyToManyField('Config_Zone', related_name='zones')
