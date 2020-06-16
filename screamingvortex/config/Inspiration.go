@@ -6,6 +6,7 @@ import "screamingvortex/utilities"
 
 type Inspiration struct {
   Id int64 `sql:"id"`
+  Name string `sql:"name"`
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   InspirationRolls []*Roll
   NestedInspirations []*NestedInspiration

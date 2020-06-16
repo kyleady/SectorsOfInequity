@@ -12,6 +12,7 @@ type Detail struct {
   ParentDetailId sql.NullInt64 `sql:"parent_detail_id"`
   childDetailGroups [][]*Detail
   InspirationId int64 `sql:"inspiration_id"`
+  Inspiration *config.Inspiration
   RollsAsString string `sql:"rolls"`
 }
 
@@ -41,6 +42,7 @@ func (detail *Detail) SaveChildren(client utilities.ClientInterface) {
 func newDetail(inspiration *config.Inspiration, rRand *rand.Rand) *Detail {
   detail := new(Detail)
   detail.InspirationId = inspiration.Id
+  detail.Inspiration = inspiration
   detail.RollsAsString = ""
   detail.ParentDetailId =  sql.NullInt64{Int64: 0, Valid: false}
   detail.childDetailGroups = [][]*Detail{}

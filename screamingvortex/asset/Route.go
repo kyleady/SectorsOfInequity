@@ -7,9 +7,9 @@ type Route struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   DaysId int64 `sql:"days_id"`
-  TypeId int64 `sql:"type_id"`
+  StabilityId int64 `sql:"stability_id"`
   Days *Detail
-  Type *Detail
+  Stability *Detail
   TargetId int64
 }
 
@@ -37,8 +37,8 @@ func (route *Route) SaveTo(client utilities.ClientInterface) {
 func (route *Route) SaveParents(client utilities.ClientInterface) {
   route.Days.SaveTo(client)
   route.DaysId = route.Days.Id
-  route.Type.SaveTo(client)
-  route.TypeId = route.Type.Id
+  route.Stability.SaveTo(client)
+  route.StabilityId = route.Stability.Id
 }
 
 func RandomRoute(perterbation *config.Perterbation, prefix string, index int) *Route {
@@ -47,7 +47,7 @@ func RandomRoute(perterbation *config.Perterbation, prefix string, index int) *R
   route := new(Route)
   SetNameAndGetPrefix(route, prefix, index)
   newPerterbation := new(config.Perterbation)
-  route.Type, newPerterbation = RollDetail(routeConfig.WeightedTypes, perterbation)
+  route.Stability, newPerterbation = RollDetail(routeConfig.WeightedStability, perterbation)
   route.Days, _ = RollDetail(routeConfig.WeightedDays, newPerterbation)
 
   return route

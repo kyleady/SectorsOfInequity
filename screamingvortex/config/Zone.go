@@ -1,11 +1,15 @@
 package config
 
+import "database/sql"
+
 import "screamingvortex/utilities"
 
 type Zone struct {
   Id int64 `sql:"id"`
-  Type string `sql:"type"`
+  Zone sql.NullString `sql:"zone"`
   Distance int `sql:"distance"`
+  PerterbationId sql.NullInt64 `sql:"perterbation_id"`
+  PerterbationIds []int64
   ElementRolls []*Roll
 }
 
@@ -19,19 +23,31 @@ func (zone *Zone) GetId() *int64 {
 
 func (zone *Zone) AddPerterbation(perterbation *Zone) *Zone {
   newZone := new(Zone)
-  newZone.Type = zone.Type
+  newZone.Zone = zone.Zone
   newZone.Distance = zone.Distance + perterbation.Distance
+  newZone.PerterbationId = sql.NullInt64{Valid: false, Int64: 0}
+  newZone.PerterbationIds = append(zone.PerterbationIds, perterbation.PerterbationIds...)
   newZone.ElementRolls = append(zone.ElementRolls, perterbation.ElementRolls...)
   return newZone
 }
 
 func (zone *Zone) Clone() *Zone {
   newZone := new(Zone)
-  newZone.Type = zone.Type
+  newZone.Zone = zone.Zone
   newZone.Distance = zone.Distance
   newZone.ElementRolls = make([]*Roll, len(zone.ElementRolls))
   copy(newZone.ElementRolls, zone.ElementRolls)
+  newZone.PerterbationIds = make([]int64, len(zone.PerterbationIds))
+  copy(newZone.PerterbationIds, zone.PerterbationIds)
   return newZone
+}
+
+func (zone *Zone) SameZoneType(otherZone *Zone) bool {
+  if zone.Zone.Valid == false || otherZone.Zone.Valid == false {
+    return zone.Zone.Valid == otherZone.Zone.Valid
+  }
+
+  return zone.Zone.String == otherZone.Zone.String
 }
 
 //
@@ -45,7 +61,7 @@ func (zones *Zones) AddPerterbation(perterbation *Zones) *Zones {
   for _, perterbationZone := range perterbation.Zones {
     zoneStacked := false
     for i, newZone := range newZones.Zones {
-      if perterbationZone.Type == newZone.Type {
+      if perterbationZone.SameZoneType(newZone) {
         newZones.Zones[i] = newZone.AddPerterbation(perterbationZone)
         zoneStacked = true
         break
@@ -67,6 +83,11 @@ func LoadZoneConfigsFrom(client utilities.ClientInterface, parentId int64) *Zone
   client.FetchMany(&zones.Zones, parentId, examplePerterbation.TableName(""), exampleZone.TableName(""), "zones", "", false)
   for _, zone := range zones.Zones {
     FetchAllRolls(client, &zone.ElementRolls, zone.Id, zone.TableName(""), "element_count")
+    if zone.PerterbationId.Valid {
+      zone.PerterbationIds = append(zone.PerterbationIds, zone.PerterbationId.Int64)
+    } else {
+      zone.PerterbationIds = make([]int64, 0)
+    }
   }
 
   if zones.Zones == nil {
