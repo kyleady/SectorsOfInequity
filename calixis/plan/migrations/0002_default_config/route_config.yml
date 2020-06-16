@@ -1,6 +1,6 @@
 - _type: Config_Route
   name: Default
-  type_inspirations:
+  stability_inspirations:
     - _type: Weighted_Inspiration
       weight: 3
       value:

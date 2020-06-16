@@ -18,6 +18,9 @@
   zones:
     - _type: Config_Zone
       _exists: true
+      name: Default
+    - _type: Config_Zone
+      _exists: true
       name: Default IC
     - _type: Config_Zone
       _exists: true
@@ -47,6 +50,9 @@
   zones:
     - _type: Config_Zone
       _exists: true
+      name: Default
+    - _type: Config_Zone
+      _exists: true
       name: Default IC
     - _type: Config_Zone
       _exists: true
@@ -74,6 +80,9 @@
     _exists: true
     name: Default
   zones:
+    - _type: Config_Zone
+      _exists: true
+      name: Default
     - _type: Config_Zone
       _exists: true
       name: Default IC
