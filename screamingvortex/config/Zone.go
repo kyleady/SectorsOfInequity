@@ -7,7 +7,7 @@ import "screamingvortex/utilities"
 type Zone struct {
   Id int64 `sql:"id"`
   Zone sql.NullString `sql:"zone"`
-  Distance int `sql:"distance"`
+  Distance []*Roll
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   PerterbationIds []int64
   ElementRolls []*Roll
@@ -24,7 +24,7 @@ func (zone *Zone) GetId() *int64 {
 func (zone *Zone) AddPerterbation(perterbation *Zone) *Zone {
   newZone := new(Zone)
   newZone.Zone = zone.Zone
-  newZone.Distance = zone.Distance + perterbation.Distance
+  newZone.Distance = append(zone.Distance, perterbation.Distance...)
   newZone.PerterbationId = sql.NullInt64{Valid: false, Int64: 0}
   newZone.PerterbationIds = append(zone.PerterbationIds, perterbation.PerterbationIds...)
   newZone.ElementRolls = append(zone.ElementRolls, perterbation.ElementRolls...)
@@ -34,7 +34,8 @@ func (zone *Zone) AddPerterbation(perterbation *Zone) *Zone {
 func (zone *Zone) Clone() *Zone {
   newZone := new(Zone)
   newZone.Zone = zone.Zone
-  newZone.Distance = zone.Distance
+  newZone.Distance = make([]*Roll, len(zone.Distance))
+  copy(newZone.Distance, zone.Distance)
   newZone.ElementRolls = make([]*Roll, len(zone.ElementRolls))
   copy(newZone.ElementRolls, zone.ElementRolls)
   newZone.PerterbationIds = make([]int64, len(zone.PerterbationIds))
@@ -82,6 +83,7 @@ func LoadZoneConfigsFrom(client utilities.ClientInterface, parentId int64) *Zone
   exampleZone := new(Zone)
   client.FetchMany(&zones.Zones, parentId, examplePerterbation.TableName(""), exampleZone.TableName(""), "zones", "", false)
   for _, zone := range zones.Zones {
+    FetchAllRolls(client, &zone.Distance, zone.Id, zone.TableName(""), "distance")
     FetchAllRolls(client, &zone.ElementRolls, zone.Id, zone.TableName(""), "element_count")
     if zone.PerterbationId.Valid {
       zone.PerterbationIds = append(zone.PerterbationIds, zone.PerterbationId.Int64)

@@ -64,7 +64,7 @@ func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
 
       zone := new(Zone)
       zone.Zone = zoneAndBaseConfig.Zone.String
-      zone.Distance = zoneAndBaseConfig.Distance
+      zone.Distance =  config.RollAll(zoneAndBaseConfig.Distance, perterbation.Rand)
       newPrefix := SetNameAndGetPrefix(zone, prefix, zoneCount)
       zoneCount++
       zonePerterbation := perterbation

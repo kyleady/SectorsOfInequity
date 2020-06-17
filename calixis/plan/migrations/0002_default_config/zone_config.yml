@@ -10,7 +10,12 @@
 - _type: Config_Zone
   name: Default IC
   zone: Inner Cauldron
-  distance: 0
+  distance:
+    - _type: Roll
+      _exists: true
+      base: 1
+      dice_count: 0
+      dice_size: 0
   perterbation:
     _type: Perterbation
     name: Default IC
@@ -22,7 +27,12 @@
 - _type: Config_Zone
   name: Default PB
   zone: Primary Biosphere
-  distance: 1
+  distance:
+    - _type: Roll
+      _exists: true
+      base: 2
+      dice_count: 0
+      dice_size: 0
   perterbation:
     _type: Perterbation
     name: Default PB
@@ -34,7 +44,12 @@
 - _type: Config_Zone
   name: Default OR
   zone: Outer Reaches
-  distance: 2
+  distance:
+    - _type: Roll
+      _exists: true
+      base: 3
+      dice_count: 0
+      dice_size: 0
   perterbation:
     _type: Perterbation
     name: Default OR
