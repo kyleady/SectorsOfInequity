@@ -28,6 +28,11 @@ func LoadInspirationFrom(client utilities.ClientInterface, id int64) *Inspiratio
   return inspiration
 }
 
+func FetchManyInspirationIds(client utilities.ClientInterface, ids *[]int64, parentId int64, tableName string, valueName string) {
+  exampleInspiration := new(Inspiration)
+  client.FetchManyToManyChildIds(ids, parentId, tableName, exampleInspiration.TableName(""), valueName, "", false)
+}
+
 func (inspiration *Inspiration) TableName(inspirationType string) string {
   return "plan_inspiration"
 }

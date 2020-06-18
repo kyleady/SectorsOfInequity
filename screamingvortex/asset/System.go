@@ -64,7 +64,7 @@ func RandomSystem(perterbation *config.Perterbation, prefix string, index int, g
 
   system.GridId = gridSystem.Id
 
-  system.Features, perterbation = RollDetails(systemConfig.SystemFeaturesRolls, systemConfig.WeightedInspirations, perterbation)
+  system.Features, perterbation = RollDetails(systemConfig.SystemFeaturesRolls, systemConfig.WeightedInspirations, systemConfig.ExtraInspirationIds, perterbation)
 
   numberOfStarClusters := config.RollAll(systemConfig.SystemStarClustersRolls, perterbation.Rand)
   for i := 1; i <= numberOfStarClusters; i++ {

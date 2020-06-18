@@ -30,8 +30,8 @@ class Config_Zone(BaseConfig):
 
 class Config_Star_Cluster(BaseConfig):
     star_count = models.ManyToManyField('Roll', related_name='star_count')
-    star_inspirations = models.ManyToManyField('Weighted_Inspiration')
     star_extra = models.ManyToManyField('Inspiration')
+    star_inspirations = models.ManyToManyField('Weighted_Inspiration')
 
 class Config_Route(BaseConfig):
     stability_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='stability_inspirations')

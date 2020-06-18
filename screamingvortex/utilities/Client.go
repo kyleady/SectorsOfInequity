@@ -104,8 +104,31 @@ func (client *Client) FetchAll(asInterface interface{}, tableType string, whereC
   }
 }
 
+func (client *Client) FetchManyToManyChildIds(ids *[]int64, parendId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool) {
+  query := manyQuery(
+      parentTableName,
+      childTableName,
+      valueName,
+      reverseAccess,
+    )
+  rows, err := client.db.Query(query, parendId)
+  if err != nil {
+  	panic(err)
+  }
+
+  for rows.Next() {
+    id := new(int64)
+    err := rows.Scan(id)
+    if err != nil {
+  		panic(err)
+  	}
+
+    *ids = append(*ids, *id)
+  }
+}
+
 func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool) {
-  whereClause := fmt.Sprintf("id IN (%s)", client.manyClause(
+  whereClause := fmt.Sprintf("id IN (%s)", manyQuery(
       parentTableName,
       childTableName,
       valueName,
@@ -115,7 +138,7 @@ func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentT
   client.FetchAll(asInterface, childType, whereClause, parentId)
 }
 
-func (client *Client) manyClause(parentTableName string, childTableName string, valueName string, reverseAccess bool) string {
+func manyQuery(parentTableName string, childTableName string, valueName string, reverseAccess bool) string {
   childTableNameWithoutAppName := strings.Replace(childTableName, "plan_", "", 1)
   parentTableNameWithoutAppName := strings.Replace(parentTableName, "plan_", "", 1)
 
