@@ -26,6 +26,7 @@ class Config_Zone(BaseConfig):
     zone = models.CharField(null=True, blank=True, max_length=25)
     distance = models.ManyToManyField('Roll', related_name='distance')
     element_count = models.ManyToManyField('Roll', related_name='element_count')
+    element_extra = models.ManyToManyField('Inspiration')
     perterbation = models.ForeignKey('Perterbation', null=True, blank=True, on_delete=models.CASCADE)
 
 class Config_Star_Cluster(BaseConfig):

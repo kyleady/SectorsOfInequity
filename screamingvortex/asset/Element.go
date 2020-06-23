@@ -37,14 +37,24 @@ func (element *Element) SaveParents(client utilities.ClientInterface) {
   element.TypeId = element.Type.Id
 }
 
-func RandomElement(perterbation *config.Perterbation, prefix string, index int, distance int) (*Element, int) {
+func newElement(perterbation *config.Perterbation, prefix string, index int, distance int, elementType *Detail) (*Element, int) {
   elementConfig := perterbation.ElementConfig
 
   element := new(Element)
-  newPerterbation := new(config.Perterbation)
-  element.Type, newPerterbation = RollDetail(elementConfig.WeightedTypes, perterbation)
+  element.Type = elementType
   SetNameAndGetPrefix(element, prefix, index)
-  element.Distance = distance + config.RollAll(elementConfig.Spacing, newPerterbation.Rand)
+  element.Distance = distance + config.RollAll(elementConfig.Spacing, perterbation.Rand)
 
   return element, element.Distance
+}
+
+func RandomElement(perterbation *config.Perterbation, prefix string, index int, distance int) (*Element, int) {
+  elementConfig := perterbation.ElementConfig
+  elementType, newPerterbation := RollDetail(elementConfig.WeightedTypes, perterbation)
+  return newElement(newPerterbation, prefix, index, distance, elementType)
+}
+
+func NewElement(perterbation *config.Perterbation, prefix string, index int, distance int, typeInspirationId int64) (*Element, int) {
+  elementType, newPerterbation := NewDetail(typeInspirationId, perterbation)
+  return newElement(newPerterbation, prefix, index, distance, elementType)
 }

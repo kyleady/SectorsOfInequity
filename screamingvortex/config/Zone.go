@@ -11,6 +11,7 @@ type Zone struct {
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   PerterbationIds []int64
   ElementRolls []*Roll
+  ExtraElementTypeIds []int64
 }
 
 func (zone *Zone) TableName(zoneType string) string {
@@ -28,6 +29,7 @@ func (zone *Zone) AddPerterbation(perterbation *Zone) *Zone {
   newZone.PerterbationId = sql.NullInt64{Valid: false, Int64: 0}
   newZone.PerterbationIds = append(zone.PerterbationIds, perterbation.PerterbationIds...)
   newZone.ElementRolls = append(zone.ElementRolls, perterbation.ElementRolls...)
+  newZone.ExtraElementTypeIds = append(zone.ExtraElementTypeIds, perterbation.ExtraElementTypeIds...)
   return newZone
 }
 
@@ -40,6 +42,8 @@ func (zone *Zone) Clone() *Zone {
   copy(newZone.ElementRolls, zone.ElementRolls)
   newZone.PerterbationIds = make([]int64, len(zone.PerterbationIds))
   copy(newZone.PerterbationIds, zone.PerterbationIds)
+  newZone.ExtraElementTypeIds = make([]int64, len(zone.ExtraElementTypeIds))
+  copy(newZone.ExtraElementTypeIds, zone.ExtraElementTypeIds)
   return newZone
 }
 
@@ -85,6 +89,7 @@ func LoadZoneConfigsFrom(client utilities.ClientInterface, parentId int64) *Zone
   for _, zone := range zones.Zones {
     FetchAllRolls(client, &zone.Distance, zone.Id, zone.TableName(""), "distance")
     FetchAllRolls(client, &zone.ElementRolls, zone.Id, zone.TableName(""), "element_count")
+    FetchManyInspirationIds(client, &zone.ExtraElementTypeIds, zone.Id, zone.TableName(""), "element_extra")
     if zone.PerterbationId.Valid {
       zone.PerterbationIds = append(zone.PerterbationIds, zone.PerterbationId.Int64)
     } else {
