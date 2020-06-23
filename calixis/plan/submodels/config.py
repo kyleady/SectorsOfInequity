@@ -18,22 +18,30 @@ class BaseConfig(models.Model):
 
     name = models.CharField(default="-", max_length=25)
 
+class Config_Element(BaseConfig):
+    type_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='type_inspirations')
+    spacing = models.ManyToManyField('Roll', related_name='spacing')
+
 class Config_Zone(BaseConfig):
-    type = models.CharField(max_length=25)
-    distance = models.SmallIntegerField(default=0, blank=True)
+    zone = models.CharField(null=True, blank=True, max_length=25)
+    distance = models.ManyToManyField('Roll', related_name='distance')
     element_count = models.ManyToManyField('Roll', related_name='element_count')
+    element_extra = models.ManyToManyField('Inspiration')
+    perterbation = models.ForeignKey('Perterbation', null=True, blank=True, on_delete=models.CASCADE)
 
 class Config_Star_Cluster(BaseConfig):
     star_count = models.ManyToManyField('Roll', related_name='star_count')
+    star_extra = models.ManyToManyField('Inspiration')
     star_inspirations = models.ManyToManyField('Weighted_Inspiration')
 
 class Config_Route(BaseConfig):
-    type_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='type_inspirations')
+    stability_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='stability_inspirations')
     days_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='days_inspirations')
 
 class Config_System(BaseConfig):
     system_feature_count = models.ManyToManyField('Roll', related_name='system_feature_count')
     system_feature_inspirations = models.ManyToManyField('Weighted_Inspiration')
+    system_feature_extra = models.ManyToManyField('Inspiration')
     star_cluster_count = models.ManyToManyField('Roll', related_name='star_cluster_count')
 
 class Config_Grid(BaseConfig):

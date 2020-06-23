@@ -16,10 +16,12 @@ asset_models = [
     { 'full_name': 'Star Cluster', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Asset_Star_Cluster },
     { 'full_name': 'Route', 'app': app, 'subapp': subapp, 'name': 'route', 'Model': Asset_Route },
     { 'full_name': 'Zone', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Asset_Zone },
+    { 'full_name': 'Element', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Asset_Element },
 ]
 
 subapp = 'config'
 config_models = [
+    { 'full_name': 'Element Config', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Config_Element },
     { 'full_name': 'Zone Config', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Config_Zone },
     { 'full_name': 'Route Config',  'app': app, 'subapp': subapp, 'name': 'route',  'Model': Config_Route },
     { 'full_name': 'Star Cluster Config', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Config_Star_Cluster },

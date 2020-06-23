@@ -23,11 +23,20 @@ func SetNameAndGetPrefix(assetObj AssetInterface, prefix string, index int) stri
   return idNumber
 }
 
-func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
+func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*config.WeightedValue, extraInspirationIds []int64, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
   numberOfDetails := config.RollAll(rollableDetailCount, perterbation.Rand)
   var details []*Detail
   for i := 1; i <= numberOfDetails; i++ {
     detail, newPerterbation := RollDetail(weightedInspirations, perterbation)
+
+    if detail != nil {
+      details = append(details, detail)
+      perterbation = newPerterbation
+    }
+  }
+
+  for _, inspirationId := range extraInspirationIds {
+    detail, newPerterbation := NewDetail(inspirationId, perterbation)
 
     if detail != nil {
       details = append(details, detail)

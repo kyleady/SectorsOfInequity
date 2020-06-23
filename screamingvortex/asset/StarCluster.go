@@ -41,7 +41,7 @@ func (starCluster *StarCluster) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&starCluster.Zones, "")
   for _, zone := range starCluster.Zones {
     client.Save(&utilities.StarClusterToZoneLink{ParentId: starCluster.Id, ChildId: zone.Id}, "")
-    //zone.SaveChildren(client)
+    zone.SaveChildren(client)
   }
 }
 
@@ -53,6 +53,7 @@ func RandomStarCluster(perterbation *config.Perterbation, prefix string, index i
   starCluster.Stars, perterbation = RollDetails(
     starClusterConfig.StarsRolls,
     starClusterConfig.WeightedStarTypes,
+    starClusterConfig.ExtraStarTypeIds,
     perterbation,
   )
 

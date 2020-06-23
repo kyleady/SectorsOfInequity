@@ -12,6 +12,7 @@ type Detail struct {
   ParentDetailId sql.NullInt64 `sql:"parent_detail_id"`
   childDetailGroups [][]*Detail
   InspirationId int64 `sql:"inspiration_id"`
+  Inspiration *config.Inspiration
   RollsAsString string `sql:"rolls"`
 }
 
@@ -41,6 +42,7 @@ func (detail *Detail) SaveChildren(client utilities.ClientInterface) {
 func newDetail(inspiration *config.Inspiration, rRand *rand.Rand) *Detail {
   detail := new(Detail)
   detail.InspirationId = inspiration.Id
+  detail.Inspiration = inspiration
   detail.RollsAsString = ""
   detail.ParentDetailId =  sql.NullInt64{Int64: 0, Valid: false}
   detail.childDetailGroups = [][]*Detail{}
@@ -48,12 +50,7 @@ func newDetail(inspiration *config.Inspiration, rRand *rand.Rand) *Detail {
   return detail
 }
 
-func RollDetail(weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
-  if len(weightedInspirations) == 0 {
-    return nil, perterbation
-  }
-
-  inspirationId := config.RollWeightedValues(weightedInspirations, perterbation.Rand)
+func NewDetail(inspirationId int64, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
   inspiration, newPerterbation := perterbation.AddInspiration(inspirationId)
   detail := newDetail(inspiration, newPerterbation.Rand)
   for index, roll := range inspiration.InspirationRolls {
@@ -81,4 +78,13 @@ func RollDetail(weightedInspirations []*config.WeightedValue, perterbation *conf
   }
 
   return detail, newPerterbation
+}
+
+func RollDetail(weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+  if len(weightedInspirations) == 0 {
+    return nil, perterbation
+  }
+
+  inspirationId := config.RollWeightedValues(weightedInspirations, perterbation.Rand)
+  return NewDetail(inspirationId, perterbation)
 }

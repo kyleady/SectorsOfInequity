@@ -6,6 +6,7 @@ import "screamingvortex/utilities"
 
 type Inspiration struct {
   Id int64 `sql:"id"`
+  Name string `sql:"name"`
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   InspirationRolls []*Roll
   NestedInspirations []*NestedInspiration
@@ -25,6 +26,11 @@ func LoadInspirationFrom(client utilities.ClientInterface, id int64) *Inspiratio
   }
 
   return inspiration
+}
+
+func FetchManyInspirationIds(client utilities.ClientInterface, ids *[]int64, parentId int64, tableName string, valueName string) {
+  exampleInspiration := new(Inspiration)
+  client.FetchManyToManyChildIds(ids, parentId, tableName, exampleInspiration.TableName(""), valueName, "", false)
 }
 
 func (inspiration *Inspiration) TableName(inspirationType string) string {

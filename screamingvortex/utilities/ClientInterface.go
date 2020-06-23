@@ -9,4 +9,5 @@ type ClientInterface interface {
   Save(obj SQLInterface, tableType string)
   SaveAll(asInterface interface{}, tableType string)
   Update(obj SQLInterface, tableType string)
+  FetchManyToManyChildIds(ids *[]int64, parendId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool)
 }
