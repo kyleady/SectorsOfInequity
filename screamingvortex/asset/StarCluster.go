@@ -33,14 +33,14 @@ func (starCluster *StarCluster) SaveTo(client utilities.ClientInterface) {
 
 func (starCluster *StarCluster) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&starCluster.Stars, "")
+  client.SaveMany2ManyLinks(starCluster, &starCluster.Stars, "", "", "stars", false)
   for _, star := range starCluster.Stars {
-    client.Save(&utilities.StarClusterToDetailLink{ParentId: starCluster.Id, ChildId: star.Id}, "")
     star.SaveChildren(client)
   }
 
   client.SaveAll(&starCluster.Zones, "")
+  client.SaveMany2ManyLinks(starCluster, &starCluster.Zones, "", "", "zones", false)
   for _, zone := range starCluster.Zones {
-    client.Save(&utilities.StarClusterToZoneLink{ParentId: starCluster.Id, ChildId: zone.Id}, "")
     zone.SaveChildren(client)
   }
 }

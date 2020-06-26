@@ -32,8 +32,8 @@ func (sector *Sector) SaveTo(client utilities.ClientInterface) {
 
 func (sector *Sector) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&sector.Systems, "")
+  client.SaveMany2ManyLinks(sector, &sector.Systems, "", "", "systems", false)
   for _, system := range sector.Systems {
-    client.Save(&utilities.SectorToSystemLink{ParentId: sector.Id, ChildId: system.Id}, "")
     system.SaveChildren(client)
   }
 

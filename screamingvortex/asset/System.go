@@ -36,14 +36,14 @@ func (system *System) SaveTo(client utilities.ClientInterface) {
 
 func (system *System) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&system.Features, "")
+  client.SaveMany2ManyLinks(system, &system.Features, "", "", "details", false)
   for _, feature := range system.Features {
-    client.Save(&utilities.SystemToDetailLink{ParentId: system.Id, ChildId: feature.Id}, "")
     feature.SaveChildren(client)
   }
 
   client.SaveAll(&system.StarClusters, "")
+  client.SaveMany2ManyLinks(system, &system.StarClusters, "", "", "star_clusters", false)
   for _, starCluster := range system.StarClusters {
-    client.Save(&utilities.SystemToStarClusterLink{ParentId: system.Id, ChildId: starCluster.Id}, "")
     starCluster.SaveChildren(client)
   }
 
@@ -51,9 +51,7 @@ func (system *System) SaveChildren(client utilities.ClientInterface) {
     route.SaveParents(client)
   }
   client.SaveAll(&system.Routes, "")
-  for _, route := range system.Routes {
-    client.Save(&utilities.SystemToRouteLink{ParentId: system.Id, ChildId: route.Id}, "")
-  }
+  client.SaveMany2ManyLinks(system, &system.Routes, "", "", "routes", false)
 }
 
 func RandomSystem(perterbation *config.Perterbation, prefix string, index int, gridSystem *grid.System) *System {
