@@ -37,10 +37,10 @@ func (zone *Zone) SaveChildren(client utilities.ClientInterface) {
     element.SaveParents(client)
   }
   client.SaveAll(&zone.Elements, "")
-  for _, element := range zone.Elements {
-    client.Save(&utilities.ZoneToElementLink{ParentId: zone.Id, ChildId: element.Id}, "")
+  client.SaveMany2ManyLinks(zone, &zone.Elements, "", "", "elements", false)
+  //for _, element := range zone.Elements {
     //element.SaveChildren(client)
-  }
+  //}
 }
 
 func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {

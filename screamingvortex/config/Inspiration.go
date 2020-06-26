@@ -17,7 +17,7 @@ func LoadInspirationFrom(client utilities.ClientInterface, id int64) *Inspiratio
   client.Fetch(inspiration, "", id)
   FetchAllRolls(client, &inspiration.InspirationRolls, id, inspiration.TableName(""), "rolls")
   exampleNestedInspiration := &NestedInspiration{}
-  client.FetchMany(&inspiration.NestedInspirations, id, exampleNestedInspiration.TableName(""), inspiration.TableName(""), "inspirations", "", true)
+  client.FetchMany(&inspiration.NestedInspirations, id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "inspirations", "", true)
   totalWeightedInspirations := 0
   for _, nestedInspiration := range inspiration.NestedInspirations {
     FetchAllRolls(client, &nestedInspiration.CountRolls, nestedInspiration.Id, nestedInspiration.TableName(""), "count")
