@@ -186,3 +186,7 @@ func (client *ClientMock) Delete(obj SQLInterface, tableType string) {
 func (client *ClientMock) FetchManyToManyChildIds(ids *[]int64, parendId int64, parentTableName string, childTableName string, valueName string, childType string, reverseAccess bool) {
   panic("Not yet implemented")
 }
+
+func (client *ClientMock) SaveMany2ManyLinks(parentObj SQLInterface, childObjsInterface interface{}, parentTableType string, childTableType string, valueName string, reverseAccess bool) {
+  panic("Not yet implemented")
+}

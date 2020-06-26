@@ -138,23 +138,25 @@ func (client *Client) FetchMany(asInterface interface{}, parentId int64, parentT
   client.FetchAll(asInterface, childType, whereClause, parentId)
 }
 
-func manyQuery(parentTableName string, childTableName string, valueName string, reverseAccess bool) string {
+func manyTableAndColumnNames(parentTableName string, childTableName string, valueName string, reverseAccess bool) (string, string, string) {
   childTableNameWithoutAppName := strings.Replace(childTableName, "plan_", "", 1)
   parentTableNameWithoutAppName := strings.Replace(parentTableName, "plan_", "", 1)
 
+  tableBaseName := parentTableName
   if reverseAccess {
-    tmpVariable := childTableNameWithoutAppName
-    childTableNameWithoutAppName = parentTableNameWithoutAppName
-    parentTableNameWithoutAppName = tmpVariable
+    tableBaseName = childTableName
   }
 
-  return fmt.Sprintf("SELECT %s_id FROM %s_%s WHERE %s_id = ?",
-                              childTableNameWithoutAppName,
-                              parentTableName,
-                              valueName,
-                              parentTableNameWithoutAppName,
-                            )
+  return fmt.Sprintf("%s_%s", tableBaseName, valueName), fmt.Sprintf("%s_id", parentTableNameWithoutAppName), fmt.Sprintf("%s_id", childTableNameWithoutAppName)
+}
 
+func manyQuery(parentTableName string, childTableName string, valueName string, reverseAccess bool) string {
+  manyTableName, parentIdName, childIdName := manyTableAndColumnNames(parentTableName, childTableName, valueName, reverseAccess)
+  return fmt.Sprintf("SELECT %s FROM %s WHERE %s = ?",
+                              childIdName,
+                              manyTableName,
+                              parentIdName,
+                            )
 }
 
 func (client *Client) Update(obj SQLInterface, tableType string) {
@@ -238,6 +240,44 @@ func (client *Client) SaveAll(asInterface interface{}, tableType string) {
   }
 }
 
+func (client *Client) SaveMany2ManyLinks(parentObj SQLInterface, childObjsInterface interface{}, parentTableType string, childTableType string, valueName string, reverseAccess bool) {
+  childObjs := reflect.ValueOf(childObjsInterface).Elem()
+  if childObjs.Len() <= 0 {
+    return
+  }
+
+  var exampleChildObj SQLInterface
+  exampleChildObjValue := childObjs.Index(0)
+  arrayOf := "?"
+  if exampleChildObjValue.Kind() == reflect.Ptr {
+    arrayOf = "pointers"
+    exampleChildObj = exampleChildObjValue.Interface().(SQLInterface)
+  } else {
+    arrayOf = "structs"
+    exampleChildObj = exampleChildObjValue.Addr().Interface().(SQLInterface)
+  }
+
+  query := saveMany2ManyLinksQuery(parentObj.TableName(parentTableType), exampleChildObj.TableName(childTableType), valueName, reverseAccess, childObjs.Len())
+  allParentAndChildIds := make([]interface{}, 0, 2 * childObjs.Len())
+  for i := 0; i < childObjs.Len(); i++ {
+    childObjValue := childObjs.Index(i)
+    var childObj SQLInterface
+    if arrayOf == "pointers" {
+      childObj = childObjValue.Interface().(SQLInterface)
+    } else if arrayOf == "structs" {
+      childObj = childObjValue.Addr().Interface().(SQLInterface)
+    }
+
+    allParentAndChildIds = append(allParentAndChildIds, parentObj.GetId())
+    allParentAndChildIds = append(allParentAndChildIds, childObj.GetId())
+  }
+
+  _, err := client.db.Exec(query, allParentAndChildIds...)
+  if err != nil {
+  	panic(err)
+  }
+}
+
 func fetchQuery(obj SQLInterface, tableType string, whereClause string) string {
   _, names, _ := listFields(obj, true)
   return fmt.Sprintf("SELECT %s FROM %s WHERE %s;",
@@ -257,6 +297,21 @@ func saveQuery(obj SQLInterface, tableType string, objCount int) string {
   return fmt.Sprintf("INSERT INTO %s (%s) VALUES %s;",
     obj.TableName(tableType),
     strings.Join(names, ","),
+    strings.Join(parens, ","),
+  )
+}
+
+func saveMany2ManyLinksQuery(parentTableName string, childTableName string, valueName string, reverseAccess bool, childCount int) string {
+  parens := make([]string, childCount, childCount)
+  for i := 0; i < childCount; i++ {
+    parens[i] = "(?,?)"
+  }
+
+  manyTableName, parentIdName, childIdName := manyTableAndColumnNames(parentTableName, childTableName, valueName, reverseAccess)
+  return fmt.Sprintf("INSERT INTO %s (%s,%s) VALUES %s;",
+    manyTableName,
+    parentIdName,
+    childIdName,
     strings.Join(parens, ","),
   )
 }
