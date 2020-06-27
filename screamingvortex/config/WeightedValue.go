@@ -2,11 +2,10 @@ package config
 
 import "math/rand"
 
-import "screamingvortex/utilities"
-
 type WeightedValue struct {
   Weight int `sql:"weight"`
   Value int64 `sql:"value_id"`
+  ValueName string
 }
 
 func (weightedValue *WeightedValue) TableName(weightedType string) string {
@@ -29,6 +28,7 @@ func (weightedValue *WeightedValue) Clone() *WeightedValue {
   clonedWeightedValue := new(WeightedValue)
   clonedWeightedValue.Weight = weightedValue.Weight
   clonedWeightedValue.Value  = weightedValue.Value
+  clonedWeightedValue.ValueName = weightedValue.ValueName
   return clonedWeightedValue
 }
 
@@ -76,15 +76,18 @@ func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
   return newWeightedValues
 }
 
-func FetchAllWeightedPerterbations(client utilities.ClientInterface, weightedValues *[]*WeightedValue, parentId int64) {
-  client.FetchAll(weightedValues, WeightedPerterbationTag(), "parent_id = ?", parentId)
+func FetchAllWeightedPerterbations(manager *ConfigManager, parentId int64) []*WeightedValue {
+  weightedValues := make([]*WeightedValue, 0)
+  manager.Client.FetchAll(&weightedValues, WeightedPerterbationTag(), "parent_id = ?", parentId)
+  return weightedValues
 }
 
-func FetchAllWeightedInspirations(client utilities.ClientInterface, weightedValues *[]*WeightedValue, parentId int64, tableName string, valueName string) {
+func FetchManyWeightedInspirations(manager *ConfigManager, parentId int64, tableName string, valueName string) []*WeightedValue {
+  weightedValues := make([]*WeightedValue, 0)
   weightTableName := new(WeightedValue).TableName(WeightedInspirationTag())
-  client.FetchMany(weightedValues, parentId, tableName, weightTableName, valueName, WeightedInspirationTag(), false)
+  manager.Client.FetchMany(&weightedValues, parentId, tableName, weightTableName, valueName, WeightedInspirationTag(), false)
+  return weightedValues
 }
-
 
 func WeightedPerterbationTag() string { return "weighted perterbation" }
 func WeightedInspirationTag() string { return "weighted inspiration" }

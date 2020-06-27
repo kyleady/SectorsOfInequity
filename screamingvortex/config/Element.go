@@ -1,7 +1,5 @@
 package config
 
-import "screamingvortex/utilities"
-
 type Element struct {
   Spacing []*Roll
   WeightedTypes []*WeightedValue
@@ -29,9 +27,9 @@ func (element *Element) AddPerterbation(perterbation *Element) *Element {
   return newElement
 }
 
-func LoadElementConfigFrom(client utilities.ClientInterface, id int64) *Element {
+func FetchElementConfig(manager *ConfigManager, id int64) *Element {
   element := new(Element)
-  FetchAllRolls(client, &element.Spacing, id, element.TableName(""), "spacing")
-  FetchAllWeightedInspirations(client, &element.WeightedTypes, id, element.TableName(""), "type_inspirations")
+  element.Spacing = FetchManyRolls(manager, id, element.TableName(""), "spacing")
+  element.WeightedTypes = FetchManyWeightedInspirations(manager, id, element.TableName(""), "type_inspirations")
   return element
 }

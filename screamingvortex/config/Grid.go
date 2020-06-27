@@ -1,7 +1,5 @@
 package config
 
-import "screamingvortex/utilities"
-
 type Grid struct {
   Name string `sql:"name"`
   Height int `sql:"height"`
@@ -16,9 +14,9 @@ type Grid struct {
 
 func TestGrid() *Grid {
   weightedRegions := []*WeightedValue{
-    &WeightedValue{3, 2320},
-    &WeightedValue{2, 320},
-    &WeightedValue{4, 3499},
+    &WeightedValue{3, 2320, "A"},
+    &WeightedValue{2, 320, "B"},
+    &WeightedValue{4, 3499, "C"},
   }
   return &Grid{
     "test config",    //Name string `sql:"name"`
@@ -41,9 +39,9 @@ func (config *Grid) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
-func LoadGridFrom(client utilities.ClientInterface, id int64) *Grid {
+func FetchGrid(manager *ConfigManager, id int64) *Grid {
   gridConfig := new(Grid)
-  client.Fetch(gridConfig, "", id)
-  FetchAllWeightedPerterbations(client, &gridConfig.WeightedRegions, id)
+  manager.Client.Fetch(gridConfig, "", id)
+  gridConfig.WeightedRegions = FetchAllWeightedPerterbations(manager, id)
   return gridConfig
 }

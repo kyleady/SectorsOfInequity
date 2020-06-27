@@ -1,7 +1,5 @@
 package config
 
-import "screamingvortex/utilities"
-
 type Route struct {
   WeightedDays []*WeightedValue
   WeightedStability []*WeightedValue
@@ -29,9 +27,9 @@ func (route *Route) AddPerterbation(perterbation *Route) *Route {
   return newRoute
 }
 
-func LoadRouteConfigFrom(client utilities.ClientInterface, id int64) *Route {
+func FetchRouteConfig(manager *ConfigManager, id int64) *Route {
   route := new(Route)
-  FetchAllWeightedInspirations(client, &route.WeightedDays, id, route.TableName(""), "days_inspirations")
-  FetchAllWeightedInspirations(client, &route.WeightedStability, id, route.TableName(""), "stability_inspirations")
+  route.WeightedDays = FetchManyWeightedInspirations(manager, id, route.TableName(""), "days_inspirations")
+  route.WeightedStability = FetchManyWeightedInspirations(manager, id, route.TableName(""), "stability_inspirations")
   return route
 }

@@ -1,7 +1,5 @@
 package config
 
-import "screamingvortex/utilities"
-
 type StarCluster struct {
   StarsRolls []*Roll
   WeightedStarTypes []*WeightedValue
@@ -32,10 +30,10 @@ func (starCluster *StarCluster) AddPerterbation(perterbation *StarCluster) *Star
   return newStarCluster
 }
 
-func LoadStarClusterConfigFrom(client utilities.ClientInterface, id int64) *StarCluster {
+func FetchStarClusterConfig(manager *ConfigManager, id int64) *StarCluster {
   starCluster := new(StarCluster)
-  FetchAllRolls(client, &starCluster.StarsRolls, id, starCluster.TableName(""), "star_count")
-  FetchAllWeightedInspirations(client, &starCluster.WeightedStarTypes, id, starCluster.TableName(""), "star_inspirations")
-  FetchManyInspirationIds(client, &starCluster.ExtraStarTypeIds, id, starCluster.TableName(""), "star_extra")
+  starCluster.StarsRolls = FetchManyRolls(manager, id, starCluster.TableName(""), "star_count")
+  starCluster.WeightedStarTypes = FetchManyWeightedInspirations(manager, id, starCluster.TableName(""), "star_inspirations")
+  starCluster.ExtraStarTypeIds = FetchManyInspirationIds(manager, id, starCluster.TableName(""), "star_extra")
   return starCluster
 }

@@ -42,7 +42,8 @@ func gridHandler(writer http.ResponseWriter, req *http.Request) {
       client.Open()
       defer client.Close()
 
-      gridConfig := config.LoadGridFrom(client, configId)
+      manager := config.CreateEmptyManager(client)
+      gridConfig := config.FetchGrid(manager, configId)
 
       job := utilities.CreateJob(jobId, 3)
       sectorGrid := new(grid.Sector)

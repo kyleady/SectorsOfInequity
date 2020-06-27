@@ -2,8 +2,6 @@ package config
 
 import "database/sql"
 
-import "screamingvortex/utilities"
-
 type Zone struct {
   Id int64 `sql:"id"`
   Zone sql.NullString `sql:"zone"`
@@ -81,15 +79,15 @@ func (zones *Zones) AddPerterbation(perterbation *Zones) *Zones {
   return newZones
 }
 
-func LoadZoneConfigsFrom(client utilities.ClientInterface, parentId int64) *Zones {
+func FetchZoneConfigs(manager *ConfigManager, parentId int64) *Zones {
   zones := new(Zones)
   examplePerterbation := new(Perterbation)
   exampleZone := new(Zone)
-  client.FetchMany(&zones.Zones, parentId, examplePerterbation.TableName(""), exampleZone.TableName(""), "zones", "", false)
+  manager.Client.FetchMany(&zones.Zones, parentId, examplePerterbation.TableName(""), exampleZone.TableName(""), "zones", "", false)
   for _, zone := range zones.Zones {
-    FetchAllRolls(client, &zone.Distance, zone.Id, zone.TableName(""), "distance")
-    FetchAllRolls(client, &zone.ElementRolls, zone.Id, zone.TableName(""), "element_count")
-    FetchManyInspirationIds(client, &zone.ExtraElementTypeIds, zone.Id, zone.TableName(""), "element_extra")
+    zone.Distance = FetchManyRolls(manager, zone.Id, zone.TableName(""), "distance")
+    zone.ElementRolls = FetchManyRolls(manager, zone.Id, zone.TableName(""), "element_count")
+    zone.ExtraElementTypeIds = FetchManyInspirationIds(manager, zone.Id, zone.TableName(""), "element_extra")
     if zone.PerterbationId.Valid {
       zone.PerterbationIds = append(zone.PerterbationIds, zone.PerterbationId.Int64)
     } else {
