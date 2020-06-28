@@ -9,7 +9,7 @@ type Zone struct {
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
   PerterbationIds []int64
   ElementRolls []*Roll
-  ExtraElementTypeIds []int64
+  ExtraElementTypes []*WeightedValue
 }
 
 func (zone *Zone) TableName(zoneType string) string {
@@ -27,7 +27,7 @@ func (zone *Zone) AddPerterbation(perterbation *Zone) *Zone {
   newZone.PerterbationId = sql.NullInt64{Valid: false, Int64: 0}
   newZone.PerterbationIds = append(zone.PerterbationIds, perterbation.PerterbationIds...)
   newZone.ElementRolls = append(zone.ElementRolls, perterbation.ElementRolls...)
-  newZone.ExtraElementTypeIds = append(zone.ExtraElementTypeIds, perterbation.ExtraElementTypeIds...)
+  newZone.ExtraElementTypes = StackWeightedValues(zone.ExtraElementTypes, perterbation.ExtraElementTypes)
   return newZone
 }
 
@@ -40,8 +40,8 @@ func (zone *Zone) Clone() *Zone {
   copy(newZone.ElementRolls, zone.ElementRolls)
   newZone.PerterbationIds = make([]int64, len(zone.PerterbationIds))
   copy(newZone.PerterbationIds, zone.PerterbationIds)
-  newZone.ExtraElementTypeIds = make([]int64, len(zone.ExtraElementTypeIds))
-  copy(newZone.ExtraElementTypeIds, zone.ExtraElementTypeIds)
+  newZone.ExtraElementTypes = make([]*WeightedValue, len(zone.ExtraElementTypes))
+  copy(newZone.ExtraElementTypes, zone.ExtraElementTypes)
   return newZone
 }
 
@@ -87,7 +87,7 @@ func FetchZoneConfigs(manager *ConfigManager, parentId int64) *Zones {
   for _, zone := range zones.Zones {
     zone.Distance = FetchManyRolls(manager, zone.Id, zone.TableName(""), "distance")
     zone.ElementRolls = FetchManyRolls(manager, zone.Id, zone.TableName(""), "element_count")
-    zone.ExtraElementTypeIds = FetchManyInspirationIds(manager, zone.Id, zone.TableName(""), "element_extra")
+    zone.ExtraElementTypes = FetchManyWeightedInspirations(manager, zone.Id, zone.TableName(""), "element_extra")
     if zone.PerterbationId.Valid {
       zone.PerterbationIds = append(zone.PerterbationIds, zone.PerterbationId.Int64)
     } else {

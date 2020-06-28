@@ -121,5 +121,18 @@ func FetchManyWeightedInspirations(manager *ConfigManager, parentId int64, table
   return weightedValues
 }
 
+func ExtraInspirationsToShuffledExtraIds(extraInspirations []*WeightedValue, rRand *rand.Rand) [][]int64 {
+  shuffledExtraIds := [][]int64{}
+  for _, extraInspiration := range extraInspirations {
+    numberOfCopies := RollAll(extraInspiration.Weights, rRand)
+    for i := 1; i <= numberOfCopies; i++ {
+      shuffledExtraIds = append(shuffledExtraIds, extraInspiration.Values)
+    }
+  }
+
+  rRand.Shuffle(len(shuffledExtraIds), func(i, j int) { shuffledExtraIds[i], shuffledExtraIds[j] = shuffledExtraIds[j], shuffledExtraIds[i] })
+  return shuffledExtraIds
+}
+
 func WeightedPerterbationTag() string { return "weighted perterbation" }
 func WeightedInspirationTag() string { return "weighted inspiration" }
