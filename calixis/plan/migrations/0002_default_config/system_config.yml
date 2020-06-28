@@ -15,70 +15,110 @@
       dice_size: 5
   system_feature_inspirations:
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Bountiful
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Gravity Tides
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Haven
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Ill-Omened
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Pirate Den
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Ruined Empire
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Starfarers
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Stellar Anomaly
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Warp Stasis
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
@@ -124,11 +164,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
             description: "Add 2D3kl1-1 Asteroid Belts to each Solar Zone."
+            perterbation:
+              _type: Perterbation
+              zones:
+                - _type: Config_Zone
+                  name: Bountiful(1)
+                  element_extra:
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          dice_count: 2
+                          dice_size: 3
+                          keep_highest: -1
+                          base: 1
+                      value:
+                        _type: Inspiration
+                        _exists: true
+                        name: Asteroid Belt
             tags:
               - _type: Tag
                 _exists: true
@@ -139,7 +201,11 @@
                 name: Bountiful
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -155,7 +221,11 @@
                 name: Bountiful
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (3)
@@ -171,7 +241,11 @@
                 name: Bountiful
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (4)
@@ -223,11 +297,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
             description: "Add 2D6kl1 Gravity Tides to each Solar Zone."
+            perterbation:
+              _type: Perterbation
+              zones:
+                - _type: Config_Zone
+                  name: Gravity Tides(1)
+                  element_extra:
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          dice_count: 2
+                          dice_size: 6
+                          keep_highest: -1
+                          base: 0
+                      value:
+                        _type: Inspiration
+                        _exists: true
+                        name: Gravity Riptide
             tags:
               - _type: Tag
                 _exists: true
@@ -238,7 +334,11 @@
                 name: Gravity Tides
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -261,7 +361,11 @@
                 name: Gravity Tides
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (3)
@@ -322,11 +426,31 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
             description: "Add 1 Planet to each Solar Zone."
+            perterbation:
+              _type: Perterbation
+              zones:
+                - _type: Config_Zone
+                  name: Haven(1)
+                  element_extra:
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          dice_count: 0
+                          base: 1
+                      value:
+                        _type: Inspiration
+                        _exists: true
+                        name: Planet
             tags:
               - _type: Tag
                 _exists: true
@@ -337,7 +461,11 @@
                 name: Haven
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -354,7 +482,11 @@
                 name: Haven
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (3)
@@ -433,7 +565,11 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
@@ -453,7 +589,11 @@
                 name: Ill-Omened
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -469,7 +609,11 @@
                 name: Ill-Omened
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (3)
@@ -486,7 +630,11 @@
                 name: Ill-Omened
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (4)
@@ -566,7 +714,11 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
@@ -584,7 +736,11 @@
                 name: Ruined Empire
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -746,7 +902,11 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
@@ -768,7 +928,11 @@
                 name: Warp Stasis
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -784,7 +948,11 @@
                 name: Warp Stasis
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (3)
@@ -800,7 +968,11 @@
                 name: Warp Stasis
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (4)
@@ -855,7 +1027,11 @@
           dice_size: 4
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (1)
@@ -871,7 +1047,11 @@
                 name: Warp Turbulence
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (2)
@@ -888,7 +1068,11 @@
                 name: Warp Turbulence
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (3)
@@ -904,7 +1088,11 @@
                 name: Warp Turbulence
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             name: (4)

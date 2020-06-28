@@ -2,50 +2,82 @@
   name: Default
   stability_inspirations:
     - _type: Weighted_Inspiration
-      weight: 3
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 3
       value:
         _type: Inspiration
         name: Stable Route
         description: "Gain +10 bonus on any Tests to chart this route."
     - _type: Weighted_Inspiration
-      weight: 2
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 2
       value:
         _type: Inspiration
         name: Indirect Path
         description: "Double the Duration."
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Haunted Passage
         description: "Double the Duration and add +10 to any rolls made for Warp Travel Hallucinations."
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Surly Route
         description: "Double the Duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Untraceable Trail
         description: "Double the Duration and the route cannot be charted."
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Lightless Path
         description: "Double the Duration and the Astronomican is obscured for the trip."
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Byzantine Route
         description: "Triple the Duration."
   days_inspirations:
     - _type: Weighted_Inspiration
-      weight: 2
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 2
       value:
         _type: Inspiration
         name: Days
@@ -57,7 +89,11 @@
             dice_count: 1
             dice_size: 5
     - _type: Weighted_Inspiration
-      weight: 2
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 2
       value:
         _type: Inspiration
         name: Days
@@ -69,7 +105,11 @@
             dice_count: 1
             dice_size: 5
     - _type: Weighted_Inspiration
-      weight: 2
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 2
       value:
         _type: Inspiration
         name: Days
@@ -81,7 +121,11 @@
             dice_count: 2
             dice_size: 10
     - _type: Weighted_Inspiration
-      weight: 2
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 2
       value:
         _type: Inspiration
         name: Days
@@ -93,7 +137,11 @@
             dice_count: 3
             dice_size: 10
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Days
@@ -105,7 +153,11 @@
             dice_count: 4
             dice_size: 10
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         name: Days

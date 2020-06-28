@@ -4,7 +4,7 @@ class BaseWeighted(models.Model):
     class Meta:
         abstract = True
 
-    weight = models.SmallIntegerField(blank=True, default=1)
+    weights = models.ManyToManyField('Roll')
 
     def __str__(self):
         return "({weight}) {value_name}".format(weight=self.weight, value_name=self.value.name)

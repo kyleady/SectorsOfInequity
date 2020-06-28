@@ -79,7 +79,7 @@ func StackNestedInspirations(firstNestedInspirations []*NestedInspiration, secon
       if newNestedInspiration.Name == secondNestedInspiration.Name {
         nestedInspirationStacked = true
         newNestedInspiration.CountRolls = append(newNestedInspiration.CountRolls, secondNestedInspiration.CountRolls...)
-        newNestedInspiration.WeightedInspirations = StackWeightedValues(newNestedInspiration.WeightedInspirations, secondNestedInspiration.WeightedInspirations)
+        newNestedInspiration.WeightedInspirations = StackWeightedInspirations(newNestedInspiration.WeightedInspirations, secondNestedInspiration.WeightedInspirations)
         newNestedInspiration.ConstituentParts = append(newNestedInspiration.ConstituentParts, secondNestedInspiration.ConstituentParts...)
         break
       }

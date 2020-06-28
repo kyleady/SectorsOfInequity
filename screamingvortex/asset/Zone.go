@@ -73,20 +73,18 @@ func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
       }
 
       numberOfRandomElements := config.RollAll(zoneAndBaseConfig.ElementRolls, zonePerterbation.Rand)
-      numberOfExtraElements := len(zoneAndBaseConfig.ExtraElementTypeIds)
+      shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.ElementConfig.WeightedTypes, zonePerterbation.Rand)
+      numberOfExtraElements := len(shuffledExtraIds)
       numberOfElements := numberOfRandomElements + numberOfExtraElements
       numberOfRandomElementsCreated := 0
       numberOfExtraElementsCreated := 0
       distance := 0
-      shuffledExtraIds := make([]int64, numberOfExtraElements)
-      copy(shuffledExtraIds, zoneAndBaseConfig.ExtraElementTypeIds)
-      zonePerterbation.Rand.Shuffle(len(shuffledExtraIds), func(i, j int) { shuffledExtraIds[i], shuffledExtraIds[j] = shuffledExtraIds[j], shuffledExtraIds[i] })
       for i := 1; i <= numberOfElements; i++ {
         element := new(Element)
         newDistance := 0
         if numberOfExtraElements - numberOfExtraElementsCreated > 0 && zonePerterbation.Rand.Intn(numberOfElements - numberOfExtraElementsCreated - numberOfRandomElementsCreated) < numberOfExtraElements - numberOfExtraElementsCreated {
-          extraInspirationId := shuffledExtraIds[numberOfExtraElementsCreated]
-          element, newDistance = NewElement(zonePerterbation, newPrefix, i, distance, extraInspirationId)
+          extraInspirationIds := shuffledExtraIds[numberOfExtraElementsCreated]
+          element, newDistance = NewElement(zonePerterbation, newPrefix, i, distance, extraInspirationIds)
           numberOfExtraElementsCreated++
         } else {
           element, newDistance = RandomElement(zonePerterbation, newPrefix, i, distance)

@@ -53,7 +53,7 @@ func RandomStarCluster(perterbation *config.Perterbation, prefix string, index i
   starCluster.Stars, perterbation = RollDetails(
     starClusterConfig.StarsRolls,
     starClusterConfig.WeightedStarTypes,
-    starClusterConfig.ExtraStarTypeIds,
+    starClusterConfig.ExtraStarTypes,
     perterbation,
   )
 

@@ -22,8 +22,8 @@ func CreateEmptyRouteConfig() *Route {
 
 func (route *Route) AddPerterbation(perterbation *Route) *Route {
   newRoute := new(Route)
-  newRoute.WeightedDays = StackWeightedValues(route.WeightedDays, perterbation.WeightedDays)
-  newRoute.WeightedStability = StackWeightedValues(route.WeightedStability, perterbation.WeightedStability)
+  newRoute.WeightedDays = StackWeightedInspirations(route.WeightedDays, perterbation.WeightedDays)
+  newRoute.WeightedStability = StackWeightedInspirations(route.WeightedStability, perterbation.WeightedStability)
   return newRoute
 }
 

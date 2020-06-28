@@ -54,7 +54,7 @@ func RandomElement(perterbation *config.Perterbation, prefix string, index int, 
   return newElement(newPerterbation, prefix, index, distance, elementType)
 }
 
-func NewElement(perterbation *config.Perterbation, prefix string, index int, distance int, typeInspirationId int64) (*Element, int) {
-  elementType, newPerterbation := NewDetail([]int64{typeInspirationId}, perterbation)
+func NewElement(perterbation *config.Perterbation, prefix string, index int, distance int, typeInspirationIds []int64) (*Element, int) {
+  elementType, newPerterbation := NewDetail(typeInspirationIds, perterbation)
   return newElement(newPerterbation, prefix, index, distance, elementType)
 }
