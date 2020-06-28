@@ -18,6 +18,7 @@ func LoadInspiration(manager *ConfigManager, inspiration *Inspiration) {
   for _, nestedInspiration := range inspiration.NestedInspirations {
     nestedInspiration.CountRolls = FetchManyRolls(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "count")
     nestedInspiration.WeightedInspirations = FetchManyWeightedInspirations(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "weighted_inspirations")
+    nestedInspiration.ConstituentParts = []*NestedInspiration{nestedInspiration}
     totalWeightedInspirations += len(nestedInspiration.WeightedInspirations)
   }
 }
@@ -34,6 +35,7 @@ type NestedInspiration struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   CountRolls []*Roll
+  ConstituentParts []*NestedInspiration
   WeightedInspirations []*WeightedValue
 }
 
@@ -42,7 +44,7 @@ func (nestedInspiration *NestedInspiration) TableName(nestedInspirationType stri
 }
 
 func (nestedInspiration *NestedInspiration) GetId() *int64 {
-  panic("GetId() not implemented. Config should not be editted.")
+  return &nestedInspiration.Id
 }
 
 func FetchManyInspirationIds(manager *ConfigManager, parentId int64, tableName string, valueName string) []int64 {
@@ -60,6 +62,8 @@ func (nestedInspiration *NestedInspiration) Clone() *NestedInspiration {
   copy(newNestedInspiration.CountRolls, nestedInspiration.CountRolls)
   newNestedInspiration.WeightedInspirations = make([]*WeightedValue, len(nestedInspiration.WeightedInspirations))
   copy(newNestedInspiration.WeightedInspirations, nestedInspiration.WeightedInspirations)
+  newNestedInspiration.ConstituentParts = make([]*NestedInspiration, len(nestedInspiration.ConstituentParts))
+  copy(newNestedInspiration.ConstituentParts, nestedInspiration.ConstituentParts)
   return newNestedInspiration
 }
 
@@ -76,6 +80,7 @@ func StackNestedInspirations(firstNestedInspirations []*NestedInspiration, secon
         nestedInspirationStacked = true
         newNestedInspiration.CountRolls = append(newNestedInspiration.CountRolls, secondNestedInspiration.CountRolls...)
         newNestedInspiration.WeightedInspirations = StackWeightedValues(newNestedInspiration.WeightedInspirations, secondNestedInspiration.WeightedInspirations)
+        newNestedInspiration.ConstituentParts = append(newNestedInspiration.ConstituentParts, secondNestedInspiration.ConstituentParts...)
         break
       }
     }

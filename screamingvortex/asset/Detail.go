@@ -12,6 +12,7 @@ type Detail struct {
   ParentDetailId sql.NullInt64 `sql:"parent_detail_id"`
   childDetailGroups [][]*Detail
   Inspirations []*config.Inspiration
+  NestedInspirations []*config.NestedInspiration
   RollsAsString string `sql:"rolls"`
 }
 
@@ -30,6 +31,7 @@ func (detail *Detail) SaveTo(client utilities.ClientInterface) {
 
 func (detail *Detail) SaveChildren(client utilities.ClientInterface) {
   client.SaveMany2ManyLinks(detail, &detail.Inspirations, "", "", "inspirations", false)
+  client.SaveMany2ManyLinks(detail, &detail.NestedInspirations, "", "", "nested_inspirations", false)
   for _, childDetailGroup := range detail.childDetailGroups {
     for _, childDetail := range childDetailGroup {
       childDetail.ParentDetailId.Valid = true
@@ -83,6 +85,7 @@ func NewDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Deta
     var childDetailGroup []*Detail
     for childDetailCount := 0; childDetailCount < numberOfChildDetails; childDetailCount++ {
       childDetail, childPerterbation := RollDetail(nestedInspiration.WeightedInspirations, perterbation)
+      childDetail.NestedInspirations = nestedInspiration.ConstituentParts
 
       if childDetail != nil {
         childDetailGroup = append(childDetailGroup, childDetail)

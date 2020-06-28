@@ -23,4 +23,5 @@ class Detail(models.Model):
 
     rolls = models.CharField(validators=[int_list_validator], max_length=100)
     inspirations = models.ManyToManyField('Inspiration', related_name='inspirations')
+    nested_inspirations = models.ManyToManyField('Inspiration_Nested')
     parent_detail = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
