@@ -95,6 +95,11 @@
   dice_count: 0
   dice_size: 0
 - _type: Roll
+  dice_count: 2
+  dice_size: 3
+  keep_highest: -1
+  base: 1
+- _type: Roll
   dice_count: 1
   dice_size: 4
 - _type: Roll
@@ -127,6 +132,11 @@
   base: 5
   dice_count: 1
   dice_size: 5
+- _type: Roll
+  dice_count: 2
+  dice_size: 6
+  keep_highest: -1
+  base: 0
 - _type: Roll
   base: 10
   dice_count: 2
