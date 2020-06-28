@@ -79,7 +79,9 @@ func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
     for _, newWeightedValue := range newWeightedValues {
       if newWeightedValue.ValueName == secondWeightedValue.ValueName {
         weightedValueStacked = true
-        newWeightedValue.Weights = append(newWeightedValue.Weights, secondWeightedValue.Weights...)
+        if !modifyOnly {
+          newWeightedValue.Weights = append(newWeightedValue.Weights, secondWeightedValue.Weights...)
+        }
         for _, value := range secondWeightedValue.Values {
           valueAlreadyInNewValues := false
           for _, newValue := range newWeightedValue.Values {
