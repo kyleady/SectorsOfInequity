@@ -14,9 +14,9 @@ type Grid struct {
 
 func TestGrid() *Grid {
   weightedRegions := []*WeightedValue{
-    &WeightedValue{3, 2320, "A"},
-    &WeightedValue{2, 320, "B"},
-    &WeightedValue{4, 3499, "C"},
+    &WeightedValue{Weight: 3, Values: []int64{2320}},
+    &WeightedValue{Weight: 2, Values: []int64{320}},
+    &WeightedValue{Weight: 4, Values: []int64{3499}},
   }
   return &Grid{
     "test config",    //Name string `sql:"name"`
