@@ -7,49 +7,81 @@
       dice_count: 0
   type_inspirations:
     - _type: Weighted_Inspiration
-      weight: 20
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 20
       value:
         _type: Inspiration
         _exists: true
         name: No Feature
     - _type: Weighted_Inspiration
-      weight: 9
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 9
       value:
         _type: Inspiration
         _exists: true
         name: Asteroid Cluster
     - _type: Weighted_Inspiration
-      weight: 12
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 12
       value:
         _type: Inspiration
         _exists: true
         name: Dust Cloud
     - _type: Weighted_Inspiration
-      weight: 4
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 4
       value:
         _type: Inspiration
         _exists: true
         name: Gas Giant
     - _type: Weighted_Inspiration
-      weight: 11
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 11
       value:
         _type: Inspiration
         _exists: true
         name: Gravity Riptide
     - _type: Weighted_Inspiration
-      weight: 20
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 20
       value:
         _type: Inspiration
         _exists: true
         name: Planet
     - _type: Weighted_Inspiration
-      weight: 12
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 12
       value:
         _type: Inspiration
         _exists: true
         name: Radiation Bursts
     - _type: Weighted_Inspiration
-      weight: 12
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 12
       value:
         _type: Inspiration
         _exists: true
@@ -64,49 +96,81 @@
       dice_count: 0
   type_inspirations:
     - _type: Weighted_Inspiration
-      weight: 20
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 20
       value:
         _type: Inspiration
         _exists: true
         name: No Feature
     - _type: Weighted_Inspiration
-      weight: 10
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 10
       value:
         _type: Inspiration
         _exists: true
         name: Asteroid Belt
     - _type: Weighted_Inspiration
-      weight: 11
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 11
       value:
         _type: Inspiration
         _exists: true
         name: Asteroid Cluster
     - _type: Weighted_Inspiration
-      weight: 6
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 6
       value:
         _type: Inspiration
         _exists: true
         name: Derelict Station
     - _type: Weighted_Inspiration
-      weight: 11
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 11
       value:
         _type: Inspiration
         _exists: true
         name: Dust Cloud
     - _type: Weighted_Inspiration
-      weight: 6
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 6
       value:
         _type: Inspiration
         _exists: true
         name: Gravity Riptide
     - _type: Weighted_Inspiration
-      weight: 29
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 29
       value:
         _type: Inspiration
         _exists: true
         name: Planet
     - _type: Weighted_Inspiration
-      weight: 7
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 7
       value:
         _type: Inspiration
         _exists: true
@@ -121,55 +185,91 @@
       dice_count: 0
   type_inspirations:
     - _type: Weighted_Inspiration
-      weight: 20
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 20
       value:
         _type: Inspiration
         _exists: true
         name: No Feature
     - _type: Weighted_Inspiration
-      weight: 9
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 9
       value:
         _type: Inspiration
         _exists: true
         name: Asteroid Belt
     - _type: Weighted_Inspiration
-      weight: 11
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 11
       value:
         _type: Inspiration
         _exists: true
         name: Asteroid Cluster
     - _type: Weighted_Inspiration
-      weight: 6
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 6
       value:
         _type: Inspiration
         _exists: true
         name: Derelict Station
     - _type: Weighted_Inspiration
-      weight: 9
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 9
       value:
         _type: Inspiration
         _exists: true
         name: Dust Cloud
     - _type: Weighted_Inspiration
-      weight: 18
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 18
       value:
         _type: Inspiration
         _exists: true
         name: Gas Giant
     - _type: Weighted_Inspiration
-      weight: 7
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 7
       value:
         _type: Inspiration
         _exists: true
         name: Gravity Riptide
     - _type: Weighted_Inspiration
-      weight: 13
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 13
       value:
         _type: Inspiration
         _exists: true
         name: Planet
     - _type: Weighted_Inspiration
-      weight: 7
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 7
       value:
         _type: Inspiration
         _exists: true
@@ -270,7 +370,11 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 10
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 10
           value:
             _type: Inspiration
             name: Egarian Void-maze
@@ -279,7 +383,11 @@
                           similar geometrical principles as the dead cities of the
                           Egarian Dominion."
         - _type: Weighted_Inspiration
-          weight: 10
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 10
           value:
             _type: Inspiration
             name: Eldar Orrery
@@ -289,7 +397,11 @@
                           or psyker hints at a long-vanished power permeating the
                           structure."
         - _type: Weighted_Inspiration
-          weight: 5
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 5
           value:
             _type: Inspiration
             name: Eldar Gate
@@ -298,7 +410,11 @@
                           shows through it. No amount of searching yields a sign of
                           its purpose or function."
         - _type: Weighted_Inspiration
-          weight: 15
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
           value:
             _type: Inspiration
             name: Ork Rok
@@ -308,7 +424,11 @@
                           fifilled with dubious Orky technology. Some of the
                           technology might even have worked at one point."
         - _type: Weighted_Inspiration
-          weight: 10
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 10
           value:
             _type: Inspiration
             name: STC Defence Station
@@ -319,7 +439,11 @@
                           that it was once intended to safeguard a human colony from
                           attack."
         - _type: Weighted_Inspiration
-          weight: 15
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
           value:
             _type: Inspiration
             name: STC Monitor Station
@@ -330,7 +454,11 @@
                           panels that indicate its former use as a communications or
                           intelligence hub."
         - _type: Weighted_Inspiration
-          weight: 11
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 11
           value:
             _type: Inspiration
             name: Stryxis Collection
@@ -340,7 +468,11 @@
                           accretion comes from the vox-beacon broadcasting some kind
                           of territorial claim by the Stryxis."
         - _type: Weighted_Inspiration
-          weight: 9
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 9
           value:
             _type: Inspiration
             name: Xenos Defence Station
@@ -350,7 +482,11 @@
                           strange, there is no mistaking the intended purpose of its
                           decaying armaments."
         - _type: Weighted_Inspiration
-          weight: 15
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
           value:
             _type: Inspiration
             name: Xenos Monitor Station
@@ -421,7 +557,11 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 15
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
           value:
             _type: Inspiration
             name: Crushed Defence Force/Routed Invasion
@@ -439,7 +579,11 @@
                 dice_size: 5
                 keep_highest: 0
         - _type: Weighted_Inspiration
-          weight: 5
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 5
           value:
             _type: Inspiration
             name: Fleet Engagement
@@ -454,7 +598,11 @@
                           means that at least a few of them might be worth
                           salvaging."
         - _type: Weighted_Inspiration
-          weight: 15
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
           value:
             _type: Inspiration
             name: Lost Explorers
@@ -465,7 +613,11 @@
                           any) of them have deteriorated enough to prohibit salvage
                           efforts."
         - _type: Weighted_Inspiration
-          weight: 30
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 30
           value:
             _type: Inspiration
             name: Plundered Convoy
@@ -484,7 +636,11 @@
                 dice_size: 5
                 keep_highest: 0
         - _type: Weighted_Inspiration
-          weight: 25
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 25
           value:
             _type: Inspiration
             name: Skirmish
@@ -503,7 +659,11 @@
                 dice_size: 5
                 keep_highest: 0
         - _type: Weighted_Inspiration
-          weight: 10
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 10
           value:
             _type: Inspiration
             name: Unknown Provenance

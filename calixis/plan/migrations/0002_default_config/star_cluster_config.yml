@@ -9,35 +9,55 @@
       keep_highest: -1
   star_inspirations:
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Mighty
 
     - _type: Weighted_Inspiration
-      weight: 3
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 3
       value:
         _type: Inspiration
         _exists: true
         name: Vigorous
 
     - _type: Weighted_Inspiration
-      weight: 3
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 3
       value:
         _type: Inspiration
         _exists: true
         name: Luminous
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
         name: Dull
 
     - _type: Weighted_Inspiration
-      weight: 1
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
       value:
         _type: Inspiration
         _exists: true
@@ -91,21 +111,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Dwarf
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Moderate
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
@@ -130,21 +162,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Dwarf
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Moderate
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
@@ -184,21 +228,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Dwarf
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Moderate
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
@@ -238,21 +294,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Dwarf
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Moderate
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
@@ -311,21 +379,33 @@
           dice_count: 0
       weighted_inspirations:
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Dwarf
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true
             name: Moderate
 
         - _type: Weighted_Inspiration
-          weight: 1
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 1
           value:
             _type: Inspiration
             _exists: true

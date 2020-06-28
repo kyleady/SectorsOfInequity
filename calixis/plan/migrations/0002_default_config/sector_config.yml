@@ -12,7 +12,11 @@
   smoothingFactor: 10
 
 - _type: Weighted_Perterbation
-  weight: 1
+  weights:
+    - _type: Roll
+      _exists: true
+      dice_count: 0
+      base: 1
   parent:
     _type: Config_Grid
     _exists: true
@@ -23,7 +27,11 @@
     name: Tyranid Space
 
 - _type: Weighted_Perterbation
-  weight: 2
+  weights:
+    - _type: Roll
+      _exists: true
+      dice_count: 0
+      base: 2
   parent:
     _type: Config_Grid
     _exists: true
@@ -34,7 +42,11 @@
     name: The Warp
 
 - _type: Weighted_Perterbation
-  weight: 3
+  weights:
+    - _type: Roll
+      _exists: true
+      dice_count: 0
+      base: 3
   parent:
     _type: Config_Grid
     _exists: true
