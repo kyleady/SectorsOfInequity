@@ -262,6 +262,7 @@
                 shadowy halls as voracious eyes gleam from the darkness."
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Origins
       count:
         - _type: Roll
           _exists: true
@@ -412,6 +413,7 @@
                 should the Explorers choose to board it."
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Origins
       count:
         - _type: Roll
           _exists: true
