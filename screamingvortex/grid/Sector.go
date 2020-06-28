@@ -279,7 +279,7 @@ func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*Sys
 func (sector *Sector) genScatteredRegionIds() map[int64][]int {
   listByRegion := make(map[int64][]int)
   for systemIndex, system := range sector.Systems {
-    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)[0]
     system.RegionId = randRegion
     listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
   }
@@ -358,7 +358,7 @@ func (sector *Sector) genClumpedRegionIds() map[int64][]int {
   //determine the number of systems in each region
   regionFrequency := make(map[int64]int)
   for range sector.Systems {
-    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)[0]
     regionFrequency[randRegion]++
   }
 

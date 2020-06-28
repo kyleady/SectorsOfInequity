@@ -6,6 +6,7 @@ import "math/rand"
 import "screamingvortex/utilities"
 
 type Perterbation struct {
+  Id int64 `sql:"id"`
   SystemId sql.NullInt64 `sql:"system_id"`
   StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
   RouteId sql.NullInt64 `sql:"route_id"`
@@ -35,36 +36,32 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
   return perterbation
 }
 
-func LoadPerterbationFrom(client utilities.ClientInterface, id int64) *Perterbation {
-  perterbation := new(Perterbation)
-  client.Fetch(perterbation, "", id)
+func LoadPerterbation(manager *ConfigManager, perterbation *Perterbation) {
   if perterbation.SystemId.Valid {
-    perterbation.SystemConfig = LoadSystemConfigFrom(client, perterbation.SystemId.Int64)
+    perterbation.SystemConfig = FetchSystemConfig(manager, perterbation.SystemId.Int64)
   } else {
     perterbation.SystemConfig = CreateEmptySystemConfig()
   }
 
   if perterbation.StarClusterId.Valid {
-    perterbation.StarClusterConfig = LoadStarClusterConfigFrom(client, perterbation.StarClusterId.Int64)
+    perterbation.StarClusterConfig = FetchStarClusterConfig(manager, perterbation.StarClusterId.Int64)
   } else {
     perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
   }
 
   if perterbation.RouteId.Valid {
-    perterbation.RouteConfig = LoadRouteConfigFrom(client, perterbation.RouteId.Int64)
+    perterbation.RouteConfig = FetchRouteConfig(manager, perterbation.RouteId.Int64)
   } else {
     perterbation.RouteConfig = CreateEmptyRouteConfig()
   }
 
-  perterbation.ZoneConfigs = LoadZoneConfigsFrom(client, id)
+  perterbation.ZoneConfigs = FetchZoneConfigs(manager, perterbation.Id)
 
   if perterbation.ElementId.Valid {
-    perterbation.ElementConfig = LoadElementConfigFrom(client, perterbation.ElementId.Int64)
+    perterbation.ElementConfig = FetchElementConfig(manager, perterbation.ElementId.Int64)
   } else {
     perterbation.ElementConfig = CreateEmptyElementConfig()
   }
-
-  return perterbation
 }
 
 func (perterbation *Perterbation) TableName(perterbationType string) string {

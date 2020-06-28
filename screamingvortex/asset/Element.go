@@ -20,7 +20,7 @@ func (element *Element) GetId() *int64 {
 }
 
 func (element *Element) GetType() string {
-  return element.Type.Inspiration.Name
+  return element.Type.GetName()
 }
 
 func (element *Element) SetName(name string) {
@@ -55,6 +55,6 @@ func RandomElement(perterbation *config.Perterbation, prefix string, index int, 
 }
 
 func NewElement(perterbation *config.Perterbation, prefix string, index int, distance int, typeInspirationId int64) (*Element, int) {
-  elementType, newPerterbation := NewDetail(typeInspirationId, perterbation)
+  elementType, newPerterbation := NewDetail([]int64{typeInspirationId}, perterbation)
   return newElement(newPerterbation, prefix, index, distance, elementType)
 }

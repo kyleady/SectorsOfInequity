@@ -2,21 +2,12 @@ package config
 
 import "math/rand"
 
-import "screamingvortex/utilities"
-
 type Roll struct {
   DiceCount int `sql:"dice_count"`
   DiceSize int `sql:"dice_size"`
   Base int `sql:"base"`
   Multiplier int `sql:"multiplier"`
   KeepHighest int `sql:"keep_highest"`
-}
-
-func LoadRollFrom(client utilities.ClientInterface, rollType string, id int64) *Roll {
-  roll := new(Roll)
-  client.Fetch(roll, rollType, id)
-
-  return roll
 }
 
 func (roll *Roll) TableName(rollType string) string {
@@ -78,7 +69,9 @@ func RollAll(rolls []*Roll, rRand *rand.Rand) int {
   return result
 }
 
-func FetchAllRolls(client utilities.ClientInterface, rolls *[]*Roll, parentId int64, tableName string, valueName string) {
+func FetchManyRolls(manager *ConfigManager, parentId int64, tableName string, valueName string) []*Roll {
+  rolls := make([]*Roll, 0)
   rollTableName := new(Roll).TableName("")
-  client.FetchMany(rolls, parentId, tableName, rollTableName, valueName, "", false)
+  manager.Client.FetchMany(&rolls, parentId, tableName, rollTableName, valueName, "", false)
+  return rolls
 }

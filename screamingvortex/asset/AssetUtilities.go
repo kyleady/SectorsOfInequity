@@ -36,7 +36,7 @@ func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*con
   }
 
   for _, inspirationId := range extraInspirationIds {
-    detail, newPerterbation := NewDetail(inspirationId, perterbation)
+    detail, newPerterbation := NewDetail([]int64{inspirationId}, perterbation)
 
     if detail != nil {
       details = append(details, detail)

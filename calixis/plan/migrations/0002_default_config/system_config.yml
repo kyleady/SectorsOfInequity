@@ -116,6 +116,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true
@@ -214,6 +215,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true
@@ -312,6 +314,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true
@@ -422,6 +425,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true
@@ -554,6 +558,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true
@@ -733,6 +738,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true
@@ -840,6 +846,7 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
+      name: Type
       count:
         - _type: Roll
           _exists: true

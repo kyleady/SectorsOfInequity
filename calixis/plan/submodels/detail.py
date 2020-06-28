@@ -12,15 +12,16 @@ class Detail(models.Model):
         ))
 
     def __str__(self):
-        return self.inspiration.name
+        return self.inspirations.all()[0].name
 
     def get_description(self):
         roll_list = self.rolls.split(',')
-        text = self.inspiration.description
+        text = '\n'.join(inspiration.description for inspiration in self.inspirations)
         for roll in roll_list:
             text = re.sub(r'\[\[[^\]]\]\]', roll, text)
         return text
 
     rolls = models.CharField(validators=[int_list_validator], max_length=100)
-    inspiration = models.ForeignKey('Inspiration', on_delete=models.CASCADE)
+    inspirations = models.ManyToManyField('Inspiration', related_name='inspirations')
+    nested_inspirations = models.ManyToManyField('Inspiration_Nested')
     parent_detail = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
