@@ -28,8 +28,8 @@ func (system *System) AddPerterbation(perterbation *System) *System {
   newSystem := new(System)
   newSystem.SystemFeaturesRolls = append(system.SystemFeaturesRolls, perterbation.SystemFeaturesRolls...)
   newSystem.SystemStarClustersRolls = append(system.SystemStarClustersRolls, perterbation.SystemStarClustersRolls...)
-  newSystem.WeightedInspirations = StackWeightedValues(system.WeightedInspirations, perterbation.WeightedInspirations)
-  newSystem.ExtraInspirations = StackWeightedValues(system.ExtraInspirations, perterbation.ExtraInspirations)
+  newSystem.WeightedInspirations = StackWeightedInspirations(system.WeightedInspirations, perterbation.WeightedInspirations)
+  newSystem.ExtraInspirations = StackWeightedInspirations(system.ExtraInspirations, perterbation.ExtraInspirations)
   return newSystem
 }
 

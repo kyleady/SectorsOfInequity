@@ -68,7 +68,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, rRand *rand.Rand) []int
   panic("RollWeightedValues should always return a value!")
 }
 
-func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
+func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue, modifyOnly bool) []*WeightedValue {
   newWeightedValues := make([]*WeightedValue, len(firstWeightedValues))
   for i, firstWeightedValue := range firstWeightedValues {
     newWeightedValues[i] = firstWeightedValue.Clone()
@@ -80,21 +80,40 @@ func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
       if newWeightedValue.ValueName == secondWeightedValue.ValueName {
         weightedValueStacked = true
         newWeightedValue.Weights = append(newWeightedValue.Weights, secondWeightedValue.Weights...)
-        if newWeightedValue.Value != secondWeightedValue.Value {
-          newWeightedValue.Values = append(newWeightedValue.Values, secondWeightedValue.Value)
+        for _, value := range secondWeightedValue.Values {
+          valueAlreadyInNewValues := false
+          for _, newValue := range newWeightedValue.Values {
+              if value == newValue {
+                valueAlreadyInNewValues = true
+                break
+              }
+          }
+
+          if !valueAlreadyInNewValues {
+            newWeightedValue.Values = append(newWeightedValue.Values, value)
+          }
         }
 
         break
       }
     }
 
-    if !weightedValueStacked {
+    if !modifyOnly && !weightedValueStacked {
       newWeightedValues = append(newWeightedValues, secondWeightedValue.Clone())
     }
   }
 
   return newWeightedValues
 }
+
+func ModifyExtraInspirations(extraInspirations []*WeightedValue, modifyingWeightedValues []*WeightedValue) []*WeightedValue {
+  return stackWeightedValues(extraInspirations, modifyingWeightedValues, true)
+}
+
+func StackWeightedInspirations(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
+  return stackWeightedValues(firstWeightedValues, secondWeightedValues, false)
+}
+
 
 func FetchAllWeightedPerterbations(manager *ConfigManager, parentId int64) []*WeightedValue {
   weightedValues := make([]*WeightedValue, 0)
@@ -121,7 +140,8 @@ func FetchManyWeightedInspirations(manager *ConfigManager, parentId int64, table
   return weightedValues
 }
 
-func ExtraInspirationsToShuffledExtraIds(extraInspirations []*WeightedValue, rRand *rand.Rand) [][]int64 {
+func ExtraInspirationsToShuffledExtraIds(extraInspirations []*WeightedValue, modifyingWeightedValues []*WeightedValue,  rRand *rand.Rand) [][]int64 {
+  extraInspirations = ModifyExtraInspirations(extraInspirations, modifyingWeightedValues)
   shuffledExtraIds := [][]int64{}
   for _, extraInspiration := range extraInspirations {
     numberOfCopies := RollAll(extraInspiration.Weights, rRand)

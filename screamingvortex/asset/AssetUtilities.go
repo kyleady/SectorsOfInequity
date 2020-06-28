@@ -35,6 +35,7 @@ func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*con
     }
   }
 
+  extraInspirations = config.ModifyExtraInspirations(extraInspirations, weightedInspirations)
   for _, extraInspiration := range extraInspirations {
     detailsToAdd := config.RollAll(extraInspiration.Weights, perterbation.Rand)
     for i := 0; i < detailsToAdd; i++ {

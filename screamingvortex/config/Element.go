@@ -23,7 +23,7 @@ func CreateEmptyElementConfig() *Element {
 func (element *Element) AddPerterbation(perterbation *Element) *Element {
   newElement := new(Element)
   newElement.Spacing = append(element.Spacing, perterbation.Spacing...)
-  newElement.WeightedTypes = StackWeightedValues(element.WeightedTypes, perterbation.WeightedTypes)
+  newElement.WeightedTypes = StackWeightedInspirations(element.WeightedTypes, perterbation.WeightedTypes)
   return newElement
 }
 

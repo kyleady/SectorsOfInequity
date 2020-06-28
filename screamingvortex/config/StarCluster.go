@@ -25,8 +25,8 @@ func CreateEmptyStarClusterConfig() *StarCluster {
 func (starCluster *StarCluster) AddPerterbation(perterbation *StarCluster) *StarCluster {
   newStarCluster := new(StarCluster)
   newStarCluster.StarsRolls = append(starCluster.StarsRolls, perterbation.StarsRolls...)
-  newStarCluster.WeightedStarTypes = StackWeightedValues(starCluster.WeightedStarTypes, perterbation.WeightedStarTypes)
-  newStarCluster.ExtraStarTypes = StackWeightedValues(starCluster.ExtraStarTypes, perterbation.ExtraStarTypes)
+  newStarCluster.WeightedStarTypes = StackWeightedInspirations(starCluster.WeightedStarTypes, perterbation.WeightedStarTypes)
+  newStarCluster.ExtraStarTypes = StackWeightedInspirations(starCluster.ExtraStarTypes, perterbation.ExtraStarTypes)
   return newStarCluster
 }
 

@@ -73,7 +73,7 @@ func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
       }
 
       numberOfRandomElements := config.RollAll(zoneAndBaseConfig.ElementRolls, zonePerterbation.Rand)
-      shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.Rand)
+      shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.ElementConfig.WeightedTypes, zonePerterbation.Rand)
       numberOfExtraElements := len(shuffledExtraIds)
       numberOfElements := numberOfRandomElements + numberOfExtraElements
       numberOfRandomElementsCreated := 0

@@ -27,7 +27,7 @@ func (zone *Zone) AddPerterbation(perterbation *Zone) *Zone {
   newZone.PerterbationId = sql.NullInt64{Valid: false, Int64: 0}
   newZone.PerterbationIds = append(zone.PerterbationIds, perterbation.PerterbationIds...)
   newZone.ElementRolls = append(zone.ElementRolls, perterbation.ElementRolls...)
-  newZone.ExtraElementTypes = StackWeightedValues(zone.ExtraElementTypes, perterbation.ExtraElementTypes)
+  newZone.ExtraElementTypes = StackWeightedInspirations(zone.ExtraElementTypes, perterbation.ExtraElementTypes)
   return newZone
 }
 
