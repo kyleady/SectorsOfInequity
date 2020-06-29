@@ -1,15 +1,33 @@
 <h1>{{ full_name }}</h1>
-{% if model_list %}
+{% if page_obj %}
     <ul>
-    {% for model in model_list %}
+    {% for model in page_obj %}
         <li><a href="{% url detail_url model.id %}">
           {{ model }}
         </a></li>
     {% endfor %}
     </ul>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 {% else %}
     <p><i>No config has been generated.</i></p>
 {% endif %}
+
 <p>
   <button onclick="window.location.href = '{% url new_url %}'"> New </button>
 </p>

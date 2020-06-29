@@ -1,0 +1,25 @@
+{% extends "detail.html" %}
+
+{% block content %}
+<div>
+  <p>{{ model }}</p>
+  <h3>Stars</h3>
+  {% for star in model.stars.all %}
+      <li>
+        <a href="{% url "plan-detail-detail-detail" star.id %}">
+          {{ star }}
+        </a>
+      </li>
+  {% endfor %}
+
+  <h3>Solar Zones</h3>
+  {% for zone in model.zones.all %}
+      <li>
+        <a href="{% url "plan-asset-zone-detail" zone.id %}">
+          {{ zone }}
+        </a>
+      </li>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.core.paginator import Paginator
 from django.forms import modelform_factory
 from django.http import HttpResponse, Http404
 import json
@@ -11,7 +12,7 @@ class DefaultViews:
         self.app = app
         self.subapp = subapp
         self.Model = Model
-        self.custom = custom
+        self.custom = custom or {}
         self.new_url = '{app}-{subapp}-{title}-new'.format(
             app=self.app,
             subapp=self.subapp,
@@ -37,18 +38,30 @@ class DefaultViews:
         self.screaming_vortex_host = os.environ.get('SCREAMING_VORTEX_HOST')
 
     def index(self, request):
-        template = 'index.html'
+        list_of_objects = self.Model.objects.all().order_by('id')
+        paginator = Paginator(list_of_objects, 25)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        if self.custom.get('detail_template', False):
+            template = self.custom['index_template']
+        else:
+            template = 'index.html'
         context = {
             'new_url': self.new_url,
             'detail_url': self.detail_url,
             'full_name': self.full_name,
-            'model_list': self.Model.objects.all()
+            'page_obj': page_obj
         }
 
         return render(request, template, context)
 
     def detail(self, request, model_id):
-        template = 'detail.html'
+        if self.custom.get('detail_template', False):
+            template = self.custom['detail_template']
+        else:
+            template = 'detail.html'
+
         model = get_object_or_404(self.Model, pk=model_id)
         if request.POST:
             form = self.Form(request.POST, instance=model)
@@ -64,10 +77,16 @@ class DefaultViews:
             'form': self.Form(instance=model)
         }
 
+        if self.custom.get('no_form', False):
+            del context['form']
+
         return render(request, template, context)
 
     def new(self, request):
-        template = 'detail.html'
+        if self.custom.get('detail_template', False):
+            template = self.custom['new_template']
+        else:
+            template = 'detail.html'
         if request.POST:
             form = self.Form(request.POST)
             model = form.save()

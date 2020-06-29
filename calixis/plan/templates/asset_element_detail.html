@@ -1,0 +1,10 @@
+{% extends "detail.html" %}
+
+{% block content %}
+<div>
+  <p>{{ model }}</p>
+  <strong>Type</strong>: <a href="{% url "plan-detail-detail-detail" model.type.id %}">
+    {{ model.type }}
+  </a>
+</div>
+{% endblock %}

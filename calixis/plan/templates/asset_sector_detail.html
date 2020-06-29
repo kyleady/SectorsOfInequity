@@ -1,0 +1,15 @@
+{% extends "detail.html" %}
+
+{% block content %}
+<div>
+  <p>{{ model }}</p>
+  {% for system in model.systems.all %}
+      <li>
+        <a href="{% url "plan-asset-system-detail" system.id %}">
+          {{ system }}
+        </a>
+      </li>
+  {% endfor %}
+</div>
+
+{% endblock %}
