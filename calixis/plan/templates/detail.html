@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>Canvas tutorial</title>
+    <title>{{ full_name }}</title>
     <script {% block scriptargs %}{% endblock %}>
       {% block script %} {% endblock %}
     </script>
@@ -12,6 +12,7 @@
   </head>
   <body {% block bodyargs %}{% endblock %}>
     <h1>{{ full_name }}</h1>
+    {% if form %}
     <form
       {% if model %}
         action="{% url detail_url model.id %}"
@@ -24,15 +25,16 @@
         <table style="width:100%">
           {{ form.as_table }}
         </table>
-        {% block content %}{% endblock %}
         <div>
           <input type="submit" value="Save">
         </div>
     </form>
+    {% endif %}
     {% if model %}
     <a href="{% url delete_url model.id %}">
         <button type='button'>Delete</button>
     </a>
     {% endif %}
+    {% block content %}{% endblock %}
   </body>
 </html>

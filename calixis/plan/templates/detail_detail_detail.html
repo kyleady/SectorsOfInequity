@@ -1,0 +1,35 @@
+{% extends "detail.html" %}
+
+{% block content %}
+<div>
+  <p>{{ model }}</p>
+  <h3>Description</h3>
+  {% for inspiration in model.inspirations.all %}
+    <li>
+      {{ inspiration.description }}
+    </li>
+  {% endfor %}
+
+  {% if model.detail_set.all %}
+    <h3>Sub Details</h3>
+    {% for subdetail in model.detail_set.all %}
+        <li>
+          <strong>{{ subdetail.get_nested_name }}</strong>:
+          <a href="{% url detail_url subdetail.id %}">
+            {{ subdetail }}
+          </a>
+        </li>
+    {% endfor %}
+  {% endif %}
+
+  {% if model.rolls %}
+    <h3>Rolls</h3>
+    {% for roll in model.get_rolls %}
+        <li>
+          {{ roll }}
+        </li>
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% endblock %}

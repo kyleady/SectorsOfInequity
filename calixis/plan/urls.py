@@ -10,13 +10,18 @@ app = 'plan'
 subapp = 'asset'
 asset_models = [
     { 'full_name': 'Sector', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Asset_Sector,
-        'custom': { 'Config': Grid_Sector, 'Job': Job }, 'Views': AssetSectorViews
+        'custom': { 'Config': Grid_Sector, 'Job': Job, 'detail_template': 'asset_sector_detail.html', 'no_form': True }, 'Views': AssetSectorViews
     },
-    { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System },
-    { 'full_name': 'Star Cluster', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Asset_Star_Cluster },
-    { 'full_name': 'Route', 'app': app, 'subapp': subapp, 'name': 'route', 'Model': Asset_Route },
-    { 'full_name': 'Zone', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Asset_Zone },
-    { 'full_name': 'Element', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Asset_Element },
+    { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System,
+        'custom': { 'detail_template': 'asset_system_detail.html', 'no_form': True } },
+    { 'full_name': 'Star Cluster', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Asset_Star_Cluster,
+        'custom': { 'detail_template': 'asset_starcluster_detail.html', 'no_form': True } },
+    { 'full_name': 'Route', 'app': app, 'subapp': subapp, 'name': 'route', 'Model': Asset_Route,
+        'custom': { 'detail_template': 'asset_route_detail.html', 'no_form': True } },
+    { 'full_name': 'Zone', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Asset_Zone,
+        'custom': { 'detail_template': 'asset_zone_detail.html', 'no_form': True } },
+    { 'full_name': 'Element', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Asset_Element,
+        'custom': { 'detail_template': 'asset_element_detail.html', 'no_form': True } },
 ]
 
 subapp = 'config'
@@ -35,7 +40,8 @@ config_models = [
 
 subapp = 'detail'
 detail_models = [
-    { 'full_name': 'Detail', 'app': app, 'subapp': subapp, 'name': 'detail', 'Model': Detail },
+    { 'full_name': 'Detail', 'app': app, 'subapp': subapp, 'name': 'detail', 'Model': Detail,
+        'custom': { 'detail_template': 'detail_detail_detail.html', 'no_form': True } },
 ]
 
 subapp = 'inspiration'

@@ -9,7 +9,7 @@ from .default import DefaultViews
 
 class GridSectorViews(DefaultViews):
     def detail(self, request, model_id):
-        template = 'sector_detail.html'
+        template = 'config_sector_detail.html'
         sector_model = get_object_or_404(self.Model, pk=model_id)
 
         if request.POST:
