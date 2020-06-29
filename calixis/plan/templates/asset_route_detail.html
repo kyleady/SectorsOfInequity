@@ -3,15 +3,21 @@
 {% block content %}
 <div>
   <p>{{ model }}</p>
-  <strong>{{ model.days }}</strong>: <a href="{% url "plan-detail-detail-detail" model.days.id %}">
-    {{ model.days.get_description }}
-  </a>
-
-  <h3>Stability</h3>
-  {% for stability in model.stability.all %}
+  <p>
+    <strong>Time</strong>: <a href="{% url "plan-detail-detail-detail" model.days.id %}">
+      {{ model.days.get_description }}
+    </a>
+  </p>
+  <p>
+    <strong>Stability</strong>: <a href="{% url "plan-detail-detail-detail" model.stability.id %}">
+      {{ model.stability }}
+    </a>
+  </p>
+  <h3>Destinations</h3>
+  {% for target_system in model.target_systems.all %}
     <li>
-      <a href="{% url "plan-detail-detail-detail" stability.id %}">
-        Link {{ stability }}
+      <a href="{% url "plan-asset-system-detail" target_system.id %}">
+        {{ target_system }}
       </a>
     </li>
   {% endfor %}

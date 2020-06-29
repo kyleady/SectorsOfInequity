@@ -25,10 +25,9 @@ class Detail(models.Model):
             return "-"
 
     def get_description(self):
-        text = ','.join(inspiration.description for inspiration in self.inspirations.all())
-        text += str(len(self.inspirations.all()))
-        #for roll in self.get_rolls():
-        #    text = re.sub(r'\[\[[^\]]\]\]', roll, text)
+        text = '\n'.join(inspiration.description for inspiration in self.inspirations.all())
+        for roll in self.get_rolls():
+            text = re.sub(r'\[\[\d+\]\]', roll, text, count=1)
         return text
 
     rolls = models.CharField(validators=[int_list_validator], max_length=100)

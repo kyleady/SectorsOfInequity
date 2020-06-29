@@ -67,10 +67,11 @@ func NewDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Deta
 
   detail := newDetail(inspirations, perterbation.Rand)
   for _, inspiration := range inspirations {
-    for index, roll := range inspiration.InspirationRolls {
-      if index > 0 {
+    for _, roll := range inspiration.InspirationRolls {
+      if detail.RollsAsString != "" {
         detail.RollsAsString += ","
       }
+
       detail.RollsAsString += strconv.Itoa(roll.Roll(perterbation.Rand))
     }
   }
