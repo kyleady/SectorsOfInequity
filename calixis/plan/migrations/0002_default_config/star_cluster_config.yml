@@ -103,45 +103,8 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
-      name: Size
-      count:
-        - _type: Roll
-          _exists: true
-          base: 1
-          dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Dwarf
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Moderate
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Giant
+      _exists: true
+      name: Star Size
 
 - _type: Inspiration
   name: Vigorous
@@ -154,45 +117,8 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
-      name: Size
-      count:
-        - _type: Roll
-          _exists: true
-          base: 1
-          dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Dwarf
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Moderate
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Giant
+      _exists: true
+      name: Star Size
 
 - _type: Inspiration
   name: Luminous
@@ -220,45 +146,9 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
-      name: Size
-      count:
-        - _type: Roll
-          _exists: true
-          base: 1
-          dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Dwarf
+      _exists: true
+      name: Star Size
 
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Moderate
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Giant
 
 - _type: Inspiration
   name: Dull
@@ -286,45 +176,8 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
-      name: Size
-      count:
-        - _type: Roll
-          _exists: true
-          base: 1
-          dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Dwarf
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Moderate
-
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Giant
+      _exists: true
+      name: Star Size
 
 - _type: Inspiration
   name: Anomalous
@@ -371,68 +224,83 @@
 
   nested_inspirations:
     - _type: Inspiration_Nested
-      name: Size
-      count:
+      _exists: true
+      name: Star Size
+
+- _type: Inspiration_Nested
+  name: Star Size
+  count:
+    - _type: Roll
+      _exists: true
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
         - _type: Roll
           _exists: true
-          base: 1
           dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
+          base: 1
+      value:
+        _type: Inspiration
+        name: Dwarf
+        description: "A smaller variant of the star that has retained less mass in
+                      its orbit."
+        tags:
+          - _type: Tag
             _exists: true
-            name: Dwarf
+            name: Star Size
+        perterbation:
+          _type: Perterbation
+          name: Default Dwarf
+          zones:
+            - _type: Config_Zone
+              name: Default Dwarf
+              element_count:
+                - _type: Roll
+                  _exists: true
+                  base: -1
+                  dice_count: 0
 
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Moderate
+        description: "A shining example of this star class."
+        tags:
+          - _type: Tag
             _exists: true
-            name: Moderate
+            name: Star Size
 
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Giant
+        description: "A larger variant of the star that has gathered an immense
+                      amount of material in orbit."
+        tags:
+          - _type: Tag
             _exists: true
-            name: Giant
+            name: Star Size
 
-- _type: Inspiration
-  name: Dwarf
-  description: "A smaller variant of the star that has retained less mass in
-                its orbit."
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Star Size
-
-- _type: Inspiration
-  name: Moderate
-  description: "A shining example of this star class."
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Star Size
-
-- _type: Inspiration
-  name: Giant
-  description: "A larger variant of the star that has gathered an immense
-                amount of material in orbit."
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Star Size
+        perterbation:
+          _type: Perterbation
+          name: Default Giant
+          zones:
+            - _type: Config_Zone
+              name: Default Giant
+              element_count:
+                - _type: Roll
+                  _exists: true
+                  base: 1
+                  dice_count: 0
