@@ -80,8 +80,8 @@
           base: 2
       value:
         _type: Inspiration
-        name: Days
-        description: "[[0]]"
+        name: (1)
+        description: "[[0]] days"
         rolls:
           - _type: Roll
             _exists: true
@@ -96,8 +96,8 @@
           base: 2
       value:
         _type: Inspiration
-        name: Days
-        description: "[[0]]"
+        name: (2)
+        description: "[[0]] days"
         rolls:
           - _type: Roll
             _exists: true
@@ -112,8 +112,8 @@
           base: 2
       value:
         _type: Inspiration
-        name: Days
-        description: "[[0]]"
+        name: (3)
+        description: "[[0]] days"
         rolls:
           - _type: Roll
             _exists: true
@@ -128,8 +128,8 @@
           base: 2
       value:
         _type: Inspiration
-        name: Days
-        description: "[[0]]"
+        name: (4)
+        description: "[[0]] days"
         rolls:
           - _type: Roll
             _exists: true
@@ -144,8 +144,8 @@
           base: 1
       value:
         _type: Inspiration
-        name: Days
-        description: "[[0]]"
+        name: (5)
+        description: "[[0]] days"
         rolls:
           - _type: Roll
             _exists: true
@@ -160,8 +160,8 @@
           base: 1
       value:
         _type: Inspiration
-        name: Days
-        description: "[[0]]"
+        name: (6)
+        description: "[[0]] days"
         rolls:
           - _type: Roll
             _exists: true

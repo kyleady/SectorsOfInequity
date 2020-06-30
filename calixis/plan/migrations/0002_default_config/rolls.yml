@@ -91,6 +91,10 @@
   dice_count: 0
   dice_size: 0
 - _type: Roll
+  base: -1
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
   base: -2
   dice_count: 0
   dice_size: 0

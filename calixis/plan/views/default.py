@@ -43,7 +43,7 @@ class DefaultViews:
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        if self.custom.get('detail_template', False):
+        if self.custom.get('index_template', False):
             template = self.custom['index_template']
         else:
             template = 'index.html'
@@ -83,7 +83,7 @@ class DefaultViews:
         return render(request, template, context)
 
     def new(self, request):
-        if self.custom.get('detail_template', False):
+        if self.custom.get('new_template', False):
             template = self.custom['new_template']
         else:
             template = 'detail.html'
