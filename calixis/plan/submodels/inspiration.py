@@ -18,8 +18,8 @@ class Inspiration(models.Model):
         return self.name
 
     name = models.CharField(max_length=25)
-    description = models.CharField(default="-", max_length=1000)
-    rolls = models.ManyToManyField('Roll', related_name='rolls')
+    description = models.CharField(default="", max_length=1000)
+    roll_groups = models.ManyToManyField(Inspiration_Nested, related_name='roll_groups')
     perterbation = models.ForeignKey('Perterbation', null=True, blank=True, on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     nested_inspirations = models.ManyToManyField(Inspiration_Nested, related_name='nested_inspirations')

@@ -6,20 +6,23 @@ type Inspiration struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   PerterbationId sql.NullInt64 `sql:"perterbation_id"`
-  InspirationRolls []*Roll
+  InspirationRolls []*NestedInspiration
   NestedInspirations []*NestedInspiration
 }
 
 func LoadInspiration(manager *ConfigManager, inspiration *Inspiration) {
-  inspiration.InspirationRolls = FetchManyRolls(manager, inspiration.Id, inspiration.TableName(""), "rolls")
   exampleNestedInspiration := &NestedInspiration{}
-  manager.Client.FetchMany(&inspiration.NestedInspirations, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "inspirations", "", true)
-  totalWeightedInspirations := 0
+  manager.Client.FetchMany(&inspiration.NestedInspirations, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "nested_inspirations", "", false)
+  manager.Client.FetchMany(&inspiration.InspirationRolls, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "roll_groups", "", false)
   for _, nestedInspiration := range inspiration.NestedInspirations {
     nestedInspiration.CountRolls = FetchManyRolls(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "count")
     nestedInspiration.WeightedInspirations = FetchManyWeightedInspirations(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "weighted_inspirations")
     nestedInspiration.ConstituentParts = []*NestedInspiration{nestedInspiration}
-    totalWeightedInspirations += len(nestedInspiration.WeightedInspirations)
+  }
+
+  for _, rollGroups := range inspiration.InspirationRolls {
+    rollGroups.CountRolls = FetchManyRolls(manager, rollGroups.Id, rollGroups.TableName(""), "count")
+    rollGroups.ConstituentParts = []*NestedInspiration{rollGroups}
   }
 }
 

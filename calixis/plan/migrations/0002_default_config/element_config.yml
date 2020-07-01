@@ -569,15 +569,18 @@
                           battlefleet. Whichever side of the long-ago conflflict
                           that fifielded these vessels was decisively defeated, with
                           most or all of the hulks belonging to the same force. The
-                          graveyard consists of [[0]] ships, of which most or all have
+                          graveyard consists of {ships} ships, of which most or all have
                           been shattered beyond any value."
-            rolls:
-              - _type: Roll
-                _exists: true
-                base: 0
-                dice_count: 2
-                dice_size: 5
-                keep_highest: 0
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 0
+                    dice_count: 2
+                    dice_size: 5
+                    keep_highest: 0
         - _type: Weighted_Inspiration
           weights:
             - _type: Roll
@@ -625,16 +628,19 @@
                           this system, as evidenced by this gutted procession of
                           transports and cargo vessels. Their holds have been long
                           since emptied, but it is possible their attackers might
-                          have missed something of value. There are [[0]] ships in
+                          have missed something of value. There are {ships} ships in
                           the convoy, of which most or all remain intact enough to
                           allow boarding, but little else."
-            rolls:
-              - _type: Roll
-                _exists: true
-                base: 2
-                dice_count: 1
-                dice_size: 5
-                keep_highest: 0
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 2
+                    dice_count: 1
+                    dice_size: 5
+                    keep_highest: 0
         - _type: Weighted_Inspiration
           weights:
             - _type: Roll
@@ -646,18 +652,21 @@
             name: Skirmish
             description: "Elements from two different battleflfleets clashed here,
                           with each leaving behind a handful of their complement.
-                          The graveyard consists of [[0]] hulks. Roughly half of the
+                          The graveyard consists of {ships} hulks. Roughly half of the
                           ships came from each side. The fury of the conflflict all
                           ships involved, but the sturdy construction of warships
                           means that at least a few of them might be worth
                           salvaging."
-            rolls:
-              - _type: Roll
-                _exists: true
-                base: 3
-                dice_count: 1
-                dice_size: 5
-                keep_highest: 0
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 3
+                    dice_count: 1
+                    dice_size: 5
+                    keep_highest: 0
         - _type: Weighted_Inspiration
           weights:
             - _type: Roll
@@ -675,15 +684,18 @@
                           haunted realm, or the result of some more mundane
                           confusion, the graveyard consists of the twisted wreckage
                           of dozens of utterly ruined ships of all kinds, as well as
-                          [[0]] hulks in varying degrees of integrity. None of the
+                          {ships} hulks in varying degrees of integrity. None of the
                           hulks share an origin."
-            rolls:
-              - _type: Roll
-                _exists: true
-                base: 0
-                dice_count: 1
-                dice_size: 5
-                keep_highest: 0
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 0
+                    dice_count: 1
+                    dice_size: 5
+                    keep_highest: 0
   tags:
     - _type: Tag
       _exists: true

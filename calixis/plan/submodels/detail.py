@@ -25,12 +25,11 @@ class Detail(models.Model):
             return "-"
 
     def get_description(self):
-        text = '\n'.join(inspiration.description for inspiration in self.inspirations.all())
-        for roll in self.get_rolls():
-            text = re.sub(r'\[\[\d+\]\]', roll, text, count=1)
+        rolls = json.loads(self.rolls)
+        text = '\n'.join(inspiration.description for inspiration in self.inspirations.all()).format(**rolls)
         return text
 
-    rolls = models.CharField(validators=[int_list_validator], max_length=100)
+    rolls = models.CharField(max_length=100)
     inspirations = models.ManyToManyField('Inspiration', related_name='inspirations')
     nested_inspirations = models.ManyToManyField('Inspiration_Nested')
     parent_detail = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
