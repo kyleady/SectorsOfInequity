@@ -22,14 +22,10 @@
     {% endfor %}
   {% endif %}
 
-  {% if model.rolls %}
-    <h3>Rolls</h3>
-    {% for roll in model.get_rolls %}
-        <li>
-          {{ roll }}
-        </li>
-    {% endfor %}
-  {% endif %}
+  <h3>Rolls</h3>
+  <li>
+    {{ model.rolls }}
+  </li>
 </div>
 
 {% endblock %}

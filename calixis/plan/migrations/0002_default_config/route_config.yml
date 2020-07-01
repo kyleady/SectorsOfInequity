@@ -20,7 +20,11 @@
       value:
         _type: Inspiration
         name: Indirect Path
-        description: "Double the Duration."
+        description: "Increase the duration."
+        perterbation:
+          _type: Perterbation
+          _exists: true
+          name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -30,7 +34,11 @@
       value:
         _type: Inspiration
         name: Haunted Passage
-        description: "Double the Duration and add +10 to any rolls made for Warp Travel Hallucinations."
+        description: "Increase the duration and add +10 to any rolls made for Warp Travel Hallucinations."
+        perterbation:
+          _type: Perterbation
+          _exists: true
+          name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -40,7 +48,11 @@
       value:
         _type: Inspiration
         name: Surly Route
-        description: "Double the Duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
+        description: "Increase the duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
+        perterbation:
+          _type: Perterbation
+          _exists: true
+          name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -50,7 +62,11 @@
       value:
         _type: Inspiration
         name: Untraceable Trail
-        description: "Double the Duration and the route cannot be charted."
+        description: "Increase the duration and the route cannot be charted."
+        perterbation:
+          _type: Perterbation
+          _exists: true
+          name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -60,7 +76,11 @@
       value:
         _type: Inspiration
         name: Lightless Path
-        description: "Double the Duration and the Astronomican is obscured for the trip."
+        description: "Increase the duration and the Astronomican is obscured for the trip."
+        perterbation:
+          _type: Perterbation
+          _exists: true
+          name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -70,7 +90,11 @@
       value:
         _type: Inspiration
         name: Byzantine Route
-        description: "Triple the Duration."
+        description: "Increase the duration twice."
+        perterbation:
+          _type: Perterbation
+          _exists: true
+          name: Increase Days by 200%
   days_inspirations:
     - _type: Weighted_Inspiration
       weights:
@@ -81,13 +105,16 @@
       value:
         _type: Inspiration
         name: (1)
-        description: "[[0]] days"
-        rolls:
-          - _type: Roll
-            _exists: true
-            base: 0
-            dice_count: 1
-            dice_size: 5
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Nested
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                base: 0
+                dice_count: 1
+                dice_size: 5
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -97,13 +124,16 @@
       value:
         _type: Inspiration
         name: (2)
-        description: "[[0]] days"
-        rolls:
-          - _type: Roll
-            _exists: true
-            base: 5
-            dice_count: 1
-            dice_size: 5
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Nested
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                base: 5
+                dice_count: 1
+                dice_size: 5
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -113,13 +143,16 @@
       value:
         _type: Inspiration
         name: (3)
-        description: "[[0]] days"
-        rolls:
-          - _type: Roll
-            _exists: true
-            base: 10
-            dice_count: 2
-            dice_size: 10
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Nested
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                base: 10
+                dice_count: 2
+                dice_size: 10
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -129,13 +162,16 @@
       value:
         _type: Inspiration
         name: (4)
-        description: "[[0]] days"
-        rolls:
-          - _type: Roll
-            _exists: true
-            base: 50
-            dice_count: 3
-            dice_size: 10
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Nested
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                base: 50
+                dice_count: 3
+                dice_size: 10
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -145,13 +181,16 @@
       value:
         _type: Inspiration
         name: (5)
-        description: "[[0]] days"
-        rolls:
-          - _type: Roll
-            _exists: true
-            base: 150
-            dice_count: 4
-            dice_size: 10
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Nested
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                base: 150
+                dice_count: 4
+                dice_size: 10
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -161,10 +200,211 @@
       value:
         _type: Inspiration
         name: (6)
-        description: "[[0]] days"
-        rolls:
-          - _type: Roll
-            _exists: true
-            base: 250
-            dice_count: 5
-            dice_size: 10
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Nested
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                base: 250
+                dice_count: 5
+                dice_size: 10
+- _type: Perterbation
+  name: Increase Days by 100%
+  route:
+    _type: Config_Route
+    name: Increase Days by 100%
+    days_inspirations:
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (1)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 0
+                  dice_count: 1
+                  dice_size: 5
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (2)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 5
+                  dice_count: 1
+                  dice_size: 5
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (3)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 10
+                  dice_count: 2
+                  dice_size: 10
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (4)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 50
+                  dice_count: 3
+                  dice_size: 10
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (5)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 150
+                  dice_count: 4
+                  dice_size: 10
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (6)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 250
+                  dice_count: 5
+                  dice_size: 10
+- _type: Perterbation
+  name: Increase Days by 200%
+  route:
+    _type: Config_Route
+    name: Increase Days by 200%
+    days_inspirations:
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (1)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 0
+                  dice_count: 1
+                  dice_size: 5
+                - _type: Roll
+                  _exists: true
+                  base: 0
+                  dice_count: 1
+                  dice_size: 5
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (2)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 5
+                  dice_count: 1
+                  dice_size: 5
+                - _type: Roll
+                  _exists: true
+                  base: 5
+                  dice_count: 1
+                  dice_size: 5
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (3)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 10
+                  dice_count: 2
+                  dice_size: 10
+                - _type: Roll
+                  _exists: true
+                  base: 10
+                  dice_count: 2
+                  dice_size: 10
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (4)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 50
+                  dice_count: 3
+                  dice_size: 10
+                - _type: Roll
+                  _exists: true
+                  base: 50
+                  dice_count: 3
+                  dice_size: 10
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (5)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 150
+                  dice_count: 4
+                  dice_size: 10
+                - _type: Roll
+                  _exists: true
+                  base: 150
+                  dice_count: 4
+                  dice_size: 10
+      - _type: Weighted_Inspiration
+        value:
+          _type: Inspiration
+          name: (6)
+          roll_groups:
+            - _type: Inspiration_Nested
+              name: days
+              count:
+                - _type: Roll
+                  _exists: true
+                  base: 250
+                  dice_count: 5
+                  dice_size: 10
+                - _type: Roll
+                  _exists: true
+                  base: 250
+                  dice_count: 5
+                  dice_size: 10

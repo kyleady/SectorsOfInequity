@@ -2,7 +2,8 @@ package asset
 
 import "database/sql"
 import "math/rand"
-import "strconv"
+import "fmt"
+import "strings"
 
 import "screamingvortex/config"
 import "screamingvortex/utilities"
@@ -66,15 +67,20 @@ func NewDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Deta
   }
 
   detail := newDetail(inspirations, perterbation.Rand)
+  stackedRollGroups := []*config.NestedInspiration{}
   for _, inspiration := range inspirations {
-    for _, roll := range inspiration.InspirationRolls {
-      if detail.RollsAsString != "" {
-        detail.RollsAsString += ","
-      }
-
-      detail.RollsAsString += strconv.Itoa(roll.Roll(perterbation.Rand))
-    }
+    stackedRollGroups = config.StackNestedInspirations(inspiration.InspirationRolls, stackedRollGroups)
   }
+
+  rollsAsKvPairs := []string{}
+  for _, rollGroup := range stackedRollGroups {
+    rollsAsKvPairs = append(rollsAsKvPairs, fmt.Sprintf("\"%s\":%d",
+      rollGroup.Name,
+      config.RollAll(rollGroup.CountRolls, perterbation.Rand),
+    ))
+  }
+
+  detail.RollsAsString = fmt.Sprintf("{%s}", strings.Join(rollsAsKvPairs, ","))
 
   stackedNestedInspirations := []*config.NestedInspiration{}
   for _, inspiration := range inspirations {
