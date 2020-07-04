@@ -1,0 +1,200 @@
+
+- _type: Inspiration
+  name: Starship Graveyard
+  description: "The remains of old naval engagements and lost expeditions
+                can be found drifting through the systems that the longago
+                admirals and explorers once in charge of these ruined
+                flotillas had sought to claim. The remains of an invasion
+                fleet pounded to scrap by the system’s defenders could circle
+                the system’s rim, or a collection of scout ships might hover
+                just beyond the orbit of a planet where they could have
+                replenished their failing supplies. More often, determining
+                the origin of the vessels involved is impossible, after centuries
+                of degradation and the attention of passing scavengers have
+                long since stripped away anything recognisable from their
+                hulls. Still, taking time to search the wreckage of a Starship
+                Graveyard proves profitable as often as not. Supplies such
+                as fuel, spare plating, or conduits can be found intact with
+                some frequency, and some hulks contain full cargo holds, or
+                even intact Ship Components of great worth.
+
+                A Starship Graveyard can consist of anywhere from three
+                to twenty or more vessels, although most of them are far
+                beyond any attempts at salvage. The origin of these ships
+                is only rarely consistent with any star-faring inhabitation
+                a System might have. A successful defence would allow
+                them full salvage of any losses, and an intact civilisation
+                usually means there have been no unsuccessful defences. To
+                determine the make-up of the fleet (or fleets) involved, roll
+                on Table 1–5: Starship Graveyard Origins.
+
+                The nature of the race or races that produced the ships
+                is left to the GM’s discretion. Game Masters can use
+                the ships from pages 194–196 of ROGUE TRADER Core
+                Rulebook, which usually indicates a fleet of human (but
+                not necessarily Imperial) construction, or, if they have
+                access to volumes such as BATTLEFLEET KORONUS, they
+                can find sundry strange and deadly xenos ships there. A
+                Starship Graveyard contains 1d10+2 Archeotech Cache or
+                Xenos Ruins Resources, each of which has an Abundance
+                of 25+2d10 (see page 27). There might even be a mix
+                of Archeotech Cache and Xenos Ruins Resources, if this
+                stellar grave site is an ancient battlefield where multiple
+                species met in cataclysmic conflict.
+
+                Any individual vessel or conglomeration of ships can be
+                treated as a Derelict Vessel Encounter Site (see pages 59–60),
+                should the Explorers choose to board it."
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      name: Origins
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
+          value:
+            _type: Inspiration
+            name: Crushed Defence Force/Routed Invasion
+            description: "The wreckage is all that remains of a defeated
+                          battlefleet. Whichever side of the long-ago conflflict
+                          that fifielded these vessels was decisively defeated, with
+                          most or all of the hulks belonging to the same force. The
+                          graveyard consists of {ships} ships, of which most or all have
+                          been shattered beyond any value."
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 0
+                    dice_count: 2
+                    dice_size: 5
+                    keep_highest: 0
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 5
+          value:
+            _type: Inspiration
+            name: Fleet Engagement
+            description: "A massive conflflict once raged here, as evidenced by the
+                          abundance of battle-scarred hulls left behind by both
+                          sides. The graveyard consists of 1d10+6 hulks, and can
+                          also include vast fifields of unexploded mines, spent
+                          volleys of torpedoes, or the drifting wings of attack
+                          craft. Roughly half of the ships and materiel expended
+                          came from each side. The fury of the conflflict consumed
+                          much of value, but the sturdy construction of warships
+                          means that at least a few of them might be worth
+                          salvaging."
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 15
+          value:
+            _type: Inspiration
+            name: Lost Explorers
+            description: "These ships were not lost to enemy action, but to
+                          overextended supply vaults, or the failure of long
+                          suffering vital systems. The expedition is unlikely to
+                          include as many as even half a dozen ships, but few (if
+                          any) of them have deteriorated enough to prohibit salvage
+                          efforts."
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 30
+          value:
+            _type: Inspiration
+            name: Plundered Convoy
+            description: "A lost shipping lane of some kind might have once crossed
+                          this system, as evidenced by this gutted procession of
+                          transports and cargo vessels. Their holds have been long
+                          since emptied, but it is possible their attackers might
+                          have missed something of value. There are {ships} ships in
+                          the convoy, of which most or all remain intact enough to
+                          allow boarding, but little else."
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 2
+                    dice_count: 1
+                    dice_size: 5
+                    keep_highest: 0
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 25
+          value:
+            _type: Inspiration
+            name: Skirmish
+            description: "Elements from two different battleflfleets clashed here,
+                          with each leaving behind a handful of their complement.
+                          The graveyard consists of {ships} hulks. Roughly half of the
+                          ships came from each side. The fury of the conflflict all
+                          ships involved, but the sturdy construction of warships
+                          means that at least a few of them might be worth
+                          salvaging."
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 3
+                    dice_count: 1
+                    dice_size: 5
+                    keep_highest: 0
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              dice_count: 0
+              base: 10
+          value:
+            _type: Inspiration
+            name: Unknown Provenance
+            description: "The bizarre assortment of different vessels drifting past
+                          defies easy explanation. It is likely to bring to mind the
+                          eerie legends of the Processional of the Damned, where
+                          broken ships from across the Expanse arrive like spectres
+                          in some strange afterlife. Whether associated with that
+                          haunted realm, or the result of some more mundane
+                          confusion, the graveyard consists of the twisted wreckage
+                          of dozens of utterly ruined ships of all kinds, as well as
+                          {ships} hulks in varying degrees of integrity. None of the
+                          hulks share an origin."
+            roll_groups:
+              - _type: Inspiration_Nested
+                name: ships
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 0
+                    dice_count: 1
+                    dice_size: 5
+                    keep_highest: 0
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Element

@@ -1,0 +1,24 @@
+- _type: Inspiration
+  name: Planet
+  description: "It is said that the Imperium is comprised of a million different
+                worlds, across the galaxy. Though the precise number rises
+                and falls with each righteous crusade launched, or warzone
+                lost to the enemy, it is incontestable that the reach of Mankind
+                spans the galaxy across untold dominions, united under the
+                rule of the God-Emperor. There are some who would take
+                this to mean that the ambitions of Rogue Traders are folly,
+                for claiming lasting glory across such a wide dominion is
+                impossible for a mortal man. Perhaps unsurprisingly, these
+                melancholy types are rarely granted the rights of the Warrant
+                of Trade, for such power belongs in the hands of those who see
+                more clearly. Rogue Traders who understand the true nature of
+                power rejoice with each new world they bring into the God-
+                Emperor’s dominion, be it ever so small and benighted—for
+                to raise the banner of empire over a million worlds, it is first
+                necessary to raise that banner across each and every one.
+                Planets are generated with the aid of the Planet Creation
+                step of the World Generator, on page 19."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Element
