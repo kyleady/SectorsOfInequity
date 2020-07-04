@@ -147,7 +147,14 @@ func manyTableAndColumnNames(parentTableName string, childTableName string, valu
     tableBaseName = childTableName
   }
 
-  return fmt.Sprintf("%s_%s", tableBaseName, valueName), fmt.Sprintf("%s_id", parentTableNameWithoutAppName), fmt.Sprintf("%s_id", childTableNameWithoutAppName)
+  parentPrefix := ""
+  childPrefix := ""
+  if parentTableName == childTableName {
+    parentPrefix = "from_"
+    childPrefix = "to_"
+  }
+
+  return fmt.Sprintf("%s_%s", tableBaseName, valueName), fmt.Sprintf("%s%s_id", parentPrefix, parentTableNameWithoutAppName), fmt.Sprintf("%s%s_id", childPrefix, childTableNameWithoutAppName)
 }
 
 func manyQuery(parentTableName string, childTableName string, valueName string, reverseAccess bool) string {
