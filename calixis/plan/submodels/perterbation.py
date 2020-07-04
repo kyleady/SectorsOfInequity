@@ -19,3 +19,4 @@ class Perterbation(models.Model):
     route = models.ForeignKey('Config_Route', null=True, blank=True, on_delete=models.SET_NULL)
     zones = models.ManyToManyField('Config_Zone', related_name='zones')
     element = models.ForeignKey('Config_Element', null=True, blank=True, on_delete=models.SET_NULL)
+    satellite = models.ForeignKey('Config_Element', null=True, blank=True, on_delete=models.SET_NULL, related_name='perterbation_satellites')

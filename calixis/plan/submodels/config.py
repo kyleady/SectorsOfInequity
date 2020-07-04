@@ -21,6 +21,8 @@ class BaseConfig(models.Model):
 class Config_Element(BaseConfig):
     type_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='type_inspirations')
     spacing = models.ManyToManyField('Roll', related_name='spacing')
+    satellite_count = models.ManyToManyField('Roll', related_name='satellite_count')
+    satellite_extra = models.ManyToManyField('Weighted_Inspiration', related_name='satellite_extra')
 
 class Config_Zone(BaseConfig):
     zone = models.CharField(null=True, blank=True, max_length=25)

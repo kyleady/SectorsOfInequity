@@ -6,5 +6,14 @@
   <strong>Type</strong>: <a href="{% url "plan-detail-detail-detail" model.type.id %}">
     {{ model.type }}
   </a>
+
+  <h3>Satellites</h3>
+  {% for satellite in model.satellites.all %}
+      <li>
+        <a href="{% url "plan-asset-element-detail" satellite.id %}">
+          {{ satellite }}
+        </a>
+      </li>
+  {% endfor %}
 </div>
 {% endblock %}
