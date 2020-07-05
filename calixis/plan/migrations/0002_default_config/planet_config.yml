@@ -22,3 +22,467 @@
     - _type: Tag
       _exists: true
       name: System Element
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      _exists: true
+      name: Body
+      tags__name: Planet
+  perterbation:
+    _type: Perterbation
+    name: Planet
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 9
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: No Feature
+            tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 3
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Large Asteroid
+            tags__name: Planet
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 6
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Lesser Moon
+            tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moon
+            tags__name: Gas Giant
+
+
+
+- _type: Tag
+  name: Planet
+
+- _type: Inspiration_Nested
+  name: Body
+  count:
+    - _type: Roll
+      _exists: true
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Low Mass
+        description: "The world is even lower in mass than its small size would
+                      suggest. It is likely comprised of light materials, or it
+                      has large pockets of trapped gas making up much of its
+                      volume."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            name: Gravity
+            count:
+              - _type: Roll
+                _exists: true
+                base: 1
+                dice_count: 0
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 9
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Low Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Normal Gravity
+                  tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Small
+        description: "This world lacks the mass and size to support significant
+                      gravity or resources."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            name: Gravity
+            count:
+              - _type: Roll
+                _exists: true
+                base: 1
+                dice_count: 0
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 7
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Low Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 3
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Normal Gravity
+                  tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Small and Dense
+        description: "The shrunken silhouette of this Planet belies the strength
+                      of its gravity well and the richness of its crust.
+                      Generate Resources and Environments as if the world was
+                      Small."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            name: Gravity
+            count:
+              - _type: Roll
+                _exists: true
+                base: 1
+                dice_count: 0
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Low Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 6
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Normal Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: High Gravity
+                  tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Large
+        description: "Worlds of this size can range across a vast spectrum of
+                      possible types."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            name: Gravity
+            count:
+              - _type: Roll
+                _exists: true
+                base: 1
+                dice_count: 0
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Low Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 6
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Normal Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: High Gravity
+                  tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Large and Dense
+        description: "Though impressive in volume, the mass of this world is, in
+                      fact, compressed significantly."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            count:
+              - _type: Roll
+                _exists: true
+                base: 1
+                dice_count: 0
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 3
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Normal Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 7
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: High Gravity
+                  tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Vast
+        description: "Huge and voluminous, worlds of this type strain the upper
+                      edges of the possible size for a single world. Such
+                      Planets tend to be of middling density, as they are
+                      already more massive than is common."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            count:
+              - _type: Roll
+                _exists: true
+                base: 1
+                dice_count: 0
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 4
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Normal Gravity
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    base: 6
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: High Gravity
+                  tags__name: Planet
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+
+- _type: Inspiration
+  name: Low Gravity
+  description: "It follows all the rules for Low Gravity Worlds (see page 269 of
+                the ROGUE TRADER Core Rulebook)."
+  perterbation:
+    _type: Perterbation
+    name: Low Gravity
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: -3
+          dice_size: 5
+          dice_count: 1
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: No Feature
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Moon
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+
+- _type: Inspiration
+  name: Normal Gravity
+  description: "This Planet’s gravity is roughly Terran Standard."
+  perterbation:
+    _type: Perterbation
+    name: Normal Gravity
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: -2
+          dice_size: 5
+          dice_count: 1
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+
+- _type: Inspiration
+  name: High Gravity
+  description: "This Planet follows all the rules for High Gravity Worlds (see
+                page 269 of the ROGUE TRADER Core Rulebook)."
+  perterbation:
+    _type: Perterbation
+    name: High Gravity
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: -1
+          dice_size: 5
+          dice_count: 1
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: No Feature
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Moon
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+
+- _type: Inspiration
+  name: Large Asteroid
+  description: "An asteroid of unusual size has been captured by the Planet’s
+                gravity well, and now occupies a stable orbit around it. It is
+                just large enough to be noted by an orbital survey, but not
+                enough to be seen from the Planet’s surface without visual
+                enhancement."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet

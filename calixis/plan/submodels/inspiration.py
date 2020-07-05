@@ -6,6 +6,7 @@ class Inspiration_Nested(models.Model):
     name = models.CharField(max_length=25)
     count = models.ManyToManyField('Roll', related_name='count')
     weighted_inspirations = models.ManyToManyField('Weighted_Inspiration')
+    tags = models.ManyToManyField('Tag')
 
 class Inspiration(models.Model):
     def __repr__(self):

@@ -501,6 +501,11 @@
                 cannot have a higher Planetary Body than the world around which
                 it orbits. In addition, a moon never generates its own Orbital
                 Features."
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      _exists: true
+      name: Body
+      tags__name: Planet
   tags:
     - _type: Tag
       _exists: true

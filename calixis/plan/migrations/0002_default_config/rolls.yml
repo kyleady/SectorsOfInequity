@@ -124,6 +124,14 @@
   dice_count: 1
   dice_size: 5
 - _type: Roll
+  base: -2
+  dice_count: 1
+  dice_size: 5
+- _type: Roll
+  base: -1
+  dice_count: 1
+  dice_size: 5
+- _type: Roll
   base: 0
   dice_count: 2
   dice_size: 5
