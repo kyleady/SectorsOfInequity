@@ -16,12 +16,13 @@ class BaseAsset(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField(default="-", max_length=25)
+    name = models.CharField(max_length=75)
     parent = None
 
 class Asset_Element(BaseAsset):
     type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='type')
     distance = models.IntegerField()
+    satellites = models.ManyToManyField('Asset_Element', related_name='element_satellites')
 
 class Asset_Zone(BaseAsset):
     distance = models.SmallIntegerField()

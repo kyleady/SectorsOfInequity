@@ -50,7 +50,7 @@ func (detail *Detail) GetName() string {
   }
 }
 
-func newDetail(inspirations []*config.Inspiration, rRand *rand.Rand) *Detail {
+func baseDetail(inspirations []*config.Inspiration, rRand *rand.Rand) *Detail {
   detail := new(Detail)
   detail.Inspirations = inspirations
   detail.RollsAsString = ""
@@ -60,13 +60,25 @@ func newDetail(inspirations []*config.Inspiration, rRand *rand.Rand) *Detail {
   return detail
 }
 
+func NewSatelliteDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+  return newDetail(inspirationIds, perterbation, true)
+}
+
 func NewDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+  return newDetail(inspirationIds, perterbation, false)
+}
+
+func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSatellite bool) (*Detail, *config.Perterbation) {
   inspirations := make([]*config.Inspiration, len(inspirationIds))
   for i, inspirationId := range inspirationIds {
-    inspirations[i], perterbation = perterbation.AddInspiration(inspirationId)
+    if isSatellite {
+      inspirations[i], perterbation = perterbation.AddSatellitedInspiration(inspirationId)
+    } else {
+      inspirations[i], perterbation = perterbation.AddInspiration(inspirationId)
+    }
   }
 
-  detail := newDetail(inspirations, perterbation.Rand)
+  detail := baseDetail(inspirations, perterbation.Rand)
   stackedRollGroups := []*config.NestedInspiration{}
   for _, inspiration := range inspirations {
     stackedRollGroups = config.StackNestedInspirations(inspiration.InspirationRolls, stackedRollGroups)
@@ -106,6 +118,15 @@ func NewDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Deta
   }
 
   return detail, perterbation
+}
+
+func RollSatelliteDetail(weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+  if len(weightedInspirations) == 0 {
+    return nil, perterbation
+  }
+
+  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation.Rand)
+  return NewSatelliteDetail(inspirationIds, perterbation)
 }
 
 func RollDetail(weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {

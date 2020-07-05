@@ -124,8 +124,21 @@
   dice_count: 1
   dice_size: 5
 - _type: Roll
+  base: -2
+  dice_count: 1
+  dice_size: 5
+- _type: Roll
+  base: -1
+  dice_count: 1
+  dice_size: 5
+- _type: Roll
   base: 0
   dice_count: 2
+  dice_size: 5
+  keep_highest: 0
+- _type: Roll
+  base: 3
+  dice_count: 3
   dice_size: 5
   keep_highest: 0
 - _type: Roll
@@ -141,6 +154,18 @@
   dice_size: 6
   keep_highest: -1
   base: 0
+- _type: Roll
+  base: -5
+  dice_count: 1
+  dice_size: 10
+- _type: Roll
+  base: -3
+  dice_count: 1
+  dice_size: 10
+- _type: Roll
+  base: 2
+  dice_count: 1
+  dice_size: 10
 - _type: Roll
   base: 10
   dice_count: 2

@@ -16,6 +16,7 @@
         _type: Inspiration
         _exists: true
         name: No Feature
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -26,6 +27,7 @@
         _type: Inspiration
         _exists: true
         name: Asteroid Cluster
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -36,6 +38,7 @@
         _type: Inspiration
         _exists: true
         name: Dust Cloud
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -46,6 +49,7 @@
         _type: Inspiration
         _exists: true
         name: Gas Giant
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -56,6 +60,7 @@
         _type: Inspiration
         _exists: true
         name: Gravity Riptide
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -66,6 +71,7 @@
         _type: Inspiration
         _exists: true
         name: Planet
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -76,6 +82,7 @@
         _type: Inspiration
         _exists: true
         name: Radiation Bursts
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -86,6 +93,7 @@
         _type: Inspiration
         _exists: true
         name: Solar Flares
+        tags__name: System Element
 
 - _type: Config_Element
   name: Default PB
@@ -105,6 +113,7 @@
         _type: Inspiration
         _exists: true
         name: No Feature
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -115,6 +124,7 @@
         _type: Inspiration
         _exists: true
         name: Asteroid Belt
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -125,6 +135,7 @@
         _type: Inspiration
         _exists: true
         name: Asteroid Cluster
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -135,6 +146,7 @@
         _type: Inspiration
         _exists: true
         name: Derelict Station
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -145,6 +157,7 @@
         _type: Inspiration
         _exists: true
         name: Dust Cloud
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -155,6 +168,7 @@
         _type: Inspiration
         _exists: true
         name: Gravity Riptide
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -165,6 +179,7 @@
         _type: Inspiration
         _exists: true
         name: Planet
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -175,6 +190,7 @@
         _type: Inspiration
         _exists: true
         name: Starship Graveyard
+        tags__name: System Element
 
 - _type: Config_Element
   name: Default OR
@@ -194,6 +210,7 @@
         _type: Inspiration
         _exists: true
         name: No Feature
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -204,6 +221,7 @@
         _type: Inspiration
         _exists: true
         name: Asteroid Belt
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -214,6 +232,7 @@
         _type: Inspiration
         _exists: true
         name: Asteroid Cluster
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -224,6 +243,7 @@
         _type: Inspiration
         _exists: true
         name: Derelict Station
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -234,6 +254,7 @@
         _type: Inspiration
         _exists: true
         name: Dust Cloud
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -244,6 +265,7 @@
         _type: Inspiration
         _exists: true
         name: Gas Giant
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -254,6 +276,7 @@
         _type: Inspiration
         _exists: true
         name: Gravity Riptide
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -264,6 +287,7 @@
         _type: Inspiration
         _exists: true
         name: Planet
+        tags__name: System Element
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -274,6 +298,7 @@
         _type: Inspiration
         _exists: true
         name: Starship Graveyard
+        tags__name: System Element
 
 - _type: Tag
   name: System Element
@@ -332,376 +357,6 @@
       name: System Element
 
 - _type: Inspiration
-  name: Derelict Station
-  description: "The remains of orbital habitats, system defence stations, and deep
-                space monitoring outposts can be found drifting through many
-                systems. Even those that have never developed life of their own
-                might house the relics of past explorers and would-be colonists.
-                In systems with an active void-faring civilisation, such stations
-                tend to be either relics of a surpassed level of technology, or
-                a barely intact shell, abandoned to rising construction costs or
-                disastrous systems failure. Whatever their origin, even the gutted
-                remnants of a space station could contain valuable technology, or
-                useful records on those who constructed it.
-
-                If there is an active civilisation of the appropriate
-                Development level in the System, then the Derelict Station
-                most likely belongs to them. If the System is devoid of past or
-                present life, roll on Table 1–4: Derelict Station Origins to
-                determine its creators and original purpose and then generate
-                1d5–1 (to a minimum of 0) Archeotech Cache or Xenos Ruins
-                Resources aboard the station (see page 27). If the Station is
-                fired upon in ship combat or suffers collateral damage from
-                some other source, treat it as having 10 Armour, between
-                4d10 points of Hull Integrity, and no other defences. For the
-                purposes of any Endeavours to extract the Resources aboard a
-                Derelict Station, it can be treated as a Derelict Vessel Encounter
-                Site (see pages 59–60). At the Game Master’s discretion,
-                the Explorers might be required to board the lonely station
-                themselves to locate these resources, walking through the
-                shadowy halls as voracious eyes gleam from the darkness."
-  nested_inspirations:
-    - _type: Inspiration_Nested
-      name: Origins
-      count:
-        - _type: Roll
-          _exists: true
-          base: 1
-          dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: Egarian Void-maze
-            description: "The station is a bafflfling construct of crystals with no
-                          readily apparent purpose or function, but built along
-                          similar geometrical principles as the dead cities of the
-                          Egarian Dominion."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: Eldar Orrery
-            description: "The station is constructed of the smooth, bone-like
-                          material from which the Eldar make their ships, and is
-                          riddled with cloistered cells. Examination by a Navigator
-                          or psyker hints at a long-vanished power permeating the
-                          structure."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 5
-          value:
-            _type: Inspiration
-            name: Eldar Gate
-            description: "This vast Eldar contraption resembles nothing so much as
-                          the frame of an enormous door, but only the empty void
-                          shows through it. No amount of searching yields a sign of
-                          its purpose or function."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: Ork Rok
-            description: "From the outside, this “station” appears to be nothing
-                          more than a lonely, out of the way asteroid. Despite its
-                          appearance, it has been thoroughly hollowed out, and
-                          fifilled with dubious Orky technology. Some of the
-                          technology might even have worked at one point."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: STC Defence Station
-            description: "The core of the station is based off a standard pattern
-                          derived from Standard Template Construct technology, like
-                          countless others throughout the Imperium. What remains of
-                          the banks of weapon batteries and torpedo bays indicates
-                          that it was once intended to safeguard a human colony from
-                          attack."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: STC Monitor Station
-            description: "The core of the station is based off a standard pattern
-                          derived from Standard Template Construct technology, like
-                          countless others throughout the Imperium. Despite its age,
-                          the hull still bristles with auger arrays and reception
-                          panels that indicate its former use as a communications or
-                          intelligence hub."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 11
-          value:
-            _type: Inspiration
-            name: Stryxis Collection
-            description: "Calling this accumulation of wreckage and junk a space
-                          station would insult an Ork Mek, much less a shipwright of
-                          the Adeptus Mechanicus. The only explanation for its
-                          accretion comes from the vox-beacon broadcasting some kind
-                          of territorial claim by the Stryxis."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 9
-          value:
-            _type: Inspiration
-            name: Xenos Defence Station
-            description: "The architecture of the station does not match any
-                          examples yet encountered, but it is clearly inhuman in
-                          origin. Though the technology that comprises it is
-                          strange, there is no mistaking the intended purpose of its
-                          decaying armaments."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: Xenos Monitor Station
-            description: "The architecture of the station does not match any
-                          examples yet encountered, but it is clearly inhuman in
-                          origin. Its purpose is hard to ascertain for sure, but
-                          some of the arcane devices that line its hull resemble vox
-                          hubs and other necessities for a deep space monitor
-                          station."
-  tags:
-    - _type: Tag
-      _exists: true
-      name: System Element
-
-- _type: Inspiration
-  name: Starship Graveyard
-  description: "The remains of old naval engagements and lost expeditions
-                can be found drifting through the systems that the longago
-                admirals and explorers once in charge of these ruined
-                flotillas had sought to claim. The remains of an invasion
-                fleet pounded to scrap by the system’s defenders could circle
-                the system’s rim, or a collection of scout ships might hover
-                just beyond the orbit of a planet where they could have
-                replenished their failing supplies. More often, determining
-                the origin of the vessels involved is impossible, after centuries
-                of degradation and the attention of passing scavengers have
-                long since stripped away anything recognisable from their
-                hulls. Still, taking time to search the wreckage of a Starship
-                Graveyard proves profitable as often as not. Supplies such
-                as fuel, spare plating, or conduits can be found intact with
-                some frequency, and some hulks contain full cargo holds, or
-                even intact Ship Components of great worth.
-
-                A Starship Graveyard can consist of anywhere from three
-                to twenty or more vessels, although most of them are far
-                beyond any attempts at salvage. The origin of these ships
-                is only rarely consistent with any star-faring inhabitation
-                a System might have. A successful defence would allow
-                them full salvage of any losses, and an intact civilisation
-                usually means there have been no unsuccessful defences. To
-                determine the make-up of the fleet (or fleets) involved, roll
-                on Table 1–5: Starship Graveyard Origins.
-
-                The nature of the race or races that produced the ships
-                is left to the GM’s discretion. Game Masters can use
-                the ships from pages 194–196 of ROGUE TRADER Core
-                Rulebook, which usually indicates a fleet of human (but
-                not necessarily Imperial) construction, or, if they have
-                access to volumes such as BATTLEFLEET KORONUS, they
-                can find sundry strange and deadly xenos ships there. A
-                Starship Graveyard contains 1d10+2 Archeotech Cache or
-                Xenos Ruins Resources, each of which has an Abundance
-                of 25+2d10 (see page 27). There might even be a mix
-                of Archeotech Cache and Xenos Ruins Resources, if this
-                stellar grave site is an ancient battlefield where multiple
-                species met in cataclysmic conflict.
-
-                Any individual vessel or conglomeration of ships can be
-                treated as a Derelict Vessel Encounter Site (see pages 59–60),
-                should the Explorers choose to board it."
-  nested_inspirations:
-    - _type: Inspiration_Nested
-      name: Origins
-      count:
-        - _type: Roll
-          _exists: true
-          base: 1
-          dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: Crushed Defence Force/Routed Invasion
-            description: "The wreckage is all that remains of a defeated
-                          battlefleet. Whichever side of the long-ago conflflict
-                          that fifielded these vessels was decisively defeated, with
-                          most or all of the hulks belonging to the same force. The
-                          graveyard consists of {ships} ships, of which most or all have
-                          been shattered beyond any value."
-            roll_groups:
-              - _type: Inspiration_Nested
-                name: ships
-                count:
-                  - _type: Roll
-                    _exists: true
-                    base: 0
-                    dice_count: 2
-                    dice_size: 5
-                    keep_highest: 0
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 5
-          value:
-            _type: Inspiration
-            name: Fleet Engagement
-            description: "A massive conflflict once raged here, as evidenced by the
-                          abundance of battle-scarred hulls left behind by both
-                          sides. The graveyard consists of 1d10+6 hulks, and can
-                          also include vast fifields of unexploded mines, spent
-                          volleys of torpedoes, or the drifting wings of attack
-                          craft. Roughly half of the ships and materiel expended
-                          came from each side. The fury of the conflflict consumed
-                          much of value, but the sturdy construction of warships
-                          means that at least a few of them might be worth
-                          salvaging."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: Lost Explorers
-            description: "These ships were not lost to enemy action, but to
-                          overextended supply vaults, or the failure of long
-                          suffering vital systems. The expedition is unlikely to
-                          include as many as even half a dozen ships, but few (if
-                          any) of them have deteriorated enough to prohibit salvage
-                          efforts."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 30
-          value:
-            _type: Inspiration
-            name: Plundered Convoy
-            description: "A lost shipping lane of some kind might have once crossed
-                          this system, as evidenced by this gutted procession of
-                          transports and cargo vessels. Their holds have been long
-                          since emptied, but it is possible their attackers might
-                          have missed something of value. There are {ships} ships in
-                          the convoy, of which most or all remain intact enough to
-                          allow boarding, but little else."
-            roll_groups:
-              - _type: Inspiration_Nested
-                name: ships
-                count:
-                  - _type: Roll
-                    _exists: true
-                    base: 2
-                    dice_count: 1
-                    dice_size: 5
-                    keep_highest: 0
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 25
-          value:
-            _type: Inspiration
-            name: Skirmish
-            description: "Elements from two different battleflfleets clashed here,
-                          with each leaving behind a handful of their complement.
-                          The graveyard consists of {ships} hulks. Roughly half of the
-                          ships came from each side. The fury of the conflflict all
-                          ships involved, but the sturdy construction of warships
-                          means that at least a few of them might be worth
-                          salvaging."
-            roll_groups:
-              - _type: Inspiration_Nested
-                name: ships
-                count:
-                  - _type: Roll
-                    _exists: true
-                    base: 3
-                    dice_count: 1
-                    dice_size: 5
-                    keep_highest: 0
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: Unknown Provenance
-            description: "The bizarre assortment of different vessels drifting past
-                          defies easy explanation. It is likely to bring to mind the
-                          eerie legends of the Processional of the Damned, where
-                          broken ships from across the Expanse arrive like spectres
-                          in some strange afterlife. Whether associated with that
-                          haunted realm, or the result of some more mundane
-                          confusion, the graveyard consists of the twisted wreckage
-                          of dozens of utterly ruined ships of all kinds, as well as
-                          {ships} hulks in varying degrees of integrity. None of the
-                          hulks share an origin."
-            roll_groups:
-              - _type: Inspiration_Nested
-                name: ships
-                count:
-                  - _type: Roll
-                    _exists: true
-                    base: 0
-                    dice_count: 1
-                    dice_size: 5
-                    keep_highest: 0
-  tags:
-    - _type: Tag
-      _exists: true
-      name: System Element
-
-- _type: Inspiration
   name: Dust Cloud
   description: "Clouds of gas, cosmic debris, and other minutiae drift through
                 many systems. They originate in a variety of ways— some are
@@ -715,28 +370,6 @@
                 of the ROGUE TRADER Core Rulebook. Smaller dust clouds
                 often form on a temporary basis, but these are not considered
                 proper System Elements as generated by this System."
-  tags:
-    - _type: Tag
-      _exists: true
-      name: System Element
-
-- _type: Inspiration
-  name: Gas Giant
-  description: "Though the Imperium primarily desires worlds that humans
-                can survive on (or, failing that, walk on), the presence of a
-                gas giant on the reports from a long range scan has excited
-                the interest of many of a Rogue Trader with the thought of
-                the moons that might be concealed by its bulk. While there
-                is no guarantee that a gas giant has lesser worlds in its orbit,
-                much less that they are of any value, there have been enough
-                fortunes made by a tightly-packed cluster of useful moons
-                to give these massive orbs a reputation for good luck. This
-                association has been helped in no small part by the legendary
-                craft constructed at the Jovian shipyards, and the many STC
-                standard ship components that bear their name.
-
-                Gas Giants are generated with the aid of the Planet
-                Creation (see page 19)."
   tags:
     - _type: Tag
       _exists: true
@@ -758,31 +391,6 @@
 
                 Gravity Riptides follow the rules for Gravity Tides on page
                 227 of the ROGUE TRADER Core Rulebook."
-  tags:
-    - _type: Tag
-      _exists: true
-      name: System Element
-
-- _type: Inspiration
-  name: Planet
-  description: "It is said that the Imperium is comprised of a million different
-                worlds, across the galaxy. Though the precise number rises
-                and falls with each righteous crusade launched, or warzone
-                lost to the enemy, it is incontestable that the reach of Mankind
-                spans the galaxy across untold dominions, united under the
-                rule of the God-Emperor. There are some who would take
-                this to mean that the ambitions of Rogue Traders are folly,
-                for claiming lasting glory across such a wide dominion is
-                impossible for a mortal man. Perhaps unsurprisingly, these
-                melancholy types are rarely granted the rights of the Warrant
-                of Trade, for such power belongs in the hands of those who see
-                more clearly. Rogue Traders who understand the true nature of
-                power rejoice with each new world they bring into the God-
-                Emperor’s dominion, be it ever so small and benighted—for
-                to raise the banner of empire over a million worlds, it is first
-                necessary to raise that banner across each and every one.
-                Planets are generated with the aid of the Planet Creation
-                step of the World Generator, on page 19."
   tags:
     - _type: Tag
       _exists: true

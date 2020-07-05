@@ -38,9 +38,9 @@ func (zone *Zone) SaveChildren(client utilities.ClientInterface) {
   }
   client.SaveAll(&zone.Elements, "")
   client.SaveMany2ManyLinks(zone, &zone.Elements, "", "", "elements", false)
-  //for _, element := range zone.Elements {
-    //element.SaveChildren(client)
-  //}
+  for _, element := range zone.Elements {
+    element.SaveChildren(client)
+  }
 }
 
 func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
@@ -72,23 +72,15 @@ func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
         zonePerterbation = zonePerterbation.AddPerterbation(perterbationId)
       }
 
-      numberOfRandomElements := config.RollAll(zoneAndBaseConfig.ElementRolls, zonePerterbation.Rand)
-      shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.ElementConfig.WeightedTypes, zonePerterbation.Rand)
-      numberOfExtraElements := len(shuffledExtraIds)
-      numberOfElements := numberOfRandomElements + numberOfExtraElements
-      numberOfRandomElementsCreated := 0
-      numberOfExtraElementsCreated := 0
+      assetInspirationGroups := RollAssetInspirations(zoneAndBaseConfig.ElementRolls, zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.ElementConfig.WeightedTypes, zonePerterbation.Rand)
       distance := 0
-      for i := 1; i <= numberOfElements; i++ {
+      for i, assetInspirations := range assetInspirationGroups {
         element := new(Element)
         newDistance := 0
-        if numberOfExtraElements - numberOfExtraElementsCreated > 0 && zonePerterbation.Rand.Intn(numberOfElements - numberOfExtraElementsCreated - numberOfRandomElementsCreated) < numberOfExtraElements - numberOfExtraElementsCreated {
-          extraInspirationIds := shuffledExtraIds[numberOfExtraElementsCreated]
-          element, newDistance = NewElement(zonePerterbation, newPrefix, i, distance, extraInspirationIds)
-          numberOfExtraElementsCreated++
+        if assetInspirations != nil {
+          element, newDistance = NewElement(zonePerterbation, newPrefix, i+1, distance, assetInspirations)
         } else {
-          element, newDistance = RandomElement(zonePerterbation, newPrefix, i, distance)
-          numberOfRandomElementsCreated++
+          element, newDistance = RandomElement(zonePerterbation, newPrefix, i+1, distance)
         }
 
         distance = newDistance

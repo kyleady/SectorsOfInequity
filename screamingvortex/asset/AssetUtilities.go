@@ -1,6 +1,7 @@
 package asset
 
 import "strconv"
+import "math/rand"
 
 import "screamingvortex/config"
 
@@ -50,13 +51,24 @@ func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*con
   return details, perterbation
 }
 
-func RollAssets(rollableAssetCount []*config.Roll, newPrefix string, perterbation *config.Perterbation, assetGenerator func(*config.Perterbation, string, int) interface{}) interface{} {
-  assets := []interface{}{}
-  numberOfAssets := config.RollAll(rollableAssetCount, perterbation.Rand)
+func RollAssetInspirations(rollableAssetCount []*config.Roll, extraAssetTypes []*config.WeightedValue, modifiers []*config.WeightedValue, rRand *rand.Rand) [][]int64 {
+  assetInspirations := [][]int64{}
+  numberOfRandomAssets := config.RollAll(rollableAssetCount, rRand)
+  shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(extraAssetTypes, modifiers, rRand)
+  numberOfExtraAssets := len(shuffledExtraIds)
+  numberOfAssets := numberOfRandomAssets + numberOfExtraAssets
+  numberOfRandomAssetsCreated := 0
+  numberOfExtraAssetsCreated := 0
   for i := 1; i <= numberOfAssets; i++ {
-    asset := assetGenerator(perterbation, newPrefix, i)
-    assets = append(assets, asset)
+    if numberOfExtraAssets - numberOfExtraAssetsCreated > 0 && rRand.Intn(numberOfAssets - numberOfExtraAssetsCreated - numberOfRandomAssetsCreated) < numberOfExtraAssets - numberOfExtraAssetsCreated {
+      extraInspirationIds := shuffledExtraIds[numberOfExtraAssetsCreated]
+      assetInspirations = append(assetInspirations, extraInspirationIds)
+      numberOfExtraAssetsCreated++
+    } else {
+      assetInspirations = append(assetInspirations, nil)
+      numberOfRandomAssetsCreated++
+    }
   }
 
-  return assets
+  return assetInspirations
 }

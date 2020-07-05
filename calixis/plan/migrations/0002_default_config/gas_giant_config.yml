@@ -1,0 +1,512 @@
+- _type: Tag
+  name: Gas Giant
+
+- _type: Inspiration
+  name: Gas Giant
+  description: "Though the Imperium primarily desires worlds that humans
+                can survive on (or, failing that, walk on), the presence of a
+                gas giant on the reports from a long range scan has excited
+                the interest of many of a Rogue Trader with the thought of
+                the moons that might be concealed by its bulk. While there
+                is no guarantee that a gas giant has lesser worlds in its orbit,
+                much less that they are of any value, there have been enough
+                fortunes made by a tightly-packed cluster of useful moons
+                to give these massive orbs a reputation for good luck. This
+                association has been helped in no small part by the legendary
+                craft constructed at the Jovian shipyards, and the many STC
+                standard ship components that bear their name.
+
+                Gas Giants are generated with the aid of the Planet
+                Creation (see page 19)."
+  perterbation:
+    _type: Perterbation
+    name: Gas Giant
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: No Feature
+            tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 3
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Debris Rings
+            tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 3
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Dust Rings
+            tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 7
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Lesser Moon
+            tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 5
+              dice_count: 0
+          value:
+            _type: Inspiration
+            _exists: true
+            name: Moon
+            tags__name: Gas Giant
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      name: Body
+      count:
+        - _type: Roll
+          _exists: true
+          base: 1
+          dice_count: 0
+      weighted_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 10
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Gas Dwarf
+            description: "Although much smaller than the typical world of this
+                          sort, a Gas Dwarf is still considerably more massive
+                          than most rocky Planets."
+            nested_inspirations:
+              - _type: Inspiration_Nested
+                name: Gravity
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                    dice_count: 0
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 7
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Weak
+                      tags__name: Gas Giant
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 3
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Strong
+                      tags__name: Gas Giant
+
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 30
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Gas Giant
+            description: "Typical gas giants are vastly more massive than almost
+                          any other world, and tend to have correspondingly
+                          powerful gravitational effects."
+            nested_inspirations:
+              - _type: Inspiration_Nested
+                name: Gravity
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                    dice_count: 0
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 2
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Weak
+                      tags__name: Gas Giant
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 4
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Strong
+                      tags__name: Gas Giant
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 3
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Powerful
+                      tags__name: Gas Giant
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Titanic
+                      tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 7
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Massive Gas Giant
+            description: "Truly massive gas giants can alter the orbits of
+                          smaller bodies in the system, even consuming anything
+                          that gets too close."
+            nested_inspirations:
+              - _type: Inspiration_Nested
+                name: Gravity
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                    dice_count: 0
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 3
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Strong
+                      tags__name: Gas Giant
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 3
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Powerful
+                      tags__name: Gas Giant
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 4
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Titanic
+                      tags__name: Gas Giant
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 3
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Titanic Gas Giant
+            description: "The largest gas giants can rival weaker stars in size
+                          and mass, with some of them having some degree of
+                          kinship with such bodies."
+            nested_inspirations:
+              - _type: Inspiration_Nested
+                name: Gravity
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                    dice_count: 0
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                        dice_count: 0
+                    value:
+                      _type: Inspiration
+                      _exists: true
+                      name: Titanic
+                      tags__name: Gas Giant
+
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Element
+
+- _type: Inspiration
+  name: Weak
+  description: "Though puny by the standards of gas giants, this gravity well is
+                stronger than that of almost any solid Planet."
+  perterbation:
+    _type: Perterbation
+    name: Gas Giant
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: -5
+          dice_size: 10
+          dice_count: 1
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Strong
+  description: "This gas giant has the impressive gravity well common to such
+                worlds."
+  perterbation:
+    _type: Perterbation
+    name: Gas Giant
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: -3
+          dice_size: 10
+          dice_count: 1
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: -1
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: No Feature
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 1
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Moon
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Powerful
+  description: "The influence of this gravity well extends well beyond the
+                immediate presence of its source, drawing in whatever passes
+                by."
+  perterbation:
+    _type: Perterbation
+    name: Gas Giant
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: 2
+          dice_size: 10
+          dice_count: 1
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: No Feature
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Moon
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Titanic
+  description: "The effects of such a vast gravity well on the ordering of the
+                System are second only to its Star."
+  perterbation:
+    _type: Perterbation
+    name: Gas Giant
+    element:
+      _type: Config_Element
+      satellite_count:
+        - _type: Roll
+          _exists: true
+          base: 3
+          dice_size: 5
+          dice_count: 3
+    satellite:
+      _type: Config_Element
+      type_inspirations:
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: No Feature
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Debris Field
+        - _type: Weighted_Inspiration
+          weights:
+            - _type: Roll
+              _exists: true
+              base: 4
+              dice_count: 0
+          value:
+            _type: Inspiration
+            name: Moon
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: No Feature
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Debris Rings
+  description: "A narrow band of asteroids or chunks of ice extends out around
+                the Gas Giant. While the limited spread means that avoiding the
+                field requires a detour, a vessel with cause to pass directly
+                through the ring must make a Challenging (+0) Pilot(Space Craft)
+                +Manoeuvrability Test as if passing through an Asteroid Field,
+                as described on pages 226–227 of the ROGUE TRADER Core Rulebook.
+                Multiple instances of this Orbital Feature increase the size of
+                the rings. Tests to pass through safely suffer a –10 penalty for
+                each additional instance of this Orbital Feature."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Dust Rings
+  description: "A wide ring of fine particles encircles the gas giant. While the
+                limited spread prevents it from becoming a navigational hazard
+                like a true dust cloud or nebula, any Tests using the ship’s
+                auger arrays on a target within, on, or directly through the
+                ring are two steps more difficult. Multiple instances of this
+                Orbital Feature increase the size of the existing Planetary
+                Rings instead of adding extra sets of Rings. Increase the
+                penalty to use augers through or within the Rings by an
+                additional –5 for every two additional instances of this
+                Feature."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Lesser Moon
+  description: "An orbital body somewhere between an extremely large asteroid
+                and a very small moon orbits the Planet. It has its own
+                extremely limited gravity well, allowing low-gravity travel
+                across the surface, as described on page 269 of the ROGUE TRADER
+                Core Rulebook."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Moon
+  description: "A true moon is generated as a Planet, using the rules for Planet
+                Creation (see page 19). Under normal circumstances, a moon
+                cannot have a higher Planetary Body than the world around which
+                it orbits. In addition, a moon never generates its own Orbital
+                Features."
+  nested_inspirations:
+    - _type: Inspiration_Nested
+      _exists: true
+      name: Body
+      tags__name: Planet
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant

@@ -11,12 +11,14 @@ type Perterbation struct {
   StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
   RouteId sql.NullInt64 `sql:"route_id"`
   ElementId sql.NullInt64 `sql:"element_id"`
+  SatelliteId sql.NullInt64 `sql:"satellite_id"`
 
   SystemConfig *System
   StarClusterConfig *StarCluster
   RouteConfig *Route
   ZoneConfigs *Zones
   ElementConfig *Element
+  SatelliteConfig *Element
 
   Manager *ConfigManager
   Rand *rand.Rand
@@ -33,6 +35,7 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
   perterbation.RouteConfig = CreateEmptyRouteConfig()
   perterbation.ZoneConfigs = new(Zones)
   perterbation.ElementConfig = CreateEmptyElementConfig()
+  perterbation.SatelliteConfig = CreateEmptyElementConfig()
   return perterbation
 }
 
@@ -62,6 +65,12 @@ func LoadPerterbation(manager *ConfigManager, perterbation *Perterbation) {
   } else {
     perterbation.ElementConfig = CreateEmptyElementConfig()
   }
+
+  if perterbation.SatelliteId.Valid {
+    perterbation.SatelliteConfig = FetchElementConfig(manager, perterbation.SatelliteId.Int64)
+  } else {
+    perterbation.SatelliteConfig = CreateEmptyElementConfig()
+  }
 }
 
 func (perterbation *Perterbation) TableName(perterbationType string) string {
@@ -72,11 +81,23 @@ func (perterbation *Perterbation) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
+func (basePerterbation *Perterbation) AddSatellitedInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
+  return basePerterbation.addInspiration(inspirationId, true)
+}
+
 func (basePerterbation *Perterbation) AddInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
+  return basePerterbation.addInspiration(inspirationId, false)
+}
+
+func (basePerterbation *Perterbation) addInspiration(inspirationId int64, isSatellite bool) (*Inspiration, *Perterbation) {
   inspiration := basePerterbation.Manager.GetInspiration(inspirationId)
   var newPerterbation *Perterbation
   if inspiration.PerterbationId.Valid {
-    newPerterbation = basePerterbation.AddPerterbation(inspiration.PerterbationId.Int64)
+    if isSatellite {
+      newPerterbation = basePerterbation.AddSatellitePerterbation(inspiration.PerterbationId.Int64)
+    } else {
+      newPerterbation = basePerterbation.AddPerterbation(inspiration.PerterbationId.Int64)
+    }
   } else {
     newPerterbation = basePerterbation.Copy()
   }
@@ -85,15 +106,20 @@ func (basePerterbation *Perterbation) AddInspiration(inspirationId int64) (*Insp
 }
 
 func (basePerterbation *Perterbation) Copy() *Perterbation {
-  return basePerterbation.addPerterbation(CreateEmptyPerterbation(nil, nil))
+  return basePerterbation.addPerterbation(CreateEmptyPerterbation(nil, nil), false)
 }
 
 func (basePerterbation *Perterbation) AddPerterbation(perterbationId int64) *Perterbation {
   modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationId)
-  return basePerterbation.addPerterbation(modifyingPerterbation)
+  return basePerterbation.addPerterbation(modifyingPerterbation, false)
 }
 
-func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Perterbation) *Perterbation {
+func (basePerterbation *Perterbation) AddSatellitePerterbation(perterbationId int64) *Perterbation {
+  modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationId)
+  return basePerterbation.addPerterbation(modifyingPerterbation, true)
+}
+
+func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Perterbation, isSatellite bool) *Perterbation {
   newPerterbation := new(Perterbation)
   newPerterbation.Rand = basePerterbation.Rand
   newPerterbation.Manager = basePerterbation.Manager
@@ -102,7 +128,12 @@ func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Per
   newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
   newPerterbation.RouteConfig = basePerterbation.RouteConfig.AddPerterbation(modifyingPerterbation.RouteConfig)
   newPerterbation.ZoneConfigs = basePerterbation.ZoneConfigs.AddPerterbation(modifyingPerterbation.ZoneConfigs)
-  newPerterbation.ElementConfig = basePerterbation.ElementConfig.AddPerterbation(modifyingPerterbation.ElementConfig)
+  if isSatellite {
+    newPerterbation.SatelliteConfig = basePerterbation.SatelliteConfig.AddPerterbation(modifyingPerterbation.ElementConfig)
+  } else {
+    newPerterbation.ElementConfig = basePerterbation.ElementConfig.AddPerterbation(modifyingPerterbation.ElementConfig)
+  }
+  newPerterbation.SatelliteConfig = basePerterbation.SatelliteConfig.AddPerterbation(modifyingPerterbation.SatelliteConfig)
 
   return newPerterbation
 }
