@@ -93,11 +93,11 @@ func NewElement(perterbation *config.Perterbation, prefix string, index int, dis
 
 func RandomSatellite(perterbation *config.Perterbation, prefix string, index int, distance int) (*Element, int) {
   satelliteConfig := perterbation.SatelliteConfig
-  elementType, newPerterbation := RollDetail(satelliteConfig.WeightedTypes, perterbation)
+  elementType, newPerterbation := RollSatelliteDetail(satelliteConfig.WeightedTypes, perterbation)
   return newElement(newPerterbation, prefix, index, distance, elementType, true)
 }
 
 func NewSatellite(perterbation *config.Perterbation, prefix string, index int, distance int, typeInspirationIds []int64) (*Element, int) {
-  elementType, newPerterbation := NewDetail(typeInspirationIds, perterbation)
+  elementType, newPerterbation := NewSatelliteDetail(typeInspirationIds, perterbation)
   return newElement(newPerterbation, prefix, index, distance, elementType, true)
 }
