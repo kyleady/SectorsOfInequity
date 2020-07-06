@@ -3,6 +3,7 @@
   star_count:
     - _type: Roll
       _exists: true
+      required_flags: null
       base: 0
       dice_count: 20
       dice_size: 10
@@ -12,6 +13,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -23,6 +25,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 3
       value:
@@ -34,6 +37,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 3
       value:
@@ -45,6 +49,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -56,6 +61,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -84,6 +90,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 2
               dice_count: 0
               dice_size: 0
@@ -93,6 +100,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: -2
               dice_count: 0
               dice_size: 0
@@ -136,6 +144,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: -2
               dice_count: 0
               dice_size: 0
@@ -166,6 +175,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 2
               dice_count: 0
               dice_size: 0
@@ -196,6 +206,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: -3
               dice_count: 1
               dice_size: 5
@@ -205,6 +216,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: -3
               dice_count: 1
               dice_size: 5
@@ -214,6 +226,7 @@
           element_count:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: -3
               dice_count: 1
               dice_size: 5
@@ -232,6 +245,7 @@
   count:
     - _type: Roll
       _exists: true
+      required_flags: null
       base: 1
       dice_count: 0
   weighted_inspirations:
@@ -239,6 +253,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -259,6 +274,7 @@
                 element_count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: -1
                     dice_count: 0
 
@@ -266,6 +282,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -281,6 +298,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -302,5 +320,6 @@
                 element_count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0

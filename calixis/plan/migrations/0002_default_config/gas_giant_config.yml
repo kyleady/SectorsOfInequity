@@ -28,6 +28,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 2
                 dice_count: 0
             value:
@@ -39,6 +40,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 3
                 dice_count: 0
             value:
@@ -50,6 +52,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 3
                 dice_count: 0
             value:
@@ -61,6 +64,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 7
                 dice_count: 0
             value:
@@ -72,6 +76,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 5
                 dice_count: 0
             value:
@@ -85,6 +90,7 @@
       count:
         - _type: Roll
           _exists: true
+          required_flags: null
           base: 1
           dice_count: 0
       weighted_inspirations:
@@ -92,6 +98,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 10
               dice_count: 0
           value:
@@ -106,6 +113,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -113,6 +121,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 7
                         dice_count: 0
                     value:
@@ -124,6 +133,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -136,6 +146,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 30
               dice_count: 0
           value:
@@ -150,6 +161,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -157,6 +169,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 2
                         dice_count: 0
                     value:
@@ -168,6 +181,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 4
                         dice_count: 0
                     value:
@@ -179,6 +193,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -190,6 +205,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 1
                         dice_count: 0
                     value:
@@ -201,6 +217,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 7
               dice_count: 0
           value:
@@ -215,6 +232,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -222,6 +240,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -233,6 +252,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -244,6 +264,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 4
                         dice_count: 0
                     value:
@@ -255,6 +276,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 3
               dice_count: 0
           value:
@@ -269,6 +291,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -276,6 +299,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 1
                         dice_count: 0
                     value:
@@ -301,6 +325,7 @@
         satellite_count:
           - _type: Roll
             _exists: true
+            required_flags: null
             base: -5
             dice_size: 10
             dice_count: 1
@@ -321,6 +346,7 @@
         satellite_count:
           - _type: Roll
             _exists: true
+            required_flags: null
             base: -3
             dice_size: 10
             dice_count: 1
@@ -331,6 +357,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: -1
                 dice_count: 0
             value:
@@ -340,6 +367,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 1
                 dice_count: 0
             value:
@@ -363,6 +391,7 @@
         satellite_count:
           - _type: Roll
             _exists: true
+            required_flags: null
             base: 2
             dice_size: 10
             dice_count: 1
@@ -373,6 +402,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: -2
                 dice_count: 0
             value:
@@ -382,6 +412,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 2
                 dice_count: 0
             value:
@@ -404,6 +435,7 @@
         satellite_count:
           - _type: Roll
             _exists: true
+            required_flags: null
             base: 3
             dice_size: 5
             dice_count: 3
@@ -414,6 +446,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: -2
                 dice_count: 0
             value:
@@ -423,6 +456,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: -2
                 dice_count: 0
             value:
@@ -432,6 +466,7 @@
             weights:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 4
                 dice_count: 0
             value:

@@ -5,6 +5,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 3
       value:
@@ -15,6 +16,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 2
       value:
@@ -29,6 +31,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -43,6 +46,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -57,6 +61,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -71,6 +76,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -85,6 +91,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -100,6 +107,7 @@
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 2
       value:
@@ -112,13 +120,25 @@
             count:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 0
                 dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 0
+                dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 0
+                dice_count: 2
                 dice_size: 5
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 2
       value:
@@ -131,13 +151,25 @@
             count:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 5
                 dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 5
+                dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 10
+                dice_count: 2
                 dice_size: 5
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 2
       value:
@@ -150,13 +182,25 @@
             count:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 10
                 dice_count: 2
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 10
+                dice_count: 2
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 20
+                dice_count: 4
                 dice_size: 10
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 2
       value:
@@ -169,13 +213,25 @@
             count:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 50
                 dice_count: 3
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 50
+                dice_count: 3
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 100
+                dice_count: 6
                 dice_size: 10
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -188,13 +244,25 @@
             count:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 150
                 dice_count: 4
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 150
+                dice_count: 4
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 300
+                dice_count: 8
                 dice_size: 10
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
           _exists: true
+          required_flags: null
           dice_count: 0
           base: 1
       value:
@@ -207,204 +275,25 @@
             count:
               - _type: Roll
                 _exists: true
+                required_flags: null
                 base: 250
                 dice_count: 5
                 dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 250
+                dice_count: 5
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 500
+                dice_count: 10
+                dice_size: 10
+
 - _type: Perterbation
   name: Increase Days by 100%
-  route:
-    _type: Config_Route
-    name: Increase Days by 100%
-    days_inspirations:
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (1)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 0
-                  dice_count: 1
-                  dice_size: 5
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (2)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 5
-                  dice_count: 1
-                  dice_size: 5
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (3)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 10
-                  dice_count: 2
-                  dice_size: 10
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (4)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 50
-                  dice_count: 3
-                  dice_size: 10
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (5)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 150
-                  dice_count: 4
-                  dice_size: 10
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (6)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 250
-                  dice_count: 5
-                  dice_size: 10
+  flags: route_100%_increase
+
 - _type: Perterbation
   name: Increase Days by 200%
-  route:
-    _type: Config_Route
-    name: Increase Days by 200%
-    days_inspirations:
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (1)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 0
-                  dice_count: 1
-                  dice_size: 5
-                - _type: Roll
-                  _exists: true
-                  base: 0
-                  dice_count: 1
-                  dice_size: 5
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (2)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 5
-                  dice_count: 1
-                  dice_size: 5
-                - _type: Roll
-                  _exists: true
-                  base: 5
-                  dice_count: 1
-                  dice_size: 5
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (3)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 10
-                  dice_count: 2
-                  dice_size: 10
-                - _type: Roll
-                  _exists: true
-                  base: 10
-                  dice_count: 2
-                  dice_size: 10
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (4)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 50
-                  dice_count: 3
-                  dice_size: 10
-                - _type: Roll
-                  _exists: true
-                  base: 50
-                  dice_count: 3
-                  dice_size: 10
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (5)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 150
-                  dice_count: 4
-                  dice_size: 10
-                - _type: Roll
-                  _exists: true
-                  base: 150
-                  dice_count: 4
-                  dice_size: 10
-      - _type: Weighted_Inspiration
-        value:
-          _type: Inspiration
-          name: (6)
-          roll_groups:
-            - _type: Inspiration_Nested
-              name: days
-              count:
-                - _type: Roll
-                  _exists: true
-                  base: 250
-                  dice_count: 5
-                  dice_size: 10
-                - _type: Roll
-                  _exists: true
-                  base: 250
-                  dice_count: 5
-                  dice_size: 10
+  flags: route_200%_increase
