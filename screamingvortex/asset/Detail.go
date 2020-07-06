@@ -26,7 +26,6 @@ func (detail *Detail) GetId() *int64 {
 }
 
 func (detail *Detail) SaveTo(client utilities.ClientInterface) {
-  fmt.Printf("\n%+v", detail)
   client.Save(detail, "")
   detail.SaveChildren(client)
 }

@@ -56,7 +56,6 @@ func (manager *ConfigManager) RemoveFlags(flags []string) {
 func (manager *ConfigManager) HasFlags(flags []string) bool {
   for _, flag := range flags {
     if hasFlag, _ := manager.activeFlags[flag]; !hasFlag {
-      fmt.Printf("\nMissing Flag: %s", flag)
       return false
     }
   }
