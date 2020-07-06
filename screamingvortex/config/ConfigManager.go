@@ -1,7 +1,6 @@
 package config
 
 import "screamingvortex/utilities"
-import "fmt"
 
 type ConfigManager struct {
   cachedPerterbations map[int64]*Perterbation
