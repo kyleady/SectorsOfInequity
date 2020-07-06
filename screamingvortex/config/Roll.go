@@ -1,13 +1,18 @@
 package config
 
-import "math/rand"
+import "database/sql"
+import "strings"
 
 type Roll struct {
+  RequiredFlagsString sql.NullString `sql:"required_flags"`
+
   DiceCount int `sql:"dice_count"`
   DiceSize int `sql:"dice_size"`
   Base int `sql:"base"`
   Multiplier int `sql:"multiplier"`
   KeepHighest int `sql:"keep_highest"`
+
+  requiredFlags []string
 }
 
 func (roll *Roll) TableName(rollType string) string {
@@ -18,9 +23,13 @@ func (roll *Roll) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
-func (roll *Roll) Roll(rRand *rand.Rand) int {
-    result := 0
+func (roll *Roll) Roll(perterbation *Perterbation) int {
+    if !perterbation.Manager.HasFlags(roll.requiredFlags) {
+      return 0
+    }
 
+    result := 0
+    rRand := perterbation.Rand
     diceFrequency := make(map[int]int)
 
     for i := 0; i < roll.DiceCount; i++ {
@@ -60,10 +69,10 @@ func (roll *Roll) Roll(rRand *rand.Rand) int {
     return result
 }
 
-func RollAll(rolls []*Roll, rRand *rand.Rand) int {
+func RollAll(rolls []*Roll, perterbation *Perterbation) int {
   result := 0
   for _, roll := range rolls {
-    result += roll.Roll(rRand)
+    result += roll.Roll(perterbation)
   }
 
   return result
@@ -73,5 +82,13 @@ func FetchManyRolls(manager *ConfigManager, parentId int64, tableName string, va
   rolls := make([]*Roll, 0)
   rollTableName := new(Roll).TableName("")
   manager.Client.FetchMany(&rolls, parentId, tableName, rollTableName, valueName, "", false)
+  for _, roll := range rolls {
+    if roll.RequiredFlagsString.String != "" {
+      roll.requiredFlags = strings.Split(roll.RequiredFlagsString.String, ",")
+    } else {
+      roll.requiredFlags = make([]string, 0)
+    }
+  }
+
   return rolls
 }

@@ -2,16 +2,26 @@ package config
 
 import "database/sql"
 import "math/rand"
+import "strings"
 
 import "screamingvortex/utilities"
 
 type Perterbation struct {
   Id int64 `sql:"id"`
+
+  FlagsString sql.NullString `sql:"flags"`
+  MutedFlagsString sql.NullString `sql:"muted_flags"`
+  RequiredFlagsString sql.NullString `sql:"required_flags"`
+
   SystemId sql.NullInt64 `sql:"system_id"`
   StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
   RouteId sql.NullInt64 `sql:"route_id"`
   ElementId sql.NullInt64 `sql:"element_id"`
   SatelliteId sql.NullInt64 `sql:"satellite_id"`
+
+  Flags []string
+  MutedFlags []string
+  RequiredFlags []string
 
   SystemConfig *System
   StarClusterConfig *StarCluster
@@ -40,6 +50,24 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
 }
 
 func LoadPerterbation(manager *ConfigManager, perterbation *Perterbation) {
+  if perterbation.FlagsString.String != "" {
+    perterbation.Flags = strings.Split(perterbation.FlagsString.String, ",")
+  } else {
+    perterbation.Flags = make([]string, 0)
+  }
+
+  if perterbation.MutedFlagsString.String != "" {
+    perterbation.MutedFlags = strings.Split(perterbation.MutedFlagsString.String, ",")
+  } else {
+    perterbation.MutedFlags = make([]string, 0)
+  }
+
+  if perterbation.RequiredFlagsString.String != "" {
+    perterbation.RequiredFlags = strings.Split(perterbation.RequiredFlagsString.String, ",")
+  } else {
+    perterbation.RequiredFlags = make([]string, 0)
+  }
+
   if perterbation.SystemId.Valid {
     perterbation.SystemConfig = FetchSystemConfig(manager, perterbation.SystemId.Int64)
   } else {
@@ -91,15 +119,13 @@ func (basePerterbation *Perterbation) AddInspiration(inspirationId int64) (*Insp
 
 func (basePerterbation *Perterbation) addInspiration(inspirationId int64, isSatellite bool) (*Inspiration, *Perterbation) {
   inspiration := basePerterbation.Manager.GetInspiration(inspirationId)
-  var newPerterbation *Perterbation
-  if inspiration.PerterbationId.Valid {
+  newPerterbation := basePerterbation.Copy()
+  for _, perterbationId := range inspiration.PerterbationIds {
     if isSatellite {
-      newPerterbation = basePerterbation.AddSatellitePerterbation(inspiration.PerterbationId.Int64)
+      newPerterbation = newPerterbation.AddSatellitePerterbation(perterbationId)
     } else {
-      newPerterbation = basePerterbation.AddPerterbation(inspiration.PerterbationId.Int64)
+      newPerterbation = newPerterbation.AddPerterbation(perterbationId)
     }
-  } else {
-    newPerterbation = basePerterbation.Copy()
   }
 
   return inspiration, newPerterbation
@@ -120,9 +146,16 @@ func (basePerterbation *Perterbation) AddSatellitePerterbation(perterbationId in
 }
 
 func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Perterbation, isSatellite bool) *Perterbation {
+  if !basePerterbation.Manager.HasFlags(modifyingPerterbation.RequiredFlags) {
+    return basePerterbation.Copy()
+  }
+
   newPerterbation := new(Perterbation)
   newPerterbation.Rand = basePerterbation.Rand
   newPerterbation.Manager = basePerterbation.Manager
+
+  newPerterbation.Manager.AddFlags(modifyingPerterbation.Flags)
+  newPerterbation.Manager.RemoveFlags(modifyingPerterbation.MutedFlags)
 
   newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
   newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
@@ -136,4 +169,11 @@ func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Per
   newPerterbation.SatelliteConfig = basePerterbation.SatelliteConfig.AddPerterbation(modifyingPerterbation.SatelliteConfig)
 
   return newPerterbation
+}
+
+func FetchManyPerterbationIds(manager *ConfigManager, parentId int64, tableName string, valueName string) []int64 {
+  ids := make([]int64, 0)
+  examplePerterbation := new(Perterbation)
+  manager.Client.FetchManyToManyChildIds(&ids, parentId, tableName, examplePerterbation.TableName(""), valueName, "", false)
+  return ids
 }

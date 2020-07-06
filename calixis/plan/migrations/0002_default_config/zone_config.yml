@@ -3,6 +3,7 @@
   element_count:
     - _type: Roll
       _exists: true
+      required_flags: null
       base: 0
       dice_count: 1
       dice_size: 5
@@ -13,6 +14,7 @@
   distance:
     - _type: Roll
       _exists: true
+      required_flags: null
       base: 1
       dice_count: 0
       dice_size: 0
@@ -30,6 +32,7 @@
   distance:
     - _type: Roll
       _exists: true
+      required_flags: null
       base: 2
       dice_count: 0
       dice_size: 0
@@ -47,6 +50,7 @@
   distance:
     - _type: Roll
       _exists: true
+      required_flags: null
       base: 3
       dice_count: 0
       dice_size: 0

@@ -18,73 +18,79 @@
 
                 Gas Giants are generated with the aid of the Planet
                 Creation (see page 19)."
-  perterbation:
-    _type: Perterbation
-    name: Gas Giant
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+  perterbations:
+    - _type: Perterbation
+      name: Gas Giant
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: No Feature
-            tags__name: Gas Giant
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: No Feature
+              tags__name: Gas Giant
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 3
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Debris Rings
-            tags__name: Gas Giant
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: Debris Rings
+              tags__name: Gas Giant
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 3
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Dust Rings
-            tags__name: Gas Giant
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: Dust Rings
+              tags__name: Gas Giant
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 7
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 7
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Lesser Moon
-            tags__name: Gas Giant
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: Lesser Moon
+              tags__name: Gas Giant
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 5
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 5
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Moon
-            tags__name: Gas Giant
+              name: Moon
+              tags__name: Gas Giant
   nested_inspirations:
     - _type: Inspiration_Nested
       name: Body
       count:
         - _type: Roll
           _exists: true
+          required_flags: null
           base: 1
           dice_count: 0
       weighted_inspirations:
@@ -92,6 +98,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 10
               dice_count: 0
           value:
@@ -106,6 +113,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -113,6 +121,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 7
                         dice_count: 0
                     value:
@@ -124,6 +133,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -136,6 +146,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 30
               dice_count: 0
           value:
@@ -150,6 +161,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -157,6 +169,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 2
                         dice_count: 0
                     value:
@@ -168,6 +181,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 4
                         dice_count: 0
                     value:
@@ -179,6 +193,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -190,6 +205,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 1
                         dice_count: 0
                     value:
@@ -201,6 +217,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 7
               dice_count: 0
           value:
@@ -215,6 +232,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -222,6 +240,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -233,6 +252,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 3
                         dice_count: 0
                     value:
@@ -244,6 +264,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 4
                         dice_count: 0
                     value:
@@ -255,6 +276,7 @@
           weights:
             - _type: Roll
               _exists: true
+              required_flags: null
               base: 3
               dice_count: 0
           value:
@@ -269,6 +291,7 @@
                 count:
                   - _type: Roll
                     _exists: true
+                    required_flags: null
                     base: 1
                     dice_count: 0
                 weighted_inspirations:
@@ -276,6 +299,7 @@
                     weights:
                       - _type: Roll
                         _exists: true
+                        required_flags: null
                         base: 1
                         dice_count: 0
                     value:
@@ -293,17 +317,18 @@
   name: Weak
   description: "Though puny by the standards of gas giants, this gravity well is
                 stronger than that of almost any solid Planet."
-  perterbation:
-    _type: Perterbation
-    name: Gas Giant
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: -5
-          dice_size: 10
-          dice_count: 1
+  perterbations:
+    - _type: Perterbation
+      name: Gas Giant
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: -5
+            dice_size: 10
+            dice_count: 1
   tags:
     - _type: Tag
       _exists: true
@@ -313,38 +338,41 @@
   name: Strong
   description: "This gas giant has the impressive gravity well common to such
                 worlds."
-  perterbation:
-    _type: Perterbation
-    name: Gas Giant
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: -3
-          dice_size: 10
-          dice_count: 1
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: -1
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: No Feature
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: 1
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: Moon
+  perterbations:
+    - _type: Perterbation
+      name: Gas Giant
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: -3
+            dice_size: 10
+            dice_count: 1
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: -1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: No Feature
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Moon
   tags:
     - _type: Tag
       _exists: true
@@ -355,38 +383,41 @@
   description: "The influence of this gravity well extends well beyond the
                 immediate presence of its source, drawing in whatever passes
                 by."
-  perterbation:
-    _type: Perterbation
-    name: Gas Giant
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: 2
-          dice_size: 10
-          dice_count: 1
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: -2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: No Feature
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: 2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: Moon
+  perterbations:
+    - _type: Perterbation
+      name: Gas Giant
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 2
+            dice_size: 10
+            dice_count: 1
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: -2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: No Feature
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Moon
   tags:
     - _type: Tag
       _exists: true
@@ -396,47 +427,51 @@
   name: Titanic
   description: "The effects of such a vast gravity well on the ordering of the
                 System are second only to its Star."
-  perterbation:
-    _type: Perterbation
-    name: Gas Giant
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: 3
-          dice_size: 5
-          dice_count: 3
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: -2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: No Feature
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: -2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: Debris Field
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: 4
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: Moon
+  perterbations:
+    - _type: Perterbation
+      name: Gas Giant
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 3
+            dice_size: 5
+            dice_count: 3
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: -2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: No Feature
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: -2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Debris Field
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Moon
   tags:
     - _type: Tag
       _exists: true

@@ -64,7 +64,7 @@ func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
 
       zone := new(Zone)
       zone.Zone = zoneAndBaseConfig.Zone.String
-      zone.Distance =  config.RollAll(zoneAndBaseConfig.Distance, perterbation.Rand)
+      zone.Distance =  config.RollAll(zoneAndBaseConfig.Distance, perterbation)
       newPrefix := SetNameAndGetPrefix(zone, prefix, zoneCount)
       zoneCount++
       zonePerterbation := perterbation
@@ -72,7 +72,7 @@ func RandomZones(perterbation *config.Perterbation, prefix string) []*Zone {
         zonePerterbation = zonePerterbation.AddPerterbation(perterbationId)
       }
 
-      assetInspirationGroups := RollAssetInspirations(zoneAndBaseConfig.ElementRolls, zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.ElementConfig.WeightedTypes, zonePerterbation.Rand)
+      assetInspirationGroups := RollAssetInspirations(zoneAndBaseConfig.ElementRolls, zoneAndBaseConfig.ExtraElementTypes, zonePerterbation.ElementConfig.WeightedTypes, zonePerterbation)
       distance := 0
       for i, assetInspirations := range assetInspirationGroups {
         element := new(Element)

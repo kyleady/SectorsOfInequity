@@ -88,7 +88,7 @@ func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSate
   for _, rollGroup := range stackedRollGroups {
     rollsAsKvPairs = append(rollsAsKvPairs, fmt.Sprintf("\"%s\":%d",
       rollGroup.Name,
-      config.RollAll(rollGroup.CountRolls, perterbation.Rand),
+      config.RollAll(rollGroup.CountRolls, perterbation),
     ))
   }
 
@@ -100,7 +100,7 @@ func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSate
   }
 
   for _, nestedInspiration := range stackedNestedInspirations {
-    numberOfChildDetails := config.RollAll(nestedInspiration.CountRolls, perterbation.Rand)
+    numberOfChildDetails := config.RollAll(nestedInspiration.CountRolls, perterbation)
     var childDetailGroup []*Detail
     for childDetailCount := 0; childDetailCount < numberOfChildDetails; childDetailCount++ {
       childDetail, childPerterbation := RollDetail(nestedInspiration.WeightedInspirations, perterbation)
@@ -125,7 +125,7 @@ func RollSatelliteDetail(weightedInspirations []*config.WeightedValue, perterbat
     return nil, perterbation
   }
 
-  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation.Rand)
+  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation)
   return NewSatelliteDetail(inspirationIds, perterbation)
 }
 
@@ -134,6 +134,6 @@ func RollDetail(weightedInspirations []*config.WeightedValue, perterbation *conf
     return nil, perterbation
   }
 
-  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation.Rand)
+  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation)
   return NewDetail(inspirationIds, perterbation)
 }

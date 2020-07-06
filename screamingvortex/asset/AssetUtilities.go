@@ -1,7 +1,6 @@
 package asset
 
 import "strconv"
-import "math/rand"
 
 import "screamingvortex/config"
 
@@ -25,7 +24,7 @@ func SetNameAndGetPrefix(assetObj AssetInterface, prefix string, index int) stri
 }
 
 func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*config.WeightedValue, extraInspirations []*config.WeightedValue, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
-  numberOfDetails := config.RollAll(rollableDetailCount, perterbation.Rand)
+  numberOfDetails := config.RollAll(rollableDetailCount, perterbation)
   var details []*Detail
   for i := 1; i <= numberOfDetails; i++ {
     detail, newPerterbation := RollDetail(weightedInspirations, perterbation)
@@ -38,7 +37,7 @@ func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*con
 
   extraInspirations = config.ModifyExtraInspirations(extraInspirations, weightedInspirations)
   for _, extraInspiration := range extraInspirations {
-    detailsToAdd := config.RollAll(extraInspiration.Weights, perterbation.Rand)
+    detailsToAdd := config.RollAll(extraInspiration.Weights, perterbation)
     for i := 0; i < detailsToAdd; i++ {
       detail, newPerterbation := NewDetail(extraInspiration.Values, perterbation)
       if detail != nil {
@@ -51,10 +50,11 @@ func RollDetails(rollableDetailCount []*config.Roll, weightedInspirations []*con
   return details, perterbation
 }
 
-func RollAssetInspirations(rollableAssetCount []*config.Roll, extraAssetTypes []*config.WeightedValue, modifiers []*config.WeightedValue, rRand *rand.Rand) [][]int64 {
+func RollAssetInspirations(rollableAssetCount []*config.Roll, extraAssetTypes []*config.WeightedValue, modifiers []*config.WeightedValue, perterbation *config.Perterbation) [][]int64 {
   assetInspirations := [][]int64{}
-  numberOfRandomAssets := config.RollAll(rollableAssetCount, rRand)
-  shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(extraAssetTypes, modifiers, rRand)
+  rRand := perterbation.Rand
+  numberOfRandomAssets := config.RollAll(rollableAssetCount, perterbation)
+  shuffledExtraIds := config.ExtraInspirationsToShuffledExtraIds(extraAssetTypes, modifiers, perterbation)
   numberOfExtraAssets := len(shuffledExtraIds)
   numberOfAssets := numberOfRandomAssets + numberOfExtraAssets
   numberOfRandomAssetsCreated := 0

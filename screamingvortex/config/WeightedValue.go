@@ -1,7 +1,5 @@
 package config
 
-import "math/rand"
-
 type WeightedValue struct {
   Id int64 `sql:"id"`
   Weights []*Roll
@@ -39,14 +37,15 @@ func (weightedValue *WeightedValue) Clone() *WeightedValue {
   return clonedWeightedValue
 }
 
-func (weightedValue *WeightedValue) rollWeight(rRand *rand.Rand) {
-  weightedValue.Weight = RollAll(weightedValue.Weights, rRand)
+func (weightedValue *WeightedValue) rollWeight(perterbation *Perterbation) {
+  weightedValue.Weight = RollAll(weightedValue.Weights, perterbation)
 }
 
-func RollWeightedValues(weightedValues []*WeightedValue, rRand *rand.Rand) []int64 {
+func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbation) []int64 {
   totalWeight := 0
+  rRand := perterbation.Rand
   for _, weightedValue := range weightedValues {
-    weightedValue.rollWeight(rRand)
+    weightedValue.rollWeight(perterbation)
     if weightedValue.Weight > 0 {
       totalWeight += weightedValue.Weight
     }
@@ -142,11 +141,12 @@ func FetchManyWeightedInspirations(manager *ConfigManager, parentId int64, table
   return weightedValues
 }
 
-func ExtraInspirationsToShuffledExtraIds(extraInspirations []*WeightedValue, modifyingWeightedValues []*WeightedValue,  rRand *rand.Rand) [][]int64 {
+func ExtraInspirationsToShuffledExtraIds(extraInspirations []*WeightedValue, modifyingWeightedValues []*WeightedValue,  perterbation *Perterbation) [][]int64 {
   extraInspirations = ModifyExtraInspirations(extraInspirations, modifyingWeightedValues)
   shuffledExtraIds := [][]int64{}
+  rRand := perterbation.Rand
   for _, extraInspiration := range extraInspirations {
-    numberOfCopies := RollAll(extraInspiration.Weights, rRand)
+    numberOfCopies := RollAll(extraInspiration.Weights, perterbation)
     for i := 1; i <= numberOfCopies; i++ {
       shuffledExtraIds = append(shuffledExtraIds, extraInspiration.Values)
     }

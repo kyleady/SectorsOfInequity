@@ -81,6 +81,7 @@ class Roll(models.Model):
             multiplier=multiplier,
         )
 
+    required_flags = models.CharField(blank=True, null=True, max_length=200)
     dice_count = models.PositiveSmallIntegerField(blank=True, default=0)
     dice_size = models.PositiveSmallIntegerField(blank=True, default=6)
     base = models.IntegerField(blank=True, default=0)

@@ -64,7 +64,7 @@ func RandomSystem(perterbation *config.Perterbation, prefix string, index int, g
 
   system.Features, perterbation = RollDetails(systemConfig.SystemFeaturesRolls, systemConfig.WeightedInspirations, systemConfig.ExtraInspirations, perterbation)
 
-  numberOfStarClusters := config.RollAll(systemConfig.SystemStarClustersRolls, perterbation.Rand)
+  numberOfStarClusters := config.RollAll(systemConfig.SystemStarClustersRolls, perterbation)
   for i := 1; i <= numberOfStarClusters; i++ {
     starCluster := RandomStarCluster(perterbation, newPrefix, i)
     system.StarClusters = append(system.StarClusters, starCluster)
