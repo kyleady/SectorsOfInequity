@@ -14,6 +14,9 @@ class Perterbation(models.Model):
 
     name = models.CharField(default="-", max_length=25)
     tags = models.ManyToManyField('Tag')
+    flags = models.CharField(blank=True, null=True, max_length=100)
+    muted_flags = models.CharField(blank=True, null=True, max_length=100)
+    required_flags = models.CharField(blank=True, null=True, max_length=200)
     system = models.ForeignKey('Config_System', null=True, blank=True, on_delete=models.SET_NULL)
     star_cluster = models.ForeignKey('Config_Star_Cluster', null=True, blank=True, on_delete=models.SET_NULL)
     route = models.ForeignKey('Config_Route', null=True, blank=True, on_delete=models.SET_NULL)

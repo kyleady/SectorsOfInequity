@@ -74,28 +74,28 @@
   description: "The fierce light of this star dominates its system utterly. Its
                 coloration is likely to be blue or blue-white. The
                 Inner Cauldron is dominant, and the Primary Biosphere is weak."
-  perterbation:
-    _type: Perterbation
-    name: Default Mighty
-    zones:
-      - _type: Config_Zone
-        name: Default Dominant IC
-        zone: Inner Cauldron
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: 2
-            dice_count: 0
-            dice_size: 0
-      - _type: Config_Zone
-        name: Default Weak PB
-        zone: Primary Biosphere
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: -2
-            dice_count: 0
-            dice_size: 0
+  perterbations:
+    - _type: Perterbation
+      name: Default Mighty
+      zones:
+        - _type: Config_Zone
+          name: Default Dominant IC
+          zone: Inner Cauldron
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+              dice_size: 0
+        - _type: Config_Zone
+          name: Default Weak PB
+          zone: Primary Biosphere
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+              dice_size: 0
   tags:
     - _type: Tag
       _exists: true
@@ -126,19 +126,19 @@
                 brightest, a constant glow nonetheless provides
                 for the system. It is likely to be yellow or yellow-orange in
                 colour. The Inner Cauldron is weak."
-  perterbation:
-    _type: Perterbation
-    name: Default Luminous
-    zones:
-      - _type: Config_Zone
-        name: Default Weak IC
-        zone: Inner Cauldron
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: -2
-            dice_count: 0
-            dice_size: 0
+  perterbations:
+    - _type: Perterbation
+      name: Default Luminous
+      zones:
+        - _type: Config_Zone
+          name: Default Weak IC
+          zone: Inner Cauldron
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: -2
+              dice_count: 0
+              dice_size: 0
   tags:
     - _type: Tag
       _exists: true
@@ -156,19 +156,19 @@
                 still burn for millennia yet. Many stars of this type are of a
                 vast size, seemingly incongruous with their wan light. Its
                 coloration is likely a sullen red. The Outer Reaches are Dominant."
-  perterbation:
-    _type: Perterbation
-    name: Default Dull
-    zones:
-      - _type: Config_Zone
-        name: Default Dominant OR
-        zone: Outer Reaches
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: 2
-            dice_count: 0
-            dice_size: 0
+  perterbations:
+    - _type: Perterbation
+      name: Default Dull
+      zones:
+        - _type: Config_Zone
+          name: Default Dominant OR
+          zone: Outer Reaches
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: 2
+              dice_count: 0
+              dice_size: 0
   tags:
     - _type: Tag
       _exists: true
@@ -186,37 +186,37 @@
                 even one that is not typical for a star, from bilious green to
                 barely-visible purple. The Game Master can choose to make one
                 Solar Zone dominant or weak at his discretion."
-  perterbation:
-    _type: Perterbation
-    name: Default Anomalous
-    zones:
-      - _type: Config_Zone
-        name: Default Anomalous IC
-        zone: Inner Cauldron
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: -3
-            dice_count: 1
-            dice_size: 5
-      - _type: Config_Zone
-        name: Default Anomalous PB
-        zone: Primary Biosphere
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: -3
-            dice_count: 1
-            dice_size: 5
-      - _type: Config_Zone
-        name: Default Anomalous OR
-        zone: Outer Reaches
-        element_count:
-          - _type: Roll
-            _exists: true
-            base: -3
-            dice_count: 1
-            dice_size: 5
+  perterbations:
+    - _type: Perterbation
+      name: Default Anomalous
+      zones:
+        - _type: Config_Zone
+          name: Default Anomalous IC
+          zone: Inner Cauldron
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: -3
+              dice_count: 1
+              dice_size: 5
+        - _type: Config_Zone
+          name: Default Anomalous PB
+          zone: Primary Biosphere
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: -3
+              dice_count: 1
+              dice_size: 5
+        - _type: Config_Zone
+          name: Default Anomalous OR
+          zone: Outer Reaches
+          element_count:
+            - _type: Roll
+              _exists: true
+              base: -3
+              dice_count: 1
+              dice_size: 5
   tags:
     - _type: Tag
       _exists: true
@@ -250,17 +250,17 @@
           - _type: Tag
             _exists: true
             name: Star Size
-        perterbation:
-          _type: Perterbation
-          name: Default Dwarf
-          zones:
-            - _type: Config_Zone
-              name: Default Dwarf
-              element_count:
-                - _type: Roll
-                  _exists: true
-                  base: -1
-                  dice_count: 0
+        perterbations:
+          - _type: Perterbation
+            name: Default Dwarf
+            zones:
+              - _type: Config_Zone
+                name: Default Dwarf
+                element_count:
+                  - _type: Roll
+                    _exists: true
+                    base: -1
+                    dice_count: 0
 
     - _type: Weighted_Inspiration
       weights:
@@ -293,14 +293,14 @@
             _exists: true
             name: Star Size
 
-        perterbation:
-          _type: Perterbation
-          name: Default Giant
-          zones:
-            - _type: Config_Zone
-              name: Default Giant
-              element_count:
-                - _type: Roll
-                  _exists: true
-                  base: 1
-                  dice_count: 0
+        perterbations:
+          - _type: Perterbation
+            name: Default Giant
+            zones:
+              - _type: Config_Zone
+                name: Default Giant
+                element_count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                    dice_count: 0

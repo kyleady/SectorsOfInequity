@@ -27,58 +27,56 @@
       _exists: true
       name: Body
       tags__name: Planet
-  perterbation:
-    _type: Perterbation
-    name: Planet
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+  perterbations:
+    - _type: Perterbation
+      name: Planet
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 9
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 9
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: No Feature
-            tags__name: Gas Giant
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: No Feature
+              tags__name: Gas Giant
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 3
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 3
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Large Asteroid
-            tags__name: Planet
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: Large Asteroid
+              tags__name: Planet
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 6
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 6
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Lesser Moon
-            tags__name: Gas Giant
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
+              name: Lesser Moon
+              tags__name: Gas Giant
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
               _exists: true
-              base: 2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            _exists: true
-            name: Moon
-            tags__name: Gas Giant
-
-
+              name: Moon
+              tags__name: Gas Giant
 
 - _type: Tag
   name: Planet
@@ -378,38 +376,38 @@
   name: Low Gravity
   description: "It follows all the rules for Low Gravity Worlds (see page 269 of
                 the ROGUE TRADER Core Rulebook)."
-  perterbation:
-    _type: Perterbation
-    name: Low Gravity
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: -3
-          dice_size: 5
-          dice_count: 1
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: 2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: No Feature
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: -2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: Moon
+  perterbations:
+    - _type: Perterbation
+      name: Low Gravity
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            base: -3
+            dice_size: 5
+            dice_count: 1
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: No Feature
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: -2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Moon
   tags:
     - _type: Tag
       _exists: true
@@ -418,17 +416,17 @@
 - _type: Inspiration
   name: Normal Gravity
   description: "This Planet’s gravity is roughly Terran Standard."
-  perterbation:
-    _type: Perterbation
-    name: Normal Gravity
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: -2
-          dice_size: 5
-          dice_count: 1
+  perterbations:
+    - _type: Perterbation
+      name: Normal Gravity
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            base: -2
+            dice_size: 5
+            dice_count: 1
   tags:
     - _type: Tag
       _exists: true
@@ -438,38 +436,38 @@
   name: High Gravity
   description: "This Planet follows all the rules for High Gravity Worlds (see
                 page 269 of the ROGUE TRADER Core Rulebook)."
-  perterbation:
-    _type: Perterbation
-    name: High Gravity
-    element:
-      _type: Config_Element
-      satellite_count:
-        - _type: Roll
-          _exists: true
-          base: -1
-          dice_size: 5
-          dice_count: 1
-    satellite:
-      _type: Config_Element
-      type_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: -2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: No Feature
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              base: 2
-              dice_count: 0
-          value:
-            _type: Inspiration
-            name: Moon
+  perterbations:
+    - _type: Perterbation
+      name: High Gravity
+      element:
+        _type: Config_Element
+        satellite_count:
+          - _type: Roll
+            _exists: true
+            base: -1
+            dice_size: 5
+            dice_count: 1
+      satellite:
+        _type: Config_Element
+        type_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: -2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: No Feature
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Moon
   tags:
     - _type: Tag
       _exists: true

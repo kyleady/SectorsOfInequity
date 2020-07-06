@@ -14,7 +14,7 @@ type Sector struct {
   Systems []*System
   grid [][]*System
   config *config.Grid
-  rand *rand.Rand
+  perterbation *config.Perterbation
 }
 
 func (sector *Sector) TableName(sectorType string) string {
@@ -84,8 +84,7 @@ func (sector *Sector) Randomize(gridConfig *config.Grid, client utilities.Client
   sector.Name = gridConfig.Name + t.Format("_20060102150405")
 
   source := rand.NewSource(t.UnixNano())
-  sector.rand = rand.New(source)
-
+  sector.perterbation = config.CreateEmptyPerterbation(nil, rand.New(source))
 
   sector.createGrid()
   sector.populateGrid()
@@ -125,7 +124,7 @@ func (sector *Sector) populateGrid() {
 
 func (sector *Sector) createSystem(i int, j int) {
   system := new(System)
-  if roll := sector.rand.Float64(); roll < sector.config.PopulationRate {
+  if roll := sector.perterbation.Rand.Float64(); roll < sector.config.PopulationRate {
     system.InitializeAt(i, j)
   } else {
     system.SetToVoidSpace()
@@ -143,7 +142,7 @@ func (sector *Sector) connectSystems() {
       // Attempt to connect the system @{i,j} to all systems within reach
       for r_i := -reach; r_i <= reach; r_i++ {
         for r_j := -reach; r_j <= reach; r_j++ {
-          if roll := sector.rand.Float64(); roll < sector.connectionChance(r_i, r_j) {
+          if roll := sector.perterbation.Rand.Float64(); roll < sector.connectionChance(r_i, r_j) {
             targetSystem := sector.getSystem(i+r_i, j+r_j)
             sector.grid[i][j].ConnectTo(targetSystem)
           }
@@ -279,7 +278,7 @@ func (sector *Sector) getTwoDifferentSystems(listByRegion map[int64][]int) (*Sys
 func (sector *Sector) genScatteredRegionIds() map[int64][]int {
   listByRegion := make(map[int64][]int)
   for systemIndex, system := range sector.Systems {
-    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)[0]
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.perterbation)[0]
     system.RegionId = randRegion
     listByRegion[randRegion] = append(listByRegion[randRegion], systemIndex)
   }
@@ -334,7 +333,7 @@ func (sector *Sector) smoothRegionIds(listByRegion map[int64][]int, smoothingFac
 }
 
 func (sector *Sector) getRandomUnsetSystem(systemsSet int) *System {
-  randomIndex := sector.rand.Intn(len(sector.Systems) - systemsSet)
+  randomIndex := sector.perterbation.Rand.Intn(len(sector.Systems) - systemsSet)
 
   if systemsSet == 0 {
     return sector.Systems[randomIndex]
@@ -358,7 +357,7 @@ func (sector *Sector) genClumpedRegionIds() map[int64][]int {
   //determine the number of systems in each region
   regionFrequency := make(map[int64]int)
   for range sector.Systems {
-    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.rand)[0]
+    randRegion := config.RollWeightedValues(sector.config.WeightedRegions, sector.perterbation)[0]
     regionFrequency[randRegion]++
   }
 
@@ -432,7 +431,7 @@ func (sector *Sector) genClumpedRegionIds() map[int64][]int {
           //mark that system as part of the current region
         } else {
           //randomly choose an adjacent system
-          selectedIndex = sector.rand.Intn(len(adjacentSystems))
+          selectedIndex = sector.perterbation.Rand.Intn(len(adjacentSystems))
           selectedSystem = adjacentSystems[selectedIndex]
         }
       }

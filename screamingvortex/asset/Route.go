@@ -49,7 +49,7 @@ func RandomRoute(perterbation *config.Perterbation, prefix string, index int) *R
   newPerterbation := new(config.Perterbation)
   route.Stability, newPerterbation = RollDetail(routeConfig.WeightedStability, perterbation)
   routeConfig = newPerterbation.RouteConfig
-  route.Days, _ = RollDetail(routeConfig.WeightedDays, newPerterbation)
+  route.Days, _ = RollDetail(routeConfig.WeightedDays, perterbation)
 
   return route
 }

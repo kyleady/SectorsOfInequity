@@ -58,10 +58,10 @@ func newElement(perterbation *config.Perterbation, prefix string, index int, dis
   element := new(Element)
   element.Type = elementType
   newPrefix := SetNameAndGetPrefix(element, prefix, index)
-  element.Distance = distance + config.RollAll(elementConfig.Spacing, perterbation.Rand)
+  element.Distance = distance + config.RollAll(elementConfig.Spacing, perterbation)
 
   if !isSatellite {
-    assetInspirationGroups := RollAssetInspirations(elementConfig.SatelliteCount, elementConfig.SatelliteExtra, satelliteConfig.WeightedTypes, perterbation.Rand)
+    assetInspirationGroups := RollAssetInspirations(elementConfig.SatelliteCount, elementConfig.SatelliteExtra, satelliteConfig.WeightedTypes, perterbation)
     satelliteDistance := 0
     for i, assetInspirations := range assetInspirationGroups {
       satellite := new(Element)

@@ -1,11 +1,9 @@
 package config
 
-import "database/sql"
-
 type Inspiration struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
-  PerterbationId sql.NullInt64 `sql:"perterbation_id"`
+  PerterbationIds []int64
   InspirationRolls []*NestedInspiration
   NestedInspirations []*NestedInspiration
 }
@@ -14,6 +12,7 @@ func LoadInspiration(manager *ConfigManager, inspiration *Inspiration) {
   exampleNestedInspiration := &NestedInspiration{}
   manager.Client.FetchMany(&inspiration.NestedInspirations, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "nested_inspirations", "", false)
   manager.Client.FetchMany(&inspiration.InspirationRolls, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "roll_groups", "", false)
+  inspiration.PerterbationIds = FetchManyPerterbationIds(manager, inspiration.Id, inspiration.TableName(""), "perterbations")
   for _, nestedInspiration := range inspiration.NestedInspirations {
     nestedInspiration.CountRolls = FetchManyRolls(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "count")
     nestedInspiration.WeightedInspirations = FetchManyWeightedInspirations(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "weighted_inspirations")

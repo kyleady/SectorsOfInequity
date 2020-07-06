@@ -21,10 +21,10 @@
         _type: Inspiration
         name: Indirect Path
         description: "Increase the duration."
-        perterbation:
-          _type: Perterbation
-          _exists: true
-          name: Increase Days by 100%
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -35,10 +35,10 @@
         _type: Inspiration
         name: Haunted Passage
         description: "Increase the duration and add +10 to any rolls made for Warp Travel Hallucinations."
-        perterbation:
-          _type: Perterbation
-          _exists: true
-          name: Increase Days by 100%
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -49,10 +49,10 @@
         _type: Inspiration
         name: Surly Route
         description: "Increase the duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
-        perterbation:
-          _type: Perterbation
-          _exists: true
-          name: Increase Days by 100%
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -63,10 +63,10 @@
         _type: Inspiration
         name: Untraceable Trail
         description: "Increase the duration and the route cannot be charted."
-        perterbation:
-          _type: Perterbation
-          _exists: true
-          name: Increase Days by 100%
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -77,10 +77,10 @@
         _type: Inspiration
         name: Lightless Path
         description: "Increase the duration and the Astronomican is obscured for the trip."
-        perterbation:
-          _type: Perterbation
-          _exists: true
-          name: Increase Days by 100%
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -91,10 +91,10 @@
         _type: Inspiration
         name: Byzantine Route
         description: "Increase the duration twice."
-        perterbation:
-          _type: Perterbation
-          _exists: true
-          name: Increase Days by 200%
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 200%
   days_inspirations:
     - _type: Weighted_Inspiration
       weights:
