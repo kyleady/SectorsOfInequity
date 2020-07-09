@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'calixis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 secrets = AwsSecrets(environment='dev', region_name='us-west-1')
-koronus = secrets.fetch_json(resource='koronus', secret='root')
+koronus = secrets.fetch_json(resource='koronus', secret='root', local='client_secrets.json')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.{engine}'.format(engine=koronus['engine']),
