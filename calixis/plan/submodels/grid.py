@@ -11,7 +11,7 @@ class Grid_Sector(models.Model):
 
     def __str__(self):
         return self.name
-    name = models.CharField(default="-", max_length=39)
+    name = models.CharField(default="-", max_length=100)
 
 class Grid_System(models.Model):
     sector = models.ForeignKey(Grid_Sector, on_delete=models.CASCADE)
