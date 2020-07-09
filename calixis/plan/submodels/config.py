@@ -16,7 +16,7 @@ class BaseConfig(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField(default="-", max_length=25)
+    name = models.CharField(default="-", max_length=100)
 
 class Config_Element(BaseConfig):
     type_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='type_inspirations')

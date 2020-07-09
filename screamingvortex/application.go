@@ -26,6 +26,7 @@ func extractIds(writer http.ResponseWriter, req *http.Request) (int64, int64) {
 
 func createClient() *utilities.Client {
   return &utilities.Client{
+    Local: "client_secrets.json",
     Environment: "dev",
     Region: "us-west-1",
     Resource: "koronus",

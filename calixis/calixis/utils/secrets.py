@@ -13,7 +13,13 @@ class AwsSecrets:
         self.environment = environment
         self.region_name = region_name
 
-    def fetch_json(self, resource, secret):
+    def mocked_fetch(self, local):
+        with open(local) as mocked_response:
+            return json.load(mocked_response)
+
+    def fetch_json(self, resource, secret, local=None):
+        if local:
+            return self.mocked_fetch(local)
         return json.loads(self.fetch(resource, secret))
 
     def fetch(self, resource, secret):

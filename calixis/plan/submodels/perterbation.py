@@ -12,7 +12,7 @@ class Perterbation(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField(default="-", max_length=25)
+    name = models.CharField(default="-", max_length=100)
     tags = models.ManyToManyField('Tag')
     flags = models.CharField(blank=True, null=True, max_length=100)
     muted_flags = models.CharField(blank=True, null=True, max_length=100)

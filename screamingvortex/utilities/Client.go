@@ -1,9 +1,11 @@
 package utilities
 
 import (
+    "os"
     "fmt"
     "strings"
     "reflect"
+    "io/ioutil"
     "encoding/json"
     "database/sql"
     _ "github.com/go-sql-driver/mysql"
@@ -17,6 +19,7 @@ type Client struct {
   Region string
   Resource string
   Secret string
+  Local string
 
   dbUser string
   dbPassword string
@@ -32,7 +35,19 @@ func (client *Client) Close() {
 }
 
 func (client *Client) Open() {
-  client.populateSecrets()
+  response := new(svcResponse)
+  if client.Local != "" {
+    response = client.mockedResponse()
+  } else {
+    response = client.secretResponse()
+  }
+
+  client.dbUser = response.Username
+  client.dbPassword = response.Password
+  client.dbConnection = "tcp"
+  client.dbHost = response.Host
+  client.dbPort = response.Port
+  client.dbName = client.Resource
 
   connectionString := fmt.Sprintf("%s:%s@%s(%s:%d)/%s",
     client.dbUser,
@@ -333,7 +348,7 @@ func (client *Client) Delete(obj SQLInterface, tableType string) {
   }
 }
 
-func (client *Client) populateSecrets() {
+func (client *Client) secretResponse() *svcResponse {
   awsSession, sessionErr := session.NewSession(&aws.Config{
   	Region: aws.String(client.Region),
   })
@@ -362,12 +377,20 @@ func (client *Client) populateSecrets() {
     panic(jsonErr)
   }
 
-  client.dbUser = response.Username
-  client.dbPassword = response.Password
-  client.dbConnection = "tcp"
-  client.dbHost = response.Host
-  client.dbPort = response.Port
-  client.dbName = client.Resource
+  return response
+}
+
+func (client *Client) mockedResponse() *svcResponse {
+  mockedResponse, err := os.Open(client.Local)
+  defer mockedResponse.Close()
+  if err != nil {
+    panic(err)
+  }
+
+  byteResponse, _ := ioutil.ReadAll(mockedResponse)
+  response := new(svcResponse)
+  json.Unmarshal(byteResponse, response)
+  return response
 }
 
 func listFields (obj interface{}, includeId bool) ([]interface{}, []string, []interface{}) {
