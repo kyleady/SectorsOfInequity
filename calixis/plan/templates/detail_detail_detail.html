@@ -12,7 +12,7 @@
 
   {% if model.detail_set.all %}
     <h3>Sub Details</h3>
-    {% for subdetail in model.detail_set.all %}
+    {% for subdetail in model.get_all_child_details %}
         <li>
           <strong>{{ subdetail.get_nested_name }}</strong>:
           <a href="{% url detail_url subdetail.id %}">
