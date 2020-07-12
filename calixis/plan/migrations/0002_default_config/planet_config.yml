@@ -108,40 +108,15 @@
                       suggest. It is likely comprised of light materials, or it
                       has large pockets of trapped gas making up much of its
                       volume."
+        perterbations:
+          - _type: Perterbation
+            name: Low Mass
+            flags: planet_body_low_mass
         nested_inspirations:
           - _type: Inspiration_Nested
+            _exists: true
             name: Gravity
-            count:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            weighted_inspirations:
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 9
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Low Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 1
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Normal Gravity
-                  tags__name: Planet
+            tags__name: Planet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -154,40 +129,15 @@
         name: Small
         description: "This world lacks the mass and size to support significant
                       gravity or resources."
+        perterbations:
+          - _type: Perterbation
+            name: Small
+            flags: planet_body_small
         nested_inspirations:
           - _type: Inspiration_Nested
+            _exists: true
             name: Gravity
-            count:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            weighted_inspirations:
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 7
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Low Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 3
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Normal Gravity
-                  tags__name: Planet
+            tags__name: Planet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -202,52 +152,15 @@
                       of its gravity well and the richness of its crust.
                       Generate Resources and Environments as if the world was
                       Small."
+        perterbations:
+          - _type: Perterbation
+            name: Small and Dense
+            flags: planet_body_small_and_dense
         nested_inspirations:
           - _type: Inspiration_Nested
+            _exists: true
             name: Gravity
-            count:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            weighted_inspirations:
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 2
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Low Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 6
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Normal Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 2
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: High Gravity
-                  tags__name: Planet
+            tags__name: Planet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -262,50 +175,9 @@
                       possible types."
         nested_inspirations:
           - _type: Inspiration_Nested
+            _exists: true
             name: Gravity
-            count:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            weighted_inspirations:
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 2
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Low Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 6
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Normal Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 2
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: High Gravity
-                  tags__name: Planet
+            tags__name: Planet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -318,39 +190,15 @@
         name: Large and Dense
         description: "Though impressive in volume, the mass of this world is, in
                       fact, compressed significantly."
+        perterbations:
+          - _type: Perterbation
+            name: Large and Dense
+            flags: planet_body_large_and_dense
         nested_inspirations:
           - _type: Inspiration_Nested
-            count:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            weighted_inspirations:
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 3
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: Normal Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 7
-                    dice_count: 0
-                value:
-                  _type: Inspiration
-                  _exists: true
-                  name: High Gravity
-                  tags__name: Planet
+            _exists: true
+            name: Gravity
+            tags__name: Planet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -365,151 +213,714 @@
                       edges of the possible size for a single world. Such
                       Planets tend to be of middling density, as they are
                       already more massive than is common."
+        perterbations:
+          - _type: Perterbation
+            name: Low Mass
+            flags: planet_body_vast
         nested_inspirations:
           - _type: Inspiration_Nested
-            count:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            weighted_inspirations:
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 4
-                    dice_count: 0
-                value:
-                  _type: Inspiration
+            _exists: true
+            name: Gravity
+            tags__name: Planet
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+
+- _type: Inspiration_Nested
+  name: Gravity
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_body_low_mass
+          base: 7
+        - _type: Roll
+          required_flags: planet_body_small
+          base: 5
+        - _type: Roll
+          required_flags: planet_body_large_and_dense
+          base: -2
+        - _type: Roll
+          required_flags: planet_body_vast
+          base: -2
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Low Gravity
+        description: "It follows all the rules for Low Gravity Worlds (see page 269 of
+                      the ROGUE TRADER Core Rulebook)."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Presence
+        perterbations:
+          - _type: Perterbation
+            name: Low Gravity
+            flags: planet_gravity_low
+            element:
+              _type: Config_Element
+              satellite_count:
+                - _type: Roll
                   _exists: true
-                  name: Normal Gravity
-                  tags__name: Planet
-              - _type: Weighted_Inspiration
-                weights:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 6
-                    dice_count: 0
-                value:
-                  _type: Inspiration
+                  required_flags: null
+                  base: -3
+                  dice_size: 5
+                  dice_count: 1
+            satellite:
+              _type: Config_Element
+              type_inspirations:
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      required_flags: null
+                      base: 2
+                      dice_count: 0
+                  value:
+                    _type: Inspiration
+                    name: No Feature
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      required_flags: null
+                      base: -2
+                      dice_count: 0
+                  value:
+                    _type: Inspiration
+                    name: Moon
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_body_low_mass
+          base: -5
+        - _type: Roll
+          required_flags: planet_body_small
+          base: -3
+        - _type: Roll
+          required_flags: planet_body_large_and_dense
+          base: -3
+        - _type: Roll
+          required_flags: planet_body_vast
+          base: -2
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 6
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Normal Gravity
+        description: "This Planet’s gravity is roughly Terran Standard."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Presence
+        perterbations:
+          - _type: Perterbation
+            name: Normal Gravity
+            element:
+              _type: Config_Element
+              satellite_count:
+                - _type: Roll
                   _exists: true
-                  name: High Gravity
-                  tags__name: Planet
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Planet
-
-- _type: Inspiration
-  name: Low Gravity
-  description: "It follows all the rules for Low Gravity Worlds (see page 269 of
-                the ROGUE TRADER Core Rulebook)."
-  perterbations:
-    - _type: Perterbation
-      name: Low Gravity
-      element:
-        _type: Config_Element
-        satellite_count:
-          - _type: Roll
+                  required_flags: null
+                  base: -2
+                  dice_size: 5
+                  dice_count: 1
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_body_low_mass
+          base: -2
+        - _type: Roll
+          required_flags: planet_body_small
+          base: -2
+        - _type: Roll
+          required_flags: planet_body_large_and_dense
+          base: 5
+        - _type: Roll
+          required_flags: planet_body_vast
+          base: 4
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: High Gravity
+        description: "This Planet follows all the rules for High Gravity Worlds (see
+                      page 269 of the ROGUE TRADER Core Rulebook)."
+        nested_inspirations:
+          - _type: Inspiration_Nested
             _exists: true
-            required_flags: null
-            base: -3
-            dice_size: 5
-            dice_count: 1
-      satellite:
-        _type: Config_Element
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: No Feature
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: -2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: Moon
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Planet
+            name: Atmospheric Presence
+        perterbations:
+          - _type: Perterbation
+            name: High Gravity
+            flags: planet_gravity_high
+            element:
+              _type: Config_Element
+              satellite_count:
+                - _type: Roll
+                  _exists: true
+                  required_flags: null
+                  base: -1
+                  dice_size: 5
+                  dice_count: 1
+            satellite:
+              _type: Config_Element
+              type_inspirations:
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      required_flags: null
+                      base: -2
+                      dice_count: 0
+                  value:
+                    _type: Inspiration
+                    name: No Feature
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      required_flags: null
+                      base: 2
+                      dice_count: 0
+                  value:
+                    _type: Inspiration
+                    name: Moon
 
-- _type: Inspiration
-  name: Normal Gravity
-  description: "This Planet’s gravity is roughly Terran Standard."
-  perterbations:
-    - _type: Perterbation
-      name: Normal Gravity
-      element:
-        _type: Config_Element
-        satellite_count:
-          - _type: Roll
-            _exists: true
-            required_flags: null
-            base: -2
-            dice_size: 5
-            dice_count: 1
+- _type: Inspiration_Nested
+  name: Atmospheric Presence
   tags:
     - _type: Tag
       _exists: true
       name: Planet
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_gravity_low
+          base: 2
+        - _type: Roll
+          required_flags: planet_gravity_high
+          base: -1
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: None
+        description: "The Planet has no atmosphere, or it has one so thin as to
+                      be effectively nonexistent. Activity on the Planet is
+                      treated as being in vacuum, as covered on pages 262–263 of
+                      the ROGUE TRADER Core Rulebook."
+        perterbations:
+          - _type: Perterbation
+            name: Atmospheric Presence None
+            flags: atmospheric_presence_none
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Climate
+            tags__name: Planet
 
-- _type: Inspiration
-  name: High Gravity
-  description: "This Planet follows all the rules for High Gravity Worlds (see
-                page 269 of the ROGUE TRADER Core Rulebook)."
-  perterbations:
-    - _type: Perterbation
-      name: High Gravity
-      element:
-        _type: Config_Element
-        satellite_count:
-          - _type: Roll
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Thin
+        description: "The Planet’s atmosphere is weak, but avoids the problems
+                      of an actual vacuum. Tests to avoid harm from a Toxic or
+                      Corrosive atmosphere are made at a +10 bonus. However, the
+                      lack of air makes strenuous activity difficult. Any time
+                      an Explorer relying on the outside air gains Fatigue, he
+                      gains the normal amount plus one additional level of
+                      Fatigue instead."
+        nested_inspirations:
+          - _type: Inspiration_Nested
             _exists: true
-            required_flags: null
-            base: -1
-            dice_size: 5
-            dice_count: 1
-      satellite:
-        _type: Config_Element
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: -2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: No Feature
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: Moon
+            name: Climate
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_gravity_low
+          base: -1
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 5
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Moderate
+        description: "Atmospheres in this range produce no ill effects due to
+                      lack or overabundance of air, though they can still be
+                      Toxic or Corrosive."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Climate
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_gravity_low
+          base: -1
+        - _type: Roll
+          required_flags: planet_gravity_high
+          base: 1
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Heavy
+        description: "A thick blanket of air presses down on the Planet, coming
+                      just short of smothering those beneath it. This oppressive
+                      weight imposes a –5 penalty on Strength or Toughness
+                      Tests, at the GM’s discretion. Tests to avoid harm from a
+                      Toxic or Corrosive Atmosphere are made at a –10 penalty.
+                      If the atmosphere is breathable, the thickness of the air
+                      makes it difficult to take in. A full hour of relying on
+                      such an atmosphere for air inflicts a single level of
+                      Fatigue. This effect is not cumulative, no matter how long
+                      a character relies on the air. However, recovery from this
+                      level of Fatigue cannot occur while relying on such an
+                      atmosphere."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Climate
+            tags__name: Planet
+
+- _type: Inspiration_Nested
+  name: Atmospheric Composition
   tags:
     - _type: Tag
       _exists: true
       name: Planet
+  count:
+    - _type: Roll
+      required_flags: atmospheric_presence_none
+      base: -100
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Deadly
+        description: "An atmosphere of this sort is little more than a vast
+                      acid bath. Anyone not protected by a full environmental
+                      seal suffers 1d5+1 Damage each Round that ignore
+                      Toughness Bonus and Armour. If the atmosphere is also
+                      Heavy, it wears away at resistance, breaking into
+                      environmental seals after 1d10+2 hours."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Habitability
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Corrosive
+        description: "This atmosphere is both poisonous to breathe and deadly
+                      on any sort of contact. Anyone not protected by a full
+                      environmental seal must make a Difficult (–10)
+                      Toughness Test each Round, or suffer 1d5 Damage that
+                      ignores Armour and Toughness Bonus. Continued exposure
+                      results in suffocation, as per page 261 of the ROGUE
+                      TRADER Core Rulebook."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Habitability
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Toxic
+        description: "Poisonous gases and vapours fill the Planet’s
+                      atmosphere. Simply breathing the air requires a
+                      Challenging (+0) Toughness Test each Round to avoid
+                      suffering 1 Damage that ignores Toughness Bonus and
+                      Armour. Additionally, continued exposure results in
+                      suffocation, as per the rules on page 261 of the ROGUE
+                      TRADER Core Rulebook."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Habitability
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Tainted
+        description: "Though capable of sustaining human life, this atmosphere
+                      is not entirely safe, stained by trace elements of
+                      toxins. Though it does not directly affect the
+                      Explorers, it might influence the viability or costs of
+                      long-term colonisation."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Habitability
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Pure
+        description: "The atmosphere is entirely safe for humans and most
+                      other common life forms to breathe."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Habitability
+            tags__name: Planet
+
+- _type: Inspiration_Nested
+  name: Climate
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: zone_inner_cauldron
+          base: 6
+        - _type: Roll
+          required_flags: zone_primary_biosphere,atmospheric_presence_none
+          base: 1
+      value:
+        _type: Inspiration
+        name: Burning World
+        description: "A fierce heat blankets the Planet in its entirety. The
+                      heat usually recedes at night, but it is likely still
+                      too warm for comfort. The entire Planet is affected by
+                      extreme heat. Tests made to resist the heat are Very
+                      Hard (–30)."
+        perterbations:
+          - _type: Perterbation
+            name: Climate Burning World
+            flags: climate_burning_world
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Composition
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: atmospheric_presence_none
+          base: -100
+        - _type: Roll
+          required_flags: zone_outer_reaches
+          base: -3
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Hot World
+        description: "Most of this Planet is dangerously hot, but various
+                      regions can be found with more moderate microclimates.
+                      Outside of these sheltered regions, the entire Planet is
+                      affected by extreme heat. Tests made to resist the heat
+                      generally range from Challenging (+0) to Hard (–20). In
+                      some cases, the sheltered regions are also afflicted by
+                      extreme heat, but of a less severe degree than the rest
+                      of the Planet."
+        perterbations:
+          - _type: Perterbation
+            name: Climate Hot World
+            flags: climate_hot_world
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Composition
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: atmospheric_presence_none
+          base: -100
+        - _type: Roll
+          required_flags: zone_inner_cauldron
+          base: -3
+        - _type: Roll
+          required_flags: zone_outer_reaches
+          base: -3
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Temperate World
+        description: "Temperate Planets are exclusively found in or near a
+                      system’s Primary Biosphere. They might contain regions
+                      of either extreme heat or extreme cold, and in many
+                      cases, have some of both. The Tests made to resist
+                      temperature extremes on these Planets rarely exceed
+                      Difficult (–10)."
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Composition
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: atmospheric_presence_none
+          base: -100
+        - _type: Roll
+          required_flags: zone_inner_cauldron
+          base: -3
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Cold World
+        description: "Most of this Planet is dangerously cold, but various
+                      regions can found with more moderate microclimates.
+                      Outside of these sheltered regions, the entire Planet is
+                      affected by extreme cold. Tests made to resist the heat
+                      generally range from Challenging (+0) to Hard (–20). In
+                      some cases, the sheltered regions are also afflicted by
+                      extreme cold, but of a less severe degree than the rest
+                      of the Planet."
+        perterbations:
+          - _type: Perterbation
+            name: Climate Cold World
+            flags: climate_cold_world
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Composition
+            tags__name: Planet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: zone_outer_reaches
+          base: 6
+        - _type: Roll
+          required_flags: zone_primary_biosphere,atmospheric_presence_none
+          base: 1
+      value:
+        _type: Inspiration
+        name: Ice World
+        description: "The Planet is frozen, from pole to pole. The entire
+                      Planet is affected by extreme cold. Tests made to resist
+                      the cold are Very Hard (–30)."
+        perterbations:
+          - _type: Perterbation
+            name: Climate Ice World
+            flags: climate_ice_world
+        nested_inspirations:
+          - _type: Inspiration_Nested
+            _exists: true
+            name: Atmospheric Composition
+            tags__name: Planet
+
+- _type: Inspiration_Nested
+  name: Habitability
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: climate_burning_world
+          base: 7
+        - _type: Roll
+          required_flags: climate_ice_world
+          base: 7
+        - _type: Roll
+          required_flags: climate_hot_world
+          base: 2
+        - _type: Roll
+          required_flags: climate_cold_world
+          base: 2
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Inhospitable
+        description: "There is no life or water to be found on this Planet."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Trapped Water
+        description: "There is water on this Planet, but it is in a form that
+                      requires processing before it can be used or consumed. It
+                      might be frozen or have boiled away to vapour on Planets
+                      with extreme climates. Alternatively, the water could be
+                      locked away in deep channels underground, or contaminated
+                      with other materials."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: climate_burning_world
+          base: -100
+        - _type: Roll
+          required_flags: climate_ice_world
+          base: -100
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Liquid Water
+        description: "Liquid water is accessible on the Planet’s surface, but no
+                      native life has arisen to make use of it."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: climate_burning_world
+          base: -100
+        - _type: Roll
+          required_flags: climate_ice_world
+          base: -100
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Limited Ecosystem
+        description: "The Planet has native life of a limited variety. It could
+                      be that this Planet’s species have not advanced beyond
+                      basic proto-biology, or their spread across the Planet was
+                      restricted by local conditions. Thismight also indicate a
+                      Planet on the decline, or recovering from a devastating
+                      natural disaster."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: climate_burning_world
+          base: -100
+        - _type: Roll
+          required_flags: climate_ice_world
+          base: -100
+        - _type: Roll
+          required_flags: climate_hot_world
+          base: -2
+        - _type: Roll
+          required_flags: climate_cold_world
+          base: -2
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Verdant
+        description: "The Planet has a thriving ecosystem. A variety of species
+                      can be found almost anywhere on the Planet."
 
 - _type: Inspiration
   name: Large Asteroid

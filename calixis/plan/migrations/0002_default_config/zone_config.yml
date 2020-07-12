@@ -21,6 +21,7 @@
   perterbation:
     _type: Perterbation
     name: Default IC
+    flags: zone_inner_cauldron
     element:
       _type: Config_Element
       _exists: true
@@ -39,6 +40,7 @@
   perterbation:
     _type: Perterbation
     name: Default PB
+    flags: zone_primary_biosphere
     element:
       _type: Config_Element
       _exists: true
@@ -57,6 +59,7 @@
   perterbation:
     _type: Perterbation
     name: Default OR
+    flags: zone_outer_reaches
     element:
       _type: Config_Element
       _exists: true

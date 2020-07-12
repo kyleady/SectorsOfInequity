@@ -5,6 +5,7 @@ import os
 import pprint
 import uuid
 import yaml
+import sys
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -108,9 +109,13 @@ def _attempt_to_create_each(todo, created_rows, counts, model_constructors):
         for arg, value in row_plan['args'].items():
             if isinstance(value, dict):
                 row_plan['args'][arg] = created_rows[value['_plan_id']]
-
-        created_row = model_constructors[row_plan['metadata']['_type']](**row_plan['args'])
-        created_row.save()
+        try:
+            created_row = model_constructors[row_plan['metadata']['_type']](**row_plan['args'])
+            created_row.save()
+        except:
+            print(row_plan)
+            print("Unexpected error:", sys.exc_info()[0])
+            raise
         if len(row_plan['metadata']['_m2m_dependencies']) > 0:
             todo['m2m'][_plan_id] = (row_plan, created_row)
 
