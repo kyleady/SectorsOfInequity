@@ -30,8 +30,46 @@
   perterbations:
     - _type: Perterbation
       name: Planet
+      element:
+        _type: Config_Element
+        name: Planet
+        territory_count:
+          - _type: Roll
+            required_flags: planet_body_low_masss
+            base: -2
+          - _type: Roll
+            required_flags: planet_body_small
+            base: -2
+          - _type: Roll
+            required_flags: planet_body_small_and_dense
+            base: -2
+          - _type: Roll
+            required_flags: planet_body_vast
+            base: 3
+          - _type: Roll
+            required_flags: planet_habitability_limited_ecosystem
+            base: 100
+          - _type: Roll
+            required_flags: planet_habitability_verdant
+            base: 102
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: -100
+            dice_count: 0
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 0
+            dice_count: 1
+            dice_size: 5
+        territory:
+          _type: Config_Territory
+          _exists: true
+          name: Planet Territory Types
       satellite:
         _type: Config_Element
+        name: Planet Satellite Types
         type_inspirations:
           - _type: Weighted_Inspiration
             weights:
@@ -897,6 +935,10 @@
                       restricted by local conditions. Thismight also indicate a
                       Planet on the decline, or recovering from a devastating
                       natural disaster."
+        perterbations:
+          - _type: Perterbation
+            name: Limited Ecosystem
+            flags: planet_habitability_limited_ecosystem
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -921,6 +963,10 @@
         name: Verdant
         description: "The Planet has a thriving ecosystem. A variety of species
                       can be found almost anywhere on the Planet."
+        perterbations:
+          - _type: Perterbation
+            name: Verdant
+            flags: planet_habitability_verdant
 
 - _type: Inspiration
   name: Large Asteroid
