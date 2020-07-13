@@ -1,7 +1,5 @@
 package config
 
-import "fmt"
-
 type Territory struct {
   WeightedTerritoryTypes []*WeightedValue
 }
@@ -29,10 +27,5 @@ func (territory *Territory) AddPerterbation(perterbation *Territory) *Territory 
 func FetchTerritoryConfig(manager *ConfigManager, id int64) *Territory {
   territory := new(Territory)
   territory.WeightedTerritoryTypes = FetchManyWeightedInspirations(manager, id, territory.TableName(""), "territory_inspirations")
-  if len(territory.WeightedTerritoryTypes) > 0 {
-    fmt.Printf("\n\n\nWeightedTerritoryTypes exists: %d\n\n\n", len(territory.WeightedTerritoryTypes))
-  } else {
-    fmt.Printf("Nope")
-  }
   return territory
 }

@@ -2,7 +2,6 @@ package asset
 
 import "screamingvortex/config"
 import "screamingvortex/utilities"
-import "fmt"
 
 type Element struct {
   Id int64 `sql:"id"`
