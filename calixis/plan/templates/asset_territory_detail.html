@@ -7,4 +7,16 @@
     {{ model.type }}
   </a>
 </div>
+{% if model.type.detail_set.count %}
+  <ul>
+  {% for subdetail in model.type.get_all_child_details %}
+      <li>
+        <strong>{{ subdetail.get_nested_name }}</strong>:
+        <a href="{% url detail_url subdetail.id %}">
+          {{ subdetail }}
+        </a>
+      </li>
+  {% endfor %}
+  </ul>
+{% endif %}
 {% endblock %}

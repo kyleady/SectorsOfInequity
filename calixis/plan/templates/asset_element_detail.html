@@ -6,6 +6,18 @@
   <strong>Type</strong>: <a href="{% url "plan-detail-detail-detail" model.type.id %}">
     {{ model.type }}
   </a>
+  {% if model.type.detail_set.all %}
+    <ul>
+    {% for subdetail in model.type.get_all_child_details %}
+        <li>
+          <strong>{{ subdetail.get_nested_name }}</strong>:
+          <a href="{% url detail_url subdetail.id %}">
+            {{ subdetail }}
+          </a>
+        </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
 
   {% if model.satellites.count %}
     <h3>Satellites</h3>
