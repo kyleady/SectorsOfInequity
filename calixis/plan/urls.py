@@ -22,10 +22,13 @@ asset_models = [
         'custom': { 'detail_template': 'asset_zone_detail.html', 'no_form': True } },
     { 'full_name': 'Element', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Asset_Element,
         'custom': { 'detail_template': 'asset_element_detail.html', 'no_form': True } },
+    { 'full_name': 'Territory', 'app': app, 'subapp': subapp, 'name': 'territory', 'Model': Asset_Territory,
+        'custom': { 'detail_template': 'asset_territory_detail.html', 'no_form': True } },
 ]
 
 subapp = 'config'
 config_models = [
+    { 'full_name': 'Territory Config', 'app': app, 'subapp': subapp, 'name': 'territory', 'Model': Config_Territory },
     { 'full_name': 'Element Config', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Config_Element },
     { 'full_name': 'Zone Config', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Config_Zone },
     { 'full_name': 'Route Config',  'app': app, 'subapp': subapp, 'name': 'route',  'Model': Config_Route },

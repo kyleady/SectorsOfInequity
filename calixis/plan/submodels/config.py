@@ -18,11 +18,17 @@ class BaseConfig(models.Model):
 
     name = models.CharField(default="-", max_length=100)
 
+class Config_Territory(BaseConfig):
+    territory_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='territory_inspirations')
+
 class Config_Element(BaseConfig):
     type_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='type_inspirations')
     spacing = models.ManyToManyField('Roll', related_name='spacing')
     satellite_count = models.ManyToManyField('Roll', related_name='satellite_count')
     satellite_extra = models.ManyToManyField('Weighted_Inspiration', related_name='satellite_extra')
+    territory = models.ForeignKey('Config_Territory', null=True, blank=True, on_delete=models.SET_NULL)
+    territory_count = models.ManyToManyField('Roll', related_name='territory_count')
+    territory_extra = models.ManyToManyField('Weighted_Inspiration', related_name='territory_extra')
 
 class Config_Zone(BaseConfig):
     zone = models.CharField(null=True, blank=True, max_length=25)

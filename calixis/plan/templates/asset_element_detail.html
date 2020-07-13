@@ -7,13 +7,26 @@
     {{ model.type }}
   </a>
 
-  <h3>Satellites</h3>
-  {% for satellite in model.satellites.all %}
-      <li>
-        <a href="{% url "plan-asset-element-detail" satellite.id %}">
-          {{ satellite }}
-        </a>
-      </li>
-  {% endfor %}
+  {% if model.satellites.count %}
+    <h3>Satellites</h3>
+    {% for satellite in model.satellites.all %}
+        <li>
+          <a href="{% url "plan-asset-element-detail" satellite.id %}">
+            {{ satellite }}
+          </a>
+        </li>
+    {% endfor %}
+  {% endif %}
+
+  {% if model.territories.count %}
+    <h3>Territories</h3>
+    {% for territory in model.territories.all %}
+        <li>
+          <a href="{% url "plan-asset-territory-detail" territory.id %}">
+            {{ territory }}
+          </a>
+        </li>
+    {% endfor %}
+  {% endif %}
 </div>
 {% endblock %}
