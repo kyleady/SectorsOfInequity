@@ -24,7 +24,7 @@ func (roll *Roll) GetId() *int64 {
 }
 
 func (roll *Roll) Roll(perterbation *Perterbation) int {
-    if !perterbation.Manager.HasFlags(roll.requiredFlags) {
+    if !perterbation.HasFlags(roll.requiredFlags) {
       return 0
     }
 
