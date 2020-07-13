@@ -29,6 +29,14 @@ class Detail(models.Model):
         text = '\n'.join(inspiration.description for inspiration in self.inspirations.all()).format(**rolls)
         return text
 
+    def get_all_child_details(self):
+        all_child_details = []
+        for child_detail in self.detail_set.all():
+            all_child_details.append(child_detail)
+            all_child_details.extend(child_detail.get_all_child_details())
+
+        return all_child_details
+
     rolls = models.CharField(max_length=100)
     inspirations = models.ManyToManyField('Inspiration', related_name='inspirations')
     nested_inspirations = models.ManyToManyField('Inspiration_Nested')

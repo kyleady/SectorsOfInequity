@@ -7,7 +7,21 @@ class BaseWeighted(models.Model):
     weights = models.ManyToManyField('Roll')
 
     def __str__(self):
-        return "({weight}) {value_name}".format(weight=self.weight, value_name=self.value.name)
+        return "({weights}) {value_name}".format(weights=self.get_weights_as_str(), value_name=self.value.name)
+
+    def get_weights_as_str(self):
+        weights = []
+        has_conditional_weights = False
+        for weight in self.weights.all():
+            if not weight.required_flags:
+                weights.append(str(weight))
+            else:
+                has_conditional_weights = True
+
+        weights_as_str = "+".join(weights)
+        if has_conditional_weights:
+            weights_as_str += "*"
+        return weights_as_str
 
     def __repr__(self):
         return json.dumps(model_to_dict(

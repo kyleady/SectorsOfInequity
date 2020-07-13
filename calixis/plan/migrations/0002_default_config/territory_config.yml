@@ -1,0 +1,102 @@
+- _type: Config_Territory
+  name: Planet Territory Types
+  territory_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Forest
+        description: "A Forest is primarily defined by an abundance of large-
+                      scale flora, although they are commonly home to a great
+                      many additional species. Tropical forests and jungles, in
+                      particular, are known for this kind of diversity. While a
+                      number of populations within the Imperium would consider
+                      the presence of trees an absolute necessity for a forest,
+                      this attitude stems primarily from terraforming and
+                      colonisation efforts from the Dark Age of Technology and
+                      the ancient times that preceded it. Planets that develop
+                      on their own often have forests of tangled vines, enormous
+                      mushrooms, fungal mounds, and even stranger things."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Mountain Range
+        description: "The serried peaks of a Mountain Range are a presence as
+                      impressive in their sum as any single towering peak. Though
+                      they are not individually as large as Mountain Landmarks, the
+                      individual elements of a mountain range are nonetheless quite
+                      impressive, in most cases. Sometimes a range is found that
+                      trades frost-capped peaks for volcanic fissures, making for a
+                      Territory more perilous than most.
+
+                      Mountain Ranges grant Explorers who can see them a +10
+                      bonus to Navigate (Surface) Tests when they can be used as a
+                      point of reference, in the same manner as Landmarks."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Plains
+        description: "The broad category of Plains applies to grasslands, savannahs,
+                      scrublands, and stony plateaus, among stranger things. All such
+                      Territories consist of an uninterrupted expanse of flattened
+                      ground, but they have little else in common. Many are verdant
+                      with native grasses and shrubs, while others harbour only a
+                      few tenacious weeds. Variations in the soil, climate, and other
+                      conditions can allow for anything from a barren expanse of
+                      baked clay, to a lush grazing ground for the local fauna."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Swamp
+        description: "In a galaxy where there might not be enough water to fill a
+                      Grox trough in a whole system, the presence of marshes and
+                      wetlands sometimes seems incredible. However, an abundance
+                      of water can be nearly as deadly as its lack, with such areas
+                      being a breeding ground for all manner of diseases and
+                      toxins. A number of the more infamous worlds of the Calixis
+                      Sector, including the death world of Woe, owe much of their
+                      reputations to heavy coverage in swampland."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Wasteland
+        description: "A Wasteland can be a frozen tundra or a scorching ocean of
+                      sand dunes, or many other things in between. In all cases,
+                      these lands are defined by being inimical to life. They
+                      are not merely full of danger, as a Swamp or predatorhaunted
+                      Forest might be, but are dangers in themselves.
+                      Not even the native flora or fauna can easily live in a
+                      Wasteland, where water is scarce and the very air can be cruel.
+                      Wastelands are frequently found in regions of extreme heat
+                      or cold. At the GM’s discretion, a Wasteland can have an
+                      additional instance of the Extreme Temperature Territory
+                      Trait, in addition to whatever it generates randomly."

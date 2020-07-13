@@ -19,10 +19,14 @@ class BaseAsset(models.Model):
     name = models.CharField(max_length=75)
     parent = None
 
+class Asset_Territory(BaseAsset):
+    type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='territory_type')
+
 class Asset_Element(BaseAsset):
-    type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='type')
+    type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='element_type')
     distance = models.IntegerField()
     satellites = models.ManyToManyField('Asset_Element', related_name='element_satellites')
+    territories = models.ManyToManyField('Asset_Territory', related_name='element_territories')
 
 class Asset_Zone(BaseAsset):
     distance = models.SmallIntegerField()

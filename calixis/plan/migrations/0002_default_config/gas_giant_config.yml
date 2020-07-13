@@ -285,6 +285,17 @@
             description: "The largest gas giants can rival weaker stars in size
                           and mass, with some of them having some degree of
                           kinship with such bodies."
+            perterbations:
+              - _type: Perterbation
+                name: Titanic Gas Giant OR -> PB
+                required_flags: zone_outer_reaches
+                flags: zone_primary_biosphere
+                muted_flags: zone_outer_reaches
+              - _type: Perterbation
+                name: Titanic Gas Giant PB -> IC
+                required_flags: zone_primary_biosphere
+                flags: zone_inner_cauldron
+                muted_flags: zone_primary_biosphere
             nested_inspirations:
               - _type: Inspiration_Nested
                 name: Gravity

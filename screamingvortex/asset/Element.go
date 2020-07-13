@@ -10,6 +10,7 @@ type Element struct {
   Type *Detail
   Distance int `sql:"distance"`
   Satellites []*Element
+  Territories []*Territory
 }
 
 func (element *Element) TableName(elementType string) string {
@@ -31,6 +32,7 @@ func (element *Element) SetName(name string) {
 func (element *Element) SaveTo(client utilities.ClientInterface) {
   element.SaveParents(client)
   client.Save(element, "")
+  element.SaveChildren(client)
 }
 
 func (element *Element) SaveParents(client utilities.ClientInterface) {
@@ -43,8 +45,23 @@ func (element *Element) SaveChildren(client utilities.ClientInterface) {
     satellite.SaveParents(client)
   }
 
+  for _, territory := range element.Territories {
+    territory.SaveParents(client)
+  }
+
   client.SaveAll(&element.Satellites, "")
+  client.SaveAll(&element.Territories, "")
+
   client.SaveMany2ManyLinks(element, &element.Satellites, "", "", "satellites", false)
+  client.SaveMany2ManyLinks(element, &element.Territories, "", "", "territories", false)
+
+  for _, satellite := range element.Satellites {
+    satellite.SaveChildren(client)
+  }
+
+  for _, territory := range element.Territories {
+    territory.SaveChildren(client)
+  }
 }
 
 func newElement(perterbation *config.Perterbation, prefix string, index int, distance int, elementType *Detail, isSatellite bool) (*Element, int) {
@@ -75,6 +92,21 @@ func newElement(perterbation *config.Perterbation, prefix string, index int, dis
       satelliteDistance = newSatelliteDistance
       element.Satellites = append(element.Satellites, satellite)
     }
+  }
+
+  perterbation = perterbation.CombineElementConfigs(isSatellite)
+  territoryConfig := perterbation.TerritoryConfig
+
+  territoryInspirationGroups := RollAssetInspirations(elementConfig.TerritoryCount, elementConfig.TerritoryExtra, territoryConfig.WeightedTerritoryTypes, perterbation)
+  for i, territoryInspirationGroup := range territoryInspirationGroups {
+    territory := new(Territory)
+    if territoryInspirationGroup != nil {
+      territory = NewTerritory(perterbation, newPrefix, i+1, territoryInspirationGroup)
+    } else {
+      territory = RandomTerritory(perterbation, newPrefix, i+1)
+    }
+
+    element.Territories = append(element.Territories, territory)
   }
 
   return element, element.Distance
