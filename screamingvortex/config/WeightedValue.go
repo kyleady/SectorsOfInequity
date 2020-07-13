@@ -1,5 +1,7 @@
 package config
 
+import "fmt"
+
 type WeightedValue struct {
   Id int64 `sql:"id"`
   Weights []*Roll
@@ -57,6 +59,10 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
 
   weightedRoll := rRand.Intn(totalWeight)
   for _, weightedValue := range weightedValues {
+    if weightedValue.Weight <= 0 {
+      continue
+    }
+
     if weightedRoll < weightedValue.Weight {
       return weightedValue.Values
     } else {
@@ -64,7 +70,21 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
     }
   }
 
+  fmt.Printf("\nManager: %+v", perterbation.Manager)
+
+
+  fmt.Printf("\nweightedValues: [", weightedValues)
+  for _, weightedValue := range weightedValues {
+    fmt.Printf("\n%+v,", weightedValue)
+    fmt.Printf("\n  [")
+    for _, roll := range weightedValue.Weights {
+      fmt.Printf("\n    %+v", roll)
+    }
+    fmt.Printf("\n  ]")
+  }
+  fmt.Printf("\n  ]")
   panic("RollWeightedValues should always return a value!")
+
 }
 
 func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue, modifyOnly bool) []*WeightedValue {
