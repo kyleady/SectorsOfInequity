@@ -13,7 +13,7 @@
     {% for subdetail in model.days.get_all_child_details %}
         <li>
           <strong>{{ subdetail.get_nested_name }}</strong>:
-          <a href="{% url detail_url subdetail.id %}">
+          <a href="{% url "plan-detail-detail-detail" subdetail.id %}">
             {{ subdetail }}
           </a>
         </li>
@@ -31,7 +31,7 @@
     {% for subdetail in model.stability.get_all_child_details %}
         <li>
           <strong>{{ subdetail.get_nested_name }}</strong>:
-          <a href="{% url detail_url subdetail.id %}">
+          <a href="{% url "plan-detail-detail-detail" subdetail.id %}">
             {{ subdetail }}
           </a>
         </li>
