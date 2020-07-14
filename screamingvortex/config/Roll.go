@@ -11,6 +11,8 @@ type Roll struct {
   Base int `sql:"base"`
   Multiplier int `sql:"multiplier"`
   KeepHighest int `sql:"keep_highest"`
+  Minimum sql.NullInt64 `sql:"minimum"`
+  Maximum sql.NullInt64 `sql:"maximum"`
 
   requiredFlags []string
 }
@@ -65,6 +67,14 @@ func (roll *Roll) Roll(perterbation *Perterbation) int {
     result *= roll.Multiplier
 
     result += roll.Base
+
+    if roll.Minimum.Valid && result < int(roll.Minimum.Int64) {
+      result = int(roll.Minimum.Int64)
+    }
+
+    if roll.Maximum.Valid && result > int(roll.Maximum.Int64) {
+      result = int(roll.Maximum.Int64)
+    }
 
     return result
 }

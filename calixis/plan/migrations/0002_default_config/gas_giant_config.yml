@@ -340,6 +340,7 @@
             base: -5
             dice_size: 10
             dice_count: 1
+            minimum: 1
   tags:
     - _type: Tag
       _exists: true
@@ -361,6 +362,7 @@
             base: -3
             dice_size: 10
             dice_count: 1
+            minimum: 1
       satellite:
         _type: Config_Element
         type_inspirations:

@@ -17,28 +17,46 @@ class Roll(models.Model):
                         dice_count=self.dice_count,
                         dice_size=self.dice_size
                     )
+
         if self.keep_highest > 0:
             text += "kh{keep_highest}".format(
                         keep_highest=self.keep_highest
                     )
+
         elif self.keep_highest < 0:
             text += "kl{drop_highest}".format(
                         drop_highest=-1*self.keep_highest
                     )
 
-        if self.multiplier != 1:
+        if self.multiplier != 1 and text != "":
             text = "{multiplier}x({text})".format(
                         multiplier=self.multiplier,
                         text=text
                     )
+
         if self.base > 0 and text != "":
             text += "+"
+
         if self.base != 0:
             text += "{base}".format(
                         base=self.base
                     )
+
         if text == "":
             text = "0"
+
+        if self.minimum:
+            text = "min({text}, {min})".format(
+                text=text,
+                min=self.minimum
+            )
+
+        if self.maximum:
+            text = "max({text}, {max})".format(
+                text=text,
+                min=self.maximum
+            )
+
         return text
 
     @classmethod
@@ -87,3 +105,5 @@ class Roll(models.Model):
     base = models.IntegerField(blank=True, default=0)
     multiplier = models.IntegerField(blank=True, default=1)
     keep_highest = models.IntegerField(blank=True, default=0)
+    minimum = models.PositiveSmallIntegerField(blank=True, null=True)
+    maximum = models.PositiveSmallIntegerField(blank=True, null=True)
