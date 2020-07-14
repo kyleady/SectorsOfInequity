@@ -319,6 +319,7 @@
                   base: -3
                   dice_size: 5
                   dice_count: 1
+                  minimum: 1
             satellite:
               _type: Config_Element
               type_inspirations:
@@ -381,6 +382,7 @@
                   base: -2
                   dice_size: 5
                   dice_count: 1
+                  minimum: 1
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -422,6 +424,7 @@
                   base: -1
                   dice_size: 5
                   dice_count: 1
+                  minimum: 1
             satellite:
               _type: Config_Element
               type_inspirations:
