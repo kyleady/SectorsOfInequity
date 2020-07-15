@@ -13,7 +13,7 @@ type Detail struct {
   ParentDetailId sql.NullInt64 `sql:"parent_detail_id"`
   childDetailGroups [][]*Detail
   Inspirations []*config.Inspiration
-  NestedInspirations []*config.NestedInspiration
+  InspirationTables []*config.InspirationTable
   RollsAsString string `sql:"rolls"`
 }
 
@@ -32,7 +32,7 @@ func (detail *Detail) SaveTo(client utilities.ClientInterface) {
 
 func (detail *Detail) SaveChildren(client utilities.ClientInterface) {
   client.SaveMany2ManyLinks(detail, &detail.Inspirations, "", "", "inspirations", false)
-  client.SaveMany2ManyLinks(detail, &detail.NestedInspirations, "", "", "nested_inspirations", false)
+  client.SaveMany2ManyLinks(detail, &detail.InspirationTables, "", "", "inspiration_tables", false)
   for _, childDetailGroup := range detail.childDetailGroups {
     for _, childDetail := range childDetailGroup {
       childDetail.ParentDetailId.Valid = true
@@ -79,9 +79,9 @@ func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSate
   }
 
   detail := baseDetail(inspirations, perterbation.Rand)
-  stackedRollGroups := []*config.NestedInspiration{}
+  stackedRollGroups := []*config.InspirationTable{}
   for _, inspiration := range inspirations {
-    stackedRollGroups = config.StackNestedInspirations(inspiration.InspirationRolls, stackedRollGroups)
+    stackedRollGroups = config.StackInspirationTables(inspiration.InspirationRolls, stackedRollGroups)
   }
 
   rollsAsKvPairs := []string{}
@@ -94,17 +94,17 @@ func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSate
 
   detail.RollsAsString = fmt.Sprintf("{%s}", strings.Join(rollsAsKvPairs, ","))
 
-  stackedNestedInspirations := []*config.NestedInspiration{}
+  stackedInspirationTables := []*config.InspirationTable{}
   for _, inspiration := range inspirations {
-    stackedNestedInspirations = config.StackNestedInspirations(inspiration.NestedInspirations, stackedNestedInspirations)
+    stackedInspirationTables = config.StackInspirationTables(inspiration.InspirationTables, stackedInspirationTables)
   }
 
-  for _, nestedInspiration := range stackedNestedInspirations {
-    numberOfChildDetails := config.RollAll(nestedInspiration.CountRolls, perterbation)
+  for _, inspirationTable := range stackedInspirationTables {
+    numberOfChildDetails := config.RollAll(inspirationTable.CountRolls, perterbation)
     var childDetailGroup []*Detail
     for childDetailCount := 0; childDetailCount < numberOfChildDetails; childDetailCount++ {
-      childDetail, childPerterbation := RollDetail(nestedInspiration.WeightedInspirations, perterbation)
-      childDetail.NestedInspirations = nestedInspiration.ConstituentParts
+      childDetail, childPerterbation := RollDetail(inspirationTable.WeightedInspirations, perterbation)
+      childDetail.InspirationTables = inspirationTable.ConstituentParts
 
       if childDetail != nil {
         childDetailGroup = append(childDetailGroup, childDetail)

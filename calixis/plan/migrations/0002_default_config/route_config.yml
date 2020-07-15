@@ -115,7 +115,7 @@
         name: (1)
         description: "{days} days"
         roll_groups:
-          - _type: Inspiration_Nested
+          - _type: Inspiration_Table
             name: days
             count:
               - _type: Roll
@@ -146,7 +146,7 @@
         name: (2)
         description: "{days} days"
         roll_groups:
-          - _type: Inspiration_Nested
+          - _type: Inspiration_Table
             name: days
             count:
               - _type: Roll
@@ -177,7 +177,7 @@
         name: (3)
         description: "{days} days"
         roll_groups:
-          - _type: Inspiration_Nested
+          - _type: Inspiration_Table
             name: days
             count:
               - _type: Roll
@@ -208,7 +208,7 @@
         name: (4)
         description: "{days} days"
         roll_groups:
-          - _type: Inspiration_Nested
+          - _type: Inspiration_Table
             name: days
             count:
               - _type: Roll
@@ -239,7 +239,7 @@
         name: (5)
         description: "{days} days"
         roll_groups:
-          - _type: Inspiration_Nested
+          - _type: Inspiration_Table
             name: days
             count:
               - _type: Roll
@@ -270,7 +270,7 @@
         name: (6)
         description: "{days} days"
         roll_groups:
-          - _type: Inspiration_Nested
+          - _type: Inspiration_Table
             name: days
             count:
               - _type: Roll

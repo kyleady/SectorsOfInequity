@@ -4,24 +4,24 @@ type Inspiration struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   PerterbationIds []int64
-  InspirationRolls []*NestedInspiration
-  NestedInspirations []*NestedInspiration
+  InspirationRolls []*InspirationTable
+  InspirationTables []*InspirationTable
 }
 
 func LoadInspiration(manager *ConfigManager, inspiration *Inspiration) {
-  exampleNestedInspiration := &NestedInspiration{}
-  manager.Client.FetchMany(&inspiration.NestedInspirations, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "nested_inspirations", "", false)
-  manager.Client.FetchMany(&inspiration.InspirationRolls, inspiration.Id, inspiration.TableName(""), exampleNestedInspiration.TableName(""), "roll_groups", "", false)
+  exampleInspirationTable := &InspirationTable{}
+  manager.Client.FetchMany(&inspiration.InspirationTables, inspiration.Id, inspiration.TableName(""), exampleInspirationTable.TableName(""), "inspiration_tables", "", false)
+  manager.Client.FetchMany(&inspiration.InspirationRolls, inspiration.Id, inspiration.TableName(""), exampleInspirationTable.TableName(""), "roll_groups", "", false)
   inspiration.PerterbationIds = FetchManyPerterbationIds(manager, inspiration.Id, inspiration.TableName(""), "perterbations")
-  for _, nestedInspiration := range inspiration.NestedInspirations {
-    nestedInspiration.CountRolls = FetchManyRolls(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "count")
-    nestedInspiration.WeightedInspirations = FetchManyWeightedInspirations(manager, nestedInspiration.Id, nestedInspiration.TableName(""), "weighted_inspirations")
-    nestedInspiration.ConstituentParts = []*NestedInspiration{nestedInspiration}
+  for _, inspirationTable := range inspiration.InspirationTables {
+    inspirationTable.CountRolls = FetchManyRolls(manager, inspirationTable.Id, inspirationTable.TableName(""), "count")
+    inspirationTable.WeightedInspirations = FetchManyWeightedInspirations(manager, inspirationTable.Id, inspirationTable.TableName(""), "weighted_inspirations")
+    inspirationTable.ConstituentParts = []*InspirationTable{inspirationTable}
   }
 
   for _, rollGroups := range inspiration.InspirationRolls {
     rollGroups.CountRolls = FetchManyRolls(manager, rollGroups.Id, rollGroups.TableName(""), "count")
-    rollGroups.ConstituentParts = []*NestedInspiration{rollGroups}
+    rollGroups.ConstituentParts = []*InspirationTable{rollGroups}
   }
 }
 
@@ -33,20 +33,20 @@ func (inspiration *Inspiration) GetId() *int64 {
   return &inspiration.Id
 }
 
-type NestedInspiration struct {
+type InspirationTable struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   CountRolls []*Roll
-  ConstituentParts []*NestedInspiration
+  ConstituentParts []*InspirationTable
   WeightedInspirations []*WeightedValue
 }
 
-func (nestedInspiration *NestedInspiration) TableName(nestedInspirationType string) string {
-  return "plan_inspiration_nested"
+func (inspirationTable *InspirationTable) TableName(inspirationTableType string) string {
+  return "plan_inspiration_table"
 }
 
-func (nestedInspiration *NestedInspiration) GetId() *int64 {
-  return &nestedInspiration.Id
+func (inspirationTable *InspirationTable) GetId() *int64 {
+  return &inspirationTable.Id
 }
 
 func FetchManyInspirationIds(manager *ConfigManager, parentId int64, tableName string, valueName string) []int64 {
@@ -56,41 +56,41 @@ func FetchManyInspirationIds(manager *ConfigManager, parentId int64, tableName s
   return ids
 }
 
-func (nestedInspiration *NestedInspiration) Clone() *NestedInspiration {
-  newNestedInspiration := new(NestedInspiration)
-  newNestedInspiration.Id = nestedInspiration.Id
-  newNestedInspiration.Name = nestedInspiration.Name
-  newNestedInspiration.CountRolls = make([]*Roll, len(nestedInspiration.CountRolls))
-  copy(newNestedInspiration.CountRolls, nestedInspiration.CountRolls)
-  newNestedInspiration.WeightedInspirations = make([]*WeightedValue, len(nestedInspiration.WeightedInspirations))
-  copy(newNestedInspiration.WeightedInspirations, nestedInspiration.WeightedInspirations)
-  newNestedInspiration.ConstituentParts = make([]*NestedInspiration, len(nestedInspiration.ConstituentParts))
-  copy(newNestedInspiration.ConstituentParts, nestedInspiration.ConstituentParts)
-  return newNestedInspiration
+func (inspirationTable *InspirationTable) Clone() *InspirationTable {
+  newInspirationTable := new(InspirationTable)
+  newInspirationTable.Id = inspirationTable.Id
+  newInspirationTable.Name = inspirationTable.Name
+  newInspirationTable.CountRolls = make([]*Roll, len(inspirationTable.CountRolls))
+  copy(newInspirationTable.CountRolls, inspirationTable.CountRolls)
+  newInspirationTable.WeightedInspirations = make([]*WeightedValue, len(inspirationTable.WeightedInspirations))
+  copy(newInspirationTable.WeightedInspirations, inspirationTable.WeightedInspirations)
+  newInspirationTable.ConstituentParts = make([]*InspirationTable, len(inspirationTable.ConstituentParts))
+  copy(newInspirationTable.ConstituentParts, inspirationTable.ConstituentParts)
+  return newInspirationTable
 }
 
-func StackNestedInspirations(firstNestedInspirations []*NestedInspiration, secondNestedInspirations []*NestedInspiration) []*NestedInspiration {
-  newNestedInspirations := make([]*NestedInspiration, len(firstNestedInspirations))
-  for i, firstNestedInspiration := range firstNestedInspirations {
-    newNestedInspirations[i] = firstNestedInspiration.Clone()
+func StackInspirationTables(firstInspirationTables []*InspirationTable, secondInspirationTables []*InspirationTable) []*InspirationTable {
+  newInspirationTables := make([]*InspirationTable, len(firstInspirationTables))
+  for i, firstInspirationTable := range firstInspirationTables {
+    newInspirationTables[i] = firstInspirationTable.Clone()
   }
 
-  for _, secondNestedInspiration := range secondNestedInspirations {
-    nestedInspirationStacked := false
-    for _, newNestedInspiration := range newNestedInspirations {
-      if newNestedInspiration.Name == secondNestedInspiration.Name {
-        nestedInspirationStacked = true
-        newNestedInspiration.CountRolls = append(newNestedInspiration.CountRolls, secondNestedInspiration.CountRolls...)
-        newNestedInspiration.WeightedInspirations = StackWeightedInspirations(newNestedInspiration.WeightedInspirations, secondNestedInspiration.WeightedInspirations)
-        newNestedInspiration.ConstituentParts = append(newNestedInspiration.ConstituentParts, secondNestedInspiration.ConstituentParts...)
+  for _, secondInspirationTable := range secondInspirationTables {
+    inspirationTableStacked := false
+    for _, newInspirationTable := range newInspirationTables {
+      if newInspirationTable.Name == secondInspirationTable.Name {
+        inspirationTableStacked = true
+        newInspirationTable.CountRolls = append(newInspirationTable.CountRolls, secondInspirationTable.CountRolls...)
+        newInspirationTable.WeightedInspirations = StackWeightedInspirations(newInspirationTable.WeightedInspirations, secondInspirationTable.WeightedInspirations)
+        newInspirationTable.ConstituentParts = append(newInspirationTable.ConstituentParts, secondInspirationTable.ConstituentParts...)
         break
       }
     }
 
-    if !nestedInspirationStacked {
-      newNestedInspirations = append(newNestedInspirations, secondNestedInspiration.Clone())
+    if !inspirationTableStacked {
+      newInspirationTables = append(newInspirationTables, secondInspirationTable.Clone())
     }
   }
 
-  return newNestedInspirations
+  return newInspirationTables
 }

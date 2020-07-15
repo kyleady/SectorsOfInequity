@@ -166,8 +166,8 @@
       _exists: true
       name: Bountiful
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -305,8 +305,8 @@
       _exists: true
       name: Gravity Tides
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -439,8 +439,8 @@
       _exists: true
       name: Haven
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -583,8 +583,8 @@
       _exists: true
       name: Ill-Omened
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -737,8 +737,8 @@
       _exists: true
       name: Ruined Empire
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -928,8 +928,8 @@
       _exists: true
       name: Warp Stasis
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -1057,8 +1057,8 @@
       _exists: true
       name: Warp Turbulence
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll

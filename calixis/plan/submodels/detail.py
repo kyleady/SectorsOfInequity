@@ -17,10 +17,10 @@ class Detail(models.Model):
     def get_rolls(self):
         return self.rolls.split(',')
 
-    def get_nested_name(self):
-        nested_inspirations = self.nested_inspirations.all()
-        if len(self.nested_inspirations.all()) > 0:
-            return nested_inspirations[0].name
+    def get_inspiration_table_name(self):
+        inspiration_tables = self.inspiration_tables.all()
+        if len(self.inspiration_tables.all()) > 0:
+            return inspiration_tables[0].name
         else:
             return "-"
 
@@ -39,5 +39,5 @@ class Detail(models.Model):
 
     rolls = models.CharField(max_length=100)
     inspirations = models.ManyToManyField('Inspiration', related_name='inspirations')
-    nested_inspirations = models.ManyToManyField('Inspiration_Nested')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table')
     parent_detail = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)

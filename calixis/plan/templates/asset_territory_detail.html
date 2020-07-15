@@ -11,7 +11,7 @@
   <ul>
   {% for subdetail in model.type.get_all_child_details %}
       <li>
-        <strong>{{ subdetail.get_nested_name }}</strong>:
+        <strong>{{ subdetail.get_inspiration_table_name }}</strong>:
         <a href="{% url "plan-detail-detail-detail" subdetail.id %}">
           {{ subdetail }}
         </a>

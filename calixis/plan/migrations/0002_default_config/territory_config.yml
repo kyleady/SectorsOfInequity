@@ -25,8 +25,8 @@
                       the ancient times that preceded it. Planets that develop
                       on their own often have forests of tangled vines, enormous
                       mushrooms, fungal mounds, and even stranger things."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             name: Trait
             count:
               - _type: Roll
@@ -130,8 +130,8 @@
                       Mountain Ranges grant Explorers who can see them a +10
                       bonus to Navigate (Surface) Tests when they can be used as a
                       point of reference, in the same manner as Landmarks."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             name: Trait
             count:
               - _type: Roll
@@ -232,8 +232,8 @@
                       few tenacious weeds. Variations in the soil, climate, and other
                       conditions can allow for anything from a barren expanse of
                       baked clay, to a lush grazing ground for the local fauna."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             name: Trait
             count:
               - _type: Roll
@@ -334,8 +334,8 @@
                       toxins. A number of the more infamous worlds of the Calixis
                       Sector, including the death world of Woe, owe much of their
                       reputations to heavy coverage in swampland."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             name: Trait
             count:
               - _type: Roll
@@ -439,8 +439,8 @@
                       or cold. At the GM’s discretion, a Wasteland can have an
                       additional instance of the Extreme Temperature Territory
                       Trait, in addition to whatever it generates randomly."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             name: Trait
             count:
               - _type: Roll

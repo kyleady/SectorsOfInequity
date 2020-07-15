@@ -2,7 +2,7 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-class Inspiration_Nested(models.Model):
+class Inspiration_Table(models.Model):
     name = models.CharField(max_length=100)
     count = models.ManyToManyField('Roll', related_name='count')
     weighted_inspirations = models.ManyToManyField('Weighted_Inspiration')
@@ -20,7 +20,7 @@ class Inspiration(models.Model):
 
     name = models.CharField(max_length=75)
     description = models.TextField()
-    roll_groups = models.ManyToManyField(Inspiration_Nested, related_name='roll_groups')
+    roll_groups = models.ManyToManyField(Inspiration_Table, related_name='roll_groups')
     perterbations = models.ManyToManyField('Perterbation')
     tags = models.ManyToManyField('Tag')
-    nested_inspirations = models.ManyToManyField(Inspiration_Nested, related_name='nested_inspirations')
+    inspiration_tables = models.ManyToManyField(Inspiration_Table, related_name='inspiration_tables')

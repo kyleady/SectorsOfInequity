@@ -84,8 +84,8 @@
               _exists: true
               name: Moon
               tags__name: Gas Giant
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Body
       count:
         - _type: Roll
@@ -107,8 +107,8 @@
             description: "Although much smaller than the typical world of this
                           sort, a Gas Dwarf is still considerably more massive
                           than most rocky Planets."
-            nested_inspirations:
-              - _type: Inspiration_Nested
+            inspiration_tables:
+              - _type: Inspiration_Table
                 name: Gravity
                 count:
                   - _type: Roll
@@ -155,8 +155,8 @@
             description: "Typical gas giants are vastly more massive than almost
                           any other world, and tend to have correspondingly
                           powerful gravitational effects."
-            nested_inspirations:
-              - _type: Inspiration_Nested
+            inspiration_tables:
+              - _type: Inspiration_Table
                 name: Gravity
                 count:
                   - _type: Roll
@@ -226,8 +226,8 @@
             description: "Truly massive gas giants can alter the orbits of
                           smaller bodies in the system, even consuming anything
                           that gets too close."
-            nested_inspirations:
-              - _type: Inspiration_Nested
+            inspiration_tables:
+              - _type: Inspiration_Table
                 name: Gravity
                 count:
                   - _type: Roll
@@ -296,8 +296,8 @@
                 required_flags: zone_primary_biosphere
                 flags: zone_inner_cauldron
                 muted_flags: zone_primary_biosphere
-            nested_inspirations:
-              - _type: Inspiration_Nested
+            inspiration_tables:
+              - _type: Inspiration_Table
                 name: Gravity
                 count:
                   - _type: Roll
@@ -549,8 +549,8 @@
                 cannot have a higher Planetary Body than the world around which
                 it orbits. In addition, a moon never generates its own Orbital
                 Features."
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Body
       tags__name: Planet

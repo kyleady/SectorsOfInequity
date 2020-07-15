@@ -109,8 +109,8 @@
       _exists: true
       name: Star Type
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Star Size
 
@@ -123,8 +123,8 @@
       _exists: true
       name: Star Type
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Star Size
 
@@ -153,8 +153,8 @@
       _exists: true
       name: Star Type
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Star Size
 
@@ -184,8 +184,8 @@
       _exists: true
       name: Star Type
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Star Size
 
@@ -235,12 +235,12 @@
       _exists: true
       name: Star Type
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Star Size
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Star Size
   count:
     - _type: Roll

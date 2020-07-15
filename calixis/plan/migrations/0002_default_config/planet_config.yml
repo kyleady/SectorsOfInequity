@@ -22,8 +22,8 @@
     - _type: Tag
       _exists: true
       name: System Element
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
       name: Body
       tags__name: Planet
@@ -123,7 +123,7 @@
 - _type: Tag
   name: Planet
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Body
   count:
     - _type: Roll
@@ -150,8 +150,8 @@
           - _type: Perterbation
             name: Low Mass
             flags: planet_body_low_mass
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Gravity
             tags__name: Planet
@@ -171,8 +171,8 @@
           - _type: Perterbation
             name: Small
             flags: planet_body_small
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Gravity
             tags__name: Planet
@@ -194,8 +194,8 @@
           - _type: Perterbation
             name: Small and Dense
             flags: planet_body_small_and_dense
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Gravity
             tags__name: Planet
@@ -211,8 +211,8 @@
         name: Large
         description: "Worlds of this size can range across a vast spectrum of
                       possible types."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Gravity
             tags__name: Planet
@@ -232,8 +232,8 @@
           - _type: Perterbation
             name: Large and Dense
             flags: planet_body_large_and_dense
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Gravity
             tags__name: Planet
@@ -255,8 +255,8 @@
           - _type: Perterbation
             name: Low Mass
             flags: planet_body_vast
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Gravity
             tags__name: Planet
@@ -265,7 +265,7 @@
       _exists: true
       name: Planet
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Gravity
   tags:
     - _type: Tag
@@ -302,8 +302,8 @@
         name: Low Gravity
         description: "It follows all the rules for Low Gravity Worlds (see page 269 of
                       the ROGUE TRADER Core Rulebook)."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Presence
         perterbations:
@@ -366,8 +366,8 @@
         _type: Inspiration
         name: Normal Gravity
         description: "This Planet’s gravity is roughly Terran Standard."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Presence
         perterbations:
@@ -407,8 +407,8 @@
         name: High Gravity
         description: "This Planet follows all the rules for High Gravity Worlds (see
                       page 269 of the ROGUE TRADER Core Rulebook)."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Presence
         perterbations:
@@ -449,7 +449,7 @@
                     _type: Inspiration
                     name: Moon
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Atmospheric Presence
   tags:
     - _type: Tag
@@ -486,8 +486,8 @@
           - _type: Perterbation
             name: Atmospheric Presence None
             flags: atmospheric_presence_none
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Climate
             tags__name: Planet
@@ -509,8 +509,8 @@
                       an Explorer relying on the outside air gains Fatigue, he
                       gains the normal amount plus one additional level of
                       Fatigue instead."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Climate
             tags__name: Planet
@@ -530,8 +530,8 @@
         description: "Atmospheres in this range produce no ill effects due to
                       lack or overabundance of air, though they can still be
                       Toxic or Corrosive."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Climate
             tags__name: Planet
@@ -563,13 +563,13 @@
                       a character relies on the air. However, recovery from this
                       level of Fatigue cannot occur while relying on such an
                       atmosphere."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Climate
             tags__name: Planet
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Atmospheric Composition
   tags:
     - _type: Tag
@@ -601,8 +601,8 @@
                       Toughness Bonus and Armour. If the atmosphere is also
                       Heavy, it wears away at resistance, breaking into
                       environmental seals after 1d10+2 hours."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Habitability
             tags__name: Planet
@@ -623,8 +623,8 @@
                       ignores Armour and Toughness Bonus. Continued exposure
                       results in suffocation, as per page 261 of the ROGUE
                       TRADER Core Rulebook."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Habitability
             tags__name: Planet
@@ -645,8 +645,8 @@
                       Armour. Additionally, continued exposure results in
                       suffocation, as per the rules on page 261 of the ROGUE
                       TRADER Core Rulebook."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Habitability
             tags__name: Planet
@@ -665,8 +665,8 @@
                       toxins. Though it does not directly affect the
                       Explorers, it might influence the viability or costs of
                       long-term colonisation."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Habitability
             tags__name: Planet
@@ -682,13 +682,13 @@
         name: Pure
         description: "The atmosphere is entirely safe for humans and most
                       other common life forms to breathe."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Habitability
             tags__name: Planet
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Climate
   tags:
     - _type: Tag
@@ -721,8 +721,8 @@
           - _type: Perterbation
             name: Climate Burning World
             flags: climate_burning_world
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Composition
             tags__name: Planet
@@ -754,8 +754,8 @@
           - _type: Perterbation
             name: Climate Hot World
             flags: climate_hot_world
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Composition
             tags__name: Planet
@@ -784,8 +784,8 @@
                       cases, have some of both. The Tests made to resist
                       temperature extremes on these Planets rarely exceed
                       Difficult (–10)."
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Composition
             tags__name: Planet
@@ -817,8 +817,8 @@
           - _type: Perterbation
             name: Climate Cold World
             flags: climate_cold_world
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Composition
             tags__name: Planet
@@ -840,13 +840,13 @@
           - _type: Perterbation
             name: Climate Ice World
             flags: climate_ice_world
-        nested_inspirations:
-          - _type: Inspiration_Nested
+        inspiration_tables:
+          - _type: Inspiration_Table
             _exists: true
             name: Atmospheric Composition
             tags__name: Planet
 
-- _type: Inspiration_Nested
+- _type: Inspiration_Table
   name: Habitability
   tags:
     - _type: Tag
