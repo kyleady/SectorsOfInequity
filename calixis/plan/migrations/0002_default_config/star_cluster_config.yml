@@ -1,12 +1,12 @@
 - _type: Config_Star_Cluster
   name: Default
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
       name: Type
       tags__name: Star Cluster
   zone_extra:
-    - _type: Extra_Tables
+    - _type: Inspiration_Extra
       count:
         - _type: Roll
           _exists: true
@@ -183,7 +183,7 @@
       zone:
         _type: Config_Zone
         name: Default Mighty
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             weighted_inspirations:
@@ -261,7 +261,7 @@
       zone:
         _type: Config_Zone
         name: Default Luminous
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             weighted_inspirations:
@@ -306,7 +306,7 @@
       zone:
         _type: Config_Zone
         name: Default Dull
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             weighted_inspirations:

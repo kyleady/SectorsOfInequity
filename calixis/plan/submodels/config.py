@@ -19,35 +19,35 @@ class BaseConfig(models.Model):
     name = models.CharField(default="-", max_length=100)
 
 class Config_Territory(BaseConfig):
-    inspirations = models.ManyToManyField('Inspiration_Table', related_name='territory_inspiration')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='territory_inspiration')
 
 class Config_Element(BaseConfig):
-    inspirations = models.ManyToManyField('Inspiration_Table', related_name='element_inspiration')
-    satellite_count =  models.ManyToManyField('Roll', related_name='element_satellite_count')
-    satellite_extra =  models.ManyToManyField('Extra_Tables', related_name='element_satellite_extra')
-    territory_count =  models.ManyToManyField('Roll', related_name='element_territory_count')
-    territory_extra =  models.ManyToManyField('Extra_Tables', related_name='element_territory_extra')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='element_inspiration')
+    satellite_count = models.ManyToManyField('Roll', related_name='element_satellite_count')
+    satellite_extra = models.ManyToManyField('Inspiration_Extra', related_name='element_satellite_extra')
+    territory_count = models.ManyToManyField('Roll', related_name='element_territory_count')
+    territory_extra = models.ManyToManyField('Inspiration_Extra', related_name='element_territory_extra')
     spacing = models.ManyToManyField('Roll', related_name='element_spacing')
     territory = models.ForeignKey('Config_Territory', null=True, blank=True, on_delete=models.SET_NULL, related_name='element_territory')
 
 class Config_Zone(BaseConfig):
-    inspirations = models.ManyToManyField('Inspiration_Table', related_name='zone_inspiration')
-    element_count =  models.ManyToManyField('Roll', related_name='zone_element_count')
-    element_extra =  models.ManyToManyField('Extra_Tables', related_name='zone_element_extra')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='zone_inspiration')
+    element_count = models.ManyToManyField('Roll', related_name='zone_element_count')
+    element_extra = models.ManyToManyField('Inspiration_Extra', related_name='zone_element_extra')
     order = models.ManyToManyField('Roll', related_name='zone_order')
 
 class Config_Star_Cluster(BaseConfig):
-    inspirations = models.ManyToManyField('Inspiration_Table', related_name='star_cluster_inspiration')
-    zone_count =  models.ManyToManyField('Roll', related_name='star_cluster_zone_count')
-    zone_extra =  models.ManyToManyField('Extra_Tables', related_name='star_cluster_zone_extra')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='star_cluster_inspiration')
+    zone_count = models.ManyToManyField('Roll', related_name='star_cluster_zone_count')
+    zone_extra = models.ManyToManyField('Inspiration_Extra', related_name='star_cluster_zone_extra')
 
 class Config_Route(BaseConfig):
-    inspirations = models.ManyToManyField('Inspiration_Table', related_name='route_inspiration')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='route_inspiration')
 
 class Config_System(BaseConfig):
-    inspirations = models.ManyToManyField('Inspiration_Table', related_name='system_inspiration')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='system_inspiration')
     star_cluster_count = models.ManyToManyField('Roll', related_name='star_cluster_count')
-    star_cluster_extra = models.ManyToManyField('Extra_Tables', related_name='star_cluster_extra')
+    star_cluster_extra = models.ManyToManyField('Inspiration_Extra', related_name='star_cluster_extra')
 
 class Config_Grid(BaseConfig):
     height = models.PositiveSmallIntegerField(default=20, blank=True)

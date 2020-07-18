@@ -6,7 +6,7 @@
       required_flags: null
       base: 1
       dice_count: 0
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       name: Type
       count:
@@ -121,7 +121,7 @@
       required_flags: null
       base: 2
       dice_count: 0
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       name: Type
       count:
@@ -236,7 +236,7 @@
       required_flags: null
       base: 3
       dice_count: 0
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       name: Type
       count:

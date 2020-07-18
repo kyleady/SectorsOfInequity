@@ -70,7 +70,7 @@
       satellite:
         _type: Config_Element
         name: Planet Satellite Types
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             count:
@@ -331,7 +331,7 @@
                   minimum: 1
             satellite:
               _type: Config_Element
-              inspirations:
+              inspiration_tables:
                 - _type: Inspiration_Table
                   name: Type
                   count:
@@ -445,7 +445,7 @@
                   minimum: 1
             satellite:
               _type: Config_Element
-              inspirations:
+              inspiration_tables:
                 - _type: Inspiration_Table
                   name: Type
                   count:

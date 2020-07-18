@@ -51,7 +51,7 @@ subapp = 'inspiration'
 inspiration_models = [
     { 'full_name': 'Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration', 'Model': Inspiration },
     { 'full_name': 'Inspiration_Table', 'app': app, 'subapp': subapp, 'name': 'inspiration-table', 'Model': Inspiration_Table },
-    { 'full_name': 'Extra_Tables', 'app': app, 'subapp': subapp, 'name': 'extra-tables', 'Model': Extra_Tables },
+    { 'full_name': 'Inspiration_Extra', 'app': app, 'subapp': subapp, 'name': 'inspiration-extra', 'Model': Inspiration_Extra },
 ]
 
 

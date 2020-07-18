@@ -1,6 +1,6 @@
 - _type: Config_Route
   name: Default
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       name: Stability
       count:

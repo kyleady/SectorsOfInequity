@@ -23,7 +23,7 @@
       name: Gas Giant
       satellite:
         _type: Config_Element
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             count:
@@ -374,7 +374,7 @@
             minimum: 1
       satellite:
         _type: Config_Element
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             weighted_inspirations:
@@ -422,7 +422,7 @@
             dice_count: 1
       satellite:
         _type: Config_Element
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             weighted_inspirations:
@@ -469,7 +469,7 @@
             dice_count: 3
       satellite:
         _type: Config_Element
-        inspirations:
+        inspiration_tables:
           - _type: Inspiration_Table
             name: Type
             weighted_inspirations:

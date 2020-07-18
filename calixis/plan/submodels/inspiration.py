@@ -2,7 +2,7 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
-class Extra_Tables(models.Model):
+class Inspiration_Extra(models.Model):
     count = models.ManyToManyField('Roll', related_name='extra_tables_count')
     inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='inspiration_tables')
 

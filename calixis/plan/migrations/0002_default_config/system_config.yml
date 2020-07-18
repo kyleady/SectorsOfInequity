@@ -8,7 +8,7 @@
       dice_count: 20
       dice_size: 10
       keep_highest: -1
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
       name: System Features
@@ -203,7 +203,7 @@
                   _type: Config_Zone
                   name: Bountiful(1)
                   element_extra:
-                    - _type: Extra_Tables
+                    - _type: Inspiration_Extra
                       count:
                         - _type: Roll
                           _exists: true
@@ -359,7 +359,7 @@
                   _type: Config_Zone
                   name: Gravity Tides(1)
                   element_extra:
-                    - _type: Extra_Tables
+                    - _type: Inspiration_Extra
                       count:
                         - _type: Roll
                           _exists: true
@@ -511,7 +511,7 @@
                   _type: Config_Zone
                   name: Haven(1)
                   element_extra:
-                    - _type: Extra_Tables
+                    - _type: Inspiration_Extra
                       count:
                         - _type: Roll
                           _exists: true

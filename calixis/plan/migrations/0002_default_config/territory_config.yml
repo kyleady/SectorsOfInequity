@@ -3,7 +3,7 @@
 
 - _type: Config_Territory
   name: Planet Territory Types
-  inspirations:
+  inspiration_tables:
     - _type: Inspiration_Table
       name: Terrain
       count:
