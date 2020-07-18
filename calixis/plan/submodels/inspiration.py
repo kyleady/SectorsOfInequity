@@ -2,10 +2,15 @@ from django.db import models
 from django.forms.models import model_to_dict
 import json
 
+class Extra_Tables(models.Model):
+    count = models.ManyToManyField('Roll', related_name='extra_tables_count')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='inspiration_tables')
+
 class Inspiration_Table(models.Model):
     name = models.CharField(max_length=100)
-    count = models.ManyToManyField('Roll', related_name='count')
-    weighted_inspirations = models.ManyToManyField('Weighted_Inspiration')
+    count = models.ManyToManyField('Roll', related_name='inspiration_table_count')
+    weighted_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='inspiration_table_weighted_inspirations')
+    extra_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='inspiration_table_extra_inspirations')
     tags = models.ManyToManyField('Tag')
 
 class Inspiration(models.Model):
@@ -23,4 +28,4 @@ class Inspiration(models.Model):
     roll_groups = models.ManyToManyField(Inspiration_Table, related_name='roll_groups')
     perterbations = models.ManyToManyField('Perterbation')
     tags = models.ManyToManyField('Tag')
-    inspiration_tables = models.ManyToManyField(Inspiration_Table, related_name='inspiration_tables')
+    inspiration_tables = models.ManyToManyField(Inspiration_Table, related_name='sub_inspiration_tables')

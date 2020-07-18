@@ -70,55 +70,64 @@
       satellite:
         _type: Config_Element
         name: Planet Satellite Types
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            count:
               - _type: Roll
                 _exists: true
                 required_flags: null
-                base: 9
                 dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: No Feature
-              tags__name: Gas Giant
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 3
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Large Asteroid
-              tags__name: Planet
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 6
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Lesser Moon
-              tags__name: Gas Giant
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Moon
-              tags__name: Gas Giant
+                base: 1
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 9
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: No Feature
+                  tags__name: Gas Giant
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 3
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Large Asteroid
+                  tags__name: Planet
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 6
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Lesser Moon
+                  tags__name: Gas Giant
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Moon
+                  tags__name: Gas Giant
 
 - _type: Tag
   name: Planet
@@ -322,27 +331,36 @@
                   minimum: 1
             satellite:
               _type: Config_Element
-              type_inspirations:
-                - _type: Weighted_Inspiration
-                  weights:
+              inspirations:
+                - _type: Inspiration_Table
+                  name: Type
+                  count:
                     - _type: Roll
                       _exists: true
                       required_flags: null
-                      base: 2
                       dice_count: 0
-                  value:
-                    _type: Inspiration
-                    name: No Feature
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      required_flags: null
-                      base: -2
-                      dice_count: 0
-                  value:
-                    _type: Inspiration
-                    name: Moon
+                      base: 1
+                  weighted_inspirations:
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          required_flags: null
+                          base: 2
+                          dice_count: 0
+                      value:
+                        _type: Inspiration
+                        name: No Feature
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          required_flags: null
+                          base: -2
+                          dice_count: 0
+                      value:
+                        _type: Inspiration
+                        name: Moon
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -427,27 +445,36 @@
                   minimum: 1
             satellite:
               _type: Config_Element
-              type_inspirations:
-                - _type: Weighted_Inspiration
-                  weights:
+              inspirations:
+                - _type: Inspiration_Table
+                  name: Type
+                  count:
                     - _type: Roll
                       _exists: true
                       required_flags: null
-                      base: -2
                       dice_count: 0
-                  value:
-                    _type: Inspiration
-                    name: No Feature
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      required_flags: null
-                      base: 2
-                      dice_count: 0
-                  value:
-                    _type: Inspiration
-                    name: Moon
+                      base: 1
+                  weighted_inspirations:
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          required_flags: null
+                          base: -2
+                          dice_count: 0
+                      value:
+                        _type: Inspiration
+                        name: No Feature
+                    - _type: Weighted_Inspiration
+                      weights:
+                        - _type: Roll
+                          _exists: true
+                          required_flags: null
+                          base: 2
+                          dice_count: 0
+                      value:
+                        _type: Inspiration
+                        name: Moon
 
 - _type: Inspiration_Table
   name: Atmospheric Presence

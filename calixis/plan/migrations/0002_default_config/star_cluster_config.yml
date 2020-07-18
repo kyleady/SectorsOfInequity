@@ -1,6 +1,91 @@
 - _type: Config_Star_Cluster
   name: Default
-  star_count:
+  inspirations:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Type
+      tags__name: Star Cluster
+  zone_extra:
+    - _type: Extra_Tables
+      count:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      inspiration_tables:
+        - _type: Inspiration_Table
+          name: Solar Zone
+          count:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              dice_count: 0
+              base: 1
+          weighted_inspirations:
+            - _type: Weighted_Inspiration
+              weights:
+                - _type: Roll
+                  _exists: true
+                  required_flags: null
+                  dice_count: 0
+                  base: 1
+              value:
+                _type: Inspiration
+                _exists: true
+                name: Inner Cauldron
+                tags__name: Zone
+        - _type: Inspiration_Table
+          name: Solar Zone
+          count:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              dice_count: 0
+              base: 1
+          weighted_inspirations:
+            - _type: Weighted_Inspiration
+              weights:
+                - _type: Roll
+                  _exists: true
+                  required_flags: null
+                  dice_count: 0
+                  base: 1
+              value:
+                _type: Inspiration
+                _exists: true
+                name: Primary Biosphere
+                tags__name: Zone
+        - _type: Inspiration_Table
+          name: Solar Zone
+          count:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              dice_count: 0
+              base: 1
+          weighted_inspirations:
+            - _type: Weighted_Inspiration
+              weights:
+                - _type: Roll
+                  _exists: true
+                  required_flags: null
+                  dice_count: 0
+                  base: 1
+              value:
+                _type: Inspiration
+                _exists: true
+                name: Outer Reaches
+                tags__name: Zone
+
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Cluster
+  count:
     - _type: Roll
       _exists: true
       required_flags: null
@@ -8,7 +93,7 @@
       dice_count: 20
       dice_size: 10
       keep_highest: -1
-  star_inspirations:
+  weighted_inspirations:
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -20,6 +105,7 @@
         _type: Inspiration
         _exists: true
         name: Mighty
+        tags__name: Star Cluster
 
     - _type: Weighted_Inspiration
       weights:
@@ -32,6 +118,7 @@
         _type: Inspiration
         _exists: true
         name: Vigorous
+        tags__name: Star Cluster
 
     - _type: Weighted_Inspiration
       weights:
@@ -44,6 +131,7 @@
         _type: Inspiration
         _exists: true
         name: Luminous
+        tags__name: Star Cluster
 
     - _type: Weighted_Inspiration
       weights:
@@ -56,6 +144,7 @@
         _type: Inspiration
         _exists: true
         name: Dull
+        tags__name: Star Cluster
 
     - _type: Weighted_Inspiration
       weights:
@@ -68,51 +157,71 @@
         _type: Inspiration
         _exists: true
         name: Anomalous
+        tags__name: Star Cluster
 
 - _type: Tag
-  name: Star Type
-
-- _type: Tag
-  name: Star Size
+  name: Star Cluster
 
 - _type: Inspiration
   name: Mighty
   description: "The fierce light of this star dominates its system utterly. Its
                 coloration is likely to be blue or blue-white. The
                 Inner Cauldron is dominant, and the Primary Biosphere is weak."
-  perterbations:
-    - _type: Perterbation
-      name: Default Mighty
-      zones:
-        - _type: Config_Zone
-          name: Default Dominant IC
-          zone: Inner Cauldron
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: 2
-              dice_count: 0
-              dice_size: 0
-        - _type: Config_Zone
-          name: Default Weak PB
-          zone: Primary Biosphere
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: -2
-              dice_count: 0
-              dice_size: 0
   tags:
     - _type: Tag
       _exists: true
-      name: Star Type
-
+      name: Star Cluster
   inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
-      name: Star Size
+      name: Size
+      tags__name: Star Cluster
+
+  perterbations:
+    - _type: Perterbation
+      name: Default Mighty
+      zone:
+        _type: Config_Zone
+        name: Default Mighty
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                value:
+                  _type: Inspiration
+                  name: Inner Cauldron
+                  perterbations:
+                    - _type: Perterbation
+                      name: Default Dominant IC
+                      zone:
+                        _type: Config_Zone
+                        name: Default Dominant IC
+                        element_count:
+                          - _type: Roll
+                            _exists: true
+                            required_flags: null
+                            base: 2
+                            dice_count: 0
+                            dice_size: 0
+              - _type: Weighted_Inspiration
+                value:
+                  _type: Inspiration
+                  name: Primary Biosphere
+                  perterbations:
+                    - _type: Perterbation
+                      name: Default Weak PB
+                      zone:
+                        _type: Config_Zone
+                        name: Default Weak PB
+                        element_count:
+                          - _type: Roll
+                            _exists: true
+                            required_flags: null
+                            base: -2
+                            dice_count: 0
+                            dice_size: 0
+
 
 - _type: Inspiration
   name: Vigorous
@@ -121,12 +230,13 @@
   tags:
     - _type: Tag
       _exists: true
-      name: Star Type
+      name: Star Cluster
 
   inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
-      name: Star Size
+      name: Size
+      tags__name: Star Cluster
 
 - _type: Inspiration
   name: Luminous
@@ -134,30 +244,44 @@
                 brightest, a constant glow nonetheless provides
                 for the system. It is likely to be yellow or yellow-orange in
                 colour. The Inner Cauldron is weak."
-  perterbations:
-    - _type: Perterbation
-      name: Default Luminous
-      zones:
-        - _type: Config_Zone
-          name: Default Weak IC
-          zone: Inner Cauldron
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: -2
-              dice_count: 0
-              dice_size: 0
   tags:
     - _type: Tag
       _exists: true
-      name: Star Type
+      name: Star Cluster
 
   inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
-      name: Star Size
+      name: Size
+      tags__name: Star Cluster
 
+  perterbations:
+    - _type: Perterbation
+      name: Default Luminous
+      zone:
+        _type: Config_Zone
+        name: Default Luminous
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                value:
+                  _type: Inspiration
+                  name: Inner Cauldron
+                  perterbations:
+                    - _type: Perterbation
+                      name: Default Weak IC
+                      zone:
+                        _type: Config_Zone
+                        name: Default Weak IC
+                        element_count:
+                          - _type: Roll
+                            _exists: true
+                            required_flags: null
+                            base: -2
+                            dice_count: 0
+                            dice_size: 0
 
 - _type: Inspiration
   name: Dull
@@ -165,29 +289,44 @@
                 still burn for millennia yet. Many stars of this type are of a
                 vast size, seemingly incongruous with their wan light. Its
                 coloration is likely a sullen red. The Outer Reaches are Dominant."
-  perterbations:
-    - _type: Perterbation
-      name: Default Dull
-      zones:
-        - _type: Config_Zone
-          name: Default Dominant OR
-          zone: Outer Reaches
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: 2
-              dice_count: 0
-              dice_size: 0
   tags:
     - _type: Tag
       _exists: true
-      name: Star Type
+      name: Star Cluster
 
   inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
-      name: Star Size
+      name: Size
+      tags__name: Star Cluster
+
+  perterbations:
+    - _type: Perterbation
+      name: Default Dull
+      zone:
+        _type: Config_Zone
+        name: Default Dull
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                value:
+                  _type: Inspiration
+                  name: Outer Reaches
+                  perterbations:
+                    - _type: Perterbation
+                      name: Default Dominant OR
+                      zone:
+                        _type: Config_Zone
+                        name: Default Dominant OR
+                        element_count:
+                          - _type: Roll
+                            _exists: true
+                            required_flags: null
+                            base: 2
+                            dice_count: 0
+                            dice_size: 0
 
 - _type: Inspiration
   name: Anomalous
@@ -196,52 +335,38 @@
                 even one that is not typical for a star, from bilious green to
                 barely-visible purple. The Game Master can choose to make one
                 Solar Zone dominant or weak at his discretion."
-  perterbations:
-    - _type: Perterbation
-      name: Default Anomalous
-      zones:
-        - _type: Config_Zone
-          name: Default Anomalous IC
-          zone: Inner Cauldron
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: -3
-              dice_count: 1
-              dice_size: 5
-        - _type: Config_Zone
-          name: Default Anomalous PB
-          zone: Primary Biosphere
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: -3
-              dice_count: 1
-              dice_size: 5
-        - _type: Config_Zone
-          name: Default Anomalous OR
-          zone: Outer Reaches
-          element_count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: -3
-              dice_count: 1
-              dice_size: 5
+
   tags:
     - _type: Tag
       _exists: true
-      name: Star Type
+      name: Star Cluster
 
   inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
-      name: Star Size
+      name: Size
+      tags__name: Star Cluster
+
+  perterbations:
+    - _type: Perterbation
+      name: Default Anomalous
+      zone:
+        _type: Config_Zone
+        name: Default Anomalous
+        element_count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: -3
+            dice_count: 1
+            dice_size: 5
 
 - _type: Inspiration_Table
-  name: Star Size
+  name: Size
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Cluster
   count:
     - _type: Roll
       _exists: true
@@ -264,19 +389,19 @@
         tags:
           - _type: Tag
             _exists: true
-            name: Star Size
+            name: Star Cluster
         perterbations:
           - _type: Perterbation
             name: Default Dwarf
-            zones:
-              - _type: Config_Zone
-                name: Default Dwarf
-                element_count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: -1
-                    dice_count: 0
+            zone:
+              _type: Config_Zone
+              name: Default Dwarf
+              element_count:
+                - _type: Roll
+                  _exists: true
+                  required_flags: null
+                  base: -1
+                  dice_count: 0
 
     - _type: Weighted_Inspiration
       weights:
@@ -292,7 +417,7 @@
         tags:
           - _type: Tag
             _exists: true
-            name: Star Size
+            name: Star Cluster
 
     - _type: Weighted_Inspiration
       weights:
@@ -309,17 +434,17 @@
         tags:
           - _type: Tag
             _exists: true
-            name: Star Size
+            name: Star Cluster
 
         perterbations:
           - _type: Perterbation
             name: Default Giant
-            zones:
-              - _type: Config_Zone
-                name: Default Giant
-                element_count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 1
-                    dice_count: 0
+            zone:
+              _type: Config_Zone
+              name: Default Giant
+              element_count:
+                - _type: Roll
+                  _exists: true
+                  required_flags: null
+                  base: 1
+                  dice_count: 0

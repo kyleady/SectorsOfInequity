@@ -8,59 +8,80 @@
       dice_count: 1
       dice_size: 5
 
-- _type: Config_Zone
-  name: Default IC
-  zone: Inner Cauldron
-  distance:
-    - _type: Roll
+- _type: Tag
+  name: Zone
+
+- _type: Inspiration
+  name: Inner Cauldron
+  tags:
+    - _type: Tag
       _exists: true
-      required_flags: null
-      base: 1
-      dice_count: 0
-      dice_size: 0
-  perterbation:
-    _type: Perterbation
-    name: Default IC
-    flags: zone_inner_cauldron
-    element:
-      _type: Config_Element
-      _exists: true
+      name: Zone
+  perterbations:
+    - _type: Perterbation
       name: Default IC
+      flags: zone_inner_cauldron
+      zone:
+        _type: Config_Zone
+        name: Default IC
+        order:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+            dice_size: 0
+      element:
+        _type: Config_Element
+        _exists: true
+        name: Default IC
 
-- _type: Config_Zone
-  name: Default PB
-  zone: Primary Biosphere
-  distance:
-    - _type: Roll
+- _type: Inspiration
+  name: Primary Biosphere
+  tags:
+    - _type: Tag
       _exists: true
-      required_flags: null
-      base: 2
-      dice_count: 0
-      dice_size: 0
-  perterbation:
-    _type: Perterbation
-    name: Default PB
-    flags: zone_primary_biosphere
-    element:
-      _type: Config_Element
-      _exists: true
+      name: Zone
+  perterbations:
+    - _type: Perterbation
       name: Default PB
+      flags: zone_primary_biosphere
+      zone:
+        _type: Config_Zone
+        name: Default PB
+        order:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 2
+            dice_count: 0
+            dice_size: 0
+      element:
+        _type: Config_Element
+        _exists: true
+        name: Default PB
 
-- _type: Config_Zone
-  name: Default OR
-  zone: Outer Reaches
-  distance:
-    - _type: Roll
+- _type: Inspiration
+  name: Outer Reaches
+  tags:
+    - _type: Tag
       _exists: true
-      required_flags: null
-      base: 3
-      dice_count: 0
-      dice_size: 0
-  perterbation:
-    _type: Perterbation
-    name: Default OR
-    flags: zone_outer_reaches
-    element:
-      _type: Config_Element
-      _exists: true
+      name: Zone
+  perterbations:
+    - _type: Perterbation
       name: Default OR
+      flags: zone_outer_reaches
+      zone:
+        _type: Config_Zone
+        name: Default OR
+        order:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 3
+            dice_count: 0
+            dice_size: 0
+      element:
+        _type: Config_Element
+        _exists: true
+        name: Default OR

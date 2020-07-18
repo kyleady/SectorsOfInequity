@@ -113,8 +113,8 @@ def _attempt_to_create_each(todo, created_rows, counts, model_constructors):
             created_row = model_constructors[row_plan['metadata']['_type']](**row_plan['args'])
             created_row.save()
         except:
-            print(row_plan)
-            print("Unexpected error:", sys.exc_info()[0])
+            print("\nROW")
+            pp.pprint(row_plan)
             raise
         if len(row_plan['metadata']['_m2m_dependencies']) > 0:
             todo['m2m'][_plan_id] = (row_plan, created_row)
@@ -132,7 +132,20 @@ def _attempt_to_connect_each(todo, created_rows, counts):
             continue
 
         for arg, ids in row_plan['m2m_args'].items():
-            getattr(created_row, arg).add(*[created_rows[id['_plan_id']] for id in ids])
+            try:
+                getattr(created_row, arg).add(*[created_rows[id['_plan_id']] for id in ids])
+            except:
+                print("\nCREATED ROW")
+                pp.pprint(created_row)
+                print("\nROW")
+                pp.pprint(row_plan)
+                print("\nFIELD")
+                pp.pprint(arg)
+                print("\nMANY2MANY ROW")
+                pp.pprint([created_rows[id['_plan_id']] for id in ids])
+                raise
+
+
 
         del todo['m2m'][_plan_id]
         counts['activity'] += 1

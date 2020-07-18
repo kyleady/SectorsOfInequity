@@ -8,14 +8,25 @@
       dice_count: 20
       dice_size: 10
       keep_highest: -1
-  system_feature_count:
+  inspirations:
+    - _type: Inspiration_Table
+      _exists: true
+      name: System Features
+
+- _type: Inspiration_Table
+  name: System Features
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System Feature
+  count:
     - _type: Roll
       _exists: true
       required_flags: null
       base: 0
       dice_count: 1
       dice_size: 5
-  system_feature_inspirations:
+  weighted_inspirations:
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -136,7 +147,6 @@
         _exists: true
         name: Warp Turbulence
 
-
 - _type: Tag
   name: System Feature
 
@@ -189,23 +199,40 @@
             description: "Add 2D3kl1-1 Asteroid Belts to each Solar Zone."
             perterbations:
               - _type: Perterbation
-                zones:
-                  - _type: Config_Zone
-                    name: Bountiful(1)
-                    element_extra:
-                      - _type: Weighted_Inspiration
-                        weights:
-                          - _type: Roll
-                            _exists: true
-                            required_flags: null
-                            dice_count: 2
-                            dice_size: 3
-                            keep_highest: -1
-                            base: 1
-                        value:
-                          _type: Inspiration
+                zone:
+                  _type: Config_Zone
+                  name: Bountiful(1)
+                  element_extra:
+                    - _type: Extra_Tables
+                      count:
+                        - _type: Roll
                           _exists: true
-                          name: Asteroid Belt
+                          required_flags: null
+                          dice_count: 2
+                          dice_size: 3
+                          keep_highest: -1
+                          base: 1
+                      inspiration_tables:
+                        - _type: Inspiration_Table
+                          name: Type
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              dice_count: 0
+                              base: 1
+                          extra_inspirations:
+                            - _type: Weighted_Inspiration
+                              weights:
+                                - _type: Roll
+                                  _exists: true
+                                  required_flags: null
+                                  dice_count: 0
+                                  base: 1
+                              value:
+                                _type: Inspiration
+                                _exists: true
+                                name: Asteroid Belt
             tags:
               - _type: Tag
                 _exists: true
@@ -328,23 +355,41 @@
             description: "Add 2D6kl1 Gravity Tides to each Solar Zone."
             perterbations:
               - _type: Perterbation
-                zones:
-                  - _type: Config_Zone
-                    name: Gravity Tides(1)
-                    element_extra:
-                      - _type: Weighted_Inspiration
-                        weights:
-                          - _type: Roll
-                            _exists: true
-                            required_flags: null
-                            dice_count: 2
-                            dice_size: 6
-                            keep_highest: -1
-                            base: 0
-                        value:
-                          _type: Inspiration
+                zone:
+                  _type: Config_Zone
+                  name: Gravity Tides(1)
+                  element_extra:
+                    - _type: Extra_Tables
+                      count:
+                        - _type: Roll
                           _exists: true
-                          name: Gravity Riptide
+                          required_flags: null
+                          dice_count: 2
+                          dice_size: 6
+                          keep_highest: -1
+                          base: 0
+                      inspiration_tables:
+                        - _type: Inspiration_Table
+                          name: Type
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              dice_count: 0
+                              base: 1
+                          extra_inspirations:
+                            - _type: Weighted_Inspiration
+                              weights:
+                                - _type: Roll
+                                  _exists: true
+                                  required_flags: null
+                                  dice_count: 0
+                                  base: 1
+                              value:
+                                _type: Inspiration
+                                _exists: true
+                                name: Gravity Riptide
+
             tags:
               - _type: Tag
                 _exists: true
@@ -462,21 +507,38 @@
             description: "Add 1 Planet to each Solar Zone."
             perterbations:
               - _type: Perterbation
-                zones:
-                  - _type: Config_Zone
-                    name: Haven(1)
-                    element_extra:
-                      - _type: Weighted_Inspiration
-                        weights:
-                          - _type: Roll
-                            _exists: true
-                            required_flags: null
-                            dice_count: 0
-                            base: 1
-                        value:
-                          _type: Inspiration
+                zone:
+                  _type: Config_Zone
+                  name: Haven(1)
+                  element_extra:
+                    - _type: Extra_Tables
+                      count:
+                        - _type: Roll
                           _exists: true
-                          name: Planet
+                          required_flags: null
+                          base: 1
+                          dice_count: 0
+                      inspiration_tables:
+                        - _type: Inspiration_Table
+                          name: Type
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              base: 1
+                              dice_count: 0
+                          weighted_inspirations:
+                            - _type: Weighted_Inspiration
+                              weights:
+                                - _type: Roll
+                                  _exists: true
+                                  required_flags: null
+                                  dice_count: 0
+                                  base: 1
+                              value:
+                                _type: Inspiration
+                                _exists: true
+                                name: Planet
             tags:
               - _type: Tag
                 _exists: true

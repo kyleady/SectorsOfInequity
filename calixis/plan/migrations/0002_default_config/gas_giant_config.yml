@@ -23,67 +23,76 @@
       name: Gas Giant
       satellite:
         _type: Config_Element
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            count:
               - _type: Roll
                 _exists: true
                 required_flags: null
-                base: 2
+                base: 1
                 dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: No Feature
-              tags__name: Gas Giant
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 3
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Debris Rings
-              tags__name: Gas Giant
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 3
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Dust Rings
-              tags__name: Gas Giant
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 7
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Lesser Moon
-              tags__name: Gas Giant
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 5
-                dice_count: 0
-            value:
-              _type: Inspiration
-              _exists: true
-              name: Moon
-              tags__name: Gas Giant
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: No Feature
+                  tags__name: Gas Giant
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 3
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Debris Rings
+                  tags__name: Gas Giant
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 3
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Dust Rings
+                  tags__name: Gas Giant
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 7
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Lesser Moon
+                  tags__name: Gas Giant
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 5
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  _exists: true
+                  name: Moon
+                  tags__name: Gas Giant
   inspiration_tables:
     - _type: Inspiration_Table
       name: Body
@@ -365,27 +374,30 @@
             minimum: 1
       satellite:
         _type: Config_Element
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: -1
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: No Feature
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 1
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: Moon
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: -1
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: No Feature
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 1
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: Moon
   tags:
     - _type: Tag
       _exists: true
@@ -410,27 +422,30 @@
             dice_count: 1
       satellite:
         _type: Config_Element
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: -2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: No Feature
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: Moon
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: -2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: No Feature
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: Moon
   tags:
     - _type: Tag
       _exists: true
@@ -454,37 +469,40 @@
             dice_count: 3
       satellite:
         _type: Config_Element
-        type_inspirations:
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: -2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: No Feature
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: -2
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: Debris Field
-          - _type: Weighted_Inspiration
-            weights:
-              - _type: Roll
-                _exists: true
-                required_flags: null
-                base: 4
-                dice_count: 0
-            value:
-              _type: Inspiration
-              name: Moon
+        inspirations:
+          - _type: Inspiration_Table
+            name: Type
+            weighted_inspirations:
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: -2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: No Feature
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: -2
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: Debris Field
+              - _type: Weighted_Inspiration
+                weights:
+                  - _type: Roll
+                    _exists: true
+                    required_flags: null
+                    base: 4
+                    dice_count: 0
+                value:
+                  _type: Inspiration
+                  name: Moon
   tags:
     - _type: Tag
       _exists: true
