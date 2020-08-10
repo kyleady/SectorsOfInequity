@@ -4,6 +4,8 @@ import "database/sql"
 import "math/rand"
 import "strings"
 
+import "fmt"
+
 import "screamingvortex/utilities"
 
 type Perterbation struct {
@@ -13,24 +15,11 @@ type Perterbation struct {
   MutedFlagsString sql.NullString `sql:"muted_flags"`
   RequiredFlagsString sql.NullString `sql:"required_flags"`
 
-  SystemId sql.NullInt64 `sql:"system_id"`
-  StarClusterId sql.NullInt64 `sql:"star_cluster_id"`
-  RouteId sql.NullInt64 `sql:"route_id"`
-  ElementId sql.NullInt64 `sql:"element_id"`
-  SatelliteId sql.NullInt64 `sql:"satellite_id"`
-  TerritoryId sql.NullInt64 `sql:"territory_id"`
-
   flags []string
   mutedFlags []string
   requiredFlags []string
 
-  SystemConfig *System
-  StarClusterConfig *StarCluster
-  RouteConfig *Route
-  ZoneConfigs *Zones
-  ElementConfig *Element
-  SatelliteConfig *Element
-  TerritoryConfig *Territory
+  Configs []*AssetConfig
 
   Manager *ConfigManager
   Rand *rand.Rand
@@ -42,13 +31,6 @@ func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perter
     perterbation.Manager = CreateEmptyManager(client)
   }
   perterbation.Rand = rRand
-  perterbation.SystemConfig = CreateEmptySystemConfig()
-  perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
-  perterbation.RouteConfig = CreateEmptyRouteConfig()
-  perterbation.ZoneConfigs = new(Zones)
-  perterbation.ElementConfig = CreateEmptyElementConfig()
-  perterbation.SatelliteConfig = CreateEmptyElementConfig()
-  perterbation.TerritoryConfig = CreateEmptyTerritoryConfig()
   return perterbation
 }
 
@@ -71,43 +53,7 @@ func LoadPerterbation(manager *ConfigManager, perterbation *Perterbation) {
     perterbation.requiredFlags = make([]string, 0)
   }
 
-  if perterbation.SystemId.Valid {
-    perterbation.SystemConfig = FetchSystemConfig(manager, perterbation.SystemId.Int64)
-  } else {
-    perterbation.SystemConfig = CreateEmptySystemConfig()
-  }
-
-  if perterbation.StarClusterId.Valid {
-    perterbation.StarClusterConfig = FetchStarClusterConfig(manager, perterbation.StarClusterId.Int64)
-  } else {
-    perterbation.StarClusterConfig = CreateEmptyStarClusterConfig()
-  }
-
-  if perterbation.RouteId.Valid {
-    perterbation.RouteConfig = FetchRouteConfig(manager, perterbation.RouteId.Int64)
-  } else {
-    perterbation.RouteConfig = CreateEmptyRouteConfig()
-  }
-
-  perterbation.ZoneConfigs = FetchZoneConfigs(manager, perterbation.Id)
-
-  if perterbation.ElementId.Valid {
-    perterbation.ElementConfig = FetchElementConfig(manager, perterbation.ElementId.Int64)
-  } else {
-    perterbation.ElementConfig = CreateEmptyElementConfig()
-  }
-
-  if perterbation.SatelliteId.Valid {
-    perterbation.SatelliteConfig = FetchElementConfig(manager, perterbation.SatelliteId.Int64)
-  } else {
-    perterbation.SatelliteConfig = CreateEmptyElementConfig()
-  }
-
-  if perterbation.TerritoryId.Valid {
-    perterbation.TerritoryConfig = FetchTerritoryConfig(manager, perterbation.TerritoryId.Int64)
-  } else {
-    perterbation.TerritoryConfig = CreateEmptyTerritoryConfig()
-  }
+  perterbation.Configs = FetchManyAssetConfigs(manager, perterbation.Id, perterbation.TableName(""), "configs")
 }
 
 func (perterbation *Perterbation) TableName(perterbationType string) string {
@@ -118,23 +64,15 @@ func (perterbation *Perterbation) GetId() *int64 {
   panic("GetId() not implemented. Config should not be editted.")
 }
 
-func (basePerterbation *Perterbation) AddSatellitedInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
-  return basePerterbation.addInspiration(inspirationId, true)
-}
-
 func (basePerterbation *Perterbation) AddInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
-  return basePerterbation.addInspiration(inspirationId, false)
+  return basePerterbation.addInspiration(inspirationId)
 }
 
-func (basePerterbation *Perterbation) addInspiration(inspirationId int64, isSatellite bool) (*Inspiration, *Perterbation) {
+func (basePerterbation *Perterbation) addInspiration(inspirationId int64) (*Inspiration, *Perterbation) {
   inspiration := basePerterbation.Manager.GetInspiration(inspirationId)
   newPerterbation := basePerterbation.Copy()
   for _, perterbationId := range inspiration.PerterbationIds {
-    if isSatellite {
-      newPerterbation = newPerterbation.AddSatellitePerterbation(perterbationId)
-    } else {
-      newPerterbation = newPerterbation.AddPerterbation(perterbationId)
-    }
+    newPerterbation = newPerterbation.AddPerterbation(perterbationId)
   }
 
   return inspiration, newPerterbation
@@ -149,11 +87,6 @@ func (basePerterbation *Perterbation) AddPerterbation(perterbationId int64) *Per
   return basePerterbation.addPerterbation(modifyingPerterbation, false)
 }
 
-func (basePerterbation *Perterbation) AddSatellitePerterbation(perterbationId int64) *Perterbation {
-  modifyingPerterbation := basePerterbation.Manager.GetPerterbation(perterbationId)
-  return basePerterbation.addPerterbation(modifyingPerterbation, true)
-}
-
 func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Perterbation, isSatellite bool) *Perterbation {
   if !basePerterbation.HasFlags(modifyingPerterbation.requiredFlags) {
     return basePerterbation.Copy()
@@ -165,30 +98,19 @@ func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Per
 
   newPerterbation.flags = basePerterbation.CombineFlags(modifyingPerterbation)
 
-  newPerterbation.SystemConfig = basePerterbation.SystemConfig.AddPerterbation(modifyingPerterbation.SystemConfig)
-  newPerterbation.StarClusterConfig = basePerterbation.StarClusterConfig.AddPerterbation(modifyingPerterbation.StarClusterConfig)
-  newPerterbation.RouteConfig = basePerterbation.RouteConfig.AddPerterbation(modifyingPerterbation.RouteConfig)
-  newPerterbation.ZoneConfigs = basePerterbation.ZoneConfigs.AddPerterbation(modifyingPerterbation.ZoneConfigs)
-  if isSatellite {
-    newPerterbation.SatelliteConfig = basePerterbation.SatelliteConfig.AddPerterbation(modifyingPerterbation.ElementConfig)
-  } else {
-    newPerterbation.ElementConfig = basePerterbation.ElementConfig.AddPerterbation(modifyingPerterbation.ElementConfig)
-  }
-  newPerterbation.SatelliteConfig = basePerterbation.SatelliteConfig.AddPerterbation(modifyingPerterbation.SatelliteConfig)
-  newPerterbation.TerritoryConfig = basePerterbation.TerritoryConfig.AddPerterbation(modifyingPerterbation.TerritoryConfig)
+  newPerterbation.Configs = StackAssetConfigs(basePerterbation.Configs, modifyingPerterbation.Configs)
 
   return newPerterbation
 }
 
-func (basePerterbation *Perterbation) CombineElementConfigs(isSatellite bool) *Perterbation {
-  elementConfig := basePerterbation.ElementConfig
-  if isSatellite {
-    elementConfig = basePerterbation.SatelliteConfig
+func (perterbation *Perterbation) GetConfig(typeId int64) *AssetConfig {
+  for _, config := range perterbation.Configs {
+    if config.TypeId == typeId {
+      return config
+    }
   }
 
-  newPerterbation := basePerterbation.Copy()
-  newPerterbation.TerritoryConfig = basePerterbation.TerritoryConfig.AddPerterbation(elementConfig.TerritoryConfig)
-  return newPerterbation
+  return CreateEmptyConfigAsset(typeId)
 }
 
 func FetchManyPerterbationIds(manager *ConfigManager, parentId int64, tableName string, valueName string) []int64 {
@@ -233,4 +155,19 @@ func (perterbation *Perterbation) HasFlags(requiredFlags []string) bool {
   }
 
   return true
+}
+
+func (perterbation *Perterbation) Print(indent int) {
+  for i := 0; i < indent; i++ {
+    fmt.Print(" ")
+  }
+  fmt.Print("PERTERBATION:\n")
+  for i := 0; i < indent; i++ {
+    fmt.Print(" ")
+  }
+  fmt.Printf("{Id:%d, flags:%+v}\n", perterbation.Id, perterbation.flags)
+
+  for _, assetConfig := range perterbation.Configs {
+    assetConfig.Print(indent+2)
+  }
 }

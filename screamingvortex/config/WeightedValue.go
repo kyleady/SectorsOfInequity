@@ -87,7 +87,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
 
 }
 
-func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue, modifyOnly bool) []*WeightedValue {
+func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
   newWeightedValues := make([]*WeightedValue, len(firstWeightedValues))
   for i, firstWeightedValue := range firstWeightedValues {
     newWeightedValues[i] = firstWeightedValue.Clone()
@@ -98,9 +98,7 @@ func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
     for _, newWeightedValue := range newWeightedValues {
       if newWeightedValue.ValueName == secondWeightedValue.ValueName {
         weightedValueStacked = true
-        if !modifyOnly {
-          newWeightedValue.Weights = append(newWeightedValue.Weights, secondWeightedValue.Weights...)
-        }
+        newWeightedValue.Weights = append(newWeightedValue.Weights, secondWeightedValue.Weights...)
         for _, value := range secondWeightedValue.Values {
           valueAlreadyInNewValues := false
           for _, newValue := range newWeightedValue.Values {
@@ -119,7 +117,7 @@ func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
       }
     }
 
-    if !modifyOnly && !weightedValueStacked {
+    if !weightedValueStacked {
       newWeightedValues = append(newWeightedValues, secondWeightedValue.Clone())
     }
   }
@@ -127,12 +125,8 @@ func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
   return newWeightedValues
 }
 
-func ModifyExtraInspirations(extraInspirations []*WeightedValue, modifyingWeightedValues []*WeightedValue) []*WeightedValue {
-  return stackWeightedValues(extraInspirations, modifyingWeightedValues, true)
-}
-
 func StackWeightedInspirations(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
-  return stackWeightedValues(firstWeightedValues, secondWeightedValues, false)
+  return stackWeightedValues(firstWeightedValues, secondWeightedValues)
 }
 
 
@@ -159,21 +153,6 @@ func FetchManyWeightedInspirations(manager *ConfigManager, parentId int64, table
   }
 
   return weightedValues
-}
-
-func ExtraInspirationsToShuffledExtraIds(extraInspirations []*WeightedValue, modifyingWeightedValues []*WeightedValue,  perterbation *Perterbation) [][]int64 {
-  extraInspirations = ModifyExtraInspirations(extraInspirations, modifyingWeightedValues)
-  shuffledExtraIds := [][]int64{}
-  rRand := perterbation.Rand
-  for _, extraInspiration := range extraInspirations {
-    numberOfCopies := RollAll(extraInspiration.Weights, perterbation)
-    for i := 1; i <= numberOfCopies; i++ {
-      shuffledExtraIds = append(shuffledExtraIds, extraInspiration.Values)
-    }
-  }
-
-  rRand.Shuffle(len(shuffledExtraIds), func(i, j int) { shuffledExtraIds[i], shuffledExtraIds[j] = shuffledExtraIds[j], shuffledExtraIds[i] })
-  return shuffledExtraIds
 }
 
 func WeightedPerterbationTag() string { return "weighted perterbation" }

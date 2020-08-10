@@ -3,25 +3,26 @@ package main
 import (
     "screamingvortex/asset"
     "screamingvortex/config"
-    "screamingvortex/grid"
     "screamingvortex/utilities"
     "screamingvortex/messages"
 
+    "math/rand"
+    "time"
     "encoding/json"
     "log"
     "net/http"
 )
 
-func extractIds(writer http.ResponseWriter, req *http.Request) (int64, int64) {
+func extractIds(writer http.ResponseWriter, req *http.Request) (int64, int64, int64) {
   decoder := json.NewDecoder(req.Body)
   calixisMsg := new(messages.FromCalixis)
   inputErr := decoder.Decode(calixisMsg)
   if inputErr != nil {
       http.Error(writer, "Input\n" + inputErr.Error(), http.StatusInternalServerError)
-      return -1, -1
+      return -1, -1, -1
   }
 
-  return calixisMsg.ConfigId, calixisMsg.JobId
+  return calixisMsg.PerterbationId, calixisMsg.TypeId, calixisMsg.JobId
 }
 
 func createClient() *utilities.Client {
@@ -34,50 +35,33 @@ func createClient() *utilities.Client {
   }
 }
 
-func gridHandler(writer http.ResponseWriter, req *http.Request) {
-    configId, jobId := extractIds(writer, req)
-    if configId < 0 { return }
+func assetHandler(writer http.ResponseWriter, req *http.Request) {
+    perterbationId, typeId, jobId := extractIds(writer, req)
+    if perterbationId == -1 && typeId == -1 && jobId == -1 { return }
 
     go func() {
       client := createClient()
       client.Open()
       defer client.Close()
 
-      manager := config.CreateEmptyManager(client)
-      gridConfig := config.FetchGrid(manager, configId)
+      t := time.Now()
+      randSource := rand.NewSource(t.UnixNano())
+      rRand := rand.New(randSource)
 
-      job := utilities.CreateJob(jobId, 3)
-      sectorGrid := new(grid.Sector)
-      sectorGrid.Randomize(gridConfig, client, job)
-      sectorGrid.SaveTo(client)
-      job.Complete(client, sectorGrid.Id)
-    }()
+      basePerterbation := config.CreateEmptyPerterbation(client, rRand)
+      perterbation := basePerterbation.AddPerterbation(perterbationId)
 
-    writer.Write([]byte("OK"))
-}
-
-func sectorHandler(writer http.ResponseWriter, req *http.Request) {
-    configId, jobId := extractIds(writer, req)
-    if configId < 0 { return }
-
-    go func() {
-      client := createClient()
-      client.Open()
-      defer client.Close()
-
-      sectorGrid := grid.LoadSectorFrom(client, configId)
-
-      job := utilities.CreateJob(jobId, len(sectorGrid.Systems))
-      sectorAsset := asset.RandomSector(sectorGrid, client, job)
-      sectorAsset.SaveTo(client)
-      job.Complete(client, sectorAsset.Id)
+      job := utilities.CreateJob(jobId, 1)
+      rolledAsset := asset.RollAsset(perterbation, typeId, "", 1)
+      job.Step(client)
+      rolledAsset.SaveTo(client)
+      job.Complete(client, rolledAsset.Id)
     }()
 
     writer.Write([]byte("OK"))
 }
 
 func main() {
-    http.HandleFunc("/grid", gridHandler)
-    http.HandleFunc("/sector", sectorHandler)
+    http.HandleFunc("/asset", assetHandler)
     log.Fatal(http.ListenAndServe(":5000", nil))
 }

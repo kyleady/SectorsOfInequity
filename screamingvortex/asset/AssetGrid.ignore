@@ -1,0 +1,429 @@
+package asset
+
+import (
+  "screamingvortex/utilities"
+  "screamingvortex/config"
+  "math/rand"
+  "time"
+  "fmt"
+)
+
+type AssetGrid struct {
+  Id int64 `sql:"id"`
+  Name string `sql:"name"`
+  Nodes []*AssetNode
+  grid [][]*AssetNode
+}
+
+func (assetGrid *AssetGrid) TableName(assetGridType string) string {
+  return "plan_asset_grid"
+}
+
+func (assetGrid *AssetGrid) GetId() *int64 {
+  return &assetGrid.Id
+}
+
+func (assetGrid *AssetGrid) SaveTo(client utilities.ClientInterface) {
+  client.Save(assetGrid, "")
+  assetGrid.saveNodes(client)
+  assetGrid.saveNodeRoutes(client)
+}
+
+func (assetGrid *AssetGrid) saveNodes(client utilities.ClientInterface) {
+  for _, node := range assetGrid.Nodes {
+    assetNode.GridId = assetGrid.Id
+  }
+
+  client.SaveAll(&assetGrid.Nodes, "")
+}
+
+func (assetGrid *AssetGrid) saveNodeConnections(client utilities.ClientInterface) {
+  for _, node := range assetGrid.Nodes {
+    for _, connection := range node.Connections {
+      connection.StartId = node.Id
+      connection.EndId = -1
+      for _, endNode := range assetGrid.Nodes {
+        if connection.targetNode == endNode {
+          connection.EndId = endNode.Id
+          break
+        }
+      }
+    }
+
+    client.SaveAll(&node.Connections, "")
+  }
+}
+
+func RollAssetGrid(perterbation *config.Perterbation, gridConfig *config.ConfigGrid, prefix string, index int) *RollAssetGrid {
+  assetGrid := new(AssetGrid)
+  prefix := assetGrid.Name = gridConfig.Name
+  assetGrid.randomizeStructure(perterbation, gridConfig)
+  assetGrid.randomizeNodes(perterbation, gridConfig, )
+
+}
+
+func (assetGrid *AssetGrid) randomizeStructure(perterbation *config.Perterbation, gridConfig *config.ConfigGrid) {
+  assetGrid.createGrid(gridConfig)
+  assetGrid.populateGrid(gridConfig, perterbation.Rand)
+  assetGrid.connectNodes(gridConfig, perterbation.Rand)
+  blobSizes := assetGrid.labelBlobsAndGetSizes()
+  assetGrid.trimToLargestBlob(blobSizes)
+  assetGrid.gridToList()
+}
+
+func (assetGrid *AssetGrid) randomizeNodes(gridConfig *config.ConfigGrid, perterbation *config.Perterbation) {
+
+}
+
+func (assetGrid *AssetGrid) smoothNodes(){
+  assetGrid.smooth(gridConfig, perterbation)
+}
+
+func (assetGrid *AssetGrid) createGrid(gridConfig *config.ConfigGrid) {
+  assetGrid.grid = make([][]*AssetNode, gridConfig.Height)
+  for i := range assetGrid.grid {
+    assetGrid.grid[i] = make([]*AssetGrid, gridConfig.Width)
+  }
+}
+
+func (assetGrid *AssetGrid) populateGrid(rRand *rand.Rand) {
+  for i, row := range assetGrid.grid {
+    for j := range row {
+      assetGrid.createNode(i, j, rRand)
+    }
+  }
+}
+
+func (assetGrid *AssetGrid) connectNodes(gridConfig *config.ConfigGrid, rRand *rand.Rand) {
+  reach := gridConfig.ConnectionRange
+
+  for i := range assetGrid.grid {
+    for j := range assetGrid.grid[i] {
+
+      // Attempt to connect the node @{i,j} to all nodes within reach
+      for r_i := -reach; r_i <= reach; r_i++ {
+        for r_j := -reach; r_j <= reach; r_j++ {
+          if roll := rRand.Float64(); roll < assetGrid.connectionChance(r_i, r_j, gridConfig) {
+            targetNode := assetGrid.getNode(i+r_i, j+r_j, gridConfig)
+            assetGrid.grid[i][j].ConnectTo(targetNode)
+          }
+        }
+      }
+
+    }
+  }
+}
+
+func (assetGrid *AssetGrid) labelBlobsAndGetSizes() []int {
+  currentLabel := 0
+  blobSizes := make([]int, 0)
+  for i := range assetGrid.grid {
+    for j := range assetGrid.grid[i] {
+      blobSize := assetGrid.grid[i][j].LabelBlob(currentLabel)
+
+      if blobSize != 0 {
+        blobSizes = append(blobSizes, blobSize)
+        currentLabel++
+      }
+    }
+  }
+
+  return blobSizes
+}
+
+func (assetGrid *AssetGrid) trimToLargestBlob(blobSizes []int) {
+  largestBlobSize := -100
+  largestBlobLabel := -100
+  totalSize := 0
+  for blobLabel, blobSize := range blobSizes {
+    totalSize += blobSize
+    if blobSize > largestBlobSize {
+      largestBlobSize = blobSize
+      largestBlobLabel = blobLabel
+    }
+  }
+
+  for i := range assetGrid.grid {
+    for j := range assetGrid.grid[i] {
+      assetGrid.grid[i][j].VoidNonMatchingLabel(largestBlobLabel)
+    }
+  }
+}
+
+func (assetGrid *AssetGrid) createNode(i int, j int, gridConfig *config.ConfigGrid, rRand *rand.Rand) {
+  assetNode := new(AssetNode)
+  if roll := rRand.Float64(); roll < gridConfig.PopulationRate {
+    assetNode.InitializeAt(i, j)
+  } else {
+    assetNode.SetToVoidSpace()
+  }
+
+  assetGrid.grid[i][j] = assetNode
+}
+
+
+
+func (assetGrid *AssetGrid) connectionChance(r_i int, r_j int, gridConfig *config.ConfigGrid) float64 {
+  abs_i := r_i
+  if r_i < 0 {
+    abs_i = - r_i
+  }
+
+  abs_j := r_j
+  if r_j < 0 {
+    abs_j = - r_j
+  }
+
+  var reach int
+  if abs_j > abs_i {
+    reach = abs_j
+  } else {
+    reach = abs_i
+  }
+
+  chance := gridConfig.ConnectionRate
+  for i := 0; i < reach - 1; i++ {
+    chance *= gridConfig.RangeRateMultiplier
+  }
+
+  return chance
+}
+
+func (assetGrid *AssetGrid) getNode(i int, j int, gridConfig *config.ConfigGrid) *AssetNode {
+  if i < 0 || i >= gridConfig.Height {
+    return nil
+  }
+
+  if j < 0 || j >= gridConfig.Width {
+    return nil
+  }
+
+  return assetGrid.grid[i][j]
+}
+
+func (assetGrid *AssetGrid) gridToList() {
+  assetGrid.Nodes = make([]*AssetNode, 0)
+  for i := range assetGrid.grid {
+    for j := range assetGrid.grid[i] {
+      if assetGrid.grid[i][j].IsVoidSpace() == false {
+        assetGrid.grid[i][j].nodeIndex = len(assetGrid.Nodes)
+        assetGrid.Nodes = append(assetGrid.Nodes, assetGrid.grid[i][j])
+      }
+    }
+  }
+}
+
+func (assetGrid *AssetGrid) getTwoDifferentNodes(listByRegion map[int64][]int) (*AssetNode, *AssetNode, int, int) {
+  nodeListIndexA := rand.Intn(len(assetGrid.Nodes))
+  var regionA int64
+  var nodeA *AssetNode
+  var nodeIndexA int
+  for regionId, nodeIndexList := range listByRegion {
+    if nodeListIndexA < len(nodeIndexList) {
+      nodeIndexA = nodeIndexList[nodeListIndexA]
+      assetNodeA = assetNode.Nodes[nodeIndexA]
+      regionA = regionId
+      break
+    } else {
+      nodeListIndexA -= len(nodeIndexList)
+    }
+  }
+
+  nodeListIndexB := rand.Intn(len(assetGrid.Nodes) - len(listByRegion[regionA]))
+  var nodeB *AssetNode
+  var nodeIndexB int
+  for regionId, nodeIndexList := range listByRegion {
+    if regionId == regionA {
+      continue
+    }
+
+    if nodeListIndexB < len(nodeIndexList) {
+      nodeIndexB = nodeIndexList[nodeListIndexB]
+      nodeB = assetGrid.Nodes[nodeIndexB]
+      break
+    } else {
+      nodeListIndexB -= len(nodeIndexList)
+    }
+  }
+
+  return nodeA, nodeB, nodeListIndexA, nodeListIndexB
+}
+
+func (assetGrid *AssetGrid) smooth(gridConfig *config.ConfigGrid, perterbation *config.Perterbation) {
+  smoothingFactor := gridConfig.SmoothingFactor
+  listByRegion := make(map[int64][]int)
+  if smoothingFactor >= 1 {
+    listByRegion = assetGrid.genClumpedRegionIds()
+    smoothingFactor--
+  } else {
+    listByRegion = assetGrid.genScatteredRegionIds()
+  }
+
+  assetGrid.smoothRegionIds(listByRegion, smoothingFactor)
+}
+
+func (assetGrid AssetGrid) genScatteredRegionIds(gridConfig *config.ConfigGrid, perterbation *config.Perterbation) map[int64][]int {
+  listByRegion := make(map[int64][]int)
+  for nodeIndex, node := range assetGrid.Nodes {
+    randRegion := config.RollWeightedValues(gridConfig.WeightedRegions, assetGrid.perterbation)[0]
+    node.RegionId = randRegion
+    listByRegion[randRegion] = append(listByRegion[randRegion], nodeIndex)
+  }
+
+  return listByRegion
+}
+
+func (assetGrid AssetGrid) smoothRegionIds(listByRegion map[int64][]int, smoothingFactor float64) {
+  if len(assetGrid.Nodes) <= 2 {
+    return
+  }
+
+  if len(listByRegion) <= 1 {
+    return
+  }
+
+  maxSwitches := int(float64(len(assetGrid.Nodes)) * assetGrid.config.SmoothingFactor)
+  for i := 0; i < maxSwitches; i++ {
+    nodeA, nodeB, nodeListIndexA, nodeListIndexB := assetGrid.getTwoDifferentNodes(listByRegion)
+    regionA := nodeA.RegionId
+    regionB := nodeB.RegionId
+    vBefore := 0
+    vAfter := 0
+    for _, route := range nodeA.Routes {
+      if route.TargetNode().RegionId == regionA {
+        vBefore += 1
+      } else if route.TargetNode().RegionId == regionB {
+        if route.TargetNode() != nodeB {
+          vAfter += 1
+        }
+      }
+    }
+
+    for _, route := range nodeB.Routes {
+      if route.TargetNode().RegionId == regionB {
+        vBefore += 1
+      } else if route.TargetNode().RegionId == regionA {
+        if route.TargetNode() != nodeA {
+          vAfter += 1
+        }
+      }
+    }
+
+    if vAfter >= vBefore {
+      placeHolder := listByRegion[regionA][nodeListIndexA]
+      listByRegion[regionA][nodeListIndexA] = listByRegion[regionB][nodeListIndexB]
+      listByRegion[regionB][nodeListIndexB] = placeHolder
+      nodeA.RegionId = regionB
+      nodeB.RegionId = regionA
+    }
+  }
+}
+
+func (assetGrid AssetGrid) getRandomUnsetNode(nodesSet int) *AssetNode {
+  randomIndex := assetGrid.perterbation.Rand.Intn(len(assetGrid.Nodes) - nodesSet)
+
+  if nodesSet == 0 {
+    return assetGrid.Nodes[randomIndex]
+  } else {
+    for _, node := range assetGrid.Nodes {
+      if node.RegionId == int64(node.TheUnsetLabel()) {
+        if randomIndex == 0 {
+          return node
+        } else {
+          randomIndex--
+        }
+      }
+    }
+  }
+
+  panic(fmt.Sprintf("One node should always be returned. {nodesSet=%d, len(assetGrid.Nodes)=%d}", nodesSet, len(assetGrid.Nodes)))
+}
+
+func (assetGrid AssetGrid) genClumpedRegionIds() map[int64][]int {
+  listByRegion := make(map[int64][]int)
+  //determine the number of nodes in each region
+  regionFrequency := make(map[int64]int)
+  for range assetGrid.Nodes {
+    randRegion := config.RollWeightedValues(assetGrid.config.WeightedRegions, assetGrid.perterbation)[0]
+    regionFrequency[randRegion]++
+  }
+
+  //create ordered list of regions, from most populous to least
+  regionFrequencyCopy := make(map[int64]int)
+  for regionId, freq := range regionFrequency {
+    regionFrequencyCopy[regionId] = freq
+  }
+
+
+  orderedRegionIdByFrequency := make([]int64, len(regionFrequency), len(regionFrequency))
+  currentIndex := 0
+  for range regionFrequency {
+    maxFreq := -1
+    maxRegionId := int64(-1)
+    for regionId, freq := range regionFrequencyCopy {
+      if freq > maxFreq {
+        maxFreq = freq
+        maxRegionId = regionId
+      }
+    }
+
+    orderedRegionIdByFrequency[currentIndex] = maxRegionId
+    regionFrequencyCopy[maxRegionId] = -1
+    currentIndex++
+  }
+
+  //loop through each region, from most populous to least
+  nodesSet := 0
+  adjacentNodes := []*AssetNode{}
+  for _, regionId := range orderedRegionIdByFrequency {
+    //reset adjacentNodes
+    adjacentNodes = []*AssetNode{}
+
+    //randomly choose starting node
+    selectedNode := assetGrid.getRandomUnsetNode(nodesSet)
+    selectedIndex := -1
+
+    //mark a node as part of this region, for each node in the region
+    for i := 0; i < regionFrequency[regionId]; i++ {
+      //mark that node as in the current region
+      selectedNode.RegionId = regionId
+      listByRegion[regionId] = append(listByRegion[regionId], selectedNode.nodeIndex)
+      nodesSet++
+
+      //remove all occurences of that node from list of adjacent nodes
+      if selectedIndex >= 0 {
+        for adjacentIndex := 0; adjacentIndex < len(adjacentNodes); adjacentIndex++ {
+          if adjacentNodes[adjacentIndex] == selectedNode {
+            adjacentNodes = append(adjacentNodes[:adjacentIndex], adjacentNodes[adjacentIndex+1:]...)
+            adjacentIndex--;
+          }
+        }
+      }
+
+      //add all newly adjacent nodes that are not yet in a region
+      for _, route := range selectedNode.Routes {
+        adjacentNode := route.TargetNode()
+        if adjacentNode.RegionId == int64(adjacentNode.TheUnsetLabel()) {
+          adjacentNodes = append(adjacentNodes, adjacentNode)
+        }
+      }
+
+      //check if you have run out of adjacent nodes
+      if nodesSet < len(assetGrid.Nodes) {
+        if len(adjacentNodes) == 0 {
+          //randomly choose new starting node
+          selectedNode = assetGrid.getRandomUnsetNode(nodesSet)
+          selectedIndex = -1
+
+          //mark that node as part of the current region
+        } else {
+          //randomly choose an adjacent node
+          selectedIndex = assetGrid.perterbation.Rand.Intn(len(adjacentNodes))
+          selectedNode = adjacentNodes[selectedIndex]
+        }
+      }
+    }
+  }
+
+  return listByRegion
+}

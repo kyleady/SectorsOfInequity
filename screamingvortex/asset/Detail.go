@@ -1,7 +1,6 @@
 package asset
 
 import "database/sql"
-import "math/rand"
 import "fmt"
 import "strings"
 
@@ -50,35 +49,28 @@ func (detail *Detail) GetName() string {
   }
 }
 
-func baseDetail(inspirations []*config.Inspiration, rRand *rand.Rand) *Detail {
+func RollDetail(inspirationTable *config.InspirationTable, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+  inspirationIds := inspirationTable.RollOnce(perterbation)
+  if len(inspirationIds) == 0 {
+    return nil, perterbation
+  }
+
+  return NewDetail(inspirationTable, perterbation, inspirationIds)
+}
+
+func NewDetail(inspirationTable *config.InspirationTable, perterbation *config.Perterbation, inspirationIds []int64) (*Detail, *config.Perterbation) {
+  inspirations := make([]*config.Inspiration, len(inspirationIds))
+  for i, inspirationId := range inspirationIds {
+    inspirations[i], perterbation = perterbation.AddInspiration(inspirationId)
+  }
+
   detail := new(Detail)
   detail.Inspirations = inspirations
+  detail.InspirationTables = inspirationTable.ConstituentParts
   detail.RollsAsString = ""
   detail.ParentDetailId =  sql.NullInt64{Int64: 0, Valid: false}
   detail.childDetailGroups = [][]*Detail{}
 
-  return detail
-}
-
-func NewSatelliteDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
-  return newDetail(inspirationIds, perterbation, true)
-}
-
-func NewDetail(inspirationIds []int64, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
-  return newDetail(inspirationIds, perterbation, false)
-}
-
-func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSatellite bool) (*Detail, *config.Perterbation) {
-  inspirations := make([]*config.Inspiration, len(inspirationIds))
-  for i, inspirationId := range inspirationIds {
-    if isSatellite {
-      inspirations[i], perterbation = perterbation.AddSatellitedInspiration(inspirationId)
-    } else {
-      inspirations[i], perterbation = perterbation.AddInspiration(inspirationId)
-    }
-  }
-
-  detail := baseDetail(inspirations, perterbation.Rand)
   stackedRollGroups := []*config.InspirationTable{}
   for _, inspiration := range inspirations {
     stackedRollGroups = config.StackInspirationTables(inspiration.InspirationRolls, stackedRollGroups)
@@ -103,9 +95,7 @@ func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSate
     numberOfChildDetails := config.RollAll(inspirationTable.CountRolls, perterbation)
     var childDetailGroup []*Detail
     for childDetailCount := 0; childDetailCount < numberOfChildDetails; childDetailCount++ {
-      childDetail, childPerterbation := RollDetail(inspirationTable.WeightedInspirations, perterbation)
-      childDetail.InspirationTables = inspirationTable.ConstituentParts
-
+      childDetail, childPerterbation := RollDetail(inspirationTable, perterbation)
       if childDetail != nil {
         childDetailGroup = append(childDetailGroup, childDetail)
         perterbation = childPerterbation
@@ -120,20 +110,29 @@ func newDetail(inspirationIds []int64, perterbation *config.Perterbation, isSate
   return detail, perterbation
 }
 
-func RollSatelliteDetail(weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
-  if len(weightedInspirations) == 0 {
-    return nil, perterbation
+func RollDetails(inspirationTables []*config.InspirationTable, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
+  newPerterbation := perterbation
+  details := []*Detail{}
+  detail := new(Detail)
+  for _, inspirationTable := range inspirationTables {
+    numberOfRollsOnTheTable := inspirationTable.RollCount(newPerterbation)
+    for i := 0; i < numberOfRollsOnTheTable; i++ {
+      detail, newPerterbation = RollDetail(inspirationTable, newPerterbation)
+      if detail != nil {
+        details = append(details, detail)
+      }
+    }
+
+    for _, extraInspiration := range inspirationTable.ExtraInspirations {
+      extrasToAdd := config.RollAll(extraInspiration.Weights, newPerterbation)
+      for i := 0; i < extrasToAdd; i++ {
+        detail, newPerterbation = NewDetail(inspirationTable, newPerterbation, extraInspiration.Values)
+        if detail != nil {
+          details = append(details, detail)
+        }
+      }
+    }
   }
 
-  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation)
-  return NewSatelliteDetail(inspirationIds, perterbation)
-}
-
-func RollDetail(weightedInspirations []*config.WeightedValue, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
-  if len(weightedInspirations) == 0 {
-    return nil, perterbation
-  }
-
-  inspirationIds := config.RollWeightedValues(weightedInspirations, perterbation)
-  return NewDetail(inspirationIds, perterbation)
+  return details, newPerterbation
 }
