@@ -83,6 +83,8 @@ def _get_plan(instructions):
 
             if is_reference:
                 if counts['row'] > 0 or counts['reference'] > 0:
+                    print("\nROW REFERENCE")
+                    pp.pprint(row_plan)
                     raise Exception('A reference cannot create other rows or reference other rows. Query the related rows through this reference instead.')
                 plan['references'].append(row_plan)
             else:
