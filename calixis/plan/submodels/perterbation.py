@@ -12,15 +12,9 @@ class Perterbation(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField(default="-", max_length=100)
-    tags = models.ManyToManyField('Tag')
+    name = models.CharField(default="", max_length=100)
+    tags = models.ManyToManyField('Tag', related_name='perterbation_tags')
     flags = models.CharField(blank=True, null=True, max_length=100)
     muted_flags = models.CharField(blank=True, null=True, max_length=100)
     required_flags = models.CharField(blank=True, null=True, max_length=200)
-    system = models.ForeignKey('Config_System', null=True, blank=True, on_delete=models.SET_NULL)
-    star_cluster = models.ForeignKey('Config_Star_Cluster', null=True, blank=True, on_delete=models.SET_NULL)
-    route = models.ForeignKey('Config_Route', null=True, blank=True, on_delete=models.SET_NULL)
-    zone = models.ForeignKey('Config_Zone', null=True, blank=True, on_delete=models.SET_NULL, related_name='perterbation_zone')
-    element = models.ForeignKey('Config_Element', null=True, blank=True, on_delete=models.SET_NULL)
-    satellite = models.ForeignKey('Config_Element', null=True, blank=True, on_delete=models.SET_NULL, related_name='perterbation_satellite')
-    territory = models.ForeignKey('Config_Territory', null=True, blank=True, on_delete=models.SET_NULL)
+    configs = models.ManyToManyField('Config_Asset', related_name='perterbation_configs')

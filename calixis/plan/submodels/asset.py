@@ -16,35 +16,47 @@ class BaseAsset(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField(max_length=75)
-    parent = None
+    name = models.CharField(max_length=200)
 
-class Asset_Territory(BaseAsset):
-    type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='territory_type')
+class Asset_Group(BaseAsset):
+    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='asset_group_type')
+    assets = models.ManyToManyField('Asset', related_name='asset_group_assets')
 
-class Asset_Element(BaseAsset):
-    type = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='element_type')
-    distance = models.IntegerField()
-    satellites = models.ManyToManyField('Asset_Element', related_name='element_satellites')
-    territories = models.ManyToManyField('Asset_Territory', related_name='element_territories')
+class Asset(BaseAsset):
+    def get_details_by_table(self):
+        details = self.details.all()
+        by_table = {}
+        for detail in details:
+            inspiration_table = detail.get_inspiration_table_name()
+            by_table[inspiration_table] = by_table.get(inspiration_table, [])
+            by_table[inspiration_table].append(detail)
 
-class Asset_Zone(BaseAsset):
-    distance = models.SmallIntegerField()
-    elements = models.ManyToManyField(Asset_Element, related_name='elements')
+        return by_table
 
-class Asset_Star_Cluster(BaseAsset):
-    stars = models.ManyToManyField('Detail', related_name='stars')
-    zones = models.ManyToManyField(Asset_Zone, related_name='zones')
+    type =  models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='asset_type')
+    details = models.ManyToManyField('Detail', related_name='asset_details')
+    asset_groups = models.ManyToManyField('Asset_Group', related_name='asset_asset_groups')
+    grids = models.ManyToManyField('Asset_Grid', related_name='asset_grids')
 
-class Asset_Route(BaseAsset):
-    stability = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='stability')
-    days = models.ForeignKey('Detail', on_delete=models.CASCADE, related_name='days')
-    target_systems = models.ManyToManyField('Asset_System', related_name='target_systems')
+class Asset_Grid(models.Model):
+    def __repr__(self):
+        return json.dumps(model_to_dict(
+            self,
+            fields=[field.name for field in self._meta.fields]
+        ))
 
-class Asset_System(BaseAsset):
-    details = models.ManyToManyField('Detail', related_name='details')
-    star_clusters = models.ManyToManyField(Asset_Star_Cluster, related_name='star_clusters')
-    routes = models.ManyToManyField(Asset_Route, related_name='routes')
+    def __str__(self):
+        return self.name
 
-class Asset_Sector(BaseAsset):
-    systems = models.ManyToManyField(Asset_System, related_name='systems')
+    name = models.CharField(max_length=200)
+
+class Asset_Node(models.Model):
+    grid = models.ForeignKey(Asset_Grid, on_delete=models.CASCADE, related_name='grid_node_grid')
+    asset = models.ForeignKey('Asset', on_delete=models.CASCADE, related_name='grid_node_asset')
+    x = models.PositiveIntegerField()
+    y = models.PositiveIntegerField()
+
+class Asset_Connection(models.Model):
+    asset = models.ForeignKey('Asset', on_delete=models.CASCADE, related_name='grid_connection_asset')
+    start = models.ForeignKey(Asset_Node, on_delete=models.CASCADE, related_name='grid_connection_start')
+    end = models.ForeignKey(Asset_Node, on_delete=models.CASCADE, related_name='grid_connection_end')

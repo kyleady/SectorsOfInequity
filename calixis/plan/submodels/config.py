@@ -16,44 +16,46 @@ class BaseConfig(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField(default="-", max_length=100)
+    name = models.CharField(max_length=200)
 
-class Config_Territory(BaseConfig):
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='territory_inspiration')
+class Tag(BaseConfig):
+    pass
 
-class Config_Element(BaseConfig):
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='element_inspiration')
-    satellite_count = models.ManyToManyField('Roll', related_name='element_satellite_count')
-    satellite_extra = models.ManyToManyField('Inspiration_Extra', related_name='element_satellite_extra')
-    territory_count = models.ManyToManyField('Roll', related_name='element_territory_count')
-    territory_extra = models.ManyToManyField('Inspiration_Extra', related_name='element_territory_extra')
-    spacing = models.ManyToManyField('Roll', related_name='element_spacing')
-    territory = models.ForeignKey('Config_Territory', null=True, blank=True, on_delete=models.SET_NULL, related_name='element_territory')
+class Config_Name(BaseConfig):
+    tags =  models.ManyToManyField(Tag, related_name='config_type_tags')
 
-class Config_Zone(BaseConfig):
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='zone_inspiration')
-    element_count = models.ManyToManyField('Roll', related_name='zone_element_count')
-    element_extra = models.ManyToManyField('Inspiration_Extra', related_name='zone_element_extra')
-    order = models.ManyToManyField('Roll', related_name='zone_order')
+class Config_Asset(BaseConfig):
+    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_asset_type')
+    order = models.ManyToManyField('Roll', related_name='config_asset_order')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='config_asset_inspiration_tables')
+    child_configs = models.ManyToManyField('Config_Group', related_name='config_asset_child_configs')
+    grids = models.ManyToManyField('Config_Grid', related_name='config_asset_grids')
+    tags = models.ManyToManyField(Tag, related_name='config_asset_tags')
 
-class Config_Star_Cluster(BaseConfig):
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='star_cluster_inspiration')
-    zone_count = models.ManyToManyField('Roll', related_name='star_cluster_zone_count')
-    zone_extra = models.ManyToManyField('Inspiration_Extra', related_name='star_cluster_zone_extra')
+class Config_Group(BaseConfig):
+    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_sub_asset_type')
+    count = models.ManyToManyField('Roll', related_name='config_sub_asset_count')
+    extras = models.ManyToManyField('Inspiration_Extra', related_name='config_sub_asset_extras')
+    tags = models.ManyToManyField(Tag, related_name='config_sub_asset_tags')
 
-class Config_Route(BaseConfig):
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='route_inspiration')
-
-class Config_System(BaseConfig):
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='system_inspiration')
-    star_cluster_count = models.ManyToManyField('Roll', related_name='star_cluster_count')
-    star_cluster_extra = models.ManyToManyField('Inspiration_Extra', related_name='star_cluster_extra')
+class Config_Region(BaseConfig):
+    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_region_type')
+    weights = models.ManyToManyField('Roll', related_name='config_region_weight')
+    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='config_region_inspiration_tables')
+    tags = models.ManyToManyField(Tag, related_name='config_region_tags')
 
 class Config_Grid(BaseConfig):
-    height = models.PositiveSmallIntegerField(default=20, blank=True)
-    width = models.PositiveSmallIntegerField(default=20, blank=True)
-    connectionRange = models.PositiveSmallIntegerField(default=5, blank=True)
-    populationRate = models.FloatField(default=0.5, blank=True)
-    connectionRate = models.FloatField(default=0.5, blank=True)
-    rangeRateMultiplier = models.FloatField(default=0.5, blank=True)
-    smoothingFactor = models.FloatField(default=0.5, blank=True)
+    regions = models.ManyToManyField('Config_Region', related_name='config_grid_regions')
+    connection_type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_grid_connection_type')
+    height = models.ManyToManyField('Roll', related_name='config_grid_height')
+    width = models.ManyToManyField('Roll', related_name='config_grid_width')
+    connection_range = models.ManyToManyField('Roll', related_name='config_grid_connection_range')
+    population_percent = models.ManyToManyField('Roll', related_name='config_grid_population_percent')
+    population_denominator = models.IntegerField(default=100, blank=True)
+    connection_percent = models.ManyToManyField('Roll', related_name='config_grid_connection_percent')
+    connection_denominator = models.IntegerField(default=100, blank=True)
+    range_multiplier_percent =  models.ManyToManyField('Roll', related_name='config_grid_range_multiplier_percent')
+    range_multiplier_denominator = models.IntegerField(default=100, blank=True)
+    smoothing_percent = models.ManyToManyField('Roll', related_name='config_grid_smoothing_percent')
+    smoothing_denominator = models.IntegerField(default=100, blank=True)
+    tags = models.ManyToManyField(Tag, related_name='config_grid_tags')

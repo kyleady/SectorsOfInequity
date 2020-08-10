@@ -18,8 +18,8 @@ class Detail(models.Model):
         return self.rolls.split(',')
 
     def get_inspiration_table_name(self):
-        inspiration_tables = self.inspiration_tables.all()
-        if len(self.inspiration_tables.all()) > 0:
+        inspiration_tables = self.inspiration_tables.all()[:1]
+        if len(inspiration_tables):
             return inspiration_tables[0].name
         else:
             return "-"

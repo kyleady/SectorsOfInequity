@@ -5,25 +5,28 @@ import json
 
 from .default import DefaultViews
 
-class AssetSectorViews(DefaultViews):
+class AssetViews(DefaultViews):
     def new(self, request):
-        allConfig = self.custom['Config'].objects
-        class GenerateSectorAssetForm(forms.Form):
-            config = forms.ModelChoiceField(queryset=allConfig)
+        namedPerterbations = self.custom['Perterbation_Model'].objects.exclude(name="")
+        allTypes = self.custom['Config_Name_Model'].objects
+        class GenerateAssetForm(forms.Form):
+            perterbation = forms.ModelChoiceField(queryset=namedPerterbations)
+            type = forms.ModelChoiceField(queryset=allTypes)
         if request.POST:
-            form = GenerateSectorAssetForm(request.POST)
+            form = GenerateAssetForm(request.POST)
             form.is_valid()
-            config = form.cleaned_data['config']
+            perterbation = form.cleaned_data['perterbation']
+            type = form.cleaned_data['type']
             Job = self.custom['Job']
-            jobType = Job.JobType.SECTOR
-            job = Job(jobType=jobType, config_id=config.id)
+            job = Job(perterbation_id=perterbation.id, type_id=type.id)
             job.save()
             screaming_vortex_url = 'http://{host}/{path}'.format(
                 host=self.screaming_vortex_host,
-                path='sector'
+                path='asset'
             )
             screaming_vortex_json = {
-                'config_id': config.id,
+                'perterbation_id': perterbation.id,
+                'type_id': type.id,
                 'job_id': job.id,
             }
             screaming_vortex_response = requests.post(
@@ -38,7 +41,7 @@ class AssetSectorViews(DefaultViews):
                 'full_name': self.full_name,
                 'new_url': self.new_url,
                 'detail_url': self.detail_url,
-                'form': GenerateSectorAssetForm()
+                'form': GenerateAssetForm()
             }
 
             return render(request, template, context)
