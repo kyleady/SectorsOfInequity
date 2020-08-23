@@ -1,6 +1,9 @@
 - _type: Tag
   name: Gas Giant
 
+- _type: Config_Name
+  name: Satellite
+
 - _type: Inspiration
   name: Gas Giant
   description: "Though the Imperium primarily desires worlds that humans
@@ -22,3 +25,217 @@
     - _type: Tag
       _exists: true
       name: System Element
+  perterbations:
+    - _type: Perterbation
+      configs:
+        - _type: Config_Asset
+          name: Default Gas Giant
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Element
+          child_configs:
+            - _type: Config_Group
+              name: Satellites
+              type:
+                _type: Config_Name
+                _exists: true
+                name: Satellite
+              count:
+                - _type: Roll
+                  required_flags: gas_giant_gravity_weak
+                  base: -5
+                  dice_count: 1
+                  dice_size: 10
+                  minimum: 1
+                - _type: Roll
+                  required_flags: gas_giant_gravity_strong
+                  base: -3
+                  dice_count: 1
+                  dice_size: 10
+                  minimum: 1
+                - _type: Roll
+                  required_flags: gas_giant_gravity_powerful
+                  base: 2
+                  dice_count: 1
+                  dice_size: 10
+                - _type: Roll
+                  required_flags: gas_giant_gravity_titanic
+                  base: 3
+                  dice_count: 3
+                  dice_size: 5
+          inspiration_tables:
+            - _type: Inspiration_Table
+              _exists: true
+              name: Body
+              tags__name: Gas Giant
+            - _type: Inspiration_Table
+              _exists: true
+              name: Gravity
+              tags__name: Gas Giant
+
+- _type: Inspiration_Table
+  name: Body
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 10
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Gas Dwarf
+        description: "Although much smaller than the typical world of this
+                      sort, a Gas Dwarf is still considerably more massive
+                      than most rocky Planets."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_body_dwarf
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 30
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Gas Giant
+        description: "Typical gas giants are vastly more massive than almost
+                      any other world, and tend to have correspondingly
+                      powerful gravitational effects."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_body_giant
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 7
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Massive Gas Giant
+        description: "Truly massive gas giants can alter the orbits of
+                      smaller bodies in the system, even consuming anything
+                      that gets too close."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_body_massive
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Titanic Gas Giant
+        description: "The largest gas giants can rival weaker stars in size
+                      and mass, with some of them having some degree of
+                      kinship with such bodies."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_body_titanic
+          - _type: Perterbation
+            name: Titanic Gas Giant OR -> PB
+            required_flags: zone_outer_reaches
+            flags: zone_primary_biosphere
+            muted_flags: zone_outer_reaches
+          - _type: Perterbation
+            name: Titanic Gas Giant PB -> IC
+            required_flags: zone_primary_biosphere
+            flags: zone_inner_cauldron
+            muted_flags: zone_primary_biosphere
+
+- _type: Inspiration_Table
+  name: Gravity
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Weak
+        description: "Though puny by the standards of gas giants, this gravity well is
+                      stronger than that of almost any solid Planet."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_gravity_weak
+
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Strong
+        description: "This gas giant has the impressive gravity well common to such
+                      worlds."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_gravity_strong
+
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Powerful
+        description: "The influence of this gravity well extends well beyond the
+                      immediate presence of its source, drawing in whatever passes
+                      by."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_gravity_powerful
+
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Titanic
+        description: "The effects of such a vast gravity well on the ordering of the
+                      System are second only to its Star."
+        perterbations:
+          - _type: Perterbation
+            flags: gas_giant_gravity_titanic
