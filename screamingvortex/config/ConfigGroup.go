@@ -72,6 +72,16 @@ func (groupConfig *GroupConfig) FetchChildren(manager *ConfigManager) {
   groupConfig.Extras = FetchManyInspirationExtras(manager, groupConfig.Id, groupConfig.TableName(""), "extras")
 }
 
+func (groupConfig *GroupConfig) GetInspirationExtra(inspirationExtraName string) *InspirationExtra {
+  for _, inspirationExtra := range groupConfig.Extras {
+    if inspirationExtra.Name == inspirationExtraName {
+      return inspirationExtra
+    }
+  }
+
+  panic("GetInspirationExtra should always return a value!")
+}
+
 func FetchManyGroupConfigs(manager *ConfigManager, parentId int64, tableName string, valueName string) []*GroupConfig {
   groupConfigs := make([]*GroupConfig, 0)
   groupConfigTableName := new(GroupConfig).TableName("")

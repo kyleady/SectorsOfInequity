@@ -49,16 +49,22 @@ func (detail *Detail) GetName() string {
   }
 }
 
-func RollDetail(inspirationTable *config.InspirationTable, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+func RollDetail(inspirationTableAddress []*config.InspirationKey, perterbation *config.Perterbation) (*Detail, *config.Perterbation) {
+  inspirationTable := perterbation.GetInspirationTable(inspirationTableAddress)
   inspirationIds := inspirationTable.RollOnce(perterbation)
   if len(inspirationIds) == 0 {
     return nil, perterbation
   }
 
-  return NewDetail(inspirationTable, perterbation, inspirationIds)
+  return newDetail(inspirationTableAddress, perterbation, inspirationIds, 0)
 }
 
-func NewDetail(inspirationTable *config.InspirationTable, perterbation *config.Perterbation, inspirationIds []int64) (*Detail, *config.Perterbation) {
+func NewDetail(inspirationTableAddress []*config.InspirationKey, perterbation *config.Perterbation, inspirationIds []int64) (*Detail, *config.Perterbation) {
+  return newDetail(inspirationTableAddress, perterbation, inspirationIds, 1)
+}
+
+func newDetail(inspirationTableAddress []*config.InspirationKey, perterbation *config.Perterbation, inspirationIds []int64, isExtra int64) (*Detail, *config.Perterbation) {
+  inspirationTable := perterbation.GetInspirationTable(inspirationTableAddress)
   inspirations := make([]*config.Inspiration, len(inspirationIds))
   for i, inspirationId := range inspirationIds {
     inspirations[i], perterbation = perterbation.AddInspiration(inspirationId)
@@ -85,51 +91,94 @@ func NewDetail(inspirationTable *config.InspirationTable, perterbation *config.P
   }
 
   detail.RollsAsString = fmt.Sprintf("{%s}", strings.Join(rollsAsKvPairs, ","))
-
-  stackedInspirationTables := []*config.InspirationTable{}
-  for _, inspiration := range inspirations {
-    stackedInspirationTables = config.StackInspirationTables(inspiration.InspirationTables, stackedInspirationTables)
-  }
-
-  for _, inspirationTable := range stackedInspirationTables {
-    numberOfChildDetails := config.RollAll(inspirationTable.CountRolls, perterbation)
-    var childDetailGroup []*Detail
-    for childDetailCount := 0; childDetailCount < numberOfChildDetails; childDetailCount++ {
-      childDetail, childPerterbation := RollDetail(inspirationTable, perterbation)
-      if childDetail != nil {
-        childDetailGroup = append(childDetailGroup, childDetail)
-        perterbation = childPerterbation
-      }
-    }
-
-    if len(childDetailGroup) > 0 {
-      detail.childDetailGroups = append(detail.childDetailGroups, childDetailGroup)
-    }
+  inspirationAddress := append(inspirationTableAddress, &config.InspirationKey{Type: "Inspiration", Key: inspirations[0].Name, Index: isExtra})
+  details, newPerterbation := RollDetails(inspirationAddress, perterbation)
+  if len(details) > 0 {
+    detail.childDetailGroups = append(detail.childDetailGroups, details)
+    perterbation = newPerterbation
   }
 
   return detail, perterbation
 }
 
-func RollDetails(inspirationTables []*config.InspirationTable, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
+func RollDetails(tablesAddress []*config.InspirationKey, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
   newPerterbation := perterbation
   details := []*Detail{}
-  detail := new(Detail)
-  for _, inspirationTable := range inspirationTables {
-    numberOfRollsOnTheTable := inspirationTable.RollCount(newPerterbation)
-    for i := 0; i < numberOfRollsOnTheTable; i++ {
-      detail, newPerterbation = RollDetail(inspirationTable, newPerterbation)
-      if detail != nil {
-        details = append(details, detail)
+  rolledDetails := []*Detail{}
+  rolledInspirationTableNames := []string{}
+  failSafe := 0
+  for true {
+    failSafe++
+    if failSafe > 1000 {
+      fmt.Println("\n\n")
+      config.LogAddress(tablesAddress)
+      panic(fmt.Sprintf("Not exiting!\nrolledInspirationTableNames:\n%+v", rolledInspirationTableNames))
+    }
+
+    inspirationTableAddress := GetUnrolledInspirationTableAddress(tablesAddress, rolledInspirationTableNames, newPerterbation)
+    if len(inspirationTableAddress) == 0 {
+      break
+    }
+
+    rolledDetails, newPerterbation = RollInspirationTable(inspirationTableAddress, newPerterbation)
+    details = append(details, rolledDetails...)
+    rolledInspirationTableNames = append(rolledInspirationTableNames, inspirationTableAddress[len(inspirationTableAddress)-1].Key)
+  }
+
+  return details, newPerterbation
+}
+
+func GetUnrolledInspirationTableAddress(tablesAddress []*config.InspirationKey, rolledInspirationTableNames []string, perterbation *config.Perterbation) []*config.InspirationKey {
+  inspirationTableNames := perterbation.GetInspirationTableNames(tablesAddress)
+  unrolledTableName := ""
+  inspirationTableFound := false
+  for _, inspirationTableName := range inspirationTableNames {
+    hasBeenRolled := false
+    for _, rolledInspirationTableName := range rolledInspirationTableNames {
+      if inspirationTableName == rolledInspirationTableName {
+        hasBeenRolled = true
+        break
       }
     }
 
-    for _, extraInspiration := range inspirationTable.ExtraInspirations {
-      extrasToAdd := config.RollAll(extraInspiration.Weights, newPerterbation)
-      for i := 0; i < extrasToAdd; i++ {
-        detail, newPerterbation = NewDetail(inspirationTable, newPerterbation, extraInspiration.Values)
-        if detail != nil {
-          details = append(details, detail)
-        }
+    if !hasBeenRolled {
+      unrolledTableName = inspirationTableName
+      inspirationTableFound = true
+      break
+    }
+  }
+
+  if !inspirationTableFound {
+    return []*config.InspirationKey{}
+  }
+
+  inspirationTableAddress := append(tablesAddress, &config.InspirationKey{
+    Type: "InspirationTable",
+    Key: unrolledTableName,
+  })
+
+  return inspirationTableAddress
+}
+
+func RollInspirationTable(tableAddress []*config.InspirationKey, perterbation *config.Perterbation) ([]*Detail, *config.Perterbation) {
+  details := []*Detail{}
+  detail := new(Detail)
+  newPerterbation := perterbation
+  inspirationTable := perterbation.GetInspirationTable(tableAddress)
+  numberOfRollsOnTheTable := inspirationTable.RollCount(newPerterbation)
+  for i := 0; i < numberOfRollsOnTheTable; i++ {
+    detail, newPerterbation = RollDetail(tableAddress, newPerterbation)
+    if detail != nil {
+      details = append(details, detail)
+    }
+  }
+
+  for _, extraInspiration := range inspirationTable.ExtraInspirations {
+    extrasToAdd := config.RollAll(extraInspiration.Weights, newPerterbation)
+    for i := 0; i < extrasToAdd; i++ {
+      detail, newPerterbation = NewDetail(tableAddress, newPerterbation, extraInspiration.Values)
+      if detail != nil {
+        details = append(details, detail)
       }
     }
   }

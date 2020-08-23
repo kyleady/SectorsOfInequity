@@ -157,6 +157,90 @@ func (perterbation *Perterbation) HasFlags(requiredFlags []string) bool {
   return true
 }
 
+func (perterbation *Perterbation) getObject(address []*InspirationKey) (*AssetConfig, *Inspiration, *GroupConfig, *InspirationExtra, *InspirationTable) {
+  if len(address) == 0 {
+    panic("Empty Address!")
+  }
+
+  tmpPerterbation := perterbation
+  var assetConfig *AssetConfig
+  var inspiration *Inspiration
+  var groupConfig *GroupConfig
+  var inspirationExtra *InspirationExtra
+  var inspirationTable *InspirationTable
+  for _, key := range address {
+    if tmpPerterbation != nil && key.Type == "AssetConfig" {
+      assetConfig = tmpPerterbation.GetConfig(key.Index)
+      tmpPerterbation = nil
+    } else if assetConfig != nil && key.Type == "InspirationTable" {
+      inspirationTable = assetConfig.GetInspirationTable(key.Key)
+      assetConfig = nil
+    } else if assetConfig != nil && key.Type == "GroupConfig" {
+      groupConfig = assetConfig.GetGroupConfig(key.Key, key.Index)
+      assetConfig = nil
+    } else if inspirationTable != nil && key.Type == "Inspiration" {
+      inspiration = inspirationTable.GetInspiration(key.Key, key.Index != 0, perterbation)
+      inspirationTable = nil
+    } else if inspiration != nil && key.Type == "InspirationTable" {
+      inspirationTable = inspiration.GetInspirationTable(key.Key)
+      inspiration = nil
+    } else if groupConfig != nil && key.Type == "InspirationExtra" {
+      inspirationExtra = groupConfig.GetInspirationExtra(key.Key)
+      groupConfig = nil
+    } else if inspirationExtra != nil && key.Type == "InspirationTable" {
+      inspirationTable = inspirationExtra.GetInspirationTable(key.Key)
+      inspirationExtra = nil
+    } else {
+      fmt.Print("Keys\n")
+      for _, logKey := range address {
+        fmt.Printf("%+v\n", logKey)
+      }
+
+      panic(fmt.Sprintf("Invalid Key: %+v", key))
+    }
+  }
+
+  return assetConfig, inspiration, groupConfig, inspirationExtra, inspirationTable
+}
+
+func (perterbation *Perterbation) GetInspirationTable(address []*InspirationKey) *InspirationTable {
+  _, _, _, _, inspirationTable := perterbation.getObject(address)
+  return inspirationTable
+}
+
+func (perterbation *Perterbation) GetInspirationExtras(address []*InspirationKey) []*InspirationExtra {
+  _, _, groupConfig, _, _ := perterbation.getObject(address)
+  inspirationExtras := groupConfig.Extras
+  for _, inspirationExtra := range inspirationExtras {
+    inspirationExtra.SetAddress(address)
+  }
+
+  return inspirationExtras
+}
+
+func (perterbation *Perterbation) GetGroupConfigKeys(address []*InspirationKey) []*InspirationKey {
+  assetConfig, _, _, _, _ := perterbation.getObject(address)
+  return assetConfig.GetGroupConfigKeys()
+}
+
+func (perterbation *Perterbation) GetGroupConfig(address []*InspirationKey) *GroupConfig {
+  _, _, groupConfig, _, _ := perterbation.getObject(address)
+  return groupConfig
+}
+
+func (perterbation *Perterbation) GetInspirationTableNames(address []*InspirationKey) []string {
+  assetConfig, inspiration, _, inspirationExtra, _ := perterbation.getObject(address)
+  if inspiration != nil {
+    return inspiration.GetInspirationTableNames()
+  } else if inspirationExtra != nil {
+    return inspirationExtra.GetInspirationTableNames()
+  } else if assetConfig != nil {
+      return assetConfig.GetInspirationTableNames()
+  } else {
+    panic("Address did not point to a list of InspirationTables.")
+  }
+}
+
 func (perterbation *Perterbation) Print(indent int) {
   for i := 0; i < indent; i++ {
     fmt.Print(" ")

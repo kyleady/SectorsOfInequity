@@ -113,3 +113,21 @@ func (inspirationTable *InspirationTable) Print(indent int) {
     len(inspirationTable.ExtraInspirations),
   )
 }
+
+func (inspirationTable *InspirationTable) GetInspiration(inspirationName string, isExtra bool, perterbation *Perterbation) *Inspiration {
+  weightedInspirations := []*WeightedValue{}
+  if isExtra {
+    weightedInspirations = inspirationTable.ExtraInspirations
+  } else {
+    weightedInspirations = inspirationTable.WeightedInspirations
+  }
+
+  for _, weightedInspiration := range weightedInspirations {
+    if weightedInspiration.ValueName == inspirationName {
+      inspirationId := weightedInspiration.Value
+      return perterbation.Manager.GetInspiration(inspirationId)
+    }
+  }
+
+  panic("GetInspiration should always return a value!")
+}

@@ -31,20 +31,25 @@ func (assetGroup *AssetGroup) SaveChildren(client utilities.ClientInterface) {
   }
 }
 
-func RollAssetGroups(configGroups []*config.GroupConfig, prefix string, perterbation *config.Perterbation) []*AssetGroup {
+func RollAssetGroups(address []*config.InspirationKey, prefix string, perterbation *config.Perterbation) []*AssetGroup {
   assetGroups := []*AssetGroup{}
-  for _, configGroup := range configGroups {
-    assetGroup := RollAssetGroup(configGroup, prefix, perterbation)
+  configGroupKeys := perterbation.GetGroupConfigKeys(address)
+  for _, configGroupKey := range configGroupKeys {
+    assetGroup := RollAssetGroup(append(
+        address,
+        configGroupKey,
+    ), prefix, perterbation)
     assetGroups = append(assetGroups, assetGroup)
   }
 
   return assetGroups
 }
 
-func RollAssetGroup(configGroup *config.GroupConfig, prefix string, perterbation *config.Perterbation) *AssetGroup {
+func RollAssetGroup(address []*config.InspirationKey, prefix string, perterbation *config.Perterbation) *AssetGroup {
   assetGroup := new(AssetGroup)
+  configGroup := perterbation.GetGroupConfig(address)
   assetGroup.TypeId = configGroup.TypeId
   assetGroup.Name = configGroup.Name
-  assetGroup.Assets = RollAssets(perterbation, assetGroup.TypeId, prefix, configGroup.Count, configGroup.Extras)
+  assetGroup.Assets = RollAssets(perterbation, assetGroup.TypeId, prefix, configGroup.Count, address)
   return assetGroup
 }

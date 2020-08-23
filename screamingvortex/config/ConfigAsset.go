@@ -99,6 +99,46 @@ func FetchManyAssetConfigs(manager *ConfigManager, parentId int64, tableName str
   return assetConfigs
 }
 
+func (assetConfig *AssetConfig) GetInspirationTable(inspirationTableName string) *InspirationTable {
+  for _, inspirationTable := range assetConfig.InspirationTables {
+    if inspirationTable.Name == inspirationTableName {
+      return inspirationTable
+    }
+  }
+
+
+  panic("GetInspirationTable should always return a value!")
+}
+
+func (assetConfig *AssetConfig) GetInspirationTableNames() []string {
+  tableNames := []string{}
+  for _, inspirationTable := range assetConfig.InspirationTables {
+    tableNames = append(tableNames, inspirationTable.Name)
+  }
+
+  return tableNames
+}
+
+func (assetConfig *AssetConfig) GetGroupConfig(groupConfigName string, groupConfigTypeId int64) *GroupConfig {
+  for _, groupConfig := range assetConfig.GroupConfigs {
+    if groupConfig.Name == groupConfigName && groupConfig.TypeId == groupConfigTypeId {
+      return groupConfig
+    }
+  }
+
+  panic("GetGroupConfig should always return a value!")
+}
+
+func (assetConfig *AssetConfig) GetGroupConfigKeys() []*InspirationKey {
+  groupConfigKeys := []*InspirationKey{}
+  for _, groupConfig := range assetConfig.GroupConfigs {
+    key := &InspirationKey{Type: "GroupConfig", Key: groupConfig.Name, Index: groupConfig.TypeId}
+    groupConfigKeys = append(groupConfigKeys, key)
+  }
+
+  return groupConfigKeys
+}
+
 func (assetConfig *AssetConfig) Print(indent int) {
   for i := 0; i < indent; i++ {
     fmt.Print(" ")

@@ -32,3 +32,22 @@ func FetchManyInspirationIds(manager *ConfigManager, parentId int64, tableName s
   manager.Client.FetchManyToManyChildIds(&ids, parentId, tableName, exampleInspiration.TableName(""), valueName, "", false)
   return ids
 }
+
+func (inspiration *Inspiration) GetInspirationTable(inspirationTableName string) *InspirationTable {
+  for _, inspirationTable := range inspiration.InspirationTables {
+    if inspirationTable.Name == inspirationTableName {
+      return inspirationTable
+    }
+  }
+
+  panic("GetInspirationTable should always return a value!")
+}
+
+func (inspiration *Inspiration) GetInspirationTableNames() []string {
+  tableNames := []string{}
+  for _, inspirationTable := range inspiration.InspirationTables {
+    tableNames = append(tableNames, inspirationTable.Name)
+  }
+
+  return tableNames
+}

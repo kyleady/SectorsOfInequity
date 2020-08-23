@@ -69,7 +69,7 @@ func (asset *Asset) SaveChildren(client utilities.ClientInterface) {
   //}
 }
 
-func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, countRolls []*config.Roll, extraInspirations []*config.InspirationExtra) []*Asset {
+func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, countRolls []*config.Roll, extrasAddress []*config.InspirationKey) []*Asset {
   assets := []*Asset{}
   assetsToAdd := config.RollAll(countRolls, perterbation)
   assetsPreviouslyAdded := 0
@@ -78,15 +78,22 @@ func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, 
     assets = append(assets, RollAsset(perterbation, typeId, prefix, i))
   }
 
-  for _, extraInspiration := range extraInspirations {
-    assetsToAdd := config.RollAll(extraInspiration.CountRolls, perterbation)
-    assetsPreviouslyAdded := len(assets)
+  inspirationExtras := perterbation.GetInspirationExtras(extrasAddress)
+  for _, inspirationExtra := range inspirationExtras {
+    assetsToAdd = config.RollAll(inspirationExtra.CountRolls, perterbation)
+    assetsPreviouslyAdded = len(assets)
     if assetsToAdd <= 0 {
       continue
     }
 
     for i = i; i <= assetsPreviouslyAdded + assetsToAdd; i++ {
-      assets = append(assets, ExtraAsset(perterbation, typeId, prefix, i, extraInspiration.InspirationTables))
+      assets = append(assets, ExtraAsset(
+        perterbation,
+        typeId,
+        prefix,
+        i,
+        inspirationExtra.Address,
+      ))
     }
   }
 
@@ -94,23 +101,24 @@ func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, 
 }
 
 func RollAsset(perterbation *config.Perterbation, typeId int64, prefix string, index int) *Asset {
-  assetConfig := perterbation.GetConfig(typeId)
-  return ExtraAsset(perterbation, typeId, prefix, index, assetConfig.InspirationTables)
+  inspirationTablesAddress := []*config.InspirationKey{&config.InspirationKey{Type: "AssetConfig", Index: typeId}}
+  return newAsset(perterbation, typeId, prefix, index, inspirationTablesAddress)
 }
 
-func ExtraAsset(perterbation *config.Perterbation, typeId int64, prefix string, index int, extraInspirationTables []*config.InspirationTable) *Asset {
-  return newAsset(perterbation, typeId, prefix, index, extraInspirationTables)
+func ExtraAsset(perterbation *config.Perterbation, typeId int64, prefix string, index int, inspirationTablesAddress []*config.InspirationKey) *Asset {
+  return newAsset(perterbation, typeId, prefix, index, inspirationTablesAddress)
 }
 
-func newAsset(perterbation *config.Perterbation, typeId int64, prefix string, index int, inspirationTables []*config.InspirationTable) *Asset {
+func newAsset(perterbation *config.Perterbation, typeId int64, prefix string, index int, inspirationTablesAddress []*config.InspirationKey) *Asset {
   asset := new(Asset)
-  details, newPerterbation := RollDetails(inspirationTables, perterbation)
-  assetConfig := newPerterbation.GetConfig(typeId)
+  details, newPerterbation := RollDetails(inspirationTablesAddress, perterbation)
   asset.Type = newPerterbation.Manager.GetConfigType(typeId)
   asset.TypeId = typeId
   newPrefix := asset.SetNameAndGetPrefix(prefix, index)
   asset.Details = details
-  asset.AssetGroups = RollAssetGroups(assetConfig.GroupConfigs, newPrefix, newPerterbation)
+  asset.AssetGroups = RollAssetGroups([]*config.InspirationKey{
+      &config.InspirationKey{Type: "AssetConfig", Index: typeId},
+  }, newPrefix, newPerterbation)
   //asset.Grids = RollGrids(assetConfig.GridConfigs, prefix, newPerterbation)
   return asset
 }

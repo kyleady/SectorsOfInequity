@@ -70,7 +70,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
     }
   }
 
-  fmt.Printf("\nManager: %+v", perterbation.Manager)
+  fmt.Printf("\nManager: %+v\n", perterbation.Manager)
 
 
   fmt.Printf("\nweightedValues: [", weightedValues)
@@ -82,9 +82,9 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
     }
     fmt.Printf("\n  ]")
   }
+
   fmt.Printf("\n  ]")
   panic("RollWeightedValues should always return a value!")
-
 }
 
 func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {

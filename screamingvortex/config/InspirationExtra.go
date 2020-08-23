@@ -5,6 +5,7 @@ type InspirationExtra struct {
   Name string `sql:"name"`
   CountRolls []*Roll
   InspirationTables []*InspirationTable
+  Address []*InspirationKey
 }
 
 func (inspirationExtra *InspirationExtra) TableName(inspirationExtraType string) string {
@@ -36,6 +37,29 @@ func (inspirationExtra *InspirationExtra) Clone() *InspirationExtra {
 func (inspirationExtra *InspirationExtra) FetchChildren(manager *ConfigManager) {
   inspirationExtra.CountRolls = FetchManyRolls(manager, inspirationExtra.Id, inspirationExtra.TableName(""), "count")
   inspirationExtra.InspirationTables = FetchManyInspirationTables(manager, inspirationExtra.Id, inspirationExtra.TableName(""), "inspiration_tables")
+}
+
+func (inspirationExtra *InspirationExtra) SetAddress(address []*InspirationKey) {
+  inspirationExtra.Address = append(address, &InspirationKey{Type: "InspirationExtra", Key: inspirationExtra.Name})
+}
+
+func (inspirationExtra *InspirationExtra) GetInspirationTableNames() []string {
+  tableNames := []string{}
+  for _, inspirationTable := range inspirationExtra.InspirationTables {
+    tableNames = append(tableNames, inspirationTable.Name)
+  }
+
+  return tableNames
+}
+
+func (inspirationExtra *InspirationExtra) GetInspirationTable(inspirationTableName string) *InspirationTable {
+  for _, inspirationTable := range inspirationExtra.InspirationTables {
+    if inspirationTable.Name == inspirationTableName {
+      return inspirationTable
+    }
+  }
+
+  panic("GetInspirationTable should always return a value!")
 }
 
 func StackInspirationExtras(firstInspirationExtras []*InspirationExtra, secondInspirationExtras []*InspirationExtra) []*InspirationExtra {
