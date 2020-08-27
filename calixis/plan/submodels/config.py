@@ -40,13 +40,13 @@ class Config_Group(BaseConfig):
 
 class Config_Region(BaseConfig):
     type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_region_type')
-    weights = models.ManyToManyField('Roll', related_name='config_region_weight')
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='config_region_inspiration_tables')
+    perterbations = models.ManyToManyField('Perterbation', related_name='config_region_perterbations')
     tags = models.ManyToManyField(Tag, related_name='config_region_tags')
 
 class Config_Grid(BaseConfig):
-    regions = models.ManyToManyField('Config_Region', related_name='config_grid_regions')
+    regions = models.ManyToManyField('Weighted_Region', related_name='config_grid_regions')
     connection_type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_grid_connection_type')
+    count = models.ManyToManyField('Roll', related_name='config_grid_count')
     height = models.ManyToManyField('Roll', related_name='config_grid_height')
     width = models.ManyToManyField('Roll', related_name='config_grid_width')
     connection_range = models.ManyToManyField('Roll', related_name='config_grid_connection_range')

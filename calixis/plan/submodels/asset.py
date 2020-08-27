@@ -57,6 +57,7 @@ class Asset_Node(models.Model):
     y = models.PositiveIntegerField()
 
 class Asset_Connection(models.Model):
+    grid = models.ForeignKey(Asset_Grid, on_delete=models.CASCADE, related_name='grid_connection_grid')
     asset = models.ForeignKey('Asset', on_delete=models.CASCADE, related_name='grid_connection_asset')
     start = models.ForeignKey(Asset_Node, on_delete=models.CASCADE, related_name='grid_connection_start')
     end = models.ForeignKey(Asset_Node, on_delete=models.CASCADE, related_name='grid_connection_end')

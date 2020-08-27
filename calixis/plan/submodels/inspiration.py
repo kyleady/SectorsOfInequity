@@ -31,30 +31,3 @@ class Inspiration(models.Model):
     perterbations = models.ManyToManyField('Perterbation')
     tags = models.ManyToManyField('Tag', related_name='inspiration_tags')
     inspiration_tables = models.ManyToManyField(Inspiration_Table, related_name='sub_inspiration_tables')
-
-class Weighted_Inspiration(models.Model):
-    def __str__(self):
-        return "({weights}) {value_name}".format(weights=self.get_weights_as_str(), value_name=self.value.name)
-
-    def get_weights_as_str(self):
-        weights = []
-        has_conditional_weights = False
-        for weight in self.weights.all():
-            if not weight.required_flags:
-                weights.append(str(weight))
-            else:
-                has_conditional_weights = True
-
-        weights_as_str = "+".join(weights)
-        if has_conditional_weights:
-            weights_as_str += "*"
-        return weights_as_str
-
-    def __repr__(self):
-        return json.dumps(model_to_dict(
-            self,
-            fields=[field.name for field in self._meta.fields]
-        ))
-
-    weights = models.ManyToManyField('Roll')
-    value = models.ForeignKey(Inspiration, on_delete=models.CASCADE)
