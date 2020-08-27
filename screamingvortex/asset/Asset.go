@@ -1,7 +1,5 @@
 package asset
 
-import "strconv"
-
 import "screamingvortex/config"
 import "screamingvortex/utilities"
 
@@ -11,7 +9,7 @@ type Asset struct {
   TypeId int64 `sql:"type_id"`
   Details []*Detail
   AssetGroups []*AssetGroup
-  //Grids []*Grid
+  Grids []*AssetGrid
   Type *config.ConfigType
 }
 
@@ -31,19 +29,6 @@ func (asset *Asset) SetName(name string) {
   asset.Name = name
 }
 
-func (asset *Asset) SetNameAndGetPrefix(prefix string, index int) string {
-  var idNumber string
-  indexAsAString := strconv.Itoa(index)
-  if prefix != "" {
-    idNumber = prefix + "-" + indexAsAString
-  } else {
-    idNumber = indexAsAString
-  }
-
-  asset.SetName(asset.GetType() + " " + idNumber)
-  return idNumber
-}
-
 func (asset *Asset) SaveTo(client utilities.ClientInterface) {
   client.Save(asset, "")
   asset.SaveChildren(client)
@@ -52,10 +37,10 @@ func (asset *Asset) SaveTo(client utilities.ClientInterface) {
 func (asset *Asset) SaveChildren(client utilities.ClientInterface) {
   client.SaveAll(&asset.Details, "")
   client.SaveAll(&asset.AssetGroups, "")
-  //client.SaveAll(&asset.Grids, "")
+  client.SaveAll(&asset.Grids, "")
   client.SaveMany2ManyLinks(asset, &asset.Details, "", "", "details", false)
   client.SaveMany2ManyLinks(asset, &asset.AssetGroups, "", "", "asset_groups", false)
-  //client.SaveMany2ManyLinks(asset, &asset.Grids, "", "", "grids", false)
+  client.SaveMany2ManyLinks(asset, &asset.Grids, "", "", "grids", false)
   for _, detail := range asset.Details {
     detail.SaveChildren(client)
   }
@@ -64,9 +49,9 @@ func (asset *Asset) SaveChildren(client utilities.ClientInterface) {
     assetGroup.SaveChildren(client)
   }
 
-  //for _, grid := range asset.Grids {
-  //  grid.SaveChildren(client)
-  //}
+  for _, grid := range asset.Grids {
+    grid.SaveChildren(client)
+  }
 }
 
 func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, countRolls []*config.Roll, extrasAddress []*config.InspirationKey) []*Asset {
@@ -114,11 +99,12 @@ func newAsset(perterbation *config.Perterbation, typeId int64, prefix string, in
   details, newPerterbation := RollDetails(inspirationTablesAddress, perterbation)
   asset.Type = newPerterbation.Manager.GetConfigType(typeId)
   asset.TypeId = typeId
-  newPrefix := asset.SetNameAndGetPrefix(prefix, index)
+  newPrefix := SetNameAndGetPrefix(asset, prefix, index)
   asset.Details = details
   asset.AssetGroups = RollAssetGroups([]*config.InspirationKey{
       &config.InspirationKey{Type: "AssetConfig", Index: typeId},
   }, newPrefix, newPerterbation)
-  //asset.Grids = RollGrids(assetConfig.GridConfigs, prefix, newPerterbation)
+  assetConfig := newPerterbation.GetConfig(typeId)
+  asset.Grids = RollAssetGrids(newPerterbation, assetConfig.GridConfigs, prefix)
   return asset
 }

@@ -1,10 +1,13 @@
 package config
 
+import "fmt"
+
 type GridConfig struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
-  Regions []*RegionConfig
+  WeightedRegions []*WeightedValue
   ConnectionTypeId int64 `sql:"connection_type_id"`
+  Count []*Roll
   Height []*Roll
   Width []*Roll
   ConnectionRange []*Roll
@@ -29,33 +32,39 @@ func (gridConfig *GridConfig) GetId() *int64 {
 func (gridConfig *GridConfig) AddPerterbation(perterbation *GridConfig) *GridConfig {
   newConfig := new(GridConfig)
   newConfig.Name = gridConfig.Name
-  newConfig.Regions = StackRegionConfigs(gridConfig.Regions, perterbation.Regions)
+  newConfig.WeightedRegions = StackWeightedValues(gridConfig.WeightedRegions, perterbation.WeightedRegions)
   newConfig.ConnectionTypeId = gridConfig.ConnectionTypeId
+  newConfig.Count = append(gridConfig.Count, perterbation.Count...)
   newConfig.Height = append(gridConfig.Height, perterbation.Height...)
   newConfig.Width = append(gridConfig.Width, perterbation.Width...)
   newConfig.ConnectionRange = append(gridConfig.ConnectionRange, perterbation.ConnectionRange...)
-  newConfig.PopulationPercent = append(gridConfig.Height, perterbation.Height...)
-  newConfig.ConnectionPercent = append(gridConfig.Height, perterbation.Height...)
-  newConfig.RangeMultiplierPercent = append(gridConfig.Height, perterbation.Height...)
-  newConfig.SmoothingPercent = append(gridConfig.Height, perterbation.Height...)
-  newConfig.PopulationDenominator = gridConfig.PopulationDenominator
+  newConfig.PopulationPercent = append(gridConfig.PopulationPercent, perterbation.PopulationPercent...)
+  newConfig.ConnectionPercent = append(gridConfig.ConnectionPercent, perterbation.ConnectionPercent...)
+  newConfig.RangeMultiplierPercent = append(gridConfig.RangeMultiplierPercent, perterbation.RangeMultiplierPercent...)
+  newConfig.SmoothingPercent = append(gridConfig.SmoothingPercent, perterbation.SmoothingPercent...)
+
   if perterbation.PopulationDenominator > gridConfig.PopulationDenominator {
     newConfig.PopulationDenominator = perterbation.PopulationDenominator
+  } else {
+    newConfig.PopulationDenominator = gridConfig.PopulationDenominator
   }
 
-  newConfig.ConnectionDenominator = gridConfig.ConnectionDenominator
   if perterbation.ConnectionDenominator > gridConfig.ConnectionDenominator {
     newConfig.ConnectionDenominator = perterbation.ConnectionDenominator
+  } else {
+    newConfig.ConnectionDenominator = gridConfig.ConnectionDenominator
   }
 
-  newConfig.RangeMultiplierDenominator = gridConfig.RangeMultiplierDenominator
   if perterbation.RangeMultiplierDenominator > gridConfig.RangeMultiplierDenominator {
     newConfig.RangeMultiplierDenominator = perterbation.RangeMultiplierDenominator
+  } else {
+    newConfig.RangeMultiplierDenominator = gridConfig.RangeMultiplierDenominator
   }
 
-  newConfig.SmoothingDenominator = gridConfig.SmoothingDenominator
   if perterbation.SmoothingDenominator > gridConfig.SmoothingDenominator {
     newConfig.SmoothingDenominator = perterbation.SmoothingDenominator
+  } else {
+    newConfig.SmoothingDenominator = gridConfig.SmoothingDenominator
   }
 
   return newConfig
@@ -64,9 +73,11 @@ func (gridConfig *GridConfig) AddPerterbation(perterbation *GridConfig) *GridCon
 func (gridConfig *GridConfig) Clone() *GridConfig {
   newConfig := new(GridConfig)
   newConfig.Name = gridConfig.Name
-  newConfig.Regions = make([]*RegionConfig, len(gridConfig.Regions))
-  copy(newConfig.Regions, gridConfig.Regions)
+  newConfig.WeightedRegions = make([]*WeightedValue, len(gridConfig.WeightedRegions))
+  copy(newConfig.WeightedRegions, gridConfig.WeightedRegions)
   newConfig.ConnectionTypeId = gridConfig.ConnectionTypeId
+  newConfig.Count = make([]*Roll, len(gridConfig.Count))
+  copy(newConfig.Count, gridConfig.Count)
   newConfig.Height = make([]*Roll, len(gridConfig.Height))
   copy(newConfig.Height, gridConfig.Height)
   newConfig.Width = make([]*Roll, len(gridConfig.Width))
@@ -120,7 +131,8 @@ func FetchGridConfig(manager *ConfigManager, id int64) *GridConfig {
 }
 
 func (gridConfig *GridConfig) FetchChildren(manager *ConfigManager) {
-  gridConfig.Regions = FetchManyRegionConfigs(manager, gridConfig.Id, gridConfig.TableName(""), "regions")
+  gridConfig.WeightedRegions = FetchManyWeightedRegions(manager, gridConfig.Id, gridConfig.TableName(""), "regions")
+  gridConfig.Count = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "count")
   gridConfig.Height = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "height")
   gridConfig.Width = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "width")
   gridConfig.ConnectionRange = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "connection_range")
@@ -133,10 +145,33 @@ func (gridConfig *GridConfig) FetchChildren(manager *ConfigManager) {
 func FetchManyGridConfigs(manager *ConfigManager, parentId int64, tableName string, valueName string) []*GridConfig {
   gridConfigs := make([]*GridConfig, 0)
   gridConfigTableName := new(GridConfig).TableName("")
+  fmt.Println("FETCH MANY GRID CONFIGS")
   manager.Client.FetchMany(&gridConfigs, parentId, tableName, gridConfigTableName, valueName, "", false)
+  fmt.Printf("%+v\n", gridConfigs)
   for _, gridConfig := range gridConfigs {
     gridConfig.FetchChildren(manager)
   }
 
   return gridConfigs
+}
+
+func (gridConfig *GridConfig) getFraction(rollableNumerator []*Roll, denominator int, perterbation *Perterbation) float64 {
+  numerator := float64(RollAll(rollableNumerator, perterbation))
+  return numerator / float64(denominator)
+}
+
+func (gridConfig *GridConfig) GetPopulationFraction(perterbation *Perterbation) float64 {
+  return gridConfig.getFraction(gridConfig.PopulationPercent, gridConfig.PopulationDenominator, perterbation)
+}
+
+func (gridConfig *GridConfig) GetConnectionFraction(perterbation *Perterbation) float64 {
+  return gridConfig.getFraction(gridConfig.ConnectionPercent, gridConfig.ConnectionDenominator, perterbation)
+}
+
+func (gridConfig *GridConfig) GetRangeMultiplierFraction(perterbation *Perterbation) float64 {
+  return gridConfig.getFraction(gridConfig.RangeMultiplierPercent, gridConfig.RangeMultiplierDenominator, perterbation)
+}
+
+func (gridConfig *GridConfig) GetSmoothingFraction(perterbation *Perterbation) float64 {
+  return gridConfig.getFraction(gridConfig.SmoothingPercent, gridConfig.SmoothingDenominator, perterbation)
 }

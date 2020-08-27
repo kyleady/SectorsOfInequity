@@ -102,3 +102,17 @@ func FetchManyRolls(manager *ConfigManager, parentId int64, tableName string, va
 
   return rolls
 }
+
+func CreateConstantRoll(base int) *Roll {
+  return &Roll{
+    RequiredFlagsString: sql.NullString{Valid: false, String: ""},
+    DiceCount: 0,
+    DiceSize: 0,
+    Base: base,
+    Multiplier: 1,
+    KeepHighest: 0,
+    Minimum: sql.NullInt64{Valid: false, Int64: 0},
+    Maximum: sql.NullInt64{Valid: false, Int64: 0},
+    requiredFlags: []string{},
+  }
+}

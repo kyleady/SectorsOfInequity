@@ -1,6 +1,7 @@
 package config
 
 import "fmt"
+import "strconv"
 
 type WeightedValue struct {
   Id int64 `sql:"id"`
@@ -13,8 +14,8 @@ type WeightedValue struct {
 
 func (weightedValue *WeightedValue) TableName(weightedType string) string {
   switch weightedType {
-  case WeightedPerterbationTag():
-    return "plan_weighted_perterbation"
+  case WeightedRegionTag():
+    return "plan_weighted_region"
   case WeightedInspirationTag():
     return "plan_weighted_inspiration"
 
@@ -43,7 +44,7 @@ func (weightedValue *WeightedValue) rollWeight(perterbation *Perterbation) {
   weightedValue.Weight = RollAll(weightedValue.Weights, perterbation)
 }
 
-func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbation) []int64 {
+func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbation) *WeightedValue {
   totalWeight := 0
   rRand := perterbation.Rand
   for _, weightedValue := range weightedValues {
@@ -54,7 +55,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
   }
 
   if totalWeight <= 0 {
-    return []int64{}
+    return nil
   }
 
   weightedRoll := rRand.Intn(totalWeight)
@@ -64,7 +65,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
     }
 
     if weightedRoll < weightedValue.Weight {
-      return weightedValue.Values
+      return weightedValue
     } else {
       weightedRoll -= weightedValue.Weight
     }
@@ -73,7 +74,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
   fmt.Printf("\nManager: %+v\n", perterbation.Manager)
 
 
-  fmt.Printf("\nweightedValues: [", weightedValues)
+  fmt.Printf("\nweightedValues: [")
   for _, weightedValue := range weightedValues {
     fmt.Printf("\n%+v,", weightedValue)
     fmt.Printf("\n  [")
@@ -87,7 +88,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
   panic("RollWeightedValues should always return a value!")
 }
 
-func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
+func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
   newWeightedValues := make([]*WeightedValue, len(firstWeightedValues))
   for i, firstWeightedValue := range firstWeightedValues {
     newWeightedValues[i] = firstWeightedValue.Clone()
@@ -125,16 +126,12 @@ func stackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedVal
   return newWeightedValues
 }
 
-func StackWeightedInspirations(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
-  return stackWeightedValues(firstWeightedValues, secondWeightedValues)
-}
-
-
-func FetchAllWeightedPerterbations(manager *ConfigManager, parentId int64) []*WeightedValue {
+func fetchManyWeightedValues(manager *ConfigManager, parentId int64, tableName string, valueName string, weightedTag string) []*WeightedValue {
   weightedValues := make([]*WeightedValue, 0)
-  manager.Client.FetchAll(&weightedValues, WeightedPerterbationTag(), "parent_id = ?", parentId)
+  weightTableName := new(WeightedValue).TableName(weightedTag)
+  manager.Client.FetchMany(&weightedValues, parentId, tableName, weightTableName, valueName, weightedTag, false)
   for _, weightedValue := range weightedValues {
-    weightedValue.Weights = FetchManyRolls(manager, weightedValue.Id, weightedValue.TableName(WeightedPerterbationTag()), "weights")
+    weightedValue.Weights = FetchManyRolls(manager, weightedValue.Id, weightedValue.TableName(weightedTag), "weights")
     weightedValue.Values = append(weightedValue.Values, weightedValue.Value)
   }
 
@@ -142,18 +139,26 @@ func FetchAllWeightedPerterbations(manager *ConfigManager, parentId int64) []*We
 }
 
 func FetchManyWeightedInspirations(manager *ConfigManager, parentId int64, tableName string, valueName string) []*WeightedValue {
-  weightedValues := make([]*WeightedValue, 0)
-  weightTableName := new(WeightedValue).TableName(WeightedInspirationTag())
-  manager.Client.FetchMany(&weightedValues, parentId, tableName, weightTableName, valueName, WeightedInspirationTag(), false)
+  weightedValues := fetchManyWeightedValues(manager, parentId, tableName, valueName, WeightedInspirationTag())
   for _, weightedValue := range weightedValues {
-    inspiration := manager.GetInspiration(weightedValue.Value)
-    weightedValue.Weights = FetchManyRolls(manager, weightedValue.Id, weightedValue.TableName(WeightedInspirationTag()), "weights")
-    weightedValue.ValueName = inspiration.Name
-    weightedValue.Values = append(weightedValue.Values, weightedValue.Value)
+    value := new(Inspiration)
+    manager.Client.Fetch(value, "", weightedValue.Value)
+    weightedValue.ValueName = value.Name
   }
 
   return weightedValues
 }
 
-func WeightedPerterbationTag() string { return "weighted perterbation" }
+func FetchManyWeightedRegions(manager *ConfigManager, parentId int64, tableName string, valueName string) []*WeightedValue {
+  weightedValues := fetchManyWeightedValues(manager, parentId, tableName, valueName, WeightedRegionTag())
+  for _, weightedValue := range weightedValues {
+    value := new(RegionConfig)
+    manager.Client.Fetch(value, "", weightedValue.Value)
+    weightedValue.ValueName = strconv.FormatInt(value.TypeId, 10) + ":" + value.Name
+  }
+
+  return weightedValues
+}
+
+func WeightedRegionTag() string { return "weighted region" }
 func WeightedInspirationTag() string { return "weighted inspiration" }

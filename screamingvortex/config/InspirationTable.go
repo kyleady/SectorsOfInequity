@@ -24,9 +24,9 @@ func (inspirationTable *InspirationTable) AddPerterbation(perterbationInspiratio
   newInspirationTable.Id = inspirationTable.Id
   newInspirationTable.Name = inspirationTable.Name
   newInspirationTable.CountRolls = append(inspirationTable.CountRolls, perterbationInspirationTable.CountRolls...)
-  newInspirationTable.WeightedInspirations = StackWeightedInspirations(inspirationTable.WeightedInspirations, perterbationInspirationTable.WeightedInspirations)
+  newInspirationTable.WeightedInspirations = StackWeightedValues(inspirationTable.WeightedInspirations, perterbationInspirationTable.WeightedInspirations)
   newInspirationTable.ConstituentParts = append(inspirationTable.ConstituentParts, perterbationInspirationTable.ConstituentParts...)
-  newInspirationTable.ExtraInspirations = StackWeightedInspirations(inspirationTable.ExtraInspirations, perterbationInspirationTable.ExtraInspirations)
+  newInspirationTable.ExtraInspirations = StackWeightedValues(inspirationTable.ExtraInspirations, perterbationInspirationTable.ExtraInspirations)
   return newInspirationTable
 }
 
@@ -88,7 +88,7 @@ func FetchManyInspirationTables(manager *ConfigManager, parentId int64, tableNam
 }
 
 func (inspirationTable *InspirationTable) RollOnce(perterbation *Perterbation) []int64 {
-  return RollWeightedValues(inspirationTable.WeightedInspirations, perterbation)
+  return RollWeightedValues(inspirationTable.WeightedInspirations, perterbation).Values
 }
 
 

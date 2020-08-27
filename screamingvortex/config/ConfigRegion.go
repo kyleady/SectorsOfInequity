@@ -4,8 +4,7 @@ type RegionConfig struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   TypeId int64 `sql:"type_id"`
-  Weights []*Roll
-  InspirationTables []*InspirationTable
+  PerterbationIds []int64
 }
 
 func (regionConfig *RegionConfig) TableName(regionConfigType string) string {
@@ -20,8 +19,7 @@ func (regionConfig *RegionConfig) AddPerterbation(perterbation *RegionConfig) *R
   newConfig := new(RegionConfig)
   newConfig.Name = regionConfig.Name
   newConfig.TypeId = regionConfig.TypeId
-  newConfig.Weights = append(regionConfig.Weights, perterbation.Weights...)
-  newConfig.InspirationTables = StackInspirationTables(regionConfig.InspirationTables, perterbation.InspirationTables)
+  newConfig.PerterbationIds = append(regionConfig.PerterbationIds, perterbation.PerterbationIds...)
   return newConfig
 }
 
@@ -29,10 +27,8 @@ func (regionConfig *RegionConfig) Clone() *RegionConfig {
   newConfig := new(RegionConfig)
   newConfig.Name = regionConfig.Name
   newConfig.TypeId = regionConfig.TypeId
-  newConfig.Weights = make([]*Roll, len(regionConfig.Weights))
-  copy(newConfig.Weights, regionConfig.Weights)
-  newConfig.InspirationTables = make([]*InspirationTable, len(regionConfig.InspirationTables))
-  copy(newConfig.InspirationTables, regionConfig.InspirationTables)
+  newConfig.PerterbationIds = make([]int64, len(regionConfig.PerterbationIds))
+  copy(newConfig.PerterbationIds, regionConfig.PerterbationIds)
   return newConfig
 }
 
@@ -68,8 +64,7 @@ func FetchRegionConfig(manager *ConfigManager, id int64) *RegionConfig {
 }
 
 func (regionConfig *RegionConfig) FetchChildren(manager *ConfigManager) {
-  regionConfig.Weights = FetchManyRolls(manager, regionConfig.Id, regionConfig.TableName(""), "weights")
-  regionConfig.InspirationTables = FetchManyInspirationTables(manager, regionConfig.Id, regionConfig.TableName(""), "inspiration_tables")
+  regionConfig.PerterbationIds = FetchManyPerterbationIds(manager, regionConfig.Id, regionConfig.TableName(""), "perterbations")
 }
 
 func FetchManyRegionConfigs(manager *ConfigManager, parentId int64, tableName string, valueName string) []*RegionConfig {

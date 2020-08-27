@@ -110,7 +110,7 @@ func RollDetails(tablesAddress []*config.InspirationKey, perterbation *config.Pe
   for true {
     failSafe++
     if failSafe > 1000 {
-      fmt.Println("\n\n")
+      fmt.Printf("\n\n\n")
       config.LogAddress(tablesAddress)
       panic(fmt.Sprintf("Not exiting!\nrolledInspirationTableNames:\n%+v", rolledInspirationTableNames))
     }

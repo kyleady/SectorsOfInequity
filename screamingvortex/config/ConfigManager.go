@@ -6,10 +6,10 @@ type ConfigManager struct {
   cachedPerterbations map[int64]*Perterbation
   cachedInspirations map[int64]*Inspiration
   cachedConfigTypes map[int64]*ConfigType
-  Client *utilities.Client
+  Client utilities.ClientInterface
 }
 
-func CreateEmptyManager(client *utilities.Client) *ConfigManager {
+func CreateEmptyManager(client utilities.ClientInterface) *ConfigManager {
   manager := new(ConfigManager)
   manager.Client = client
   manager.cachedPerterbations = make(map[int64]*Perterbation)

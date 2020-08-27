@@ -25,7 +25,7 @@ type Perterbation struct {
   Rand *rand.Rand
 }
 
-func CreateEmptyPerterbation(client *utilities.Client, rRand *rand.Rand) *Perterbation {
+func CreateEmptyPerterbation(client utilities.ClientInterface, rRand *rand.Rand) *Perterbation {
   perterbation := new(Perterbation)
   if client != nil {
     perterbation.Manager = CreateEmptyManager(client)
