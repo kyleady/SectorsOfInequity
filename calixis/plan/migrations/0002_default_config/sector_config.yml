@@ -1,0 +1,105 @@
+- _type: Config_Name
+  name: Sector
+
+- _type: Tag
+  name: Default
+
+- _type: Config_Asset
+  name: Default Sector
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Sector
+  grids:
+    - _type: Config_Grid
+      name: Sector Grid
+      regions:
+        - _type: Weighted_Region
+          weights:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              dice_count: 0
+              base: 3
+          value:
+            _type: Config_Region
+            _exists: true
+            name: The Imperium
+        - _type: Weighted_Region
+          weights:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              dice_count: 0
+              base: 2
+          value:
+            _type: Config_Region
+            _exists: true
+            name: The Warp
+        - _type: Weighted_Region
+          weights:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              dice_count: 0
+              base: 1
+          value:
+            _type: Config_Region
+            _exists: true
+            name: Tyranid Space
+      connection_type:
+        _type: Config_Name
+        _exists: true
+        name: Route
+      count:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      height:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 20
+      width:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 20
+      connection_range:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 5
+      population_percent:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 50
+      connection_percent:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 50
+      range_multiplier_percent:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 25
+      smoothing_percent:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1000
+      tags:
+        - _type: Tag
+          _exists: true
+          name: Default

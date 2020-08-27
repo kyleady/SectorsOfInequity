@@ -3,6 +3,12 @@
   configs:
     - _type: Config_Asset
       _exists: true
+      name: Default Sector
+    - _type: Config_Asset
+      _exists: true
+      name: Default Route
+    - _type: Config_Asset
+      _exists: true
       name: Default System
     - _type: Config_Asset
       _exists: true

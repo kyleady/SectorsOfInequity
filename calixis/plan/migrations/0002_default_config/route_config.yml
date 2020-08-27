@@ -1,0 +1,9 @@
+- _type: Config_Name
+  name: Route
+
+- _type: Config_Asset
+  name: Default Route
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Route
