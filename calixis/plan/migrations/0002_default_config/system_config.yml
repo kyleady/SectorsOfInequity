@@ -1,21 +1,53 @@
-- _type: Config_System
-  name: Default
-  star_cluster_count:
-    - _type: Roll
+- _type: Config_Name
+  name: System
+
+- _type: Tag
+  name: System
+
+- _type: Config_Asset
+  name: Default System
+  type:
+    _type: Config_Name
+    _exists: true
+    name: System
+  inspiration_tables:
+    - _type: Inspiration_Table
       _exists: true
-      required_flags: null
-      base: 0
-      dice_count: 20
-      dice_size: 10
-      keep_highest: -1
-  system_feature_count:
+      name: System Features
+  child_configs:
+    - _type: Config_Group
+      name: Star Clusters
+      type:
+        _type: Config_Name
+        _exists: true
+        name: Star Cluster
+      count:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 0
+          dice_count: 20
+          dice_size: 10
+          keep_highest: -1
+      tags:
+        - _type: Tag
+          _exists: true
+          name: System
+
+- _type: Inspiration_Table
+  name: System Features
+  tags:
+    - _type: Tag
+      _exists: true
+      name: System
+  count:
     - _type: Roll
       _exists: true
       required_flags: null
       base: 0
       dice_count: 1
       dice_size: 5
-  system_feature_inspirations:
+  weighted_inspirations:
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -136,10 +168,6 @@
         _exists: true
         name: Warp Turbulence
 
-
-- _type: Tag
-  name: System Feature
-
 - _type: Tag
   name: Bountiful
 
@@ -160,14 +188,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Bountiful
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -187,29 +215,10 @@
             _type: Inspiration
             name: (1)
             description: "Add 2D3kl1-1 Asteroid Belts to each Solar Zone."
-            perterbations:
-              - _type: Perterbation
-                zones:
-                  - _type: Config_Zone
-                    name: Bountiful(1)
-                    element_extra:
-                      - _type: Weighted_Inspiration
-                        weights:
-                          - _type: Roll
-                            _exists: true
-                            required_flags: null
-                            dice_count: 2
-                            dice_size: 3
-                            keep_highest: -1
-                            base: 1
-                        value:
-                          _type: Inspiration
-                          _exists: true
-                          name: Asteroid Belt
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -230,7 +239,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -251,7 +260,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -272,7 +281,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -299,14 +308,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Gravity Tides
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -326,29 +335,10 @@
             _type: Inspiration
             name: (1)
             description: "Add 2D6kl1 Gravity Tides to each Solar Zone."
-            perterbations:
-              - _type: Perterbation
-                zones:
-                  - _type: Config_Zone
-                    name: Gravity Tides(1)
-                    element_extra:
-                      - _type: Weighted_Inspiration
-                        weights:
-                          - _type: Roll
-                            _exists: true
-                            required_flags: null
-                            dice_count: 2
-                            dice_size: 6
-                            keep_highest: -1
-                            base: 0
-                        value:
-                          _type: Inspiration
-                          _exists: true
-                          name: Gravity Riptide
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -376,7 +366,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -397,7 +387,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -433,14 +423,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Haven
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -460,27 +450,10 @@
             _type: Inspiration
             name: (1)
             description: "Add 1 Planet to each Solar Zone."
-            perterbations:
-              - _type: Perterbation
-                zones:
-                  - _type: Config_Zone
-                    name: Haven(1)
-                    element_extra:
-                      - _type: Weighted_Inspiration
-                        weights:
-                          - _type: Roll
-                            _exists: true
-                            required_flags: null
-                            dice_count: 0
-                            base: 1
-                        value:
-                          _type: Inspiration
-                          _exists: true
-                          name: Planet
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -502,7 +475,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -523,7 +496,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -577,14 +550,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Ill-Omened
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -612,7 +585,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -633,7 +606,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -655,7 +628,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -679,7 +652,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -704,7 +677,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
@@ -731,14 +704,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Ruined Empire
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -764,7 +737,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -786,7 +759,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -832,7 +805,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
@@ -894,7 +867,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
@@ -922,14 +895,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Warp Stasis
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -959,7 +932,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -980,7 +953,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -1001,7 +974,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -1022,7 +995,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -1051,14 +1024,14 @@
   tags:
     - _type: Tag
       _exists: true
-      name: System Feature
+      name: System
 
     - _type: Tag
       _exists: true
       name: Warp Turbulence
 
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Type
       count:
         - _type: Roll
@@ -1083,7 +1056,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -1105,7 +1078,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -1126,7 +1099,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true
@@ -1153,7 +1126,7 @@
             tags:
               - _type: Tag
                 _exists: true
-                name: System Feature
+                name: System
 
               - _type: Tag
                 _exists: true

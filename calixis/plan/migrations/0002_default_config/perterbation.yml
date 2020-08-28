@@ -1,0 +1,21 @@
+- _type: Perterbation
+  name: Default
+  configs:
+    - _type: Config_Asset
+      _exists: true
+      name: Default Sector
+    - _type: Config_Asset
+      _exists: true
+      name: Default Route
+    - _type: Config_Asset
+      _exists: true
+      name: Default System
+    - _type: Config_Asset
+      _exists: true
+      name: Default Star Cluster
+    - _type: Config_Asset
+      _exists: true
+      name: Default Solar Zone
+    - _type: Config_Asset
+      _exists: true
+      name: Default Element

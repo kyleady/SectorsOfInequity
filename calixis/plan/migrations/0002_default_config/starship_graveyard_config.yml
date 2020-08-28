@@ -45,8 +45,8 @@
                 Any individual vessel or conglomeration of ships can be
                 treated as a Derelict Vessel Encounter Site (see pages 59–60),
                 should the Explorers choose to board it."
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Origins
       count:
         - _type: Roll
@@ -72,7 +72,7 @@
                           graveyard consists of {ships} ships, of which most or all have
                           been shattered beyond any value."
             roll_groups:
-              - _type: Inspiration_Nested
+              - _type: Inspiration_Table
                 name: ships
                 count:
                   - _type: Roll
@@ -136,7 +136,7 @@
                           the convoy, of which most or all remain intact enough to
                           allow boarding, but little else."
             roll_groups:
-              - _type: Inspiration_Nested
+              - _type: Inspiration_Table
                 name: ships
                 count:
                   - _type: Roll
@@ -164,7 +164,7 @@
                           means that at least a few of them might be worth
                           salvaging."
             roll_groups:
-              - _type: Inspiration_Nested
+              - _type: Inspiration_Table
                 name: ships
                 count:
                   - _type: Roll
@@ -195,7 +195,7 @@
                           {ships} hulks in varying degrees of integrity. None of the
                           hulks share an origin."
             roll_groups:
-              - _type: Inspiration_Nested
+              - _type: Inspiration_Table
                 name: ships
                 count:
                   - _type: Roll

@@ -1,98 +1,30 @@
-- _type: Tag
-  name: Region
-
-- _type: Perterbation
-  name: Imperial Space
-  system:
-    _type: Config_System
+- _type: Config_Region
+  name: The Imperium
+  type:
+    _type: Config_Name
     _exists: true
-    name: Default
-  star_cluster:
-    _type: Config_Star_Cluster
-    _exists: true
-    name: Default
-  route:
-    _type: Config_Route
-    _exists: true
-    name: Default
-  zones:
-    - _type: Config_Zone
-      _exists: true
-      name: Default
-    - _type: Config_Zone
-      _exists: true
-      name: Default IC
-    - _type: Config_Zone
-      _exists: true
-      name: Default PB
-    - _type: Config_Zone
-      _exists: true
-      name: Default OR
+    name: System
   tags:
     - _type: Tag
       _exists: true
-      name: Region
-
-- _type: Perterbation
+      name: Default
+- _type: Config_Region
   name: The Warp
-  system:
-    _type: Config_System
+  type:
+    _type: Config_Name
     _exists: true
-    name: Default
-  star_cluster:
-    _type: Config_Star_Cluster
-    _exists: true
-    name: Default
-  route:
-    _type: Config_Route
-    _exists: true
-    name: Default
-  zones:
-    - _type: Config_Zone
-      _exists: true
-      name: Default
-    - _type: Config_Zone
-      _exists: true
-      name: Default IC
-    - _type: Config_Zone
-      _exists: true
-      name: Default PB
-    - _type: Config_Zone
-      _exists: true
-      name: Default OR
+    name: System
   tags:
     - _type: Tag
       _exists: true
-      name: Region
-
-- _type: Perterbation
+      name: Default
+- _type: Config_Region
   name: Tyranid Space
-  system:
-    _type: Config_System
+  type:
+    _type: Config_Name
     _exists: true
-    name: Default
-  star_cluster:
-    _type: Config_Star_Cluster
-    _exists: true
-    name: Default
-  route:
-    _type: Config_Route
-    _exists: true
-    name: Default
-  zones:
-    - _type: Config_Zone
-      _exists: true
-      name: Default
-    - _type: Config_Zone
-      _exists: true
-      name: Default IC
-    - _type: Config_Zone
-      _exists: true
-      name: Default PB
-    - _type: Config_Zone
-      _exists: true
-      name: Default OR
+    name: System
   tags:
     - _type: Tag
       _exists: true
-      name: Region
+      name: Default

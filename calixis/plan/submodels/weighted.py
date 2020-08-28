@@ -1,13 +1,9 @@
 from django.db import models
+from django.forms.models import model_to_dict
 
-class BaseWeighted(models.Model):
+class Weighted_Value(models.Model):
     class Meta:
         abstract = True
-
-    weights = models.ManyToManyField('Roll')
-
-    def __str__(self):
-        return "({weights}) {value_name}".format(weights=self.get_weights_as_str(), value_name=self.value.name)
 
     def get_weights_as_str(self):
         weights = []
@@ -29,9 +25,14 @@ class BaseWeighted(models.Model):
             fields=[field.name for field in self._meta.fields]
         ))
 
-class Weighted_Inspiration(BaseWeighted):
+    def __str__(self):
+        return "({weights}) {value_name}".format(weights=self.get_weights_as_str(), value_name=self.value.name)
+
+    weights = models.ManyToManyField('Roll')
+    value = None
+
+class Weighted_Inspiration(Weighted_Value):
     value = models.ForeignKey('Inspiration', on_delete=models.CASCADE)
 
-class Weighted_Perterbation(BaseWeighted):
-    value = models.ForeignKey('Perterbation', on_delete=models.CASCADE)
-    parent = models.ForeignKey('Config_Grid', on_delete=models.CASCADE)
+class Weighted_Region(Weighted_Value):
+    value = models.ForeignKey('Config_Region', on_delete=models.CASCADE)

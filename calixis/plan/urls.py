@@ -1,44 +1,33 @@
 from django.urls import path
 from .views.default import DefaultViews
-from .views.sector_asset import AssetSectorViews
-from .views.sector_grid import GridSectorViews
+from .views.asset import AssetViews
 from .views.app_views import AppViews
 from .views.subapp_views import SubappViews
 from .models import *
 
 app = 'plan'
 subapp = 'asset'
+#  'custom': { 'Config': Grid_Sector, 'Job': Job, 'detail_template': 'asset_sector_detail.html', 'no_form': True }, 'Views': AssetSectorViews
 asset_models = [
-    { 'full_name': 'Sector', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Asset_Sector,
-        'custom': { 'Config': Grid_Sector, 'Job': Job, 'detail_template': 'asset_sector_detail.html', 'no_form': True }, 'Views': AssetSectorViews
+    { 'full_name': 'Asset Group', 'app': app, 'subapp': subapp, 'name': 'asset-group', 'Model': Asset_Group },
+    { 'full_name': 'Asset', 'app': app, 'subapp': subapp, 'name': 'asset', 'Model': Asset,
+      'custom': {
+        'Perterbation_Model': Perterbation, 'Config_Name_Model': Config_Name, 'Job': Job, 'detail_template': 'asset_detail.html', 'no_form': True
+      },
+      'Views': AssetViews
     },
-    { 'full_name': 'System', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Asset_System,
-        'custom': { 'detail_template': 'asset_system_detail.html', 'no_form': True } },
-    { 'full_name': 'Star Cluster', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Asset_Star_Cluster,
-        'custom': { 'detail_template': 'asset_starcluster_detail.html', 'no_form': True } },
-    { 'full_name': 'Route', 'app': app, 'subapp': subapp, 'name': 'route', 'Model': Asset_Route,
-        'custom': { 'detail_template': 'asset_route_detail.html', 'no_form': True } },
-    { 'full_name': 'Zone', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Asset_Zone,
-        'custom': { 'detail_template': 'asset_zone_detail.html', 'no_form': True } },
-    { 'full_name': 'Element', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Asset_Element,
-        'custom': { 'detail_template': 'asset_element_detail.html', 'no_form': True } },
-    { 'full_name': 'Territory', 'app': app, 'subapp': subapp, 'name': 'territory', 'Model': Asset_Territory,
-        'custom': { 'detail_template': 'asset_territory_detail.html', 'no_form': True } },
+    { 'full_name': 'Asset Grid', 'app': app, 'subapp': subapp, 'name': 'asset-grid', 'Model': Asset_Grid },
+    { 'full_name': 'Asset Node', 'app': app, 'subapp': subapp, 'name': 'asset-node', 'Model': Asset_Node },
+    { 'full_name': 'Asset Connection', 'app': app, 'subapp': subapp, 'name': 'asset-connection', 'Model': Asset_Connection },
 ]
 
 subapp = 'config'
 config_models = [
-    { 'full_name': 'Territory Config', 'app': app, 'subapp': subapp, 'name': 'territory', 'Model': Config_Territory },
-    { 'full_name': 'Element Config', 'app': app, 'subapp': subapp, 'name': 'element', 'Model': Config_Element },
-    { 'full_name': 'Zone Config', 'app': app, 'subapp': subapp, 'name': 'zone', 'Model': Config_Zone },
-    { 'full_name': 'Route Config',  'app': app, 'subapp': subapp, 'name': 'route',  'Model': Config_Route },
-    { 'full_name': 'Star Cluster Config', 'app': app, 'subapp': subapp, 'name': 'star-cluster', 'Model': Config_Star_Cluster },
-    { 'full_name': 'System Config', 'app': app, 'subapp': subapp, 'name': 'system', 'Model': Config_System },
-    { 'full_name': 'Perterbation', 'app': app, 'subapp': subapp, 'name': 'perterbation', 'Model': Perterbation },
-    { 'full_name': 'Grid Config',   'app': app, 'subapp': subapp, 'name': 'grid',   'Model': Config_Grid },
-    { 'full_name': 'Sector Config', 'app': app, 'subapp': subapp, 'name': 'sector', 'Model': Grid_Sector,
-        'custom': { 'SubModels': [Grid_System, Grid_Route], 'Grid': Config_Grid, 'Job': Job  }, 'Views': GridSectorViews
-    },
+    { 'full_name': 'Tag', 'app': app, 'subapp': subapp, 'name': 'tag', 'Model': Tag },
+    { 'full_name': 'Config Name', 'app': app, 'subapp': subapp, 'name': 'config-name', 'Model': Config_Name },
+    { 'full_name': 'Config Asset', 'app': app, 'subapp': subapp, 'name': 'config-asset', 'Model': Config_Asset },
+    { 'full_name': 'Config Group',  'app': app, 'subapp': subapp, 'name': 'config-sub-asset',  'Model': Config_Group },
+    { 'full_name': 'Config Grid', 'app': app, 'subapp': subapp, 'name': 'config-grid', 'Model': Config_Grid },
 ]
 
 subapp = 'detail'
@@ -50,6 +39,9 @@ detail_models = [
 subapp = 'inspiration'
 inspiration_models = [
     { 'full_name': 'Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration', 'Model': Inspiration },
+    { 'full_name': 'Inspiration Table', 'app': app, 'subapp': subapp, 'name': 'inspiration-table', 'Model': Inspiration_Table },
+    { 'full_name': 'Inspiration Extra', 'app': app, 'subapp': subapp, 'name': 'inspiration-extra', 'Model': Inspiration_Extra },
+    { 'full_name': 'Weighted Inspiration', 'app': app, 'subapp': subapp, 'name': 'weighted-inspiration', 'Model': Weighted_Inspiration },
 ]
 
 
@@ -58,18 +50,10 @@ roll_models = [
     { 'full_name': 'Roll', 'app': app, 'subapp': subapp, 'name': 'roll', 'Model': Roll },
 ]
 
-subapp = 'weighted'
-weighted_models = [
-    { 'full_name': 'Weighted Perterbation', 'app': app, 'subapp': subapp, 'name': 'perterbation', 'Model': Weighted_Perterbation },
-    { 'full_name': 'Weighted Inspiration', 'app': app, 'subapp': subapp, 'name': 'inspiration', 'Model': Weighted_Inspiration },
-]
-
 subapp = 'job'
 job_models = [
     { 'full_name': 'Job', 'app': app, 'subapp': subapp, 'name': 'job', 'Model': Job },
 ]
-
-
 
 all_models = (
     asset_models +
@@ -77,7 +61,6 @@ all_models = (
     detail_models +
     inspiration_models +
     roll_models +
-    weighted_models +
     job_models)
 
 urlpatterns = []
@@ -134,7 +117,6 @@ app_views = AppViews(title='Sector Planning', name='plan', subapps=[
                 'asset',
                 'config',
                 'detail',
-                'weighted',
                 'inspiration',
                 'roll',
                 'job'
@@ -163,9 +145,6 @@ all_subapp_views = [
                 ]),
                 SubappViews(title='Rolls', name=roll_models[0]['subapp'], app=roll_models[0]['app'], models=[
                     model['name'] for model in roll_models
-                ]),
-                SubappViews(title='Weighted', name=weighted_models[0]['subapp'], app=weighted_models[0]['app'], models=[
-                    model['name'] for model in weighted_models
                 ]),
                 SubappViews(title='Job', name=job_models[0]['subapp'], app=job_models[0]['app'], models=[
                     model['name'] for model in job_models

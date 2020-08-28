@@ -14,7 +14,7 @@
     <h3>Sub Details</h3>
     {% for subdetail in model.get_all_child_details %}
         <li>
-          <strong>{{ subdetail.get_nested_name }}</strong>:
+          <strong>{{ subdetail.get_inspiration_table_name }}</strong>:
           <a href="{% url detail_url subdetail.id %}">
             {{ subdetail }}
           </a>

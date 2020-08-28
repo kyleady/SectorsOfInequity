@@ -28,8 +28,8 @@
                 the Explorers might be required to board the lonely station
                 themselves to locate these resources, walking through the
                 shadowy halls as voracious eyes gleam from the darkness."
-  nested_inspirations:
-    - _type: Inspiration_Nested
+  inspiration_tables:
+    - _type: Inspiration_Table
       name: Origins
       count:
         - _type: Roll

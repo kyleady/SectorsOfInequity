@@ -4,12 +4,12 @@ import json
 
 class Job(models.Model):
     class JobType:
-        GRID = 'GD'
-        SECTOR = 'SR'
+        ASSET = 'AS'
+        OTHER = 'OT'
 
         choices = (
-            (GRID, 'Grid'),
-            (SECTOR, 'Sector'),
+            (ASSET, 'Asset'),
+            (OTHER, 'Other')
         )
 
     def __repr__(self):
@@ -35,10 +35,10 @@ class Job(models.Model):
             timestamp=self.created_at,
         )
 
-
-    percent_complete = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
-    error = models.TextField(blank=True, null=True, default=None)
-    created_at = models.DateTimeField(auto_now_add=True)
-    jobType = models.CharField(max_length=2, choices=JobType.choices)
-    config_id = models.BigIntegerField(null=True)
-    asset_id = models.BigIntegerField(null=True, blank=True)
+    percent_complete = models.PositiveSmallIntegerField(blank=True, default=0)
+    error = models.TextField(blank=True, null=True)
+    started_at = models.DateTimeField(auto_now_add=True)
+    finised_at = models.DateTimeField(blank=True, null=True)
+    type = models.ForeignKey('Config_Name', null=True, on_delete=models.SET_NULL, related_name='job_type')
+    perterbation = models.ForeignKey('Perterbation', null=True, on_delete=models.SET_NULL, related_name='job_perterbation')
+    asset = models.ForeignKey('Asset', null=True, blank=True, on_delete=models.SET_NULL, related_name='job_asset')
