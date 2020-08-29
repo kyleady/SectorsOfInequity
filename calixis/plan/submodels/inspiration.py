@@ -11,6 +11,7 @@ class Inspiration_Extra(models.Model):
 class Inspiration_Table(models.Model):
     name = models.CharField(max_length=100)
     count = models.ManyToManyField('Roll', related_name='inspiration_table_count')
+    modifiers = models.ManyToManyField('Roll', related_name='inspiration_table_modifiers')
     weighted_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='inspiration_table_weighted_inspirations')
     extra_inspirations = models.ManyToManyField('Weighted_Inspiration', related_name='inspiration_table_extra_inspirations')
     tags = models.ManyToManyField('Tag', related_name='inspiration_table_tags')

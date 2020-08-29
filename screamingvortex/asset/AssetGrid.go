@@ -67,7 +67,6 @@ func RollAssetGrids(perterbation *config.Perterbation, gridConfigs []*config.Gri
   assetGrids := []*AssetGrid{}
   for _, gridConfig := range gridConfigs {
     numberOfGrids := config.RollAll(gridConfig.Count, perterbation)
-    fmt.Printf("GridCount: %d\n", numberOfGrids)
     for i := 0; i < numberOfGrids; i++ {
       assetGrid := RollAssetGrid(perterbation, gridConfig, prefix, 1+len(assetGrids))
       assetGrids = append(assetGrids, assetGrid)
@@ -320,7 +319,7 @@ func (assetGrid *AssetGrid) smooth(gridConfig *config.GridConfig, perterbation *
 func (assetGrid AssetGrid) genScatteredRegionNames(gridConfig *config.GridConfig, perterbation *config.Perterbation) map[string][]int {
   listByRegion := make(map[string][]int)
   for nodeIndex, node := range assetGrid.Nodes {
-    randRegion := config.RollWeightedValues(gridConfig.WeightedRegions, perterbation)
+    randRegion := config.RollWeightedValues(gridConfig.WeightedRegions, perterbation, []*config.Roll{})
     regionName := randRegion.ValueName
     node.regionName = regionName
     listByRegion[regionName] = append(listByRegion[regionName], nodeIndex)
@@ -401,7 +400,7 @@ func (assetGrid AssetGrid) genClumpedRegionNames(gridConfig *config.GridConfig, 
   //determine the number of nodes in each region
   regionFrequency := make(map[string]int)
   for range assetGrid.Nodes {
-    randRegion := config.RollWeightedValues(gridConfig.WeightedRegions, perterbation)
+    randRegion := config.RollWeightedValues(gridConfig.WeightedRegions, perterbation, []*config.Roll{})
     regionFrequency[randRegion.ValueName]++
   }
 

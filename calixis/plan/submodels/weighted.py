@@ -28,7 +28,8 @@ class Weighted_Value(models.Model):
     def __str__(self):
         return "({weights}) {value_name}".format(weights=self.get_weights_as_str(), value_name=self.value.name)
 
-    weights = models.ManyToManyField('Roll')
+    weights = models.ManyToManyField('Roll', related_name='+')
+    order = models.ManyToManyField('Roll', related_name='+')
     value = None
 
 class Weighted_Inspiration(Weighted_Value):
