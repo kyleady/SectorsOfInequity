@@ -1,7 +1,5 @@
 package config
 
-import "fmt"
-
 type GridConfig struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
@@ -145,9 +143,7 @@ func (gridConfig *GridConfig) FetchChildren(manager *ConfigManager) {
 func FetchManyGridConfigs(manager *ConfigManager, parentId int64, tableName string, valueName string) []*GridConfig {
   gridConfigs := make([]*GridConfig, 0)
   gridConfigTableName := new(GridConfig).TableName("")
-  fmt.Println("FETCH MANY GRID CONFIGS")
   manager.Client.FetchMany(&gridConfigs, parentId, tableName, gridConfigTableName, valueName, "", false)
-  fmt.Printf("%+v\n", gridConfigs)
   for _, gridConfig := range gridConfigs {
     gridConfig.FetchChildren(manager)
   }

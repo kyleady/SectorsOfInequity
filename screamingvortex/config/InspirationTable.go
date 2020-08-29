@@ -9,6 +9,7 @@ type InspirationTable struct {
   ConstituentParts []*InspirationTable
   WeightedInspirations []*WeightedValue
   ExtraInspirations []*WeightedValue
+  Modifiers []*Roll
 }
 
 func (inspirationTable *InspirationTable) TableName(inspirationTableType string) string {
@@ -27,6 +28,7 @@ func (inspirationTable *InspirationTable) AddPerterbation(perterbationInspiratio
   newInspirationTable.WeightedInspirations = StackWeightedValues(inspirationTable.WeightedInspirations, perterbationInspirationTable.WeightedInspirations)
   newInspirationTable.ConstituentParts = append(inspirationTable.ConstituentParts, perterbationInspirationTable.ConstituentParts...)
   newInspirationTable.ExtraInspirations = StackWeightedValues(inspirationTable.ExtraInspirations, perterbationInspirationTable.ExtraInspirations)
+  newInspirationTable.Modifiers = append(inspirationTable.Modifiers, perterbationInspirationTable.Modifiers...)
   return newInspirationTable
 }
 
@@ -42,6 +44,8 @@ func (inspirationTable *InspirationTable) Clone() *InspirationTable {
   copy(newInspirationTable.ConstituentParts, inspirationTable.ConstituentParts)
   newInspirationTable.ExtraInspirations = make([]*WeightedValue, len(inspirationTable.ExtraInspirations))
   copy(newInspirationTable.ExtraInspirations, inspirationTable.ExtraInspirations)
+  newInspirationTable.Modifiers = make([]*Roll, len(inspirationTable.Modifiers))
+  copy(newInspirationTable.Modifiers, inspirationTable.Modifiers)
   return newInspirationTable
 }
 
@@ -50,6 +54,7 @@ func (inspirationTable *InspirationTable) FetchChildren(manager *ConfigManager) 
   inspirationTable.WeightedInspirations = FetchManyWeightedInspirations(manager, inspirationTable.Id, inspirationTable.TableName(""), "weighted_inspirations")
   inspirationTable.ExtraInspirations = FetchManyWeightedInspirations(manager, inspirationTable.Id, inspirationTable.TableName(""), "extra_inspirations")
   inspirationTable.ConstituentParts = []*InspirationTable{inspirationTable}
+  inspirationTable.Modifiers = FetchManyRolls(manager, inspirationTable.Id, inspirationTable.TableName(""), "modifiers")
 }
 
 func StackInspirationTables(firstInspirationTables []*InspirationTable, secondInspirationTables []*InspirationTable) []*InspirationTable {
@@ -88,7 +93,7 @@ func FetchManyInspirationTables(manager *ConfigManager, parentId int64, tableNam
 }
 
 func (inspirationTable *InspirationTable) RollOnce(perterbation *Perterbation) []int64 {
-  return RollWeightedValues(inspirationTable.WeightedInspirations, perterbation).Values
+  return RollWeightedValues(inspirationTable.WeightedInspirations, perterbation, inspirationTable.Modifiers).Values
 }
 
 

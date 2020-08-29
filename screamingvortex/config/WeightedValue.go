@@ -1,12 +1,14 @@
 package config
 
-import "fmt"
 import "strconv"
+import "sort"
 
 type WeightedValue struct {
   Id int64 `sql:"id"`
   Weights []*Roll
   Weight int
+  Order []*Roll
+  TmpOrder int
   Value int64 `sql:"value_id"`
   ValueName string
   Values []int64
@@ -31,12 +33,15 @@ func (weightedValue *WeightedValue) GetId() *int64 {
 func (weightedValue *WeightedValue) Clone() *WeightedValue {
   clonedWeightedValue := new(WeightedValue)
   clonedWeightedValue.Weight = weightedValue.Weight
+  clonedWeightedValue.TmpOrder = weightedValue.TmpOrder
   clonedWeightedValue.Value  = weightedValue.Value
   clonedWeightedValue.ValueName = weightedValue.ValueName
   clonedWeightedValue.Values = make([]int64, len(weightedValue.Values))
   copy(clonedWeightedValue.Values, weightedValue.Values)
   clonedWeightedValue.Weights = make([]*Roll, len(weightedValue.Weights))
   copy(clonedWeightedValue.Weights, weightedValue.Weights)
+  clonedWeightedValue.Order = make([]*Roll, len(weightedValue.Order))
+  copy(clonedWeightedValue.Order, weightedValue.Order)
   return clonedWeightedValue
 }
 
@@ -44,7 +49,17 @@ func (weightedValue *WeightedValue) rollWeight(perterbation *Perterbation) {
   weightedValue.Weight = RollAll(weightedValue.Weights, perterbation)
 }
 
-func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbation) *WeightedValue {
+func SortWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbation) {
+  for _, weightedValue := range weightedValues {
+    weightedValue.TmpOrder = RollAll(weightedValue.Order, perterbation)
+  }
+
+  sort.Slice(weightedValues, func(i, j int) bool {
+		return weightedValues[i].TmpOrder < weightedValues[j].TmpOrder
+	})
+}
+
+func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbation, modifiers []*Roll) *WeightedValue {
   totalWeight := 0
   rRand := perterbation.Rand
   for _, weightedValue := range weightedValues {
@@ -58,8 +73,10 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
     return nil
   }
 
-  weightedRoll := rRand.Intn(totalWeight)
-  for _, weightedValue := range weightedValues {
+  weightedRoll := rRand.Intn(totalWeight) + RollAll(modifiers, perterbation)
+  SortWeightedValues(weightedValues, perterbation)
+  weightedValue := new(WeightedValue)
+  for _, weightedValue = range weightedValues {
     if weightedValue.Weight <= 0 {
       continue
     }
@@ -71,21 +88,7 @@ func RollWeightedValues(weightedValues []*WeightedValue, perterbation *Perterbat
     }
   }
 
-  fmt.Printf("\nManager: %+v\n", perterbation.Manager)
-
-
-  fmt.Printf("\nweightedValues: [")
-  for _, weightedValue := range weightedValues {
-    fmt.Printf("\n%+v,", weightedValue)
-    fmt.Printf("\n  [")
-    for _, roll := range weightedValue.Weights {
-      fmt.Printf("\n    %+v", roll)
-    }
-    fmt.Printf("\n  ]")
-  }
-
-  fmt.Printf("\n  ]")
-  panic("RollWeightedValues should always return a value!")
+  return weightedValue
 }
 
 func StackWeightedValues(firstWeightedValues []*WeightedValue, secondWeightedValues []*WeightedValue) []*WeightedValue {
@@ -132,6 +135,7 @@ func fetchManyWeightedValues(manager *ConfigManager, parentId int64, tableName s
   manager.Client.FetchMany(&weightedValues, parentId, tableName, weightTableName, valueName, weightedTag, false)
   for _, weightedValue := range weightedValues {
     weightedValue.Weights = FetchManyRolls(manager, weightedValue.Id, weightedValue.TableName(weightedTag), "weights")
+    weightedValue.Order = FetchManyRolls(manager, weightedValue.Id, weightedValue.TableName(weightedTag), "order")
     weightedValue.Values = append(weightedValue.Values, weightedValue.Value)
   }
 
