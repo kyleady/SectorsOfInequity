@@ -6,7 +6,6 @@ import "screamingvortex/utilities"
 type AssetGroup struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
-  TypeId int64 `sql:"type_id"`
   Assets []*Asset
 }
 
@@ -46,10 +45,14 @@ func RollAssetGroups(address []*config.InspirationKey, prefix string, perterbati
 }
 
 func RollAssetGroup(address []*config.InspirationKey, prefix string, perterbation *config.Perterbation) *AssetGroup {
-  assetGroup := new(AssetGroup)
   configGroup := perterbation.GetGroupConfig(address)
-  assetGroup.TypeId = configGroup.TypeId
+  newPerterbation := perterbation
+  for _, perterbationId := range configGroup.PerterbationIds {
+    newPerterbation = newPerterbation.AddPerterbation(perterbationId)
+  }
+
+  assetGroup := new(AssetGroup)
   assetGroup.Name = configGroup.Name
-  assetGroup.Assets = RollAssets(perterbation, assetGroup.TypeId, prefix, configGroup.Count, address)
+  assetGroup.Assets = RollAssets(newPerterbation, configGroup.Types, prefix, configGroup.Count, address)
   return assetGroup
 }

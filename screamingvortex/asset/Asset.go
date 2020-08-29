@@ -54,12 +54,13 @@ func (asset *Asset) SaveChildren(client utilities.ClientInterface) {
   }
 }
 
-func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, countRolls []*config.Roll, extrasAddress []*config.InspirationKey) []*Asset {
+func RollAssets(perterbation *config.Perterbation, weightedTypes []*config.WeightedValue, prefix string, countRolls []*config.Roll, extrasAddress []*config.InspirationKey) []*Asset {
   assets := []*Asset{}
   assetsToAdd := config.RollAll(countRolls, perterbation)
   assetsPreviouslyAdded := 0
   i := 1
   for i = i; i <= assetsPreviouslyAdded + assetsToAdd; i++ {
+    typeId := config.RollWeightedValues(weightedTypes, perterbation, nil).Values[0]
     assets = append(assets, RollAsset(perterbation, typeId, prefix, i))
   }
 
@@ -74,7 +75,7 @@ func RollAssets(perterbation *config.Perterbation, typeId int64, prefix string, 
     for i = i; i <= assetsPreviouslyAdded + assetsToAdd; i++ {
       assets = append(assets, ExtraAsset(
         perterbation,
-        typeId,
+        inspirationExtra.TypeId,
         prefix,
         i,
         inspirationExtra.Address,

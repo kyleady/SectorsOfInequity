@@ -3,6 +3,7 @@ package config
 type InspirationExtra struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
+  TypeId int64 `sql:"type_id"`
   CountRolls []*Roll
   InspirationTables []*InspirationTable
   Address []*InspirationKey
@@ -19,6 +20,7 @@ func (inspirationExtra *InspirationExtra) GetId() *int64 {
 func (inspirationExtra *InspirationExtra) AddPerterbation(perterbationInspirationExtra *InspirationExtra) *InspirationExtra {
   newInspirationExtra := new(InspirationExtra)
   newInspirationExtra.Name = inspirationExtra.Name
+  newInspirationExtra.TypeId = inspirationExtra.TypeId
   newInspirationExtra.CountRolls = append(inspirationExtra.CountRolls, perterbationInspirationExtra.CountRolls...)
   newInspirationExtra.InspirationTables = StackInspirationTables(inspirationExtra.InspirationTables, perterbationInspirationExtra.InspirationTables)
   return newInspirationExtra
@@ -27,6 +29,7 @@ func (inspirationExtra *InspirationExtra) AddPerterbation(perterbationInspiratio
 func (inspirationExtra *InspirationExtra) Clone() *InspirationExtra {
   newInspirationExtra := new(InspirationExtra)
   newInspirationExtra.Id = inspirationExtra.Id
+  newInspirationExtra.TypeId = inspirationExtra.TypeId
   newInspirationExtra.CountRolls = make([]*Roll, len(inspirationExtra.CountRolls))
   copy(newInspirationExtra.CountRolls, inspirationExtra.CountRolls)
   newInspirationExtra.InspirationTables = make([]*InspirationTable, len(inspirationExtra.InspirationTables))
@@ -40,7 +43,7 @@ func (inspirationExtra *InspirationExtra) FetchChildren(manager *ConfigManager) 
 }
 
 func (inspirationExtra *InspirationExtra) SetAddress(address []*InspirationKey) {
-  inspirationExtra.Address = append(address, &InspirationKey{Type: "InspirationExtra", Key: inspirationExtra.Name})
+  inspirationExtra.Address = append(address, &InspirationKey{Type: "InspirationExtra", Key: inspirationExtra.Name, Index: inspirationExtra.TypeId})
 }
 
 func (inspirationExtra *InspirationExtra) GetInspirationTableNames() []string {
@@ -71,7 +74,7 @@ func StackInspirationExtras(firstInspirationExtras []*InspirationExtra, secondIn
   for _, secondInspirationExtra := range secondInspirationExtras {
     inspirationExtraStacked := false
     for i, newInspirationExtra := range newInspirationExtras {
-      if newInspirationExtra.Name == secondInspirationExtra.Name {
+      if newInspirationExtra.Name == secondInspirationExtra.Name && newInspirationExtra.TypeId == secondInspirationExtra.TypeId {
         inspirationExtraStacked = true
         newInspirationExtras[i] = newInspirationExtra.AddPerterbation(secondInspirationExtra)
         break

@@ -3,7 +3,7 @@ package config
 type RegionConfig struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
-  TypeId int64 `sql:"type_id"`
+  Types []*WeightedValue
   PerterbationIds []int64
 }
 
@@ -18,7 +18,7 @@ func (regionConfig *RegionConfig) GetId() *int64 {
 func (regionConfig *RegionConfig) AddPerterbation(perterbation *RegionConfig) *RegionConfig {
   newConfig := new(RegionConfig)
   newConfig.Name = regionConfig.Name
-  newConfig.TypeId = regionConfig.TypeId
+  newConfig.Types = StackWeightedValues(regionConfig.Types, perterbation.Types)
   newConfig.PerterbationIds = append(regionConfig.PerterbationIds, perterbation.PerterbationIds...)
   return newConfig
 }
@@ -26,7 +26,8 @@ func (regionConfig *RegionConfig) AddPerterbation(perterbation *RegionConfig) *R
 func (regionConfig *RegionConfig) Clone() *RegionConfig {
   newConfig := new(RegionConfig)
   newConfig.Name = regionConfig.Name
-  newConfig.TypeId = regionConfig.TypeId
+  newConfig.Types = make([]*WeightedValue, len(regionConfig.Types))
+  copy(newConfig.Types, regionConfig.Types)
   newConfig.PerterbationIds = make([]int64, len(regionConfig.PerterbationIds))
   copy(newConfig.PerterbationIds, regionConfig.PerterbationIds)
   return newConfig
@@ -41,7 +42,7 @@ func StackRegionConfigs(firstRegionConfigs []*RegionConfig, secondRegionConfigs 
   for _, perterbationRegionConfig := range secondRegionConfigs {
     regionConfigStacked := false
     for i, newRegionConfig := range newRegionConfigs {
-      if newRegionConfig.TypeId == perterbationRegionConfig.TypeId && newRegionConfig.Name == perterbationRegionConfig.Name {
+      if newRegionConfig.Name == perterbationRegionConfig.Name {
         regionConfigStacked = true
         newRegionConfigs[i] = newRegionConfig.AddPerterbation(perterbationRegionConfig)
         break
@@ -64,6 +65,7 @@ func FetchRegionConfig(manager *ConfigManager, id int64) *RegionConfig {
 }
 
 func (regionConfig *RegionConfig) FetchChildren(manager *ConfigManager) {
+  regionConfig.Types = FetchManyWeightedTypes(manager, regionConfig.Id, regionConfig.TableName(""), "types")
   regionConfig.PerterbationIds = FetchManyPerterbationIds(manager, regionConfig.Id, regionConfig.TableName(""), "perterbations")
 }
 

@@ -119,9 +119,9 @@ func (assetConfig *AssetConfig) GetInspirationTableNames() []string {
   return tableNames
 }
 
-func (assetConfig *AssetConfig) GetGroupConfig(groupConfigName string, groupConfigTypeId int64) *GroupConfig {
+func (assetConfig *AssetConfig) GetGroupConfig(groupConfigName string) *GroupConfig {
   for _, groupConfig := range assetConfig.GroupConfigs {
-    if groupConfig.Name == groupConfigName && groupConfig.TypeId == groupConfigTypeId {
+    if groupConfig.Name == groupConfigName {
       return groupConfig
     }
   }
@@ -132,7 +132,7 @@ func (assetConfig *AssetConfig) GetGroupConfig(groupConfigName string, groupConf
 func (assetConfig *AssetConfig) GetGroupConfigKeys() []*InspirationKey {
   groupConfigKeys := []*InspirationKey{}
   for _, groupConfig := range assetConfig.GroupConfigs {
-    key := &InspirationKey{Type: "GroupConfig", Key: groupConfig.Name, Index: groupConfig.TypeId}
+    key := &InspirationKey{Type: "GroupConfig", Key: groupConfig.Name}
     groupConfigKeys = append(groupConfigKeys, key)
   }
 

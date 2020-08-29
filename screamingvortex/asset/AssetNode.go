@@ -101,15 +101,16 @@ func (assetNode *AssetNode) VoidNonMatchingLabel(label int) {
 
 func (assetNode *AssetNode) Randomize(perterbation *config.Perterbation, regionConfigIds []int64, prefix string, index int) {
   newPerterbation := perterbation
-  typeId := int64(-1)
+  weightedTypes := []*config.WeightedValue{}
   for _, regionConfigId := range regionConfigIds {
     regionConfig := config.FetchRegionConfig(newPerterbation.Manager, regionConfigId)
-    typeId = regionConfig.TypeId
+    weightedTypes = config.StackWeightedValues(weightedTypes, regionConfig.Types)
     for _, regionPerterbationId := range regionConfig.PerterbationIds {
       newPerterbation = newPerterbation.AddPerterbation(regionPerterbationId)
     }
   }
 
+  typeId := config.RollWeightedValues(weightedTypes, perterbation, nil).Values[0]
   assetNode.asset = RollAsset(newPerterbation, typeId, prefix, index)
 }
 

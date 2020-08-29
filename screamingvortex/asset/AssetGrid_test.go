@@ -11,17 +11,25 @@ func createTestGridConfigObj() *config.GridConfig {
     &config.WeightedValue{
       Weights: []*config.Roll{config.CreateConstantRoll(3)},
       Values: []int64{1},
-      ValueName: "1:Imperium",
+      ValueName: "RImperium",
     },
     &config.WeightedValue{
       Weights: []*config.Roll{config.CreateConstantRoll(2)},
       Values: []int64{2},
-      ValueName: "1:Warp",
+      ValueName: "RWarp",
     },
     &config.WeightedValue{
       Weights: []*config.Roll{config.CreateConstantRoll(1)},
       Values: []int64{3},
-      ValueName: "1:Tyranids",
+      ValueName: "RTyranids",
+    },
+  }
+
+  weightedConnecitonTypes := []*config.WeightedValue{
+    &config.WeightedValue{
+      Weights: []*config.Roll{config.CreateConstantRoll(1)},
+      Values: []int64{1},
+      ValueName: "1",
     },
   }
 
@@ -29,7 +37,7 @@ func createTestGridConfigObj() *config.GridConfig {
     Id: 2,
     Name: "Test Grid",
     WeightedRegions: weightedRegions,
-    ConnectionTypeId: 2,
+    ConnectionTypes: weightedConnecitonTypes,
     Count: []*config.Roll{config.CreateConstantRoll(1)},
     Height: []*config.Roll{config.CreateConstantRoll(20)},
     Width: []*config.Roll{config.CreateConstantRoll(20)},

@@ -176,7 +176,7 @@ func (perterbation *Perterbation) getObject(address []*InspirationKey) (*AssetCo
       inspirationTable = assetConfig.GetInspirationTable(key.Key)
       assetConfig = nil
     } else if assetConfig != nil && key.Type == "GroupConfig" {
-      groupConfig = assetConfig.GetGroupConfig(key.Key, key.Index)
+      groupConfig = assetConfig.GetGroupConfig(key.Key)
       assetConfig = nil
     } else if inspirationTable != nil && key.Type == "Inspiration" {
       inspiration = inspirationTable.GetInspiration(key.Key, key.Index != 0, perterbation)
@@ -185,7 +185,7 @@ func (perterbation *Perterbation) getObject(address []*InspirationKey) (*AssetCo
       inspirationTable = inspiration.GetInspirationTable(key.Key)
       inspiration = nil
     } else if groupConfig != nil && key.Type == "InspirationExtra" {
-      inspirationExtra = groupConfig.GetInspirationExtra(key.Key)
+      inspirationExtra = groupConfig.GetInspirationExtra(key.Key, key.Index)
       groupConfig = nil
     } else if inspirationExtra != nil && key.Type == "InspirationTable" {
       inspirationTable = inspirationExtra.GetInspirationTable(key.Key)

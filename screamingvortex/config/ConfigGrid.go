@@ -4,7 +4,7 @@ type GridConfig struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
   WeightedRegions []*WeightedValue
-  ConnectionTypeId int64 `sql:"connection_type_id"`
+  ConnectionTypes []*WeightedValue
   Count []*Roll
   Height []*Roll
   Width []*Roll
@@ -31,7 +31,7 @@ func (gridConfig *GridConfig) AddPerterbation(perterbation *GridConfig) *GridCon
   newConfig := new(GridConfig)
   newConfig.Name = gridConfig.Name
   newConfig.WeightedRegions = StackWeightedValues(gridConfig.WeightedRegions, perterbation.WeightedRegions)
-  newConfig.ConnectionTypeId = gridConfig.ConnectionTypeId
+  newConfig.ConnectionTypes = StackWeightedValues(gridConfig.ConnectionTypes, perterbation.ConnectionTypes)
   newConfig.Count = append(gridConfig.Count, perterbation.Count...)
   newConfig.Height = append(gridConfig.Height, perterbation.Height...)
   newConfig.Width = append(gridConfig.Width, perterbation.Width...)
@@ -73,7 +73,8 @@ func (gridConfig *GridConfig) Clone() *GridConfig {
   newConfig.Name = gridConfig.Name
   newConfig.WeightedRegions = make([]*WeightedValue, len(gridConfig.WeightedRegions))
   copy(newConfig.WeightedRegions, gridConfig.WeightedRegions)
-  newConfig.ConnectionTypeId = gridConfig.ConnectionTypeId
+  newConfig.ConnectionTypes = make([]*WeightedValue, len(gridConfig.ConnectionTypes))
+  copy(newConfig.ConnectionTypes, gridConfig.ConnectionTypes)
   newConfig.Count = make([]*Roll, len(gridConfig.Count))
   copy(newConfig.Count, gridConfig.Count)
   newConfig.Height = make([]*Roll, len(gridConfig.Height))
@@ -106,7 +107,7 @@ func StackGridConfigs(firstGridConfigs []*GridConfig, secondGridConfigs []*GridC
   for _, perterbationGridConfig := range secondGridConfigs {
     gridConfigStacked := false
     for i, newGridConfig := range newGridConfigs {
-      if newGridConfig.ConnectionTypeId == perterbationGridConfig.ConnectionTypeId && newGridConfig.Name == perterbationGridConfig.Name {
+      if newGridConfig.Name == perterbationGridConfig.Name {
         gridConfigStacked = true
         newGridConfigs[i] = newGridConfig.AddPerterbation(perterbationGridConfig)
         break
@@ -130,6 +131,7 @@ func FetchGridConfig(manager *ConfigManager, id int64) *GridConfig {
 
 func (gridConfig *GridConfig) FetchChildren(manager *ConfigManager) {
   gridConfig.WeightedRegions = FetchManyWeightedRegions(manager, gridConfig.Id, gridConfig.TableName(""), "regions")
+  gridConfig.ConnectionTypes = FetchManyWeightedTypes(manager, gridConfig.Id, gridConfig.TableName(""), "connection_types")
   gridConfig.Count = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "count")
   gridConfig.Height = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "height")
   gridConfig.Width = FetchManyRolls(manager, gridConfig.Id, gridConfig.TableName(""), "width")

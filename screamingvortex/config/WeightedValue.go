@@ -14,15 +14,17 @@ type WeightedValue struct {
   Values []int64
 }
 
-func (weightedValue *WeightedValue) TableName(weightedType string) string {
-  switch weightedType {
+func (weightedValue *WeightedValue) TableName(weightedValueType string) string {
+  switch weightedValueType {
   case WeightedRegionTag():
     return "plan_weighted_region"
   case WeightedInspirationTag():
     return "plan_weighted_inspiration"
+  case WeightedTypeTag():
+    return "plan_weighted_type"
 
   default:
-    panic("Unexpected weightedType: " + weightedType)
+    panic("Unexpected WeightedValue Type: " + weightedValueType)
   }
 }
 
@@ -158,7 +160,18 @@ func FetchManyWeightedRegions(manager *ConfigManager, parentId int64, tableName 
   for _, weightedValue := range weightedValues {
     value := new(RegionConfig)
     manager.Client.Fetch(value, "", weightedValue.Value)
-    weightedValue.ValueName = strconv.FormatInt(value.TypeId, 10) + ":" + value.Name
+    weightedValue.ValueName = "R" + value.Name
+  }
+
+  return weightedValues
+}
+
+func FetchManyWeightedTypes(manager *ConfigManager, parentId int64, tableName string, valueName string) []*WeightedValue {
+  weightedValues := fetchManyWeightedValues(manager, parentId, tableName, valueName, WeightedTypeTag())
+  for _, weightedValue := range weightedValues {
+    value := new(ConfigType)
+    manager.Client.Fetch(value, "", weightedValue.Value)
+    weightedValue.ValueName = strconv.FormatInt(value.Id, 10)
   }
 
   return weightedValues
@@ -166,3 +179,4 @@ func FetchManyWeightedRegions(manager *ConfigManager, parentId int64, tableName 
 
 func WeightedRegionTag() string { return "weighted region" }
 func WeightedInspirationTag() string { return "weighted inspiration" }
+func WeightedTypeTag() string { return "weighted type" }

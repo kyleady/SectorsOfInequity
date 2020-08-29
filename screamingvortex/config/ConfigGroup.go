@@ -3,9 +3,10 @@ package config
 type GroupConfig struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
-  TypeId int64 `sql:"type_id"`
+  Types []*WeightedValue
   Count []*Roll
   Extras []*InspirationExtra
+  PerterbationIds []int64
 }
 
 func (groupConfig *GroupConfig) TableName(groupConfigType string) string {
@@ -19,16 +20,18 @@ func (groupConfig *GroupConfig) GetId() *int64 {
 func (groupConfig *GroupConfig) AddPerterbation(perterbation *GroupConfig) *GroupConfig {
   newConfig := new(GroupConfig)
   newConfig.Name = groupConfig.Name
-  newConfig.TypeId = groupConfig.TypeId
+  newConfig.Types = StackWeightedValues(groupConfig.Types, perterbation.Types)
   newConfig.Count = append(groupConfig.Count, perterbation.Count...)
   newConfig.Extras = StackInspirationExtras(groupConfig.Extras, perterbation.Extras)
+  newConfig.PerterbationIds = append(groupConfig.PerterbationIds, perterbation.PerterbationIds...)
   return newConfig
 }
 
 func (groupConfig *GroupConfig) Clone() *GroupConfig {
   newConfig := new(GroupConfig)
   newConfig.Name = groupConfig.Name
-  newConfig.TypeId = groupConfig.TypeId
+  newConfig.Types = make([]*WeightedValue, len(groupConfig.Types))
+  copy(newConfig.Types, groupConfig.Types)
   newConfig.Count = make([]*Roll, len(groupConfig.Count))
   copy(newConfig.Count, groupConfig.Count)
   newConfig.Extras = make([]*InspirationExtra, len(groupConfig.Extras))
@@ -45,7 +48,7 @@ func StackGroupConfigs(firstGroupConfigs []*GroupConfig, secondGroupConfigs []*G
   for _, perterbationGroupConfig := range secondGroupConfigs {
     groupConfigStacked := false
     for i, newGroupConfig := range newGroupConfigs {
-      if newGroupConfig.TypeId == perterbationGroupConfig.TypeId && newGroupConfig.Name == perterbationGroupConfig.Name  {
+      if newGroupConfig.Name == perterbationGroupConfig.Name  {
         groupConfigStacked = true
         newGroupConfigs[i] = newGroupConfig.AddPerterbation(perterbationGroupConfig)
         break
@@ -68,13 +71,15 @@ func FetchGroupConfig(manager *ConfigManager, id int64) *GroupConfig {
 }
 
 func (groupConfig *GroupConfig) FetchChildren(manager *ConfigManager) {
+  groupConfig.Types = FetchManyWeightedTypes(manager, groupConfig.Id, groupConfig.TableName(""), "types")
   groupConfig.Count = FetchManyRolls(manager, groupConfig.Id, groupConfig.TableName(""), "count")
   groupConfig.Extras = FetchManyInspirationExtras(manager, groupConfig.Id, groupConfig.TableName(""), "extras")
+  groupConfig.PerterbationIds = FetchManyPerterbationIds(manager, groupConfig.Id, groupConfig.TableName(""), "perterbations")
 }
 
-func (groupConfig *GroupConfig) GetInspirationExtra(inspirationExtraName string) *InspirationExtra {
+func (groupConfig *GroupConfig) GetInspirationExtra(inspirationExtraName string, inspirationExtraTypeId int64) *InspirationExtra {
   for _, inspirationExtra := range groupConfig.Extras {
-    if inspirationExtra.Name == inspirationExtraName {
+    if inspirationExtra.Name == inspirationExtraName && inspirationExtra.TypeId == inspirationExtraTypeId {
       return inspirationExtra
     }
   }
