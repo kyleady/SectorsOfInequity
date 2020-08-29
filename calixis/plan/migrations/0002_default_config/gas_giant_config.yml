@@ -73,6 +73,17 @@
               _exists: true
               name: Gravity
               tags__name: Gas Giant
+        - _type: Config_Asset
+          name: Default Gas Giant
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Satellite
+          inspiration_tables:
+            - _type: Inspiration_Table
+              _exists: true
+              name: Type
+              tags__name: Gas Giant
 
 - _type: Inspiration_Table
   name: Body
@@ -174,6 +185,16 @@
       required_flags: null
       base: 1
       dice_count: 0
+  modifiers:
+    - _type: Roll
+      required_flags: gas_giant_body_dwarf
+      base: -5
+    - _type: Roll
+      required_flags: gas_giant_body_massive
+      base: 3
+    - _type: Roll
+      required_flags: gas_giant_body_titanic
+      base: 10
   weighted_inspirations:
     - _type: Weighted_Inspiration
       weights:
@@ -239,3 +260,141 @@
         perterbations:
           - _type: Perterbation
             flags: gas_giant_gravity_titanic
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: No Feature
+        tags__name: Gas Giant
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Debris Rings
+        tags__name: Gas Giant
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Dust Rings
+        tags__name: Gas Giant
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 7
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Lesser Moon
+        tags__name: Gas Giant
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 5
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Moon
+        tags__name: Gas Giant
+
+- _type: Inspiration
+  name: No Feature
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Debris Rings
+  description: "A narrow band of asteroids or chunks of ice extends out around
+                the Gas Giant. While the limited spread means that avoiding the
+                field requires a detour, a vessel with cause to pass directly
+                through the ring must make a Challenging (+0) Pilot(Space Craft)
+                +Manoeuvrability Test as if passing through an Asteroid Field,
+                as described on pages 226–227 of the ROGUE TRADER Core Rulebook.
+                Multiple instances of this Orbital Feature increase the size of
+                the rings. Tests to pass through safely suffer a –10 penalty for
+                each additional instance of this Orbital Feature."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Dust Rings
+  description: "A wide ring of fine particles encircles the gas giant. While the
+                limited spread prevents it from becoming a navigational hazard
+                like a true dust cloud or nebula, any Tests using the ship’s
+                auger arrays on a target within, on, or directly through the
+                ring are two steps more difficult. Multiple instances of this
+                Orbital Feature increase the size of the existing Planetary
+                Rings instead of adding extra sets of Rings. Increase the
+                penalty to use augers through or within the Rings by an
+                additional –5 for every two additional instances of this
+                Feature."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Lesser Moon
+  description: "An orbital body somewhere between an extremely large asteroid
+                and a very small moon orbits the Planet. It has its own
+                extremely limited gravity well, allowing low-gravity travel
+                across the surface, as described on page 269 of the ROGUE TRADER
+                Core Rulebook."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
+
+- _type: Inspiration
+  name: Moon
+  description: "A true moon is generated as a Planet, using the rules for Planet
+                Creation (see page 19). Under normal circumstances, a moon
+                cannot have a higher Planetary Body than the world around which
+                it orbits. In addition, a moon never generates its own Orbital
+                Features."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gas Giant
