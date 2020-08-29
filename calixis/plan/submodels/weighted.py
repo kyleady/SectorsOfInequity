@@ -37,3 +37,6 @@ class Weighted_Inspiration(Weighted_Value):
 
 class Weighted_Region(Weighted_Value):
     value = models.ForeignKey('Config_Region', on_delete=models.CASCADE)
+
+class Weighted_Type(Weighted_Value):
+    value = models.ForeignKey('Config_Name', on_delete=models.CASCADE)

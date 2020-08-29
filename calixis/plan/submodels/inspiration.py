@@ -5,6 +5,7 @@ import json
 class Inspiration_Extra(models.Model):
     name = models.CharField(max_length=100)
     count = models.ManyToManyField('Roll', related_name='extra_tables_count')
+    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='inspiration_extra_type')
     inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='inspiration_tables')
     tags = models.ManyToManyField('Tag', related_name='inspiration_extra_tags')
 

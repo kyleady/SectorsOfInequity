@@ -33,19 +33,20 @@ class Config_Asset(BaseConfig):
     tags = models.ManyToManyField(Tag, related_name='config_asset_tags')
 
 class Config_Group(BaseConfig):
-    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_sub_asset_type')
+    types = models.ManyToManyField('Weighted_Type', related_name='config_sub_asset_types')
     count = models.ManyToManyField('Roll', related_name='config_sub_asset_count')
     extras = models.ManyToManyField('Inspiration_Extra', related_name='config_sub_asset_extras')
+    perterbations = models.ManyToManyField('Perterbation', related_name='config_sub_asset_perterbations')
     tags = models.ManyToManyField(Tag, related_name='config_sub_asset_tags')
 
 class Config_Region(BaseConfig):
-    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_region_type')
+    types = models.ManyToManyField('Weighted_Type', related_name='config_region_types')
     perterbations = models.ManyToManyField('Perterbation', related_name='config_region_perterbations')
     tags = models.ManyToManyField(Tag, related_name='config_region_tags')
 
 class Config_Grid(BaseConfig):
     regions = models.ManyToManyField('Weighted_Region', related_name='config_grid_regions')
-    connection_type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_grid_connection_type')
+    connection_types = models.ManyToManyField('Weighted_Type', related_name='config_grid_connection_types')
     count = models.ManyToManyField('Roll', related_name='config_grid_count')
     height = models.ManyToManyField('Roll', related_name='config_grid_height')
     width = models.ManyToManyField('Roll', related_name='config_grid_width')

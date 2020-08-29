@@ -19,7 +19,6 @@ class BaseAsset(models.Model):
     name = models.CharField(max_length=200)
 
 class Asset_Group(BaseAsset):
-    type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='asset_group_type')
     assets = models.ManyToManyField('Asset', related_name='asset_group_assets')
 
 class Asset(BaseAsset):
