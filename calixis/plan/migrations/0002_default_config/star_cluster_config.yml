@@ -17,51 +17,14 @@
       tags__name: Star Cluster
   child_configs:
     - _type: Config_Group
-      name: Solar Zones
-      type:
-        _type: Config_Name
-        _exists: true
-        name: Solar Zone
-      extras:
-        - _type: Inspiration_Extra
-          name: Default Inner Cauldron
-          count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: 1
-              dice_count: 0
-          inspiration_tables:
-            - _type: Inspiration_Table
-              _exists: true
-              name: Type
-              tags__name: Inner Cauldron
-        - _type: Inspiration_Extra
-          name: Default Primary Biosphere
-          count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: 1
-              dice_count: 0
-          inspiration_tables:
-            - _type: Inspiration_Table
-              _exists: true
-              name: Type
-              tags__name: Primary Biosphere
-        - _type: Inspiration_Extra
-          name: Default Outer Reaches
-          count:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              base: 1
-              dice_count: 0
-          inspiration_tables:
-            - _type: Inspiration_Table
-              _exists: true
-              name: Type
-              tags__name: Outer Reaches
+      _exists: true
+      name: Inner Cauldron
+    - _type: Config_Group
+      _exists: true
+      name: Primary Biosphere
+    - _type: Config_Group
+      _exists: true
+      name: Outer Reaches
 
 - _type: Inspiration_Table
   name: Type

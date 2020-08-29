@@ -1,0 +1,57 @@
+- _type: Config_Name
+  name: Asteroid Cluster
+
+- _type: Tag
+  name: Asteroid Cluster
+
+- _type: Config_Asset
+  name: Default Asteroid Cluster
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Asteroid Cluster
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Asteroid Cluster
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "A full-bodied and cohesive Asteroid Cluster is usually formed
+                      from the remains of a planet or moon that has undergone some
+                      incredible cataclysm. The pieces are held together by what is left
+                      of the planetoid’s gravitational field, although spread out over a
+                      rather larger area of space. Pirates frequently use the obscuring
+                      screen of an Asteroid Cluster to their advantage, and valuable
+                      salvage can occasionally be found drifting amongst the rocks.
+                      Wise captains are aware that such salvage is usually derived from
+                      those same pirates, or from others who did not respect the dangers
+                      of an asteroid field, and attempt retrieval accordingly.
+                      Navigating an Asteroid Cluster follows the rules for Asteroid
+                      Fields on pages 226–227 of the ROGUE TRADER Core Rulebook.
+                      Smaller fields of asteroids are often formed by the collision of
+                      large bodies, or the degraded wreckage of truly ancient vessels,
+                      but these pockets are not considered System Elements. Asteroid
+                      Clusters generate 1d5 Mineral Resources (see page 27)."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Asteroid Cluster

@@ -1,0 +1,9 @@
+- _type: Config_Name
+  name: No Feature
+
+- _type: Config_Asset
+  name: Default No Feature
+  type:
+    _type: Config_Name
+    _exists: true
+    name: No Feature

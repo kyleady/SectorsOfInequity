@@ -1,0 +1,51 @@
+- _type: Config_Name
+  name: Dust Rings
+
+- _type: Tag
+  name: Dust Rings
+
+- _type: Config_Asset
+  name: Default Dust Rings
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Dust Rings
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Dust Rings
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "A wide ring of fine particles encircles the gas giant. While the
+                      limited spread prevents it from becoming a navigational hazard
+                      like a true dust cloud or nebula, any Tests using the ship’s
+                      auger arrays on a target within, on, or directly through the
+                      ring are two steps more difficult. Multiple instances of this
+                      Orbital Feature increase the size of the existing Planetary
+                      Rings instead of adding extra sets of Rings. Increase the
+                      penalty to use augers through or within the Rings by an
+                      additional –5 for every two additional instances of this
+                      Feature."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Dust Rings

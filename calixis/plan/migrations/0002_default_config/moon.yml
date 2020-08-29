@@ -1,0 +1,46 @@
+- _type: Config_Name
+  name: Moon
+
+- _type: Tag
+  name: Moon
+
+- _type: Config_Asset
+  name: Default Moon
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Moon
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Moon
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "A true moon is generated as a Planet, using the rules for Planet
+                      Creation (see page 19). Under normal circumstances, a moon
+                      cannot have a higher Planetary Body than the world around which
+                      it orbits. In addition, a moon never generates its own Orbital
+                      Features."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Moon

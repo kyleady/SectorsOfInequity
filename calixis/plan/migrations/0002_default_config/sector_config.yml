@@ -47,10 +47,18 @@
             _type: Config_Region
             _exists: true
             name: Tyranid Space
-      connection_type:
-        _type: Config_Name
-        _exists: true
-        name: Route
+      connection_types:
+        - _type: Weighted_Type
+          weights:
+            - _type: Roll
+              _exists: true
+              required_flags: null
+              base: 1
+              dice_count: 0
+          value:
+            _type: Config_Name
+            _exists: true
+            name: Route
       count:
         - _type: Roll
           _exists: true

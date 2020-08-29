@@ -1,0 +1,85 @@
+- _type: Config_Name
+  name: Radiation Bursts
+
+- _type: Tag
+  name: Radiation Bursts
+
+- _type: Config_Asset
+  name: Default Radiation Bursts
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Radiation Bursts
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Radiation Bursts
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "The forces radiating out from the inner furnace of a star
+                      consist of far more than heat and illumination. The roiling
+                      fires of a star are far beyond the mightiest earthly blaze,
+                      and cast out through the system what some among the
+                      Adeptus Mechanicus call “the Light Invisible.” According to
+                      the doctrines of the Priesthood of Mars, visible light is but
+                      a small part of a spectrum of different energies. The auger
+                      arrays of voidships rely in large part on these forces, and are
+                      often overwhelmed by an excess of input when travelling
+                      close to particularly active stars. Though Rogue Traders are
+                      not generally inclined to the techno-theological theories that
+                      explain these matters, those who go through the harrowing
+                      experience of guiding a vessel blinded by bursts of stellar
+                      radiation often pay a great deal more respect and attention to
+                      the counsel of their Enginseers afterwards.
+
+                      Unlike most System Elements, Radiation Bursts do not
+                      represent an actual presence within the System. Instead, they
+                      exert an influence over the Solar Zone in which they are
+                      present (almost invariably the Inner Cauldron). The Detection
+                      bonus of any ship in the affected area is halved, as constant
+                      low-grade interference degrades any readings gathered. In
+                      addition, activity within an affected star can result in a surge
+                      of radiation throughout the Solar Zone. Such surges tend to
+                      be infrequent, spaced over periods of weeks, months, or more,
+                      but can occur as often as every 1d5 days after a sufficient
+                      build-up. Spotting the fluctuations that precede a radiation
+                      surge requires an Ordinary (+10) Scrutiny+Detection
+                      Test. Avoiding the effects requires leaving the affected Solar
+                      Zone, sheltering behind a nearby Planet or Gas Giant, or by
+                      temporarily insulating the ship’s augers with a Hard (–20)
+                      Tech–Use Test. Any ship caught unprotected within the area
+                      of effect suffers the effects of a Sensors Damaged critical result
+                      from page 222 of the ROGUE TRADER Core Rulebook, and
+                      additionally, cannot send or receive vox transmissions.
+                      This Damage cannot be repaired until at least
+                      1d5 hours after the surge, due to the lingering
+                      presence of these ravaging energies.
+
+                      A Solar Zone generated with multiple instances of
+                      Radiation Bursts further degrades the efficiency of augers
+                      within the affected area. The Detection bonus of affected
+                      ships is reduced by 5 per additional instance of the System
+                      Element after being halved."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Radiation Bursts

@@ -1,0 +1,112 @@
+- _type: Config_Group
+  name: Outer Reaches
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 0
+      dice_count: 1
+      dice_size: 5
+  perterbations:
+    - _type: Perterbation
+      flags: zone_outer_reaches
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 20
+      value:
+        _type: Config_Name
+        _exists: true
+        name: No Feature
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 9
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Asteroid Belt
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 11
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Asteroid Cluster
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 6
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Derelict Station
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 9
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Dust Cloud
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 18
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Gas Giant
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 7
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Gravity Riptide
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 13
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Planet
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 7
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Starship Graveyard

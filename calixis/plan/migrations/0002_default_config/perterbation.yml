@@ -15,7 +15,46 @@
       name: Default Star Cluster
     - _type: Config_Asset
       _exists: true
-      name: Default Solar Zone
+      name: Default Asteroid Belt
     - _type: Config_Asset
       _exists: true
-      name: Default Element
+      name: Default Asteroid Cluster
+    - _type: Config_Asset
+      _exists: true
+      name: Default Debris Rings
+    - _type: Config_Asset
+      _exists: true
+      name: Default Derelict Station
+    - _type: Config_Asset
+      _exists: true
+      name: Default Dust Cloud
+    - _type: Config_Asset
+      _exists: true
+      name: Default Dust Rings
+    - _type: Config_Asset
+      _exists: true
+      name: Default Gas Giant
+    - _type: Config_Asset
+      _exists: true
+      name: Default Gravity Riptide
+    - _type: Config_Asset
+      _exists: true
+      name: Default Lesser Moon
+    - _type: Config_Asset
+      _exists: true
+      name: Default Moon
+    - _type: Config_Asset
+      _exists: true
+      name: Default No Feature
+    - _type: Config_Asset
+      _exists: true
+      name: Default Planet
+    - _type: Config_Asset
+      _exists: true
+      name: Default Radiation Bursts
+    - _type: Config_Asset
+      _exists: true
+      name: Default Solar Flares
+    - _type: Config_Asset
+      _exists: true
+      name: Default Starship Graveyard

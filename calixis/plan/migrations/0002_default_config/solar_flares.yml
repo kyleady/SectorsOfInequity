@@ -1,0 +1,65 @@
+- _type: Config_Name
+  name: Solar Flares
+
+- _type: Tag
+  name: Solar Flares
+
+- _type: Config_Asset
+  name: Default Solar Flares
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Solar Flares
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Solar Flares
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "Though a star provides light and structure to the surrounding
+                      system, it is a power best appreciated at a great distance. Seeking
+                      the treasures of the Inner Cauldron can make a cautious captain
+                      rich, but it can utterly destroy the greedy and reckless. Many stars
+                      seethe with volatile energies that erupt forth with little notice,
+                      and consume whatever is caught in their cataclysmic path.
+
+                      Unlike most System Elements, Solar Flares do not represent an
+                      actual presence within the System. Instead, they exert an influence
+                      over the Solar Zone in which they are present (almost invariably
+                      the Inner Cauldron). Each day a ship remains in this area, roll
+                      1d10; on a result of 10 or higher, the ship is caught in the effects
+                      of a Solar Flare, unless it can find shelter in a safe orbit behind
+                      a sheltering object. Treat the effects of a Solar Flare as inflicting
+                      1d5 hits from a Macrobattery with a Damage of 1d10+3. This
+                      Damage is stopped by Void Shields. Further, the effects of the flare
+                      are spread across such a vast area that it does not inflict Critical
+                      Hits like a weapon with a Crit Rating. Damage past the Armour
+                      of a Crippled ship still inflicts Critical Hits normally.
+
+                      A Solar Zone generated with multiple instances of Solar
+                      Flares is plagued with more frequent and widespread outbursts.
+                      For each instance of this System Element, add +1 to the 1d10
+                      roll for determining if there is a Solar Flare that day."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Solar Flares

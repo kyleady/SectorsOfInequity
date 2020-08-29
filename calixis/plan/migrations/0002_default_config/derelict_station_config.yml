@@ -1,180 +1,222 @@
-
-- _type: Inspiration
+- _type: Config_Name
   name: Derelict Station
-  description: "The remains of orbital habitats, system defence stations, and deep
-                space monitoring outposts can be found drifting through many
-                systems. Even those that have never developed life of their own
-                might house the relics of past explorers and would-be colonists.
-                In systems with an active void-faring civilisation, such stations
-                tend to be either relics of a surpassed level of technology, or
-                a barely intact shell, abandoned to rising construction costs or
-                disastrous systems failure. Whatever their origin, even the gutted
-                remnants of a space station could contain valuable technology, or
-                useful records on those who constructed it.
 
-                If there is an active civilisation of the appropriate
-                Development level in the System, then the Derelict Station
-                most likely belongs to them. If the System is devoid of past or
-                present life, roll on Table 1–4: Derelict Station Origins to
-                determine its creators and original purpose and then generate
-                1d5–1 (to a minimum of 0) Archeotech Cache or Xenos Ruins
-                Resources aboard the station (see page 27). If the Station is
-                fired upon in ship combat or suffers collateral damage from
-                some other source, treat it as having 10 Armour, between
-                4d10 points of Hull Integrity, and no other defences. For the
-                purposes of any Endeavours to extract the Resources aboard a
-                Derelict Station, it can be treated as a Derelict Vessel Encounter
-                Site (see pages 59–60). At the Game Master’s discretion,
-                the Explorers might be required to board the lonely station
-                themselves to locate these resources, walking through the
-                shadowy halls as voracious eyes gleam from the darkness."
+- _type: Tag
+  name: Derelict Station
+
+- _type: Config_Asset
+  name: Default Derelict Station
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Derelict Station
   inspiration_tables:
     - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Derelict Station
+    - _type: Inspiration_Table
+      _exists: true
       name: Origins
-      count:
+      tags__name: Derelict Station
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
         - _type: Roll
           _exists: true
           required_flags: null
           base: 1
           dice_count: 0
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: Egarian Void-maze
-            description: "The station is a bafflfling construct of crystals with no
-                          readily apparent purpose or function, but built along
-                          similar geometrical principles as the dead cities of the
-                          Egarian Dominion."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: Eldar Orrery
-            description: "The station is constructed of the smooth, bone-like
-                          material from which the Eldar make their ships, and is
-                          riddled with cloistered cells. Examination by a Navigator
-                          or psyker hints at a long-vanished power permeating the
-                          structure."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 5
-          value:
-            _type: Inspiration
-            name: Eldar Gate
-            description: "This vast Eldar contraption resembles nothing so much as
-                          the frame of an enormous door, but only the empty void
-                          shows through it. No amount of searching yields a sign of
-                          its purpose or function."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: Ork Rok
-            description: "From the outside, this “station” appears to be nothing
-                          more than a lonely, out of the way asteroid. Despite its
-                          appearance, it has been thoroughly hollowed out, and
-                          fifilled with dubious Orky technology. Some of the
-                          technology might even have worked at one point."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 10
-          value:
-            _type: Inspiration
-            name: STC Defence Station
-            description: "The core of the station is based off a standard pattern
-                          derived from Standard Template Construct technology, like
-                          countless others throughout the Imperium. What remains of
-                          the banks of weapon batteries and torpedo bays indicates
-                          that it was once intended to safeguard a human colony from
-                          attack."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: STC Monitor Station
-            description: "The core of the station is based off a standard pattern
-                          derived from Standard Template Construct technology, like
-                          countless others throughout the Imperium. Despite its age,
-                          the hull still bristles with auger arrays and reception
-                          panels that indicate its former use as a communications or
-                          intelligence hub."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 11
-          value:
-            _type: Inspiration
-            name: Stryxis Collection
-            description: "Calling this accumulation of wreckage and junk a space
-                          station would insult an Ork Mek, much less a shipwright of
-                          the Adeptus Mechanicus. The only explanation for its
-                          accretion comes from the vox-beacon broadcasting some kind
-                          of territorial claim by the Stryxis."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 9
-          value:
-            _type: Inspiration
-            name: Xenos Defence Station
-            description: "The architecture of the station does not match any
-                          examples yet encountered, but it is clearly inhuman in
-                          origin. Though the technology that comprises it is
-                          strange, there is no mistaking the intended purpose of its
-                          decaying armaments."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 15
-          value:
-            _type: Inspiration
-            name: Xenos Monitor Station
-            description: "The architecture of the station does not match any
-                          examples yet encountered, but it is clearly inhuman in
-                          origin. Its purpose is hard to ascertain for sure, but
-                          some of the arcane devices that line its hull resemble vox
-                          hubs and other necessities for a deep space monitor
-                          station."
+      value:
+        _type: Inspiration
+        name: Description
+        description: "The remains of orbital habitats, system defence stations, and deep
+                      space monitoring outposts can be found drifting through many
+                      systems. Even those that have never developed life of their own
+                      might house the relics of past explorers and would-be colonists.
+                      In systems with an active void-faring civilisation, such stations
+                      tend to be either relics of a surpassed level of technology, or
+                      a barely intact shell, abandoned to rising construction costs or
+                      disastrous systems failure. Whatever their origin, even the gutted
+                      remnants of a space station could contain valuable technology, or
+                      useful records on those who constructed it.
+
+                      If there is an active civilisation of the appropriate
+                      Development level in the System, then the Derelict Station
+                      most likely belongs to them. If the System is devoid of past or
+                      present life, roll on Table 1–4: Derelict Station Origins to
+                      determine its creators and original purpose and then generate
+                      1d5–1 (to a minimum of 0) Archeotech Cache or Xenos Ruins
+                      Resources aboard the station (see page 27). If the Station is
+                      fired upon in ship combat or suffers collateral damage from
+                      some other source, treat it as having 10 Armour, between
+                      4d10 points of Hull Integrity, and no other defences. For the
+                      purposes of any Endeavours to extract the Resources aboard a
+                      Derelict Station, it can be treated as a Derelict Vessel Encounter
+                      Site (see pages 59–60). At the Game Master’s discretion,
+                      the Explorers might be required to board the lonely station
+                      themselves to locate these resources, walking through the
+                      shadowy halls as voracious eyes gleam from the darkness."
   tags:
     - _type: Tag
       _exists: true
-      name: System Element
+      name: Derelict Station
+
+- _type: Inspiration_Table
+  name: Origins
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 10
+      value:
+        _type: Inspiration
+        name: Egarian Void-maze
+        description: "The station is a bafflfling construct of crystals with no
+                      readily apparent purpose or function, but built along
+                      similar geometrical principles as the dead cities of the
+                      Egarian Dominion."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 10
+      value:
+        _type: Inspiration
+        name: Eldar Orrery
+        description: "The station is constructed of the smooth, bone-like
+                      material from which the Eldar make their ships, and is
+                      riddled with cloistered cells. Examination by a Navigator
+                      or psyker hints at a long-vanished power permeating the
+                      structure."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 5
+      value:
+        _type: Inspiration
+        name: Eldar Gate
+        description: "This vast Eldar contraption resembles nothing so much as
+                      the frame of an enormous door, but only the empty void
+                      shows through it. No amount of searching yields a sign of
+                      its purpose or function."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 15
+      value:
+        _type: Inspiration
+        name: Ork Rok
+        description: "From the outside, this “station” appears to be nothing
+                      more than a lonely, out of the way asteroid. Despite its
+                      appearance, it has been thoroughly hollowed out, and
+                      fifilled with dubious Orky technology. Some of the
+                      technology might even have worked at one point."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 10
+      value:
+        _type: Inspiration
+        name: STC Defence Station
+        description: "The core of the station is based off a standard pattern
+                      derived from Standard Template Construct technology, like
+                      countless others throughout the Imperium. What remains of
+                      the banks of weapon batteries and torpedo bays indicates
+                      that it was once intended to safeguard a human colony from
+                      attack."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 15
+      value:
+        _type: Inspiration
+        name: STC Monitor Station
+        description: "The core of the station is based off a standard pattern
+                      derived from Standard Template Construct technology, like
+                      countless others throughout the Imperium. Despite its age,
+                      the hull still bristles with auger arrays and reception
+                      panels that indicate its former use as a communications or
+                      intelligence hub."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 11
+      value:
+        _type: Inspiration
+        name: Stryxis Collection
+        description: "Calling this accumulation of wreckage and junk a space
+                      station would insult an Ork Mek, much less a shipwright of
+                      the Adeptus Mechanicus. The only explanation for its
+                      accretion comes from the vox-beacon broadcasting some kind
+                      of territorial claim by the Stryxis."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 9
+      value:
+        _type: Inspiration
+        name: Xenos Defence Station
+        description: "The architecture of the station does not match any
+                      examples yet encountered, but it is clearly inhuman in
+                      origin. Though the technology that comprises it is
+                      strange, there is no mistaking the intended purpose of its
+                      decaying armaments."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 15
+      value:
+        _type: Inspiration
+        name: Xenos Monitor Station
+        description: "The architecture of the station does not match any
+                      examples yet encountered, but it is clearly inhuman in
+                      origin. Its purpose is hard to ascertain for sure, but
+                      some of the arcane devices that line its hull resemble vox
+                      hubs and other necessities for a deep space monitor
+                      station."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Derelict Station

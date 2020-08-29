@@ -1,29 +1,53 @@
 - _type: Config_Region
   name: The Imperium
-  type:
-    _type: Config_Name
-    _exists: true
-    name: System
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: System
   tags:
     - _type: Tag
       _exists: true
       name: Default
 - _type: Config_Region
   name: The Warp
-  type:
-    _type: Config_Name
-    _exists: true
-    name: System
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: System
   tags:
     - _type: Tag
       _exists: true
       name: Default
 - _type: Config_Region
   name: Tyranid Space
-  type:
-    _type: Config_Name
-    _exists: true
-    name: System
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: System
   tags:
     - _type: Tag
       _exists: true

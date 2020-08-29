@@ -1,0 +1,57 @@
+- _type: Config_Name
+  name: Asteroid Belt
+
+- _type: Tag
+  name: Asteroid Belt
+
+- _type: Config_Asset
+  name: Default Asteroid Belt
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Asteroid Belt
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Asteroid Belt
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "Some systems are wrapped in a vast ring of debris, formed
+                      from shattered or stillborn planets. Whatever bonds once held
+                      the circling fragments together have since yielded to outside
+                      forces, but the inescapable draw of the local star maintains the
+                      remaining cohesion. The encircling line of an Asteroid Belt
+                      can cause difficulties to ships seeking passage deeper into the
+                      system. Any direct route requires successful navigation of the
+                      ring, although it is possible to bypass an Asteroid Belt by
+                      leaving the orbital plane of the system. Such detours tend to
+                      be lengthy, often adding several full days of travel.
+                      Navigating an Asteroid Belt follows the rules for Asteroid
+                      Fields on pages 226–227 of the ROGUE TRADER Core
+                      Rulebook, although its diffusion across the System means
+                      that successfully passing through requires only an Easy (+20)
+                      Pilot (Space Craft)+Manoeuvrability Test. Asteroid Belts
+                      generate 1d5 Mineral Resources (see page 27)."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Asteroid Belt

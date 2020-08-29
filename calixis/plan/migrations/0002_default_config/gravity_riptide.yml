@@ -1,0 +1,55 @@
+- _type: Config_Name
+  name: Gravity Riptide
+
+- _type: Tag
+  name: Gravity Riptide
+
+- _type: Config_Asset
+  name: Default Gravity Riptide
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Gravity Riptide
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Gravity Riptide
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "The signs that warn of these destructive vortices can be nearly
+                      impossible to spot until a voidship is nearly upon them,
+                      the augers registering the anomaly barely soon enough to
+                      scream a klaxon of warning. The customary sweep of a newly
+                      discovered system seldom, if ever, turns up these hazards from
+                      the distance at which it is made. More often, they remain
+                      undetected and unknown until a ship’s path crosses their
+                      influence. The fear of these unseen hazards plagues many
+                      veteran voidsmen, and any attempt to make use of a system in
+                      which they are present inevitably involves mapping them on
+                      the charts and rutters of the exploring fleet.
+
+                      Gravity Riptides follow the rules for Gravity Tides on page
+                      227 of the ROGUE TRADER Core Rulebook."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gravity Riptide

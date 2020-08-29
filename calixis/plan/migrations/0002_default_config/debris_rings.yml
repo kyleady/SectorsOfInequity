@@ -1,0 +1,50 @@
+- _type: Config_Name
+  name: Debris Rings
+
+- _type: Tag
+  name: Debris Rings
+
+- _type: Config_Asset
+  name: Default Debris Rings
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Debris Rings
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Debris Rings
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "A narrow band of asteroids or chunks of ice extends out around
+                      the Gas Giant. While the limited spread means that avoiding the
+                      field requires a detour, a vessel with cause to pass directly
+                      through the ring must make a Challenging (+0) Pilot(Space Craft)
+                      +Manoeuvrability Test as if passing through an Asteroid Field,
+                      as described on pages 226–227 of the ROGUE TRADER Core Rulebook.
+                      Multiple instances of this Orbital Feature increase the size of
+                      the rings. Tests to pass through safely suffer a –10 penalty for
+                      each additional instance of this Orbital Feature."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Debris Rings

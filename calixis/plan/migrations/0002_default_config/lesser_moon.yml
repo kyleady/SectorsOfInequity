@@ -1,0 +1,46 @@
+- _type: Config_Name
+  name: Lesser Moon
+
+- _type: Tag
+  name: Lesser Moon
+
+- _type: Config_Asset
+  name: Default Lesser Moon
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Lesser Moon
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Lesser Moon
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "An orbital body somewhere between an extremely large asteroid
+                      and a very small moon orbits the Planet. It has its own
+                      extremely limited gravity well, allowing low-gravity travel
+                      across the surface, as described on page 269 of the ROGUE TRADER
+                      Core Rulebook."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Lesser Moon
