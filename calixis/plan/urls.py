@@ -1,6 +1,7 @@
 from django.urls import path
 from .views.default import DefaultViews
 from .views.asset import AssetViews
+from .views.asset_grid import AssetGridViews
 from .views.app_views import AppViews
 from .views.subapp_views import SubappViews
 from .models import *
@@ -16,7 +17,12 @@ asset_models = [
       },
       'Views': AssetViews
     },
-    { 'full_name': 'Asset Grid', 'app': app, 'subapp': subapp, 'name': 'asset-grid', 'Model': Asset_Grid },
+    { 'full_name': 'Asset Grid', 'app': app, 'subapp': subapp, 'name': 'asset-grid', 'Model': Asset_Grid,
+        'custom': {
+           'SubModels': [Asset_Node, Asset_Connection], 'Grid': Asset_Grid, 'Job': Job, 'detail_template': 'asset_grid_detail.html', 'no_form': True
+        },
+        'Views': AssetGridViews
+    },
     { 'full_name': 'Asset Node', 'app': app, 'subapp': subapp, 'name': 'asset-node', 'Model': Asset_Node },
     { 'full_name': 'Asset Connection', 'app': app, 'subapp': subapp, 'name': 'asset-connection', 'Model': Asset_Connection },
 ]

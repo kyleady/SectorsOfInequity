@@ -33,4 +33,17 @@
     {% endfor %}
   {% endif %}
 
+  {% if model.grids.count %}
+    <p><strong>Grids</strong></p>
+    <ul>
+    {% for grid in model.grids.all %}
+      <li>
+        <a href="{% url "plan-asset-asset-grid-detail" grid.id %}">
+          {{ grid }}
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
 {% endblock %}
