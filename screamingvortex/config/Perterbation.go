@@ -3,8 +3,8 @@ package config
 import "database/sql"
 import "math/rand"
 import "strings"
-
 import "fmt"
+import "regexp"
 
 import "screamingvortex/utilities"
 
@@ -122,10 +122,16 @@ func FetchManyPerterbationIds(manager *ConfigManager, parentId int64, tableName 
 
 func (basePerterbation *Perterbation) CombineFlags(perterbation *Perterbation) []string {
   newFlags := make([]string, 0)
+  mutedPatterns := make([]*regexp.Regexp, 0)
+  for _, mutedFlag := range append(basePerterbation.mutedFlags, perterbation.mutedFlags...) {
+    re := regexp.MustCompile(mutedFlag)
+    mutedPatterns = append(mutedPatterns, re)
+  }
+
   for _, flagToAdd := range append(basePerterbation.flags, perterbation.flags...) {
     addFlag := true
-    for _, mutedFlag := range append(basePerterbation.mutedFlags, perterbation.mutedFlags...) {
-      if flagToAdd == mutedFlag {
+    for _, mutedPattern := range mutedPatterns {
+      if mutedPattern.FindString(flagToAdd) != "" {
         addFlag = false
         break
       }
