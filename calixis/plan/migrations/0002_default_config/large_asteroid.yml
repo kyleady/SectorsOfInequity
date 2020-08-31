@@ -1,0 +1,46 @@
+- _type: Config_Name
+  name: Large Asteroid
+
+- _type: Tag
+  name: Large Asteroid
+
+- _type: Config_Asset
+  name: Default Large Asteroid
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Large Asteroid
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Large Asteroid
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "An asteroid of unusual size has been captured by the Planet’s
+                      gravity well, and now occupies a stable orbit around it. It is
+                      just large enough to be noted by an orbital survey, but not
+                      enough to be seen from the Planet’s surface without visual
+                      enhancement."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Large Asteroid

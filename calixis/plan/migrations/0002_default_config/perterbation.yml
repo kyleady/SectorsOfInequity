@@ -58,3 +58,9 @@
     - _type: Config_Asset
       _exists: true
       name: Default Starship Graveyard
+    - _type: Config_Asset
+      _exists: true
+      name: Default Large Asteroid
+    - _type: Config_Asset
+      _exists: true
+      name: Default Territory
