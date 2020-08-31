@@ -20,16 +20,18 @@
 
   {% if model.asset_groups.count %}
     {% for asset_group in model.asset_groups.all %}
-        <p><strong>{{ asset_group.name }}</strong></p>
-        <ul>
-        {% for asset in asset_group.assets.all %}
-          <li>
-            <a href="{% url "plan-asset-asset-detail" asset.id %}">
-              {{ asset }}
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
+        {% if asset_group.assets.count %}
+          <p><strong>{{ asset_group.name }}</strong></p>
+          <ul>
+          {% for asset in asset_group.assets.all %}
+            <li>
+              <a href="{% url "plan-asset-asset-detail" asset.id %}">
+                {{ asset }}
+              </a>
+            </li>
+          {% endfor %}
+          </ul>
+        {% endif %}
     {% endfor %}
   {% endif %}
 
