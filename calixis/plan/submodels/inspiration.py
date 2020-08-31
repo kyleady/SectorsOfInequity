@@ -33,3 +33,4 @@ class Inspiration(models.Model):
     perterbations = models.ManyToManyField('Perterbation')
     tags = models.ManyToManyField('Tag', related_name='inspiration_tags')
     inspiration_tables = models.ManyToManyField(Inspiration_Table, related_name='sub_inspiration_tables')
+    extra_rolls = models.SmallIntegerField(blank=True, default=0)

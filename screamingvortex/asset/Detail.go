@@ -166,9 +166,14 @@ func RollInspirationTable(tableAddress []*config.InspirationKey, perterbation *c
   newPerterbation := perterbation
   inspirationTable := perterbation.GetInspirationTable(tableAddress)
   numberOfRollsOnTheTable := inspirationTable.RollCount(newPerterbation)
-  for i := 0; i < numberOfRollsOnTheTable; i++ {
+  additionalRolls := 0
+  for i := 0; i < numberOfRollsOnTheTable + additionalRolls; i++ {
     detail, newPerterbation = RollDetail(tableAddress, newPerterbation)
     if detail != nil {
+      for _, inspiration := range detail.Inspirations {
+        additionalRolls += inspiration.ExtraRolls
+      }
+
       details = append(details, detail)
     }
   }

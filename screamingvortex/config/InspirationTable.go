@@ -93,7 +93,12 @@ func FetchManyInspirationTables(manager *ConfigManager, parentId int64, tableNam
 }
 
 func (inspirationTable *InspirationTable) RollOnce(perterbation *Perterbation) []int64 {
-  return RollWeightedValues(inspirationTable.WeightedInspirations, perterbation, inspirationTable.Modifiers).Values
+  weightedValue := RollWeightedValues(inspirationTable.WeightedInspirations, perterbation, inspirationTable.Modifiers)
+  if weightedValue != nil {
+    return weightedValue.Values
+  } else {
+    return nil
+  }
 }
 
 

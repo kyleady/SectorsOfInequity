@@ -3,6 +3,7 @@ package config
 type Inspiration struct {
   Id int64 `sql:"id"`
   Name string `sql:"name"`
+  ExtraRolls int `sql:"extra_rolls"`
   PerterbationIds []int64
   InspirationRolls []*InspirationTable
   InspirationTables []*InspirationTable
