@@ -1,0 +1,160 @@
+- _type: Config_Name
+  name: Wasteland
+
+- _type: Tag
+  name: Wasteland Territory
+
+- _type: Config_Asset
+  name: Default Wasteland Territory
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Wasteland
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Terrain
+      tags__name: Wasteland Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Traits
+      tags__name: Wasteland Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Landmarks
+      tags__name: Territory
+
+- _type: Inspiration_Table
+  name: Terrain
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Wasteland Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Wasteland
+        description: "A Wasteland can be a frozen tundra or a scorching ocean of
+                      sand dunes, or many other things in between. In all cases,
+                      these lands are defined by being inimical to life. They
+                      are not merely full of danger, as a Swamp or predatorhaunted
+                      Forest might be, but are dangers in themselves.
+                      Not even the native flora or fauna can easily live in a
+                      Wasteland, where water is scarce and the very air can be cruel.
+                      Wastelands are frequently found in regions of extreme heat
+                      or cold. At the GM’s discretion, a Wasteland can have an
+                      additional instance of the Extreme Temperature Territory
+                      Trait, in addition to whatever it generates randomly."
+
+- _type: Inspiration_Table
+  name: Traits
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Wasteland Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 5
+      base: -2
+      minimum: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Hybrid
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Desolate
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Expansive
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 6
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Extreme Temperature
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Notable Species
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ruined
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unusual Location
+        tags__name: Territory

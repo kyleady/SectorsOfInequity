@@ -1,0 +1,160 @@
+- _type: Config_Name
+  name: Mountain Range
+
+- _type: Tag
+  name: Mountain Range Territory
+
+- _type: Config_Asset
+  name: Default Mountain Range Territory
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Mountain Range
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Terrain
+      tags__name: Mountain Range Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Traits
+      tags__name: Mountain Range Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Landmarks
+      tags__name: Territory
+
+- _type: Inspiration_Table
+  name: Terrain
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Mountain Range Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Mountain Range
+        description: "The serried peaks of a Mountain Range are a presence as
+                      impressive in their sum as any single towering peak. Though
+                      they are not individually as large as Mountain Landmarks, the
+                      individual elements of a mountain range are nonetheless quite
+                      impressive, in most cases. Sometimes a range is found that
+                      trades frost-capped peaks for volcanic fissures, making for a
+                      Territory more perilous than most.
+
+                      Mountain Ranges grant Explorers who can see them a +10
+                      bonus to Navigate (Surface) Tests when they can be used as a
+                      point of reference, in the same manner as Landmarks."
+
+- _type: Inspiration_Table
+  name: Traits
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Mountain Range Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 5
+      base: -2
+      minimum: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Hybrid
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 5
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Boundary
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 5
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Expansive
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Extreme Temperature
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Foothills
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Notable Species
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unusual Location
+        tags__name: Territory

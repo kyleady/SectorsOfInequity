@@ -169,6 +169,10 @@
         name: Large
         description: "Worlds of this size can range across a vast spectrum of
                       possible types."
+        perterbations:
+          - _type: Perterbation
+            name: Small and Dense
+            flags: planet_body_large
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -741,6 +745,9 @@
         name: Liquid Water
         description: "Liquid water is accessible on the Planet’s surface, but no
                       native life has arisen to make use of it."
+        perterbations:
+          - _type: Perterbation
+            flags: planet_habitability_liquid_water
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -760,7 +767,7 @@
         perterbations:
           - _type: Perterbation
             name: Limited Ecosystem
-            flags: planet_habitability_limited_ecosystem
+            flags: planet_habitability_limited_ecosystem,planet_habitability_liquid_water
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -776,7 +783,7 @@
         perterbations:
           - _type: Perterbation
             name: Verdant
-            flags: planet_habitability_verdant
+            flags: planet_habitability_verdant,planet_habitability_liquid_water
 
 - _type: Inspiration_Table
   name: Landmasses
@@ -797,6 +804,10 @@
           _exists: true
           required_flags: null
           base: 3
+          dice_count: 0
+        - _type: Roll
+          required_flags: planet_habitability_liquid_water
+          base: 4
           dice_count: 0
       value:
         _type: Inspiration
@@ -819,10 +830,14 @@
           required_flags: null
           base: 7
           dice_count: 0
+        - _type: Roll
+          required_flags: planet_habitability_liquid_water
+          base: -4
+          dice_count: 0
       value:
         _type: Inspiration
         name: Single Landmass
-        description: ""
+        description: "1"
 
 - _type: Config_Group
   name: Satellites
@@ -928,7 +943,51 @@
       value:
         _type: Config_Name
         _exists: true
-        name: Territory
+        name: Forest
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Mountain Range
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Plains
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Swamp
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Wasteland
   count:
     - _type: Roll
       required_flags: planet_body_low_masss

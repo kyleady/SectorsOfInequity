@@ -63,4 +63,16 @@
       name: Default Large Asteroid
     - _type: Config_Asset
       _exists: true
-      name: Default Territory
+      name: Default Forest Territory
+    - _type: Config_Asset
+      _exists: true
+      name: Default Mountain Range Territory
+    - _type: Config_Asset
+      _exists: true
+      name: Default Plains Territory
+    - _type: Config_Asset
+      _exists: true
+      name: Default Swamp Territory
+    - _type: Config_Asset
+      _exists: true
+      name: Default Wasteland Territory

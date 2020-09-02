@@ -1,0 +1,460 @@
+- _type: Tag
+  name: Territory
+
+- _type: Inspiration_Table
+  name: Landmarks
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 5
+      base: 0
+    - _type: Roll
+      required_flags: planet_body_large
+      dice_count: 0
+      base: 2
+    - _type: Roll
+      required_flags: planet_body_large_and_dense
+      dice_count: 0
+      base: 2
+    - _type: Roll
+      _exists: true
+      required_flags: planet_body_vast
+      dice_count: 0
+      base: 3
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration
+        name: Canyon
+        description: "Canyon Landmarks usually take the form of a vast trench,
+                      carved into the soil or bedrock. Sometimes they represent a
+                      network of smaller canyons, or retain the imprint of whatever
+                      force shaped their course. The largest and deepest canyons
+                      extend through the crust of a planet, so that their roots are
+                      filled with seething magma. Major canyon networks are often
+                      used to assist mining operations in the surrounding area by
+                      providing easier access to buried minerals."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration
+        name: Cave Network
+        description: "Extensive ranges of tunnels and caves can be found beneath
+                      the surface of many worlds. Systems of this sort that also
+                      connect to the lands above can represent an unusual form
+                      of Landmark. In some cases, a single cavern of immense
+                      proportions can be a Landmark instead, but it is rare for a
+                      natural cavern to remain stable at such a size.
+
+                      Landmarks of this sort cannot normally be used as a
+                      reference point for Navigation (Surface) Tests. At the GM’s
+                      discretion, it might be possible for Explorers to follow their
+                      course with a scanner or similar technology, and gain the
+                      navigational benefits through the device."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Crater
+        description: "In most cases, a Crater Landmark represents the impact point
+                      of an object originating beyond the planet, usually a meteor.
+                      Some craters show signs of being formed from a longago
+                      barrage by orbital weaponry, instead. This type of
+                      Landmark can also represent a large depression in the
+                      planet’s surface formed by a more local source,
+                      such as a valley shaped by tectonic forces"
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration
+        name: Mountain
+        description: "Whether solitary or part of an extended range, Mountain
+                      Landmarks are among the most impressive sights on any
+                      world that features them. These towering peaks can extend to
+                      twenty kilometres in height, or more. More than one Rogue
+                      Trader has set the seat of their authority on a colonised world,
+                      atop the highest mountain that could be found. Such fortresses
+                      offer unparalleled protection from ground attack, as well as
+                      making excellent locations for surface-based defence lasers and
+                      similar weapons. The awe-inspiring view can prove a valuable
+                      reminder of the Rogue Trader’s power to visitors, as well.
+                      The vast size and rigid definition of Mountain Landmarks
+                      makes them the ideal visual cue. Using Mountains to as reference
+                      grants an additional +10 bonus to Navigate (Surface) Tests."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Volcano
+        description: "Volcanoes can take a wide variety of forms, varying in size
+                      and shape based on the conditions that formed them. Those
+                      with a sufficient presence to qualify as a Landmark are
+                      generally huge fire-mountains, or occasionally an extensive
+                      series of volcanic vents. In any form, they are as notable for
+                      the haze of superheated air and occasional cloud of spewed
+                      ash as for their size. Outright eruptions are rare, but utterly
+                      catastrophic when they occur.
+
+                      Treat an extinct volcano as a Mountain Landmark."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Glacier
+        description: "These Landmarks are often found on ice worlds, or near the
+                      polar regions of worlds with an abundant supply of water.
+                      These huge, frozen mountains are usually formed of ice,
+                      although the range of substances that they could contain is
+                      greatly expanded on the coldest worlds.
+
+                      Glaciers are only found on Planets with a Climate result of
+                      Ice World, or a Habitability result of Trapped Water or higher."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Inland Sea
+        description: "The lakes of some worlds are so big as to stretch the definition
+                      of the word, demanding a more appropriate term to describe
+                      their expansiveness. Such features are common on worlds
+                      with an undivided landmass, although they can potentially be
+                      found wherever there is a continent large enough to surround
+                      one. Any sufficiently large, land-locked body of water can be
+                      an Inland Sea Landmark.
+
+                      Inland Seas are normally only be found on Planets with
+                      a Habitability result of Liquid Water, Limited Ecosystem,
+                      or Verdant. At the GM’s discretion, a frozen version can be
+                      found on Planets with a Habitability result of Trapped Water.
+                      The Landmark also represents phenomena like reservoirs of
+                      fluid chemicals such as quicksilver, which can be found on a
+                      Planet without any water."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Perpetual Storm
+        description: "Unusual atmospheric conditions can result in persistent or
+                      even wholly stable weather patterns in a limited area. The
+                      affected region might constantly be overshadowed by banks
+                      of thunderheads, riven by lightning, or simply blown about
+                      in a constantly circulating wind. Such effects are usually
+                      dangerous to anyone caught without shelter, although rare
+                      benign cases have been discovered.
+
+                      Drive and Pilot Tests to pass through a Perpetual Storm
+                      suffer a –20 penalty. Storms with harmful effects such as
+                      electrical discharges or corrosive precipitation typically
+                      inflict 1d10+3 Energy Damage for every half hour of
+                      exposure, although examples exist that are either more or less
+                      dangerous. Perpetual Storms are only found on Planets with
+                      an Atmosphere result of Moderate or Heavy."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Reef
+        description: "Oceanic reefs are typically too limited in size or spread to
+                      qualify as a Landmark, but some worlds house notable
+                      exceptions. In some cases, these vast formations are created
+                      by thousands of generations of native aquatic life, while
+                      others represent eroded tracts of coastline, or even sunken
+                      continents. Reefs are often spread out over a wider area than
+                      other Landmarks, making up what they lack in height through
+                      an impressive amount of coverage.
+
+                      Reefs can only be found on Planets with a Habitability
+                      result of Liquid Water, Limited Ecosystem, or Verdant. At
+                      the GM’s discretion, the remnants of a Reef can be found
+                      on a Planet without water, indicating the presence of ancient
+                      oceans on a Planet where they no longer exist. The largest of
+                      these extinct reefs provide an additional Navigation bonus, in
+                      the same manner as a Mountain."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Whirlpool
+        description: "Certain tidal forces can create a vortex in the oceans of a
+                      world that churns and seethes without end. They are usually
+                      lethal to any efforts at nautical travel in its vicinity, but even
+                      the land is not be wholly safe from its influence. Whirlpools
+                      that lie near a shoreline sometimes exacerbate issues with
+                      local tectonics, causing tremors or earthquakes, and eventually
+                      tearing the entire coast apart.
+
+                      Whirlpools can only be found on Planets with a Habitability
+                      result of Liquid Water, Limited Ecosystem, or Verdant. In
+                      addition, they are rarely found on Planets without at least
+                      two Orbital Features influencing the tides."
+
+- _type: Inspiration
+  name: Boundary
+  description: "Mountain Ranges with this Trait are natural divisors of the land
+                around them. They can bisect a continent, separate two Territories,
+                or even cross through and divide a single, larger Territory. They are
+                difficult to cross, and might even lack easy passage altogether."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Broken Ground
+  description: "Unlike most Plains, this Territory has only the semblance of even
+                ground. Its apparently flat expanses are actually riven with small
+                fissures, which could be a relic of tectonic activity or simply
+                a side effect of local burrowing creatures. In certain extreme
+                cases, the ground is unstable or even prone to collapse. Crossing
+                such a Territory in a wheeled vehicle or on foot is likely to be
+                an exercise in disaster; double all travel times, and at the GM’s
+                discretion, the Explorers might run across a sinkhole at any time."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Desolate
+  description: "This territory is harsh and unforgiving, even by the standards
+                of Wastelands. It is utterly devoid of respite within its borders,
+                lacking any oases, natural springs, or other potential sources of
+                relief. Survival Tests made in a Desolate Territory are made at an
+                additional –10 penalty, and Tests to find water automatically fail."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Exotic Nature
+  description: "The flora that would comprise a more typical Forest is
+                replaced with something entirely more bizarre. Groves of
+                crystal, spires of chitin or bone, or even strangely
+                dormant mounds of oozing flesh might be this
+                Territory’s basis, instead. At the GM’s discretion,
+                passing through might require passing a Fear Test
+                against a Fear Rating of 0 (Disturbing)."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Expansive
+  description: "The boundaries of this Territory are
+                greatly extended beyond a typical
+                example of its type. While the
+                exact size of any Territory is up
+                to the GM’s discretion, a Territory
+                with this Trait is typically up to half
+                again or more the size of similar regions on
+                the Planet in question."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Extreme Temperature
+  description: "Extreme heat or cold pervades this Territory. If
+                the Planet already has an inclination towards
+                one extreme, then this Trait imposes an additional –10 penalty
+                on Toughness Tests to endure the elements. Otherwise, resisting
+                the extreme temperatures within the Territory requires a
+                Challenging (+0) Toughness Test.
+
+                Alternately, a Territory can provide an extreme temperature
+                opposite the one common on the rest of the Planet, such as a
+                range of volcanoes on an ice world. In this case, Tests to resist
+                the Planet’s typical influence are made at a +10 bonus
+                while the Explorers are within in the affected area."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Fertile
+  description: "The soil here is especially fecund, allowing the local flora
+                to thrive and grow particularly abundant and vigorous
+                here. Often times, unique strains of life pop up in such lush
+                environments to take advantage of the particularly nurturing
+                surroundings. Such areas can also make for useful agricultural
+                outposts."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Foothills
+  description: "Most of the peaks in this Mountain Range are dwarfed by a
+                single larger example, towering above the rest. This lonely titan
+                is large enough to qualify as a Mountain Landmark. The bonuses
+                to Navigate (Surface) Tests from this effect supersede the normal
+                benefits from a Mountain Range, instead of adding to it."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Notable Species
+  description: "One of the Planet’s more noteworthy native species is found
+                only in this Territory. Generate a new species for this purpose,
+                using the rules presented below. In some cases, this Trait can
+                indicate the presence of an unusual, local variation of a more
+                widespread species. Such examples tend to be dramatically
+                different from other specimens in colouration, temperament, or
+                physique, and might have special adaptations to better exploit
+                the Territory in which they live. These changes can be more
+                pronounced than regional variation might otherwise provide.
+                At the GM’s discretion, this species could be the source of
+                one of the Planet’s Organic Compound Resources."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Ruined
+  description: "The bleak lands of this Territory are not the product of a natural
+                process, but the wounds wrought by outside forces. A scar of
+                fused glass from an orbital lance strike or the shattered shells of
+                an ancient barrage hint that this land was once worth something,
+                as a target, if nothing else. The worst Territories of this sort have
+                been wounded not by war, or punitive strikes, but by the spilled
+                energies of the Warp, and the footsteps of Daemons. A Ruined
+                Territory often requires a Fear Test to enter, with the difficulty
+                based on the nature of the cataclysm that created it. Whenever
+                an Explorer gains a Corruption Point within a Ruined Territory,
+                he gains one additional Corruption Point."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Stagnant
+  description: "This Territory houses little in the way of life, and even less in
+                activity. If its waters flow at all, it is not easily noticed, and
+                the few creatures that live within are not easily found. It is
+                a silent, still place, ill-suited to vigorous activity. Travellers
+                become trapped in the mud, and even vehicles are fouled by
+                it. Travel times through a Stagnant Territory are doubled, and
+                Navigation (Surface) Tests are made at a –10 penalty."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Unique Compound
+  description: "A strain of local flora that can only be found in this
+                Territory contains a substance of great value. The Planet has
+                an additional Organic Compound Resource, provided by
+                these plants. Its exact nature and Abundance are generated
+                normally"
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Unusual Location
+  description: "In most cases, Territories are located where local conditions
+                would be most likely to create the relevant base terrain. Forests
+                are rarely found in frozen polar regions, and even the most
+                experienced Explorers consider it unusual to find a Wasteland
+                surrounded by verdant fields. For some reason, these general
+                rules do not apply to this Territory, which exists where it is
+                does not belong, and perhaps should not be."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Virulent
+  description: "The marshy pools here are not merely foul, but very nearly
+                cauldrons of plague. The adaptations this spurs in the local
+                wildlife make them just as bad, or worse. Simply spending a
+                day in this Territory requires a Challenging (+0) Toughness
+                Test to avoid suffering a Wound that ignores Toughness
+                Bonus and Armour. Drinking the water without thorough
+                treatment can inflict a variety of effects, from Toxic Damage,
+                to months-long fevers, or even Insanity. All Rending Damage
+                suffered within the Territory is treated as Toxic, due to the
+                risk of infection. For the same reason, Medicae Tests to treat
+                injuries suffered here are made at a –20 penalty."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory
+
+- _type: Inspiration
+  name: Hybrid
+  description: "Roll again twice and apply both results."
+  extra_rolls: 2
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Territory

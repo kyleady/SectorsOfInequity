@@ -1,0 +1,157 @@
+- _type: Config_Name
+  name: Swamp
+
+- _type: Tag
+  name: Swamp Territory
+
+- _type: Config_Asset
+  name: Default Swamp Territory
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Swamp
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Terrain
+      tags__name: Swamp Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Traits
+      tags__name: Swamp Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Landmarks
+      tags__name: Territory
+
+- _type: Inspiration_Table
+  name: Terrain
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Swamp Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Swamp
+        description: "In a galaxy where there might not be enough water to fill a
+                      Grox trough in a whole system, the presence of marshes and
+                      wetlands sometimes seems incredible. However, an abundance
+                      of water can be nearly as deadly as its lack, with such areas
+                      being a breeding ground for all manner of diseases and
+                      toxins. A number of the more infamous worlds of the Calixis
+                      Sector, including the death world of Woe, owe much of their
+                      reputations to heavy coverage in swampland."
+
+- _type: Inspiration_Table
+  name: Traits
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Swamp Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 5
+      base: -2
+      minimum: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Hybrid
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Expansive
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Extreme Temperature
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Notable Species
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Stagnant
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unusual Location
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Virulent
+        tags__name: Territory

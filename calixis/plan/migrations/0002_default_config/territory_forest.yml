@@ -1,0 +1,160 @@
+- _type: Config_Name
+  name: Forest
+
+- _type: Tag
+  name: Forest Territory
+
+- _type: Config_Asset
+  name: Default Forest Territory
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Forest
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Terrain
+      tags__name: Forest Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Traits
+      tags__name: Forest Territory
+    - _type: Inspiration_Table
+      _exists: true
+      name: Landmarks
+      tags__name: Territory
+
+- _type: Inspiration_Table
+  name: Terrain
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Forest Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Forest
+        description: "A Forest is primarily defined by an abundance of large-
+                      scale flora, although they are commonly home to a great
+                      many additional species. Tropical forests and jungles, in
+                      particular, are known for this kind of diversity. While a
+                      number of populations within the Imperium would consider
+                      the presence of trees an absolute necessity for a forest,
+                      this attitude stems primarily from terraforming and
+                      colonisation efforts from the Dark Age of Technology and
+                      the ancient times that preceded it. Planets that develop
+                      on their own often have forests of tangled vines, enormous
+                      mushrooms, fungal mounds, and even stranger things."
+
+- _type: Inspiration_Table
+  name: Traits
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Forest Territory
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 5
+      base: -2
+      minimum: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Hybrid
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Exotic Nature
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Expansive
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Extreme Temperature
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 5
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Notable Species
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unique Compound
+        tags__name: Territory
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unusual Location
+        tags__name: Territory
