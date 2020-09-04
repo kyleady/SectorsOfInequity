@@ -48,6 +48,14 @@
       _exists: true
       name: Territories
       tags__name: Planet
+    - _type: Config_Group
+      _exists: true
+      name: Mineral Resources
+      tags__name: Planet
+    - _type: Config_Group
+      _exists: true
+      name: Additional Resources
+      tags__name: Planet
 
 - _type: Inspiration_Table
   name: Description

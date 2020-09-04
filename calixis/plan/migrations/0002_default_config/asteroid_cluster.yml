@@ -15,6 +15,11 @@
       _exists: true
       name: Description
       tags__name: Asteroid Cluster
+  child_configs:
+    - _type: Config_Group
+      _exists: true
+      name: Mineral Resources
+      tags__name: Asteroid Belt
 
 - _type: Inspiration_Table
   name: Description

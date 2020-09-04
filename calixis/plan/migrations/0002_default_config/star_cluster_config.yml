@@ -13,7 +13,7 @@
   inspiration_tables:
     - _type: Inspiration_Table
       _exists: true
-      name: Type
+      name: Stars
       tags__name: Star Cluster
   child_configs:
     - _type: Config_Group
@@ -27,7 +27,7 @@
       name: Outer Reaches
 
 - _type: Inspiration_Table
-  name: Type
+  name: Stars
   tags:
     - _type: Tag
       _exists: true

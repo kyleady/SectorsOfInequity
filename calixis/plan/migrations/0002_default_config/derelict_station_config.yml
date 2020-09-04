@@ -19,6 +19,11 @@
       _exists: true
       name: Origins
       tags__name: Derelict Station
+  child_configs:
+    - _type: Config_Group
+      _exists: true
+      name: Resources
+      tags__name: Derelict Station
 
 - _type: Inspiration_Table
   name: Description
@@ -94,6 +99,9 @@
                       readily apparent purpose or function, but built along
                       similar geometrical principles as the dead cities of the
                       Egarian Dominion."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_egarian
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -109,6 +117,9 @@
                       riddled with cloistered cells. Examination by a Navigator
                       or psyker hints at a long-vanished power permeating the
                       structure."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_eldar
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -123,6 +134,9 @@
                       the frame of an enormous door, but only the empty void
                       shows through it. No amount of searching yields a sign of
                       its purpose or function."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_eldar
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -138,6 +152,9 @@
                       appearance, it has been thoroughly hollowed out, and
                       fifilled with dubious Orky technology. Some of the
                       technology might even have worked at one point."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_ork
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -154,6 +171,9 @@
                       the banks of weapon batteries and torpedo bays indicates
                       that it was once intended to safeguard a human colony from
                       attack."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_archeotech
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -170,6 +190,9 @@
                       the hull still bristles with auger arrays and reception
                       panels that indicate its former use as a communications or
                       intelligence hub."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_archeotech
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -185,6 +208,9 @@
                       the Adeptus Mechanicus. The only explanation for its
                       accretion comes from the vox-beacon broadcasting some kind
                       of territorial claim by the Stryxis."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_unknown
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -200,6 +226,9 @@
                       origin. Though the technology that comprises it is
                       strange, there is no mistaking the intended purpose of its
                       decaying armaments."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_unknown
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -216,7 +245,45 @@
                       some of the arcane devices that line its hull resemble vox
                       hubs and other necessities for a deep space monitor
                       station."
+        perterbations:
+          - _type: Perterbation
+            flags: derelict_station_xenos,xenos_ruins_unknown
   tags:
     - _type: Tag
       _exists: true
       name: Derelict Station
+
+- _type: Config_Group
+  name: Resources
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Derelict Station
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          required_flags: derelict_station_archeotech
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Archeotech Cache
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          required_flags: derelict_station_xenos
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Xenos Ruins
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 5
+      base: -1

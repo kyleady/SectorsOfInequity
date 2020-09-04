@@ -19,6 +19,11 @@
       _exists: true
       name: Origins
       tags__name: Starship Graveyard
+  child_configs:
+    - _type: Config_Group
+      _exists: true
+      name: Vessels
+      tags__name: Starship Graveyard
 
 - _type: Inspiration_Table
   name: Description
@@ -115,6 +120,10 @@
                       most or all of the hulks belonging to the same force. The
                       graveyard consists of {ships} ships, of which most or all have
                       been shattered beyond any value."
+        inspiration_tables:
+          - _type: Inspiration_Table
+            _exists: true
+            name: First Fleet
         roll_groups:
           - _type: Inspiration_Table
             name: ships
@@ -146,6 +155,13 @@
                       much of value, but the sturdy construction of warships
                       means that at least a few of them might be worth
                       salvaging."
+        inspiration_tables:
+          - _type: Inspiration_Table
+            _exists: true
+            name: First Fleet
+          - _type: Inspiration_Table
+            _exists: true
+            name: Second Fleet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -162,6 +178,10 @@
                       include as many as even half a dozen ships, but few (if
                       any) of them have deteriorated enough to prohibit salvage
                       efforts."
+        inspiration_tables:
+          - _type: Inspiration_Table
+            _exists: true
+            name: First Fleet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -179,6 +199,10 @@
                       have missed something of value. There are {ships} ships in
                       the convoy, of which most or all remain intact enough to
                       allow boarding, but little else."
+        inspiration_tables:
+          - _type: Inspiration_Table
+            _exists: true
+            name: First Fleet
         roll_groups:
           - _type: Inspiration_Table
             name: ships
@@ -207,6 +231,13 @@
                       ships involved, but the sturdy construction of warships
                       means that at least a few of them might be worth
                       salvaging."
+        inspiration_tables:
+          - _type: Inspiration_Table
+            _exists: true
+            name: First Fleet
+          - _type: Inspiration_Table
+            _exists: true
+            name: Second Fleet
         roll_groups:
           - _type: Inspiration_Table
             name: ships
@@ -238,6 +269,9 @@
                       of dozens of utterly ruined ships of all kinds, as well as
                       {ships} hulks in varying degrees of integrity. None of the
                       hulks share an origin."
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,starship_graveyard_archeotech
         roll_groups:
           - _type: Inspiration_Table
             name: ships
@@ -253,3 +287,227 @@
     - _type: Tag
       _exists: true
       name: Starship Graveyard
+
+- _type: Config_Group
+  name: Vessels
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Starship Graveyard
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          required_flags: starship_graveyard_archeotech
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Archeotech Cache
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          required_flags: starship_graveyard_xenos
+          base: 10
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Xenos Ruins
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 10
+      base: 2
+
+- _type: Inspiration_Table
+  name: First Fleet
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Ancient Human Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_archeotech
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration
+        name: Unknown Xenos Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,xenos_ruins_unknown
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Eldar Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,xenos_ruins_eldar
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration
+        name: Egarian Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,xenos_ruins_egarian
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Yu'Vath Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,xenos_ruins_yuvath
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Ork Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,xenos_ruins_ork
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Kroot Fleet
+        perterbations:
+          - _type: Perterbation
+            flags: starship_graveyard_xenos,xenos_ruins_kroot
+
+
+- _type: Inspiration_Table
+  name: Second Fleet
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ancient Human Fleet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unknown Xenos Fleet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Eldar Fleet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Egarian Fleet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Yu'Vath Fleet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ork Fleet
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Kroot Fleet

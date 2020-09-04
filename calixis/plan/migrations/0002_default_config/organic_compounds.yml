@@ -1,0 +1,264 @@
+- _type: Config_Name
+  name: Organic Compounds
+
+- _type: Tag
+  name: Organic Compounds
+
+- _type: Config_Asset
+  name: Default Organic Compounds
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Organic Compounds
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Organic Compounds
+    - _type: Inspiration_Table
+      _exists: true
+      name: Type
+      tags__name: Organic Compounds
+    - _type: Inspiration_Table
+      _exists: true
+      name: Abundance
+      tags__name: Organic Compounds
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "Unique opportunities can be found in harvesting the native
+                      flora and fauna of a new world. Such creatures can often be
+                      of value alive, used for study, bloodsport, labour, and other
+                      purposes. For some species, their primary value is not found
+                      in the complete specimen, but in a specific element of their
+                      physiology or anatomy. The collection and processing of these
+                      life forms can be of great value, although it sometimes requires
+                      a more delicate approach than other sources of profit."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Organic Compounds
+
+- _type: Inspiration_Table
+  name: Abundance
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Organic Compounds
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Abundance
+        description: "{abundance}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: abundance
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                rejected_flags: null
+                base: 0
+                dice_count: 1
+                dice_size: 100
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Organic Compounds
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Curative
+        description: "The restorative properties of certain species found in the
+                      Expanse have made for a number of unlikely legends.
+                      The application of herbs, fungi, and even the blood of
+                      some creatures has saved the lives of numerous Explorers.
+                      Relying on these treatments in a raw form is foolhardy,
+                      as they often have a hidden cost, or only become viable
+                      when the Curative is properly prepared in advance. Most
+                      Rogue Traders prefer to sell such finds to those with the
+                      knowledge to properly process them, such as the Magos
+                      Biologis, the Orders Hospitaller, and exceptionally rich and
+                      learned physicians in the service to noble houses.
+
+                      Attempting to apply a Curative without taking the
+                      proper steps to prepare it imposes a –40 penalty on
+                      Medicae Tests. In such rushed cases, the effects of success
+                      should be minor, (restoring 1d5 lost Wounds or removing
+                      1 Critical Damage), and might even inflict Corruption or
+                      Insanity Points in addition to the beneficial effects. The
+                      process necessary to prepare a Curative for proper
+                      application is up the GM, but generally requires
+                      facilities not easily found in the Expanse."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Exotic Compound
+        description: "Life in the Expanse can exhibit many strange, and sometimes
+                      unnatural properties. Such bizarre effects are not easily
+                      understood, let alone categorised, but few Rogue Traders have
+                      allowed such difficulties to impede their profits. Such curiosities
+                      as bouquets of singing flowers, carved boxes of undying wood,
+                      and exotic combat drugs, allowing incredible feats, have all
+                      been found at the markets of Footfall and Port Wander.
+
+                      Despite the successes, cautionary tales are also spread
+                      of those whose ambition exceeded their wisdom. The
+                      Rogue Trader Vivian DeMorza is said to have made a
+                      philtre from local vegetation matching the effects of the
+                      drug Polymorphine, which she intended to distribute to
+                      her dynasty’s agents. If such a concoction existed, it might
+                      have been a factor in her assassination, although all the
+                      suspected parties in rival dynasties have strenuously denied
+                      any knowledge or involvement. The truth of the matter was,
+                      unfortunately, lost in the mysterious fire that spread across
+                      her ship’s archives and holds, incinerating her records,
+                      manifests, cargo, and even the securely stored Warrant of
+                      Trade being sent to her successor."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Juvenat Compound
+        description: "A number of procedures and drugs exist throughout the
+                      Imperium to extend life and youth, collectively referred to as
+                      juvenat treatments. While many require arcane techniques and
+                      devices provided at great cost by the Adeptus Mechanicus, others
+                      involve injections, ointments, and elixirs derived from various
+                      species across the galaxy. Such treatments vary in effectiveness,
+                      and are sometimes limited in application if the subject builds up a
+                      tolerance for the drug, but there have always been those who are
+                      willing to pay fortunes for even a single additional year of life.
+
+                      Juvenat Compounds must be processed in an appropriate
+                      facility before use, and are usually toxic or otherwise
+                      dangerous in their raw form. Fortunately, only a basic analysis
+                      is necessary to identify the potential in the majority of raw
+                      Juvenat Compounds. Facilities specialising in creating the
+                      treatments are rare, with only a handful operating in the
+                      entirety of the Calixis Sector. Suppliers are always welcomed
+                      at such facilities, as well as at the less legitimate examples that
+                      occasionally arise to supply the black market."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Toxin
+        description: "All manner of venoms and poisons are found with depressing
+                      regularity across the Expanse, even in the rare environments
+                      seemingly hospitable to human physiology. Although an apparent
+                      adversity, this profusion of deadly toxins can be turned into a
+                      valuable asset by Rogue Traders willing to deal in less savoury
+                      markets. There are very few legitimate markets for poison, and
+                      most are agencies which many Rogue Traders consider no less
+                      hazardous than actual crime syndicates. Still, the profits that can
+                      be made by selling a unique Toxin can be incredible, especially
+                      while it remains unknown to those who could protect against it,
+                      or develop antidotes. A tale that recently passed through Footfall’s
+                      taverns claimed that an unknown Rogue Trader was given an
+                      expensive Hive Primus estate on Scintilla in payment for a single
+                      dose of poison unknown to the food-tasters, customs officials,
+                      and physicians surrounding the intended target.
+
+                      The source and nature of a given Toxin Resource is largely
+                      left up to the GM, although it should not be more difficult to
+                      find or extract than any other Resource of similar Abundance.
+                      While a number of deadly venoms can be found by collecting
+                      the venom sacs of elusive xenos beasts, a Toxin Resource is more
+                      typically drawn from plant life, or creatures too slow to otherwise
+                      deter predators. A character who is exposed to the effects of a
+                      typical Toxin in its raw form must make a Challenging (+0)
+                      Toughness Test or suffer 1d10 Wounds, ignoring Armour and
+                      Toughness Bonus. The requirements for this exposure can vary,
+                      although the most common vectors are injury or ingestion. Most
+                      Toxins can be refined to increase the difficulty of the Toughness
+                      Test or the amount of Damage the poison inflicts, and some
+                      varieties are more or less dangerous in their base state."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Vivid Accessory
+        description: "The nobles of the Calixis Sector and beyond are always
+                      seeking new and exotic fashions with which to impress their
+                      patrons and show up their rivals. In recent centuries, it has
+                      become a common practice to incorporate elements from
+                      exotic beasts of the Koronus Expanse into such outfits. Some
+                      fashions involve working horn, bone, or ivory into jewellery,
+                      while others focus on particularly striking pelts and furs. Some
+                      of the most expensive dyes used by the clothiers serving the
+                      Calixian elite bear the colours of exotic alien blooms.
+
+                      For a Rogue Trader interested in supplying this market, starting
+                      a new fashion can be as simple as spotting an unusually coloured
+                      creature or blossom. Some specialists cater to more demanding
+                      clients by only collecting specimens as perilous as they are
+                      impressive, but most buyers are satisfied simply to feel that they
+                      have the allure of the distant Expanse at their beck and call."

@@ -1,0 +1,232 @@
+- _type: Config_Name
+  name: Xenos Ruins
+
+- _type: Tag
+  name: Xenos Ruins
+
+- _type: Config_Asset
+  name: Default Xenos Ruins
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Xenos Ruins
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Xenos Ruins
+    - _type: Inspiration_Table
+      _exists: true
+      name: Type
+      tags__name: Xenos Ruins
+    - _type: Inspiration_Table
+      _exists: true
+      name: Abundance
+      tags__name: Xenos Ruins
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "The relics and remnants of long-forgotten alien races litter
+                      the Koronus Expanse. The abundance of these dead cities and
+                      nations across so many different worlds is the source of many
+                      legends about the haunted or doomed nature of the Expanse.
+                      Veteran Explorers are more familiar with such remains, but such
+                      profusion can shake the faith of even the surest among them,
+                      a reminder that perhaps these ancient civilisations thought"
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Xenos Ruins
+
+- _type: Inspiration_Table
+  name: Abundance
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Xenos Ruins
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Abundance
+        description: "{abundance}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: abundance
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                rejected_flags: null
+                base: 0
+                dice_count: 1
+                dice_size: 100
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Xenos Ruins
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Unknown Species
+        description: ""
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Eldar Ruins
+        description: ""
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Egarian Ruins
+        description: ""
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Yu'Vath Ruins
+        description: ""
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Ork Ruins
+        description: ""
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Kroot Ruins
+        description: ""
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: xenos_ruins_unknown
+          base: 1000
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unknown Species
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: xenos_ruins_eldar
+          base: 1000
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Eldar Ruins
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: xenos_ruins_egarian
+          base: 1000
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Egarian Ruins
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: xenos_ruins_yuvath
+          base: 1000
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Yu'Vath Ruins
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: xenos_ruins_ork
+          base: 1000
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ork Ruins
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: xenos_ruins_kroot
+          base: 1000
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Kroot Ruins

@@ -15,6 +15,11 @@
       _exists: true
       name: Description
       tags__name: Lesser Moon
+  child_configs:
+    - _type: Config_Group
+      _exists: true
+      name: Mineral Resources
+      tags__name: Lesser Moon
 
 - _type: Inspiration_Table
   name: Description
@@ -44,3 +49,30 @@
     - _type: Tag
       _exists: true
       name: Lesser Moon
+
+
+- _type: Config_Group
+  name: Mineral Resources
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Lesser Moon
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Minerals
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 1
+      dice_size: 2
+      base: -1

@@ -52,6 +52,14 @@
       _exists: true
       name: Territories
       tags__name: Planet
+    - _type: Config_Group
+      _exists: true
+      name: Mineral Resources
+      tags__name: Planet
+    - _type: Config_Group
+      _exists: true
+      name: Additional Resources
+      tags__name: Planet
 
 - _type: Inspiration_Table
   name: Description
@@ -990,7 +998,7 @@
         name: Wasteland
   count:
     - _type: Roll
-      required_flags: planet_body_low_masss
+      required_flags: planet_body_low_mass
       base: -2
     - _type: Roll
       required_flags: planet_body_small
@@ -1018,3 +1026,139 @@
       base: 0
       dice_count: 1
       dice_size: 5
+
+- _type: Config_Group
+  name: Additional Resources
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Archeotech Cache
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Minerals
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          required_flags: planet_habitability_verdant
+          base: 1
+          dice_count: 0
+        - _type: Roll
+          required_flags: planet_habitability_limited_ecosystem
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Organic Compounds
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Xenos Ruins
+  count:
+    - _type: Roll
+      required_flags: planet_body_low_mass
+      dice_count: 1
+      dice_size: 5
+      base: -3
+    - _type: Roll
+      required_flags: planet_body_small
+      dice_count: 1
+      dice_size: 5
+      base: -3
+    - _type: Roll
+      required_flags: planet_body_small_and_dense
+      dice_count: 1
+      dice_size: 5
+      base: -3
+    - _type: Roll
+      required_flags: planet_body_large
+      dice_count: 1
+      dice_size: 5
+      base: -2
+    - _type: Roll
+      required_flags: planet_body_large_and_dense
+      dice_count: 1
+      dice_size: 5
+      base: -2
+    - _type: Roll
+      required_flags: planet_body_vast
+      dice_count: 1
+      dice_size: 5
+      base: -1
+
+- _type: Config_Group
+  name: Mineral Resources
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Minerals
+  count:
+    - _type: Roll
+      required_flags: planet_body_low_mass
+      dice_count: 1
+      dice_size: 5
+      base: -2
+    - _type: Roll
+      required_flags: planet_body_small
+      dice_count: 1
+      dice_size: 5
+      base: -2
+    - _type: Roll
+      required_flags: planet_body_small_and_dense
+      dice_count: 1
+      dice_size: 5
+      base: -2
+    - _type: Roll
+      required_flags: planet_body_large
+      dice_count: 1
+      dice_size: 5
+      base: 0
+    - _type: Roll
+      required_flags: planet_body_large_and_dense
+      dice_count: 1
+      dice_size: 5
+      base: 0
+    - _type: Roll
+      required_flags: planet_body_vast
+      dice_count: 1
+      dice_size: 10
+      base: 0

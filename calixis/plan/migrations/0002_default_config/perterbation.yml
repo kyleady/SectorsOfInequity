@@ -76,3 +76,15 @@
     - _type: Config_Asset
       _exists: true
       name: Default Wasteland Territory
+    - _type: Config_Asset
+      _exists: true
+      name: Default Archeotech Cache
+    - _type: Config_Asset
+      _exists: true
+      name: Default Minerals
+    - _type: Config_Asset
+      _exists: true
+      name: Default Organic Compounds
+    - _type: Config_Asset
+      _exists: true
+      name: Default Xenos Ruins

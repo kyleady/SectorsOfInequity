@@ -1,0 +1,252 @@
+- _type: Config_Name
+  name: Minerals
+
+- _type: Tag
+  name: Minerals
+
+- _type: Config_Asset
+  name: Default Minerals
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Minerals
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Minerals
+    - _type: Inspiration_Table
+      _exists: true
+      name: Type
+      tags__name: Minerals
+    - _type: Inspiration_Table
+      _exists: true
+      name: Abundance
+      tags__name: Minerals
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "The galaxy has no shortage of planets rich in valuable minerals,
+                      as such materials are often among the very building blocks of
+                      a world’s existence. Technically speaking, such resources are
+                      present and abundant on every world, but few worlds in the
+                      Imperium have a need to import shale or low-grade tin, much less
+                      have enough of a market for it to merit the attention of a Rogue
+                      Trader dynasty. True mineral wealth exists in materials either too
+                      rare to be commonly found, or too important for a surplus to
+                      be accumulated. The most valuable deposits are those with both
+                      utility and rarity, and worlds where they can be obtained have
+                      been the cause of countless conflicts between rival dynasties."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Minerals
+
+- _type: Inspiration_Table
+  name: Abundance
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Minerals
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Abundance
+        description: "{abundance}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: abundance
+            count:
+              - _type: Roll
+                rejected_flags: planet_body_low_mass,lesser_moon
+                base: 0
+                dice_count: 1
+                dice_size: 100
+              - _type: Roll
+                required_flags: planet_body_low_mass
+                base: 0
+                dice_count: 1
+                dice_size: 100
+                maximum: 30
+              - _type: Roll
+                required_flags: planet_body_small_and_dense
+                base: 10
+                dice_count: 0
+              - _type: Roll
+                required_flags: planet_body_large_and_dense
+                base: 10
+                dice_count: 0
+              - _type: Roll
+                required_flags: planet_.+,lesser_moon
+                base: -5
+                dice_count: 1
+                dice_size: 100
+                minimum: 0
+              - _type: Roll
+                required_flags: gas_giant_.+,lesser_moon
+                base: 5
+                dice_count: 5
+                dice_size: 10
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Minerals
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Industrial Metals
+        description: "Among the materials most highly valued throughout the
+                      Imperium are a number of commonly occurring metals, such as
+                      iron, copper, or lead. Of particular note is iron, supplies of which
+                      manage to be both abundant and insufficient to demand in nearly
+                      every sector’s tradehouses. The reason for this paradoxical value
+                      can be found in the ever-grinding gears of the Imperial war
+                      machine, which requires a vast supply of these metals for the
+                      billions of weapons and vehicles it produces every day.
+
+                      This insatiable need for raw materials has launched many
+                      newly founded dynasties to prominence, and even the most
+                      arrogant patriarch knows better than to scorn the profits brought
+                      by such efforts. Although a hold full of industrial metals is
+                      welcome in almost any port, canny Rogue Traders prefer to
+                      establish supply contracts with agencies such as the Departmento
+                      Munitorum, or with powerful forge worlds and shipyards. In
+                      addition to keeping profits stable, such ties can be leveraged for
+                      forms of support that could not otherwise be bought."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Ornamentals
+        description: "Some minerals are not valued for any practical use, but for
+                      their impressive beauty and lustre, or even simply for being
+                      difficult to acquire. While manufactorums occasionally have
+                      uses for such materials, the most common market for precious
+                      metals, gemstones, and other ornamental minerals has always
+                      been the Imperium’s nobility. The rarity and expense of gold,
+                      crux-gems, and other ornamentals is used to make a statement
+                      about the power and reach of their bearer. Such statements
+                      have also been turned to nobler purposes than vanity by some
+                      cardinals in the Ecclesiarchy, who seek to exalt the majesty of
+                      the Him on Earth in fine marble temples, with gilded altars
+                      and stained glass windows cut from the finest crystal.
+
+                      Though only the least valuable and sought-after minerals of this
+                      sort can be found with any regularity, the sheer variety of known
+                      precious and semi-precious metals and stones makes prospecting
+                      for something of this sort a simple task. Finding buyers with the
+                      wealth and interest to make a given cargo worthwhile, however,
+                      can sometimes be a more challenging task than acquiring it."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Radioactives
+        description: "Demand for radioactive materials can be extremely limited, as
+                      most technologies making use of their properties became obsolete
+                      well before the Great Crusade. Infrastructure in the Imperium
+                      being what it is, Rogue Traders can and do find worlds that
+                      have not progressed beyond primitive nuclear furnaces, but such
+                      societies are rarely able to offer the necessary compensation for
+                      supplies. Instead, trade in radioactives is done almost exclusively
+                      with obscure branches of the Adeptus Mechanicus, known for
+                      particularly arcane or esoteric practices.
+
+                      Given the sensitive nature of the Machine God’s mysteries,
+                      locating such groups can be extremely difficult, and those
+                      Rogue Traders who manage it very rarely have any idea of the
+                      purposes to which their cargos are put. Given the incredible
+                      prices a Magos might be willing to pay for a regular (but
+                      discreet) supply run of even the most limited cargos, few
+                      are inclined to ask. Those who do push the issue are usually
+                      threatened with termination of the supply contract, or even
+                      excommunication from the Omnissiah’s favour, but more
+                      subtle negotiations are the rarely discussed source for the
+                      majority of newly produced atomics."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Exotic Materials
+        description: "The rarest of mineral resources do not make up a category
+                      in themselves, so much as they define a specific lack of one.
+                      Some such materials would be considered staples of Imperial
+                      manufacturing but for their rarity. These include the hyperdense
+                      ore from which adamantium is derived, or certain
+                      elements used in the production and refinement of highgrade
+                      ceramite and promethium. Others are little more than
+                      the most extreme examples of ornamental materials, such
+                      as a gem or crystal unique to the caverns of a single world.
+                      Additionally, a wide variety of substances that simply defy
+                      classification can be found throughout the Expanse, from
+                      the cool, liquid gold recovered from pools on a world in the
+                      Accursed Demense, to semi-material shimmercrystals, which
+                      can only be touched by living flesh.
+
+                      Whether a decadent curiosity, arcane mystery, or vital
+                      resource, Exotic Material deposits are exceptionally precious
+                      Resources. GMs should consider allowing an Exotic Material
+                      Resource to be used as if it possessed an additional degree of
+                      Abundance, especially if the Explorers are able to think
+                      of a particularly ambitious use for the deposit."

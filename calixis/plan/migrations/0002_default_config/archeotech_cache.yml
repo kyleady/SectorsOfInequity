@@ -1,0 +1,105 @@
+- _type: Config_Name
+  name: Archeotech Cache
+
+- _type: Tag
+  name: Archeotech Cache
+
+- _type: Config_Asset
+  name: Default Archeotech Cache
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Archeotech Cache
+  inspiration_tables:
+    - _type: Inspiration_Table
+      _exists: true
+      name: Description
+      tags__name: Archeotech Cache
+    - _type: Inspiration_Table
+      _exists: true
+      name: Abundance
+      tags__name: Archeotech Cache
+
+- _type: Inspiration_Table
+  name: Description
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Description
+        description: "It is said that during the Dark Age of Technology, Mankind
+                      spread to every corner of the galaxy, no matter how remote. The
+                      lonely ruins dotting many worlds across the Expanse bear mute
+                      testament to the vast reach of these ancient human civilisations, as
+                      well as to the terrible fall that took them from those heights. Many
+                      worlds which were once home to far-flung colonies bear some
+                      remnant of their pre-Imperial technology base, often providing a
+                      source for artefacts coveted by the Adeptus Mechanicus.
+
+                      Most such worlds are entirely devoid of devices matching
+                      the common conceptions of archeotech, having suffered
+                      the same slow degradation of their Standard Template
+                      Construct-based manufacturing as the Imperium, and
+                      some show no evidence of STC-standard technology
+                      at all. Nonetheless, even the most degraded ruin
+                      is held as a treasure by the archeosavants of
+                      Mars, who pay generously for data from such
+                      sites, and even more generously to gain access to them. Very
+                      occasionally, relatively intact examples of advanced technology
+                      can be found mixed in with the crumbled remnants.
+                      Archeotech Caches virtually never represent a single, giant pile
+                      of miraculous treasures from the Dark Age of Technology; instead,
+                      this Resource generally means that the world is seeded with these
+                      treasures, just waiting for enterprising Explorer to discover them."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Archeotech Cache
+
+- _type: Inspiration_Table
+  name: Abundance
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Archeotech Cache
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      base: 1
+      dice_count: 0
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        name: Abundance
+        description: "{abundance}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: abundance
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                rejected_flags: null
+                base: 0
+                dice_count: 1
+                dice_size: 100
