@@ -9,9 +9,19 @@
         <ul>
         {% for subdetail in details %}
           <li>
-            <a href="{% url "plan-detail-detail-detail" subdetail.id %}">
+            <strong><a href="{% url "plan-detail-detail-detail" subdetail.id %}">
               {{ subdetail }}
-            </a>
+            </a></strong>: {{ subdetail.get_description}}
+            <ul>
+              {% for subsubdetail in subdetail.get_all_child_details %}
+                  <li>
+                    <strong>
+                    <a href="{% url "plan-detail-detail-detail" subsubdetail.id %}">
+                      {{ subsubdetail }}
+                    </a></strong>: {{ subsubdetail.get_description }}
+                  </li>
+              {% endfor %}
+            </ul>
           </li>
         {% endfor %}
         </ul>
