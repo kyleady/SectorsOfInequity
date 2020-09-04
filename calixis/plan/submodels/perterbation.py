@@ -17,4 +17,5 @@ class Perterbation(models.Model):
     flags = models.CharField(blank=True, null=True, max_length=100)
     muted_flags = models.CharField(blank=True, null=True, max_length=100)
     required_flags = models.CharField(blank=True, null=True, max_length=200)
+    rejected_flags = models.CharField(blank=True, null=True, max_length=200)
     configs = models.ManyToManyField('Config_Asset', related_name='perterbation_configs')

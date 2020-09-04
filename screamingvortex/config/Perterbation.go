@@ -14,10 +14,12 @@ type Perterbation struct {
   FlagsString sql.NullString `sql:"flags"`
   MutedFlagsString sql.NullString `sql:"muted_flags"`
   RequiredFlagsString sql.NullString `sql:"required_flags"`
+  RejectedFlagsString sql.NullString `sql:"rejected_flags"`
 
   flags []string
   mutedFlags []string
   requiredFlags []string
+  rejectedFlags []string
 
   Configs []*AssetConfig
 
@@ -51,6 +53,12 @@ func LoadPerterbation(manager *ConfigManager, perterbation *Perterbation) {
     perterbation.requiredFlags = strings.Split(perterbation.RequiredFlagsString.String, ",")
   } else {
     perterbation.requiredFlags = make([]string, 0)
+  }
+
+  if perterbation.RejectedFlagsString.String != "" {
+    perterbation.rejectedFlags = strings.Split(perterbation.RejectedFlagsString.String, ",")
+  } else {
+    perterbation.rejectedFlags = make([]string, 0)
   }
 
   perterbation.Configs = FetchManyAssetConfigs(manager, perterbation.Id, perterbation.TableName(""), "configs")
@@ -88,7 +96,7 @@ func (basePerterbation *Perterbation) AddPerterbation(perterbationId int64) *Per
 }
 
 func (basePerterbation *Perterbation) addPerterbation(modifyingPerterbation *Perterbation, isSatellite bool) *Perterbation {
-  if !basePerterbation.HasFlags(modifyingPerterbation.requiredFlags) {
+  if !basePerterbation.HasFlags(modifyingPerterbation.requiredFlags, modifyingPerterbation.rejectedFlags) {
     return basePerterbation.Copy()
   }
 
@@ -145,11 +153,12 @@ func (basePerterbation *Perterbation) CombineFlags(perterbation *Perterbation) [
   return newFlags
 }
 
-func (perterbation *Perterbation) HasFlags(requiredFlags []string) bool {
+func (perterbation *Perterbation) HasFlags(requiredFlags []string, rejectedFlags []string) bool {
   for _, requiredFlag := range requiredFlags {
     hasFlag := false
+    requiredPattern := regexp.MustCompile(requiredFlag)
     for _, activeFlag := range perterbation.flags {
-      if activeFlag == requiredFlag {
+      if requiredPattern.FindString(activeFlag) != "" {
         hasFlag = true
         break
       }
@@ -157,6 +166,15 @@ func (perterbation *Perterbation) HasFlags(requiredFlags []string) bool {
 
     if !hasFlag {
       return false
+    }
+  }
+
+  for _, rejectedFlag := range rejectedFlags {
+    rejectedPattern := regexp.MustCompile(rejectedFlag)
+    for _, activeFlag := range perterbation.flags {
+      if rejectedPattern.FindString(activeFlag) != "" {
+        return false
+      }
     }
   }
 

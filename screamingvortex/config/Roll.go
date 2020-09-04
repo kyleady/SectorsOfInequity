@@ -5,6 +5,7 @@ import "strings"
 
 type Roll struct {
   RequiredFlagsString sql.NullString `sql:"required_flags"`
+  RejectedFlagsString sql.NullString `sql:"rejected_flags"`
 
   DiceCount int `sql:"dice_count"`
   DiceSize int `sql:"dice_size"`
@@ -15,6 +16,7 @@ type Roll struct {
   Maximum sql.NullInt64 `sql:"maximum"`
 
   requiredFlags []string
+  rejectedFlags []string
 }
 
 func (roll *Roll) TableName(rollType string) string {
@@ -26,7 +28,7 @@ func (roll *Roll) GetId() *int64 {
 }
 
 func (roll *Roll) Roll(perterbation *Perterbation) int {
-    if !perterbation.HasFlags(roll.requiredFlags) {
+    if !perterbation.HasFlags(roll.requiredFlags, roll.rejectedFlags) {
       return 0
     }
 
@@ -98,6 +100,12 @@ func FetchManyRolls(manager *ConfigManager, parentId int64, tableName string, va
     } else {
       roll.requiredFlags = make([]string, 0)
     }
+
+    if roll.RejectedFlagsString.String != "" {
+      roll.rejectedFlags = strings.Split(roll.RejectedFlagsString.String, ",")
+    } else {
+      roll.rejectedFlags = make([]string, 0)
+    }
   }
 
   return rolls
@@ -106,6 +114,7 @@ func FetchManyRolls(manager *ConfigManager, parentId int64, tableName string, va
 func CreateConstantRoll(base int) *Roll {
   return &Roll{
     RequiredFlagsString: sql.NullString{Valid: false, String: ""},
+    RejectedFlagsString: sql.NullString{Valid: false, String: ""},
     DiceCount: 0,
     DiceSize: 0,
     Base: base,
@@ -114,5 +123,6 @@ func CreateConstantRoll(base int) *Roll {
     Minimum: sql.NullInt64{Valid: false, Int64: 0},
     Maximum: sql.NullInt64{Valid: false, Int64: 0},
     requiredFlags: []string{},
+    rejectedFlags: []string{},
   }
 }
