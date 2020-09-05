@@ -11,18 +11,45 @@
     _exists: true
     name: Gas Giant
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Description
-      tags__name: Gas Giant
-    - _type: Inspiration_Table
-      _exists: true
-      name: Body
-      tags__name: Gas Giant
-    - _type: Inspiration_Table
-      _exists: true
-      name: Gravity
-      tags__name: Gas Giant
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Description
+        tags__name: Gas Giant
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Body
+        tags__name: Gas Giant
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Gravity
+        tags__name: Gas Giant
   child_configs:
     - _type: Config_Group
       name: Satellites

@@ -11,10 +11,12 @@
     _exists: true
     name: Gravity Riptide
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Description
-      tags__name: Gravity Riptide
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Description
+        tags__name: Gravity Riptide
 
 - _type: Inspiration_Table
   name: Description

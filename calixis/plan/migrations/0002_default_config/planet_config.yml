@@ -11,38 +11,110 @@
     _exists: true
     name: Planet
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Description
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Body
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Gravity
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Atmospheric Presence
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Atmospheric Composition
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Climate
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Habitability
-      tags__name: Planet
-    - _type: Inspiration_Table
-      _exists: true
-      name: Landmasses
-      tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Description
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Body
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Gravity
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 4
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Atmospheric Presence
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 5
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Atmospheric Composition
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 6
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Climate
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 7
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Habitability
+        tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 8
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Landmasses
+        tags__name: Planet
   child_configs:
     - _type: Config_Group
       _exists: true

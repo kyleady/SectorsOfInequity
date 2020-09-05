@@ -11,10 +11,12 @@
     _exists: true
     name: Dust Rings
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Description
-      tags__name: Dust Rings
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Description
+        tags__name: Dust Rings
 
 - _type: Inspiration_Table
   name: Description

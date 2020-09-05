@@ -11,18 +11,45 @@
     _exists: true
     name: Wasteland
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Terrain
-      tags__name: Wasteland Territory
-    - _type: Inspiration_Table
-      _exists: true
-      name: Traits
-      tags__name: Wasteland Territory
-    - _type: Inspiration_Table
-      _exists: true
-      name: Landmarks
-      tags__name: Territory
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Terrain
+        tags__name: Wasteland Territory
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Traits
+        tags__name: Wasteland Territory
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Landmarks
+        tags__name: Territory
 
 - _type: Inspiration_Table
   name: Terrain

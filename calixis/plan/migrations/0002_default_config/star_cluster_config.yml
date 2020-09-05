@@ -11,10 +11,12 @@
     _exists: true
     name: Star Cluster
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Stars
-      tags__name: Star Cluster
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Stars
+        tags__name: Star Cluster
   child_configs:
     - _type: Config_Group
       _exists: true
@@ -112,10 +114,12 @@
                 coloration is likely to be blue or blue-white. The
                 Inner Cauldron is dominant, and the Primary Biosphere is weak."
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Size
-      tags__name: Star Cluster
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Size
+        tags__name: Star Cluster
   tags:
     - _type: Tag
       _exists: true
@@ -126,10 +130,12 @@
   description: "A steady illumination burns forth from the heart of this star.
                 Its coloration is likely to be a pure white."
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Size
-      tags__name: Star Cluster
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Size
+        tags__name: Star Cluster
   tags:
     - _type: Tag
       _exists: true
@@ -142,10 +148,12 @@
                 for the system. It is likely to be yellow or yellow-orange in
                 colour. The Inner Cauldron is weak."
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Size
-      tags__name: Star Cluster
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Size
+        tags__name: Star Cluster
   tags:
     - _type: Tag
       _exists: true
@@ -158,10 +166,12 @@
                 vast size, seemingly incongruous with their wan light. Its
                 coloration is likely a sullen red. The Outer Reaches are Dominant."
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Size
-      tags__name: Star Cluster
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Size
+        tags__name: Star Cluster
   tags:
     - _type: Tag
       _exists: true
@@ -175,10 +185,12 @@
                 barely-visible purple. The Game Master can choose to make one
                 Solar Zone dominant or weak at his discretion."
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Size
-      tags__name: Star Cluster
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Size
+        tags__name: Star Cluster
   tags:
     - _type: Tag
       _exists: true

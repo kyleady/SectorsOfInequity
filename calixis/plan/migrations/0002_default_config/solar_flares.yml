@@ -11,10 +11,12 @@
     _exists: true
     name: Solar Flares
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Description
-      tags__name: Solar Flares
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Description
+        tags__name: Solar Flares
 
 - _type: Inspiration_Table
   name: Description

@@ -1,6 +1,9 @@
 - _type: Config_Name
   name: Route
 
+- _type: Tag
+  name: Route
+
 - _type: Config_Asset
   name: Default Route
   type:
@@ -8,311 +11,347 @@
     _exists: true
     name: Route
   inspiration_tables:
-    - _type: Inspiration_Table
-      name: Stability
-      count:
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Stability
+        tags__name: Route
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Time
+        tags__name: Route
+
+- _type: Inspiration_Table
+  name: Stability
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Route
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration
+        name: Stable Route
+        description: "Gain +10 bonus on any Tests to chart this route."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Indirect Path
+        description: "Increase the duration."
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
+    - _type: Weighted_Inspiration
+      weights:
         - _type: Roll
           _exists: true
           required_flags: null
           dice_count: 0
           base: 1
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 3
-          value:
-            _type: Inspiration
-            name: Stable Route
-            description: "Gain +10 bonus on any Tests to chart this route."
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 2
-          value:
-            _type: Inspiration
-            name: Indirect Path
-            description: "Increase the duration."
-            perterbations:
-              - _type: Perterbation
-                _exists: true
-                name: Increase Days by 100%
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: Haunted Passage
-            description: "Increase the duration and add +10 to any rolls made for Warp Travel Hallucinations."
-            perterbations:
-              - _type: Perterbation
-                _exists: true
-                name: Increase Days by 100%
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: Surly Route
-            description: "Increase the duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
-            perterbations:
-              - _type: Perterbation
-                _exists: true
-                name: Increase Days by 100%
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: Untraceable Trail
-            description: "Increase the duration and the route cannot be charted."
-            perterbations:
-              - _type: Perterbation
-                _exists: true
-                name: Increase Days by 100%
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: Lightless Path
-            description: "Increase the duration and the Astronomican is obscured for the trip."
-            perterbations:
-              - _type: Perterbation
-                _exists: true
-                name: Increase Days by 100%
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: Byzantine Route
-            description: "Increase the duration twice."
-            perterbations:
-              - _type: Perterbation
-                _exists: true
-                name: Increase Days by 200%
-    - _type: Inspiration_Table
-      name: Time
-      count:
+      value:
+        _type: Inspiration
+        name: Haunted Passage
+        description: "Increase the duration and add +10 to any rolls made for Warp Travel Hallucinations."
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
+    - _type: Weighted_Inspiration
+      weights:
         - _type: Roll
           _exists: true
           required_flags: null
           dice_count: 0
           base: 1
-      weighted_inspirations:
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 2
-          value:
-            _type: Inspiration
-            name: (1)
-            description: "{days} days"
-            roll_groups:
-              - _type: Inspiration_Table
-                name: days
-                count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 0
-                    dice_count: 1
-                    dice_size: 5
-                  - _type: Roll
-                    required_flags: route_100%_increase
-                    base: 0
-                    dice_count: 1
-                    dice_size: 5
-                  - _type: Roll
-                    required_flags: route_200%_increase
-                    base: 0
-                    dice_count: 2
-                    dice_size: 5
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 2
-          value:
-            _type: Inspiration
-            name: (2)
-            description: "{days} days"
-            roll_groups:
-              - _type: Inspiration_Table
-                name: days
-                count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 5
-                    dice_count: 1
-                    dice_size: 5
-                  - _type: Roll
-                    required_flags: route_100%_increase
-                    base: 5
-                    dice_count: 1
-                    dice_size: 5
-                  - _type: Roll
-                    required_flags: route_200%_increase
-                    base: 10
-                    dice_count: 2
-                    dice_size: 5
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 2
-          value:
-            _type: Inspiration
-            name: (3)
-            description: "{days} days"
-            roll_groups:
-              - _type: Inspiration_Table
-                name: days
-                count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 10
-                    dice_count: 2
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_100%_increase
-                    base: 10
-                    dice_count: 2
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_200%_increase
-                    base: 20
-                    dice_count: 4
-                    dice_size: 10
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 2
-          value:
-            _type: Inspiration
-            name: (4)
-            description: "{days} days"
-            roll_groups:
-              - _type: Inspiration_Table
-                name: days
-                count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 50
-                    dice_count: 3
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_100%_increase
-                    base: 50
-                    dice_count: 3
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_200%_increase
-                    base: 100
-                    dice_count: 6
-                    dice_size: 10
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: (5)
-            description: "{days} days"
-            roll_groups:
-              - _type: Inspiration_Table
-                name: days
-                count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 150
-                    dice_count: 4
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_100%_increase
-                    base: 150
-                    dice_count: 4
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_200%_increase
-                    base: 300
-                    dice_count: 8
-                    dice_size: 10
-        - _type: Weighted_Inspiration
-          weights:
-            - _type: Roll
-              _exists: true
-              required_flags: null
-              dice_count: 0
-              base: 1
-          value:
-            _type: Inspiration
-            name: (6)
-            description: "{days} days"
-            roll_groups:
-              - _type: Inspiration_Table
-                name: days
-                count:
-                  - _type: Roll
-                    _exists: true
-                    required_flags: null
-                    base: 250
-                    dice_count: 5
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_100%_increase
-                    base: 250
-                    dice_count: 5
-                    dice_size: 10
-                  - _type: Roll
-                    required_flags: route_200%_increase
-                    base: 500
-                    dice_count: 10
-                    dice_size: 10
+      value:
+        _type: Inspiration
+        name: Surly Route
+        description: "Increase the duration and suffer a –10 penalty on any Psyniscience Test to Divine the Auguries."
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Untraceable Trail
+        description: "Increase the duration and the route cannot be charted."
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Lightless Path
+        description: "Increase the duration and the Astronomican is obscured for the trip."
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 100%
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Byzantine Route
+        description: "Increase the duration twice."
+        perterbations:
+          - _type: Perterbation
+            _exists: true
+            name: Increase Days by 200%
+
+- _type: Inspiration_Table
+  name: Time
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Route
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: (1)
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 0
+                dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 0
+                dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 0
+                dice_count: 2
+                dice_size: 5
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: (2)
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 5
+                dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 5
+                dice_count: 1
+                dice_size: 5
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 10
+                dice_count: 2
+                dice_size: 5
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: (3)
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 10
+                dice_count: 2
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 10
+                dice_count: 2
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 20
+                dice_count: 4
+                dice_size: 10
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: (4)
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 50
+                dice_count: 3
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 50
+                dice_count: 3
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 100
+                dice_count: 6
+                dice_size: 10
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: (5)
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 150
+                dice_count: 4
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 150
+                dice_count: 4
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 300
+                dice_count: 8
+                dice_size: 10
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: (6)
+        description: "{days} days"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: days
+            count:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 250
+                dice_count: 5
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_100%_increase
+                base: 250
+                dice_count: 5
+                dice_size: 10
+              - _type: Roll
+                required_flags: route_200%_increase
+                base: 500
+                dice_count: 10
+                dice_size: 10
 
 - _type: Perterbation
   name: Increase Days by 100%

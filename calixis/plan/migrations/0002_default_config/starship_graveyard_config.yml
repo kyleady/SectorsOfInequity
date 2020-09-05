@@ -11,14 +11,32 @@
     _exists: true
     name: Starship Graveyard
   inspiration_tables:
-    - _type: Inspiration_Table
-      _exists: true
-      name: Description
-      tags__name: Starship Graveyard
-    - _type: Inspiration_Table
-      _exists: true
-      name: Origins
-      tags__name: Starship Graveyard
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Description
+        tags__name: Starship Graveyard
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Origins
+        tags__name: Starship Graveyard
   child_configs:
     - _type: Config_Group
       _exists: true
@@ -121,9 +139,11 @@
                       graveyard consists of {ships} ships, of which most or all have
                       been shattered beyond any value."
         inspiration_tables:
-          - _type: Inspiration_Table
-            _exists: true
-            name: First Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: First Fleet
         roll_groups:
           - _type: Inspiration_Table
             name: ships
@@ -156,12 +176,16 @@
                       means that at least a few of them might be worth
                       salvaging."
         inspiration_tables:
-          - _type: Inspiration_Table
-            _exists: true
-            name: First Fleet
-          - _type: Inspiration_Table
-            _exists: true
-            name: Second Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: First Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: Second Fleet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -179,9 +203,11 @@
                       any) of them have deteriorated enough to prohibit salvage
                       efforts."
         inspiration_tables:
-          - _type: Inspiration_Table
-            _exists: true
-            name: First Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: First Fleet
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -200,9 +226,11 @@
                       the convoy, of which most or all remain intact enough to
                       allow boarding, but little else."
         inspiration_tables:
-          - _type: Inspiration_Table
-            _exists: true
-            name: First Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: First Fleet
         roll_groups:
           - _type: Inspiration_Table
             name: ships
@@ -232,12 +260,16 @@
                       means that at least a few of them might be worth
                       salvaging."
         inspiration_tables:
-          - _type: Inspiration_Table
-            _exists: true
-            name: First Fleet
-          - _type: Inspiration_Table
-            _exists: true
-            name: Second Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: First Fleet
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              _exists: true
+              name: Second Fleet
         roll_groups:
           - _type: Inspiration_Table
             name: ships
