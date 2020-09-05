@@ -92,6 +92,13 @@ func FetchManyInspirationTables(manager *ConfigManager, parentId int64, tableNam
   return inspirationTables
 }
 
+func FetchInspirationTable(manager *ConfigManager, tableId int64) *InspirationTable {
+  inspirationTable := new(InspirationTable)
+  manager.Client.Fetch(inspirationTable, "", tableId)
+  inspirationTable.FetchChildren(manager)
+  return inspirationTable
+}
+
 func (inspirationTable *InspirationTable) RollOnce(perterbation *Perterbation) []int64 {
   weightedValue := RollWeightedValues(inspirationTable.WeightedInspirations, perterbation, inspirationTable.Modifiers)
   if weightedValue != nil {

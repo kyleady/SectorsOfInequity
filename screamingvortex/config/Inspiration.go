@@ -6,14 +6,14 @@ type Inspiration struct {
   ExtraRolls int `sql:"extra_rolls"`
   PerterbationIds []int64
   InspirationRolls []*InspirationTable
-  InspirationTables []*InspirationTable
+  InspirationTables []*WeightedValue
 }
 
 func FetchInspiration(manager *ConfigManager, inspirationId int64) *Inspiration {
   inspiration := new(Inspiration)
   inspirationTableName := inspiration.TableName("")
   manager.Client.Fetch(inspiration, "", inspirationId)
-  inspiration.InspirationTables = FetchManyInspirationTables(manager, inspirationId, inspirationTableName, "inspiration_tables")
+  inspiration.InspirationTables = FetchManyWeightedTables(manager, inspirationId, inspirationTableName, "inspiration_tables")
   inspiration.InspirationRolls = FetchManyInspirationTables(manager, inspirationId, inspirationTableName, "roll_groups")
   inspiration.PerterbationIds = FetchManyPerterbationIds(manager, inspirationId, inspirationTableName, "perterbations")
   return inspiration
@@ -34,20 +34,21 @@ func FetchManyInspirationIds(manager *ConfigManager, parentId int64, tableName s
   return ids
 }
 
-func (inspiration *Inspiration) GetInspirationTable(inspirationTableName string) *InspirationTable {
+func (inspiration *Inspiration) GetInspirationTable(inspirationTableName string, perterbation *Perterbation) *InspirationTable {
   for _, inspirationTable := range inspiration.InspirationTables {
-    if inspirationTable.Name == inspirationTableName {
-      return inspirationTable
+    if inspirationTable.ValueName == inspirationTableName {
+      return perterbation.Manager.GetInspirationTable(inspirationTable.Values)
     }
   }
 
   panic("GetInspirationTable should always return a value!")
 }
 
-func (inspiration *Inspiration) GetInspirationTableNames() []string {
+func (inspiration *Inspiration) GetInspirationTableNames(perterbation *Perterbation) []string {
   tableNames := []string{}
+  SortWeightedValues(inspiration.InspirationTables, perterbation)
   for _, inspirationTable := range inspiration.InspirationTables {
-    tableNames = append(tableNames, inspirationTable.Name)
+    tableNames = append(tableNames, inspirationTable.ValueName)
   }
 
   return tableNames

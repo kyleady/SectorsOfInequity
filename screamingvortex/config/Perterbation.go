@@ -197,7 +197,7 @@ func (perterbation *Perterbation) getObject(address []*InspirationKey) (*AssetCo
       assetConfig = tmpPerterbation.GetConfig(key.Index)
       tmpPerterbation = nil
     } else if assetConfig != nil && key.Type == "InspirationTable" {
-      inspirationTable = assetConfig.GetInspirationTable(key.Key)
+      inspirationTable = assetConfig.GetInspirationTable(key.Key, perterbation)
       assetConfig = nil
     } else if assetConfig != nil && key.Type == "GroupConfig" {
       groupConfig = assetConfig.GetGroupConfig(key.Key)
@@ -206,13 +206,13 @@ func (perterbation *Perterbation) getObject(address []*InspirationKey) (*AssetCo
       inspiration = inspirationTable.GetInspiration(key.Key, key.Index != 0, perterbation)
       inspirationTable = nil
     } else if inspiration != nil && key.Type == "InspirationTable" {
-      inspirationTable = inspiration.GetInspirationTable(key.Key)
+      inspirationTable = inspiration.GetInspirationTable(key.Key, perterbation)
       inspiration = nil
     } else if groupConfig != nil && key.Type == "InspirationExtra" {
       inspirationExtra = groupConfig.GetInspirationExtra(key.Key, key.Index)
       groupConfig = nil
     } else if inspirationExtra != nil && key.Type == "InspirationTable" {
-      inspirationTable = inspirationExtra.GetInspirationTable(key.Key)
+      inspirationTable = inspirationExtra.GetInspirationTable(key.Key, perterbation)
       inspirationExtra = nil
     } else {
       fmt.Print("Keys\n")
@@ -255,11 +255,11 @@ func (perterbation *Perterbation) GetGroupConfig(address []*InspirationKey) *Gro
 func (perterbation *Perterbation) GetInspirationTableNames(address []*InspirationKey) []string {
   assetConfig, inspiration, _, inspirationExtra, _ := perterbation.getObject(address)
   if inspiration != nil {
-    return inspiration.GetInspirationTableNames()
+    return inspiration.GetInspirationTableNames(perterbation)
   } else if inspirationExtra != nil {
-    return inspirationExtra.GetInspirationTableNames()
+    return inspirationExtra.GetInspirationTableNames(perterbation)
   } else if assetConfig != nil {
-      return assetConfig.GetInspirationTableNames()
+      return assetConfig.GetInspirationTableNames(perterbation)
   } else {
     panic("Address did not point to a list of InspirationTables.")
   }

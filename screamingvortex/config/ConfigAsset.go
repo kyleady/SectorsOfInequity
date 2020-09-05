@@ -6,7 +6,7 @@ type AssetConfig struct {
   Id int64 `sql:"id"`
   TypeId int64 `sql:"type_id"`
   Order []*Roll
-  InspirationTables []*InspirationTable
+  InspirationTables []*WeightedValue
   GroupConfigs []*GroupConfig
   GridConfigs []*GridConfig
 }
@@ -24,7 +24,7 @@ func (assetConfig *AssetConfig) AddPerterbation(perterbation *AssetConfig) *Asse
   newConfig.Id = assetConfig.Id
   newConfig.TypeId = assetConfig.TypeId
   newConfig.Order = append(assetConfig.Order, perterbation.Order...)
-  newConfig.InspirationTables = StackInspirationTables(assetConfig.InspirationTables, perterbation.InspirationTables)
+  newConfig.InspirationTables = StackWeightedValues(assetConfig.InspirationTables, perterbation.InspirationTables)
   newConfig.GroupConfigs = StackGroupConfigs(assetConfig.GroupConfigs, perterbation.GroupConfigs)
   newConfig.GridConfigs = StackGridConfigs(assetConfig.GridConfigs, perterbation.GridConfigs)
 
@@ -37,7 +37,7 @@ func (assetConfig *AssetConfig) Clone() *AssetConfig {
   newConfig.TypeId = assetConfig.TypeId
   newConfig.Order = make([]*Roll, len(assetConfig.Order))
   copy(newConfig.Order, assetConfig.Order)
-  newConfig.InspirationTables = make([]*InspirationTable, len(assetConfig.InspirationTables))
+  newConfig.InspirationTables = make([]*WeightedValue, len(assetConfig.InspirationTables))
   copy(newConfig.InspirationTables, assetConfig.InspirationTables)
   newConfig.GroupConfigs = make([]*GroupConfig, len(assetConfig.GroupConfigs))
   copy(newConfig.GroupConfigs, assetConfig.GroupConfigs)
@@ -83,7 +83,7 @@ func CreateEmptyConfigAsset(typeId int64) *AssetConfig {
 
 func (assetConfig *AssetConfig) FetchChildren(manager *ConfigManager) {
   assetConfig.Order = FetchManyRolls(manager, assetConfig.Id, assetConfig.TableName(""), "order")
-  assetConfig.InspirationTables = FetchManyInspirationTables(manager, assetConfig.Id, assetConfig.TableName(""), "inspiration_tables")
+  assetConfig.InspirationTables = FetchManyWeightedTables(manager, assetConfig.Id, assetConfig.TableName(""), "inspiration_tables")
   assetConfig.GroupConfigs = FetchManyGroupConfigs(manager, assetConfig.Id, assetConfig.TableName(""), "child_configs")
   assetConfig.GridConfigs = FetchManyGridConfigs(manager, assetConfig.Id, assetConfig.TableName(""), "grids")
 }
@@ -99,21 +99,21 @@ func FetchManyAssetConfigs(manager *ConfigManager, parentId int64, tableName str
   return assetConfigs
 }
 
-func (assetConfig *AssetConfig) GetInspirationTable(inspirationTableName string) *InspirationTable {
+func (assetConfig *AssetConfig) GetInspirationTable(inspirationTableName string, perterbation *Perterbation) *InspirationTable {
   for _, inspirationTable := range assetConfig.InspirationTables {
-    if inspirationTable.Name == inspirationTableName {
-      return inspirationTable
+    if inspirationTable.ValueName == inspirationTableName {
+      return perterbation.Manager.GetInspirationTable(inspirationTable.Values)
     }
   }
-
 
   panic("GetInspirationTable should always return a value!")
 }
 
-func (assetConfig *AssetConfig) GetInspirationTableNames() []string {
+func (assetConfig *AssetConfig) GetInspirationTableNames(perterbation *Perterbation) []string {
   tableNames := []string{}
+  SortWeightedValues(assetConfig.InspirationTables, perterbation)
   for _, inspirationTable := range assetConfig.InspirationTables {
-    tableNames = append(tableNames, inspirationTable.Name)
+    tableNames = append(tableNames, inspirationTable.ValueName)
   }
 
   return tableNames
@@ -148,8 +148,4 @@ func (assetConfig *AssetConfig) Print(indent int) {
     fmt.Print(" ")
   }
   fmt.Printf("{Id:%d, TypeId:%d, |InspirationTables|:%d, |GroupConfigs|:%d, |GridConfigs|:%d}\n", assetConfig.Id, assetConfig.TypeId, len(assetConfig.InspirationTables), len(assetConfig.GroupConfigs), len(assetConfig.GridConfigs))
-
-  for _, inspirationTable := range assetConfig.InspirationTables {
-    inspirationTable.Print(indent+2)
-  }
 }

@@ -27,7 +27,7 @@ class Config_Name(BaseConfig):
 class Config_Asset(BaseConfig):
     type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='config_asset_type')
     order = models.ManyToManyField('Roll', related_name='config_asset_order')
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='config_asset_inspiration_tables')
+    inspiration_tables = models.ManyToManyField('Weighted_Table', related_name='config_asset_inspiration_tables')
     child_configs = models.ManyToManyField('Config_Group', related_name='config_asset_child_configs')
     grids = models.ManyToManyField('Config_Grid', related_name='config_asset_grids')
     tags = models.ManyToManyField(Tag, related_name='config_asset_tags')

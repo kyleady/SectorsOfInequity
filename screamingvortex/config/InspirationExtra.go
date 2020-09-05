@@ -5,7 +5,7 @@ type InspirationExtra struct {
   Name string `sql:"name"`
   TypeId int64 `sql:"type_id"`
   CountRolls []*Roll
-  InspirationTables []*InspirationTable
+  InspirationTables []*WeightedValue
   Address []*InspirationKey
 }
 
@@ -22,7 +22,7 @@ func (inspirationExtra *InspirationExtra) AddPerterbation(perterbationInspiratio
   newInspirationExtra.Name = inspirationExtra.Name
   newInspirationExtra.TypeId = inspirationExtra.TypeId
   newInspirationExtra.CountRolls = append(inspirationExtra.CountRolls, perterbationInspirationExtra.CountRolls...)
-  newInspirationExtra.InspirationTables = StackInspirationTables(inspirationExtra.InspirationTables, perterbationInspirationExtra.InspirationTables)
+  newInspirationExtra.InspirationTables = StackWeightedValues(inspirationExtra.InspirationTables, perterbationInspirationExtra.InspirationTables)
   return newInspirationExtra
 }
 
@@ -32,33 +32,34 @@ func (inspirationExtra *InspirationExtra) Clone() *InspirationExtra {
   newInspirationExtra.TypeId = inspirationExtra.TypeId
   newInspirationExtra.CountRolls = make([]*Roll, len(inspirationExtra.CountRolls))
   copy(newInspirationExtra.CountRolls, inspirationExtra.CountRolls)
-  newInspirationExtra.InspirationTables = make([]*InspirationTable, len(inspirationExtra.InspirationTables))
+  newInspirationExtra.InspirationTables = make([]*WeightedValue, len(inspirationExtra.InspirationTables))
   copy(newInspirationExtra.InspirationTables, inspirationExtra.InspirationTables)
   return newInspirationExtra
 }
 
 func (inspirationExtra *InspirationExtra) FetchChildren(manager *ConfigManager) {
   inspirationExtra.CountRolls = FetchManyRolls(manager, inspirationExtra.Id, inspirationExtra.TableName(""), "count")
-  inspirationExtra.InspirationTables = FetchManyInspirationTables(manager, inspirationExtra.Id, inspirationExtra.TableName(""), "inspiration_tables")
+  inspirationExtra.InspirationTables = FetchManyWeightedTables(manager, inspirationExtra.Id, inspirationExtra.TableName(""), "inspiration_tables")
 }
 
 func (inspirationExtra *InspirationExtra) SetAddress(address []*InspirationKey) {
   inspirationExtra.Address = append(address, &InspirationKey{Type: "InspirationExtra", Key: inspirationExtra.Name, Index: inspirationExtra.TypeId})
 }
 
-func (inspirationExtra *InspirationExtra) GetInspirationTableNames() []string {
+func (inspirationExtra *InspirationExtra) GetInspirationTableNames(perterbation *Perterbation) []string {
   tableNames := []string{}
+  SortWeightedValues(inspirationExtra.InspirationTables, perterbation)
   for _, inspirationTable := range inspirationExtra.InspirationTables {
-    tableNames = append(tableNames, inspirationTable.Name)
+    tableNames = append(tableNames, inspirationTable.ValueName)
   }
 
   return tableNames
 }
 
-func (inspirationExtra *InspirationExtra) GetInspirationTable(inspirationTableName string) *InspirationTable {
+func (inspirationExtra *InspirationExtra) GetInspirationTable(inspirationTableName string, perterbation *Perterbation) *InspirationTable {
   for _, inspirationTable := range inspirationExtra.InspirationTables {
-    if inspirationTable.Name == inspirationTableName {
-      return inspirationTable
+    if inspirationTable.ValueName == inspirationTableName {
+      return perterbation.Manager.GetInspirationTable(inspirationTable.Values)
     }
   }
 

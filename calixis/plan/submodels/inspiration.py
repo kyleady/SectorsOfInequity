@@ -6,7 +6,7 @@ class Inspiration_Extra(models.Model):
     name = models.CharField(max_length=100)
     count = models.ManyToManyField('Roll', related_name='extra_tables_count')
     type = models.ForeignKey('Config_Name', on_delete=models.CASCADE, related_name='inspiration_extra_type')
-    inspiration_tables = models.ManyToManyField('Inspiration_Table', related_name='inspiration_tables')
+    inspiration_tables = models.ManyToManyField('Weighted_Table', related_name='inspiration_tables')
     tags = models.ManyToManyField('Tag', related_name='inspiration_extra_tags')
 
 class Inspiration_Table(models.Model):
@@ -32,5 +32,5 @@ class Inspiration(models.Model):
     roll_groups = models.ManyToManyField(Inspiration_Table, related_name='roll_groups')
     perterbations = models.ManyToManyField('Perterbation')
     tags = models.ManyToManyField('Tag', related_name='inspiration_tags')
-    inspiration_tables = models.ManyToManyField(Inspiration_Table, related_name='sub_inspiration_tables')
+    inspiration_tables = models.ManyToManyField('Weighted_Table', related_name='sub_inspiration_tables')
     extra_rolls = models.SmallIntegerField(blank=True, default=0)

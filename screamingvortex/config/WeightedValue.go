@@ -22,6 +22,8 @@ func (weightedValue *WeightedValue) TableName(weightedValueType string) string {
     return "plan_weighted_inspiration"
   case WeightedTypeTag():
     return "plan_weighted_type"
+  case WeightedTableTag():
+    return "plan_weighted_table"
 
   default:
     panic("Unexpected WeightedValue Type: " + weightedValueType)
@@ -177,6 +179,18 @@ func FetchManyWeightedTypes(manager *ConfigManager, parentId int64, tableName st
   return weightedValues
 }
 
+func FetchManyWeightedTables(manager *ConfigManager, parentId int64, tableName string, valueName string) []*WeightedValue {
+  weightedValues := fetchManyWeightedValues(manager, parentId, tableName, valueName, WeightedTableTag())
+  for _, weightedValue := range weightedValues {
+    value := new(InspirationTable)
+    manager.Client.Fetch(value, "", weightedValue.Value)
+    weightedValue.ValueName = value.Name
+  }
+
+  return weightedValues
+}
+
 func WeightedRegionTag() string { return "weighted region" }
 func WeightedInspirationTag() string { return "weighted inspiration" }
 func WeightedTypeTag() string { return "weighted type" }
+func WeightedTableTag() string { return "weighted table" }
