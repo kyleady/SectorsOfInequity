@@ -7,7 +7,7 @@ from .default import DefaultViews
 
 class AssetViews(DefaultViews):
     def new(self, request):
-        namedPerterbations = self.custom['Perterbation_Model'].objects.exclude(name="")
+        namedPerterbations = self.custom['Perterbation_Model'].objects.filter(tags__name="_Primary")
         allTypes = self.custom['Config_Name_Model'].objects
         class GenerateAssetForm(forms.Form):
             perterbation = forms.ModelChoiceField(queryset=namedPerterbations)
