@@ -115,6 +115,19 @@
         _exists: true
         name: Landmasses
         tags__name: Planet
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          base: 9
+          dice_count: 0
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Inhabitants
+        tags__name: Planet
   child_configs:
     - _type: Config_Group
       _exists: true
@@ -918,6 +931,97 @@
         _type: Inspiration
         name: Single Landmass
         description: "1"
+
+- _type: Inspiration_Table
+  name: Inhabitants
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Planet
+  count:
+    - _type: Roll
+      required_flags: planet_habitability_(limited_ecosystem|verdant)
+      base: -7
+      dice_count: 1
+      dice_size: 10
+      maximum: 1
+    - _type: Roll
+      rejected_flags: planet_habitability_(limited_ecosystem|verdant)
+      base: -9
+      dice_count: 1
+      dice_size: 10
+      maximum: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Eldar
+        tags__name: Inhabitants
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Humans
+        tags__name: Inhabitants
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_habitability_(limited_ecosystem|verdant)
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Kroot
+        tags__name: Inhabitants
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          required_flags: planet_habitability_(limited_ecosystem|verdant)
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Orks
+        tags__name: Inhabitants
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Rak'Gol
+        tags__name: Inhabitants
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+          dice_count: 0
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Unknown Xenos
+        tags__name: Inhabitants
 
 - _type: Config_Group
   name: Satellites

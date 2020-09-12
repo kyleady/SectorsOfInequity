@@ -115,9 +115,33 @@
             name: abundance
             count:
               - _type: Roll
-                _exists: true
                 required_flags: null
                 rejected_flags: null
                 base: 0
                 dice_count: 1
                 dice_size: 100
+                minimum: 0
+                rolls:
+                  - _type: Roll
+                    required_flags: planet_inhabitants_colony
+                    multiplier: -1
+                    dice_count: 1
+                    dice_size: 5
+                  - _type: Roll
+                    required_flags: planet_inhabitants_voidfarers
+                    multiplier: -1
+                    dice_count: 4
+                    dice_size: 10
+                    base: -5
+                  - _type: Roll
+                    required_flags: planet_inhabitants_orks_advanced_industry
+                    multiplier: -1
+                    dice_count: 2
+                    dice_size: 10
+                    base: 5
+                  - _type: Roll
+                    required_flags: planet_inhabitants_orks_voidfarers
+                    multiplier: -1
+                    dice_count: 1
+                    dice_size: 10
+                    base: 5

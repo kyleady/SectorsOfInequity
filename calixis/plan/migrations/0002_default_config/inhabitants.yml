@@ -1,0 +1,1494 @@
+- _type: Tag
+  name: Inhabitants
+
+- _type: Tag
+  name: Eldar
+
+- _type: Tag
+  name: Humans
+
+- _type: Tag
+  name: Kroot
+
+- _type: Tag
+  name: Orks
+
+- _type: Tag
+  name: Rak'Gol
+
+- _type: Inspiration
+  name: Eldar
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Inhabitants
+  description: "While the ancient, star-spanning empire of the Eldar is said to have
+                held countless worlds at its height, that era has long since passed.
+                Since the fall of that ancient race, they have maintained few of
+                their former holdings. The majority of the Eldar population exists
+                on the tremendous vessels known as craftworlds, and set foot
+                on a planetary body only rarely. Some xenographers devoted to
+                the study of the Eldar believe that a large population could also
+                be found dwelling in their legendary webway, perhaps even
+                as a remnant of the original, vast empire. Rogue Traders
+                consider such speculation as irrelevant as it is unlikely,
+                as these supposed webway-dwellers show even
+                less inclination towards the upkeep of planetary
+                outposts than the craftworlders.
+
+                In most cases, an Eldar-held planet is the home of an
+                Exodite population, or a hub of operations for a corsair fleet.
+                In rare instances, the Eldar presence is limited to unmanned
+                sentry stations, to detect the approach of potential intruders.
+                Experienced Rogue Traders treat all such claims as equal in
+                their potential danger, as Eldar holdings are inevitably laced
+                with hidden webway gates, from which reinforcements tend
+                to pour out whenever it is least expected. Attempts to infringe
+                on territory known to belong to the Eldar are usually limited
+                to Rogue Traders with access to incredible firepower, a
+                cunning smash-and-grab plan, or a dangerously large ego.
+
+                The terraforming processes used by the ancient Eldar are
+                legendary, with even incomplete efforts being responsible for
+                many of the most wondrous paradise worlds known to the
+                Imperium. At the GM’s discretion, any given habitable world
+                held by the Eldar is the result of these processes. The world’s
+                Habitability becomes Verdant, if it was not at that level already.
+                Increase the Abundance of all Organic Compound Resources
+                by 2d10 (see page 30). These “Maiden Worlds” are highly
+                prized by their makers, and seizing one is likely to place the
+                Explorers under hostile scrutiny. When the Explorers launch
+                an Endeavour involving a Maiden World, roll 1d10; on a roll
+                of 7 or higher, it immediately triggers a Misfortune, as the
+                Eldar take retributive action. Given the prophetic abilities of
+                the Eldar Farseers, the Misfortune might occur well before
+                the Explorers even reach the Maiden World itself.
+
+                The Eldar do not suffer intrusion lightly. The mere presence
+                of a non-Eldar vessel exploring the areas they have claimed
+                as their own triggers swift and brutal retribution. In other
+                cases, the response is be more limited, or does not come at
+                all. The Eldar are a dying race, and their more temperate
+                commanders measure every encroachment’s threat against
+                the potential loss of life that could be incurred resisting it.
+                When circumstances are against them, the Eldar have been
+                known to entirely abandon claims to their worlds for a time,
+                trusting that the advantages granted to them by the webway
+                and their Farseers can allow them to reclaim what is theirs,
+                at a more opportune time.
+
+                In the scope of a typical ROGUE TRADER game, this allows
+                for a great deal of freedom in the GM’s representation of the
+                Eldar’s threat. The GM can reward Explorers adept in stacking
+                the deck in their favour with an easier claim to Planets wrested
+                from the Eldar, as the Farseers find striking at such a potent
+                foe inadvisable. Similarly, no GM should consider it necessary
+                to punish his players for a boldly executed Endeavour against
+                the Eldar, as their interests are far-ranging, and revenge can
+                easily wait a generation (or five).
+
+                Explorers who treat the claims and holdings of the Eldar
+                with sufficient respect (or at least a sufficiently wide berth)
+                are unlikely to incur the wrath of the ancient race. Such
+                deference is not a sure defence, and GMs should not be shy
+                to remind their players why the Eldar have a reputation for
+                being capricious and unpredictable. On the other hand, the
+                Eldar have a history of using other races as cat’s-paws and
+                tools where their own strength is insufficient, and such
+                Explorers might find themselves under consideration
+                as a potential asset. In some cases, the Eldar claim
+                to seek an alliances or pacts with the individuals
+                such as Rogue Traders, and are thus more
+                circumspect in their approach."
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Development
+        tags:
+          - _type: Tag
+            _exists: true
+            name: Eldar
+        count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 3
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Primitive Clans
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Eldar
+              description: "Eldar found maintaining a society on the surface of a planet
+                            are almost universally part of the barbaric Exodite culture.
+                            Certain proscribed texts describe their lifestyle as an act of
+                            self-denial against the excess that brought low the empire of
+                            their ancestors. Foolhardy war efforts have been launched by
+                            those who thought the Eldar harmless without access to their
+                            advanced weaponry, only to learn that the Exodites make some
+                            exceptions to their prohibitions when threatened with war.
+
+                            These worlds often maintain stockpiles of the potent
+                            personal weaponry for which their race is feared, though
+                            Exodite tribes replace the grav-tanks soaring through the
+                            lines of their cousins with exotic cavaliers, riding xenos
+                            beasts known only as “dragons.” When encroached upon by
+                            hostile forces, the sudden transformation of the apparently
+                            primitive nomads into an organised and ruthless army
+                            makes it apparent that they struggle against the elements
+                            and natural forces entirely by choice.
+
+                            The Imperium’s limited understanding of Eldar politics
+                            indicates that the Exodites are considered a separate nation
+                            from their craftworld kin, which has invariably been backed
+                            by assertions made during the limited instances of peaceful
+                            contact with either faction. Many Lord-Generals, Rogue
+                            Traders, and operatives of the Ordo Xenos have concluded
+                            that this is a fiction, maintained by the envoys of the Eldar for
+                            their advantage, after a seemingly successful operation against
+                            Exodites was suddenly reversed by the arrival of an army sent
+                            from the craftworlds. Careful observation of available data by
+                            those with the clearance to obtain such things indicates that
+                            the truth is neither wholly one thing nor the other, a situation
+                            all too common when dealing with these enigmatic xenos."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 5
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Orbital Habitation
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Eldar
+              description: "It is more common to find evidence of Eldar interests on
+                            a world than it is to find an actual Eldar presence. Various
+                            worlds throughout the Expanse are circled by small orbital
+                            structures of Eldar make, and no readily apparent purpose.
+                            A study of these worlds shows no obvious commonalities, as
+                            the known examples range from paradise worlds to barelystable
+                            volcanic rocks. The only linking factor is found once
+                            another race attempts to make use of the planet for their own
+                            interests, at which point these interests become the target of
+                            all manner of Eldar attacks. In one example of particular note,
+                            the grand fleet of War Trader Noemi Odette was reduced
+                            from dozens of vessels to a single crippled frigate, by an
+                            attack from massed Eldar dragonships.
+
+                            Most such attacks are nowhere near as extreme as this
+                            terrible display, and some dynasties have found that attacks
+                            on their holdings simply cease after they prove able to
+                            weather them. It could be that the limited resources of the
+                            Eldar are withdrawn from such apparently futile efforts, or
+                            that the planets vary in their importance to their keepers.
+                            Rogue Traders willing to gamble on these theories have
+                            made great profits, but just as many have been utterly
+                            destroyed for their presumption."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Voidfarers
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Eldar
+              description: "An active presence by the Eldar in holding a world is
+                            extremely rare, and such efforts are almost exclusively in
+                            the hands of Exodites. The armies of the craftworlds are too
+                            thinly spread for any sort of permanent garrison, and the
+                            elusive Rangers never stay in one place for long. The corsair
+                            fleets maintain the few permanent settlements among the
+                            voidfaring Eldar, if their secret havens can properly be called
+                            settlements. Most of these bases are hidden in the depths of
+                            nebulae, or even the distant reaches of interstellar space, but
+                            they can occasionally be found brazenly orbiting a planet
+                            that the corsairs consider their own.
+
+                            Such bases are typically found where they provide some
+                            manner of advantage to the corsairs in question. Many fleets
+                            take care to protect significant ruins and artefacts on worlds
+                            their kind once held, and find a permanent base useful in this
+                            vigil. At other times, a world provides something of value to the
+                            claimants, some useful resource, or intriguing beast. Thuirafel
+                            the Joyful, Pirate Prince of the Laughing Ghost corsair fleet, is
+                            said to have maintained a stranglehold over the priceless arccrystals
+                            of Insuemnamon Primaris for no other reason than to
+                            deny them to a Rogue Trader who had slighted him.
+
+                            Planets held by Eldar Voidfarers are not subject to the
+                            normal reduction in their Resources. The Resources typically
+                            remain completely untouched, although, the GM’s discretion,
+                            the Abundance of Vivid Accessories is reduced by 1d5."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_eldar_voidfarers
+
+- _type: Inspiration
+  name: Humans
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Inhabitants
+  description: "The remnants of colonisation efforts by the earliest human
+                voidfarers can be found throughout the whole of the
+                galaxy. Such lost civilisations are typically isolated and
+                regressive, with no awareness of their ancient heritage, or
+                of the glorious Imperium of Man to which they owe an
+                inherent fealty. Other worlds, in contrast, have held onto
+                more of their old glories, and have powerful technology
+                and active voidships with which they fiercely defend their
+                own. In either case, it is the sacred duty of a Rogue Trader
+                to bring these worlds into the Imperium’s fold, and to purge
+                any deviant elements of their populations that have grown
+                powerful in a society unaware of the threats of the mutant
+                and the psyker. This duty can sometimes condemn a world
+                to death, if the chaplains and missionaries in service to the
+                Rogue Trader find their beliefs irredeemably corrupt.
+
+                All human civilisations are descended from the same
+                technological basis. Those colonies not established during the
+                heights of the Dark Age of Technology and the spread of the
+                Standard Template Construct system are still descended from
+                further expansion by those that were. Although no worlds
+                have been known to maintain even a fraction of the technical
+                knowledge from this common foundation, it has created a
+                relatively stable basis for comparing the degree to which they
+                have fallen. Human civilisations can exist at any Development
+                level, and use the guidelines as presented.
+
+                It should be noted that even civilisations of Voidfarer
+                Development cannot equal the Imperium in the scope of
+                the technologies to which they have access. Even the most
+                advanced Imperial forge worlds are dependent on support
+                and expertise from other worlds, and it is this network of
+                infrastructure that provides the Imperium’s greatest assets. As
+                a general rule, a randomly generated Planet can never have
+                Navigators, sanctioned psykers, Titans, or voidships larger
+                than Cruiser class, and only rarely has Warp-capable vessels of
+                any kind. Of course, the GM can always make exceptions to
+                these restrictions if he considers it appropriate for the Planet
+                in question, but should be aware that such a Planet is likely
+                to draw attention from interested parties across the Koronus
+                Expanse, the Calixis Sector, and beyond.
+
+                The overall structure of human civilisations on new worlds
+                usually follows certain basic patterns. Of course, the
+                combination of local conditions, the meandering course
+                of history, and simple random chance sometimes cause a
+                specific deviation from those patterns. For various reasons,
+                societies are sometimes found with a handful of technologies
+                remaining from their earlier days that far exceed their modern
+                capabilities to produce. Maintenance on these wonders is as
+                much a product of guesswork and luck as rote remembrance.
+                Human civilisations at the Basic Industry or Pre-Industrial
+                Development levels can, at the GM’s discretion, still
+                have some form of advanced technology integrated
+                into the fabric of their society. In most cases, a
+                single, narrow category of device remains,
+                such as a grav-rail network, a vox station
+                and a handful of receivers, used for propaganda displays, or
+                a small stash of lasguns, whose charge packs have not seen
+                a proper outlet in centuries. Sometimes one or two related
+                technologies have survived as well, although these are
+                typically in worse repair than the first.
+
+                There is no upper limit to the sophistication of technologies
+                that survive in this manner, although certain specific
+                categories of devices might prove impossible to maintain.
+                No landbound populace can maintain a functional voidship,
+                for example. Still, tales circulate the Expanse of the clubwielding
+                primitives who nearly brought down an orbiting
+                cruiser with a powerful defence laser, or of the Heretics of
+                the Voice found on Ghorven VI, who worshipped a powerful
+                vox-receiver, and believed centuries-old transmissions to be
+                the commandments of their god.
+
+                Without the blessed teachings of the Ecclesiarchy to guide
+                them, the worlds held by Mankind often fall into the thrall of
+                alien powers. While there is no level of folly at which it might
+                seem practical (or even possible) to seek peace with such
+                threats as an invading Ork Waaagh!, or the relentless savagery
+                of the Rak’Gol, many have made errors no less deadly to
+                the ultimate well-being of their populace. Entire worlds
+                have been found in the thrall of openly-paraded Genestealer
+                infestations, or paying tribute to Eldar raiders.
+                Such behaviour is neither common nor typical, and
+                is representative of a larger issue endemic to these lost
+                worlds. A civilisation raised beyond the God-Emperor’s
+                light frequently has difficulty understanding many of the
+                strictures so patently obvious to Imperial citizens. Worlds
+                that have had contact with seemingly benign xenos races
+                often underestimate the threat posed by their neighbours.
+                Even the blessed ignorance that comes with isolation can
+                be harmful, as the natives assume that xenos beings cannot
+                be any more foreign than the strangers from the stars, who
+                come to tell them of this “Imperium of Man.”"
+
+
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Development
+        tags:
+          - _type: Tag
+            _exists: true
+            name: Humans
+        count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Advanced Industry
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "The defining limitation of a civilisation with Advanced Industry
+                            is a lack of capacity for serious void travel. Elements of this
+                            capacity are evident, including possession of advanced lifesupport
+                            or power generation technologies. The upper limits of
+                            this level of Development include civilisations in possession of
+                            all the technologies necessary to manufacture system ships, but
+                            that have never attempted to combine them appropriately.
+
+                            The technologies and devices known to these civilisations
+                            can include las or bolt weaponry, an abundance of submersible
+                            and flying vehicles, and even plasma reactors and void shields.
+                            Their knowledge of the void is extremely limited, and might
+                            not include knowledge of anything beyond their own system.
+                            Awareness of the Warp is typically limited as well, although
+                            a population plagued with a high incidence of psykers could
+                            have more understanding of such matters, as a necessary evil.
+
+                            This level of Development requires heavy consumption of a
+                            Planet’s Resources. Their industry reduces Mineral and Organic Compound
+                            Resource Abundance by 3d10-2"
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_advanced_industry
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Basic Industry
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "The upper limits of this Development level are distinguished
+                            from those of Advanced Industry largely by matters of focus. A
+                            civilisation has transcended Basic Industry when its manufacturing
+                            and production capabilities are theoretically able to provide for
+                            the essential needs of the whole of its populace. Of course, few
+                            civilisations actually meet the needs of all, instead allowing power
+                            and resources to congregate around a few individuals.
+
+                            Advanced manufacturing techniques often begin to emerge
+                            at this level of development, including mass production lines,
+                            and the synthesis of materials that cannot be found in nature.
+                            Vox transmissions, advanced solid projectile arms and basic las
+                            weaponry, and moderately advanced flyers, have each been known
+                            to emerge at this stage. Some or all of the weapons and armour
+                            produced by such a group likely have the Primitive Quality.
+
+                            This level of Development requires significant consumption
+                            of a Planet’s Resources. Their industry reduces all Mineral,
+                            Xenos Ruins, Organic Compound Resource Abundance of a Planet’s
+                            Resources' Abundance by 2d10+5."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_basic_industry
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Colony
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "Civilisations of this sort are not defined in terms of technological
+                            limits, as they are almost universally in possession of supplies
+                            of highly advanced technology, possibly including powerful
+                            generators, defence lasers, void shields, and even system ships.
+                            However, this technology is never the product of the Colony
+                            itself, and their industry is usually limited to maintenance of
+                            the existing supplies, rather than any significant degree of
+                            production and expansion. The defining limits of a Colony
+                            are largely social, with a highly centralised populace, and ties
+                            of dependence or allegiance to another world. Developing to
+                            the point of self-sufficiency or independence transitions the
+                            Colony to a different level of Development, at which point
+                            they can typically be considered to possess Advanced Industry,
+                            or be Voidfarers. See page 98 for rules for developing one’s
+                            own Colonies in the Expanse.
+
+                            Colonies are typically too recently established to have
+                            significantly impacted a Planet’s Resources. Their starting
+                            industry reduces all of the Planet’s Resources by 1d5."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_colony
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Orbital Habitation
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "Similarly to Colony civilisations, Orbital Habitation is not
+                            primarily defined by the technology of the populace, but by
+                            their living conditions. Such populations do not dwell on the
+                            surface of their planet, but in large stations, circling above it.
+                            This is an especially common Development level for worlds
+                            hostile to normal habitation, but various circumstances can
+                            make the surface of a Planet unappealing or taboo to an
+                            orbital populace, even if it is otherwise safe. In some cases,
+                            the orbital stations simply lack the craft for re-entry.
+
+                            Given the necessities of maintenance in the survival of
+                            an orbital populace, the technical aptitude of such groups
+                            tends to be both significant and widespread. The limits on
+                            raw materials and production facilities imposed by their
+                            circumstances do tend to limit the degree to which these skills
+                            can be applied, however. In some cases, asteroid mining and
+                            similar efforts can make an orbital population the equal of,
+                            or even superior to their planetbound equivalents. If the local
+                            civilisation is aware of potential threats from outside, their
+                            habitats could have defensive capabilities, similar in scale
+                            to the Wayfarer Station found on page 210 of the ROGUE
+                            TRADER Core Rulebook, although the specific armaments
+                            should be derived from their native technologies.
+
+                            For obvious reasons, a Planet’s Resources are completely
+                            unaffected by Orbital Habitation."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_orbital_habitation
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Pre-Industrial
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "The limits of Pre-Industrial Development are shaped
+                            by the absence of significant manufacturing or mass
+                            production efforts. Technologies that rely on this level of
+                            infrastructure are almost unheard of in such civilisations. A
+                            lack of standardisation frequently limits the proliferation or
+                            acceptance of higher-end technologies at large.
+
+                            Despite these limits, Pre-Industrial civilisations are often able
+                            to produce black powder weapons, good-quality steel goods,
+                            and other items reliant on the efforts of individual craftsmen
+                            or trade guilds. All weapons and armour produced at this level
+                            have the Primitive Quality. In some cases, these civilisations
+                            place an exceptionally high value on master tradesmen, for
+                            their unique position in their society’s infrastructure.
+
+                            Pre-Industrial societies are usually too limited in scope to
+                            have significantly impacted a Planet’s Resources, though
+                            there are always exceptions. Their activity reduces Mineral Resources’
+                            Abundance by 1d10."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_pre_industrial
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Primitive Clans
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "Civilisations in this stage of development are commonly
+                            newly emergent xenos races, although human colonies
+                            that have lost vital technology knowledge can descend to
+                            this level, in some cases. This is the level of Development
+                            found on most of the Imperium’s feral worlds. It is defined
+                            by a limited adoption or even complete lack of agricultural
+                            techniques or permanent settlements. Large-scale industry is
+                            all but unknown at this level of Development, and many basic
+                            crafts, common to more advanced Development levels, should
+                            likewise be absent. Any weapons and armour produced at this
+                            level have the Primitive Quality.
+
+                            Though they tend to have a lower impact than industrial
+                            societies, Primitive Clans can still easily reshape an ecosystem
+                            or even deplete key resources. Their activity reduces all Organic Compound
+                            Resource Abundance by 1d10-2."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_primitive_clans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Voidfarers
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Humans
+              description: "There is no limit to the technologies a civilisation of Voidfarers
+                            can produce. Such civilisations are frequently involved in
+                            efforts to expand beyond their home world, and are rarely
+                            found without at least a handful of system ships devoted
+                            to such efforts. If the local government has found evidence
+                            of life beyond their world, they might have even built
+                            defences or voidships as a precautionary measure. The GM
+                            should apply common sense in developing the capabilities
+                            of such civilisations, especially with potentially significant
+                            technologies, such as Warp drives.
+
+                            This level of Development requires massive consumption
+                            of a Planet’s Resources. Their industry reduce all Mineral,
+                            Xenos Ruins, Organic Compound Resource Abundance by 4d10-5"
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_voidfarers
+
+
+- _type: Inspiration
+  name: Kroot
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Inhabitants
+  description: "Though the Kroot seem to have been present in the Expanse for
+                longer than even the earliest Rogue Traders, they have colonised
+                few worlds throughout its stars. Most of the local Kroot populations
+                stay aboard the massive, voidfaring Warspheres that carry them
+                between systems, and it is rare for even a small warband to trade
+                this nomadic lifestyle for a planetbound life.
+
+                Sometimes a Warsphere passes a world with particularly
+                promising genetic diversity, which inspires one or more
+                Shapers to lead their Kindreds on expeditions to these worlds.
+                These groups maintain contact with their fellows as best as
+                they can, but give up their mobility in exchange for a chance
+                to pursue unique new genetic advantages for their people.
+
+                In general, Kroot populations tend to be isolationist. This
+                species’ mercenary dealings make them disinterested in gaining
+                enemies that might one day be potential employers, and their
+                hunting lodges consider adding to their race’s strength a duty
+                too important to interrupt for off-world concerns. Though they
+                defend themselves against hostile interests, they do little to extend
+                their sphere of influence, and treat any peaceful visitors from
+                other species with polite indifference before firmly encouraging
+                them to leave. Particularly successful or sophisticated colonies
+                might entertain envoys from Rogue Traders and their ilk more
+                enthusiastically, hoping to find a new crucible in which to test
+                themselves and improve the strength of their Kindred.
+
+                The exception to this relatively unbending rule is in their
+                attitude towards Orks. It is rare for Kroot to turn down any
+                opportunity to strike at their most reviled foes, or to partake of
+                the Greenskins’ strength. A visitor to a Kroot lodge could likely
+                hire many of the hunters who might be otherwise occupied if a
+                conflict with Orks is brewing."
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Development
+        tags:
+          - _type: Tag
+            _exists: true
+            name: Kroot
+        count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 7
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Colony
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Kroot
+              description: "Kroot colonies tend to be impermanent, even given the
+                            limited opportunities such efforts provide. The goal of these
+                            settlements is not to put down roots or claim land, but to
+                            hunt and consume one the local fauna until the Shapers in
+                            charge of the colony have mastered their gifts. This is a task
+                            that can last for generations, and a number of Kroot hunting
+                            lodges throughout the Expanse have been in continuous use
+                            for centuries. Nevertheless, the Kindred who hold the colony
+                            consider their tenancy and claim to be temporary, and look
+                            at the idea of permanently settling a world with contempt.
+                            Some Rogue Traders have thought this attitude to mean that
+                            the Kroot would not defend their holdings, only to find their
+                            armies added to the colony’s diet.
+
+                            The goal of any Kroot presence on a world is to gain
+                            in strength, and they choose their prey carefully. The GM
+                            should generate one or more native species with significant or
+                            unusual capabilities, as the focus of the Shaper’s attention."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_kroot_colony
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Primitive Clans
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Kroot
+              description: "Not all Kroot settlements in the Expanse are the result of
+                            planning or carefully selected hunts. Small groups of warriors,
+                            hunters, and mercenaries from the larger Kindreds sometimes
+                            become separated, and even large warbands can be stranded
+                            when their Warsphere fails, or their employer abandons them
+                            on a distant world. The ferocity and determination of these
+                            stragglers can allow them to survive on almost any world,
+                            but without the guidance of their Shapers, and the armouries
+                            aboard their ships, the societies they form tend to resemble
+                            nothing so much as feral hunting packs.
+
+                            At the GMs discretion, a Kroot group that has been stranded in
+                            this state for many generations might suffer penalties to Intelligence
+                            and Fellowship, and even gain the Bestial Trait in extreme cases.
+                            Most such penalties should be appropriately counterbalanced by
+                            increased physical prowess, as the Kroot recklessly change their
+                            nature beyond the bounds imposed by a Shaper.
+
+                            If another Kindred finds them at this stage, they might
+                            choose to hunt their fallen brethren to extinction or tame
+                            them as beasts. They might even attempt to salvage some parts
+                            of their genetic development in the hopes of using certain
+                            new quirks without succumbing to the same fate. Some
+                            xenographers theorise the Kroot Hound hunting beasts some
+                            Kindreds employ were the product of such populations."
+
+- _type: Inspiration
+  name: Orks
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Inhabitants
+  description: "Rogue Traders investigating worlds all over the Expanse have
+                had to deal with the encroachment of marauding Orks, to say
+                nothing of those worlds already in their brutal hands. The mere
+                presence of Orks in a nearby system would be enough of a threat
+                to make many Rogue Traders reconsider developing a newly
+                found planet, if it were not for the rarity of worlds outside the
+                range of the Greenskin threat. In most cases, it is safe to assume
+                that any nearby Orks probably do not have access to the ships
+                necessary to threaten a dynasty’s holdings, and a Rogue Trader
+                can take the absence of unruly Greenskin mobs crawling across
+                every world in the system as evidence of this fact.
+
+                In cases where an expedition is unfortunate enough to
+                come into an Ork-held system without prior warning, most
+                captains are inclined to promptly order their Navigators
+                to reverse the course that took them there. On occasion,
+                martially-minded or extremely bold captains have used their
+                sudden arrival to strike at the Ork presence. Such battles
+                rarely carry more reward than the satisfaction of vanquishing
+                a thoroughly unpleasant threat. Still, Explorers who are both
+                bold and fortunate might find that seizing the initiative in
+                this manner allows them to claim a valuable world before the
+                depredations of the infesting xenos stripped it bare.
+
+                Habitable Planets held by Orks rarely remain so in more
+                than the most technical sense. Territories held by Orks have
+                a chance of being reduced to a Wasteland, instead of their
+                normal type of Base Terrain. Former Mountain Ranges
+                continue to assist with Navigation (Surface) Tests, but
+                all such Territories generate Territory Traits based
+                on their new designation. Such Territories
+                likely show evidence of their former nature,
+                such as the dried-out or befouled beds of marshes, or swathes
+                of close-cut tree stumps. The Development of an Ork-held
+                Planet determines the chance of a Territory to be changed in
+                this manner, as described below.
+
+                Orks invariably come into conflict with any other species they
+                meet, although since this also true of any other Orks they meet,
+                this does not generally result in a significant change on their end
+                of the equation. Peace with Orks is quite literally impossible, as
+                the species has no ability to grasp the concept. The best that most
+                who encounter them can hope for is that the Orks are unable to
+                notice or attack them, due to a lack of ships or surface-to-orbit
+                ordnance. Such lucky cases often allow for the Orks’ numbers to
+                be thinned quickly, but the tenacity and resourcefulness of the
+                Greenskins often means a final clean-up must be done up close,
+                where they cannot simply wait out the attack in a bolthole.
+
+                In situations where it is impossible to surprise the Orks with a
+                sudden orbital bombardment, it might still be possible to redirect
+                their aggression. With sufficient inducement, most Freebooterz
+                are willing to put off attacking a Rogue Trader for the time being.
+                These efforts often involve outright bribery, though the Greenskins
+                rarely show interest in any payment other than armaments and
+                ammunition. Wiser Rogue Traders try to avoid paying off their
+                would-be attackers with anything that can be turned against them
+                when the Orks grow bored. Promises of more tempting targets
+                can work even better than a direct payoff, especially if the new
+                target promises both a good fight and valuable loot. Rumours
+                persist that certain Traders in the Expanse seek out Freebooterz,
+                to goad them into attacking their rivals’ interests. Such a strategy
+                would be foolhardy in the extreme, but only a select few Rogue
+                Traders are renowned for their caution."
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Development
+        tags:
+          - _type: Tag
+            _exists: true
+            name: Orks
+        count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Advanced Industry
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Orks
+              description: "A world claimed by a powerful Ork warband undergoes a
+                            rapid and destructive scouring, as its resources are alternately
+                            strip-mined for their value, or wantonly destroyed for the
+                            amusement of a deranged warlord. If left unopposed, such a
+                            warband can irrecoverably ruin a paradise world in under a
+                            century. To encounter a world held in the thrall of the Orks’
+                            savage “kultur” is to gaze upon a devastated wasteland, dotted
+                            with a mix of ramshackle structures and shattered ruins, nearly
+                            indistinguishable from the intact buildings. The one mercy of
+                            such societies is the rarity of Ork Mekboyz who can build
+                            voidships, and the lack of an attention span or organisational
+                            structure to easily support such efforts when they do arise.
+
+                            The wanton destruction and prodigious consumption
+                            of what passes for Ork society places a tremendous drain
+                            on the Resources of their Planets. Their Development
+                            reduces all types of Resources, and tends to be especially
+                            harsh on the sometimes delicate ecological balance
+                            supporting Organic Compounds. They reduce the
+                            Abundance of their Planet’s Resources by a minimum of
+                            five steps, across all deposits. A thoroughly entrenched
+                            and established population can reduce Resources
+                            by as many as ten steps across all deposits, after first
+                            reducing all Organic Compound Resources to a maximum
+                            Abundance of Limited. If steps are not taken to reduce
+                            or eliminate the Ork presence after it is encountered, the
+                            GM should consider further reducing the initial Resource
+                            Abundance, as time progresses in the game.
+
+                            The treatment of Territories on Planets of this type is
+                            appalling, and any that survive do so only because the Orks
+                            have not yet developed an interest in them. When creating a
+                            Territory on such a Planet, roll 1d10; on a result of 6 or higher,
+                            the Territory has been reduced to Wasteland. Add a +1 to the
+                            1d10 roll if there is an active Ork population in the region. If
+                            the GM determines that the Orks have further degraded the
+                            Planet over the course of a game of ROGUE TRADER, he can
+                            freely convert any surviving Territories to Wastelands as time
+                            progresses in the game. Additionally, reduce the Abundance
+                            of all Resources on a Planet so inhabited by 2d10+5.
+
+                            It should be noted that while most Ork clans technically
+                            have access to the level of technology to support living on
+                            an uninhabitable Planet, such presences have never been
+                            confirmed. This is partially due to the fact that few Mekboyz
+                            would ever think of the idea, or bother attempting it, and
+                            partially due to the tendency of the handful that do attempt
+                            it to vent their comrades out the airlock for their amusement
+                            shortly afterwards. The inevitable lack of continued
+                            maintenance finishes off the few settlements that survive
+                            this danger within a few months of the resident Mekboy
+                            becoming distracted by a new project."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_orks_advanced_industry
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Colony
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Orks
+              description: "The concept of a true colony of Orks is widely considered a
+                            fundamental impossibility, as the savages have no understanding
+                            of concepts such as overpopulation, overconsumption, or
+                            any sort of higher purpose. When viewed from another
+                            perspective, it could also be said that Ork worlds consist of
+                            nothing but colonies, as they have no known home world,
+                            and indeed, no concept of “home.”
+
+                            From this perspective, there is no practical difference between
+                            the settlements that spring up around a crashed Rokk or the
+                            planetbound wreck of an overconfident Brute Ram Ship, and the
+                            sprawling factory-complexes and fortresses of the greatest Ork
+                            strongholds. The first of these inevitably becomes the second, if
+                            left to its own devices for a sufficient length of time. This school
+                            of thought has led even the most self-serving Rogue Traders to
+                            launch punitive and costly assaults on developing Ork worlds,
+                            for fear of what they will eventually become.
+
+                            As a result of all this, Ork worlds with the Colony
+                            Development level have certain unusual and dubious
+                            distinctions. The first is that such worlds have almost never
+                            been home to an Ork presence for any significant length of
+                            time, with the Orks’ arrival probably having occurred in what
+                            would be recent memory, if Greenskins kept track of such
+                            things. If they did not arrive through some arcane means,
+                            such as teleportation or ejection from a space hulk, then
+                            the remains of their vessel are likely to be a noticeable local
+                            fixture. Explorers who encounter and ignore an Ork Colony
+                            could well return find it has progressed in Development to
+                            Advanced Industry a scant few years or decades later.
+
+                            The other distinction of Ork Colonies is their unique
+                            capability to defile a pristine world. Though the colonies
+                            of other races are typically longer-standing and older than
+                            a newly-erected Ork settlement, they lack the Greenskins’
+                            capacity for wastefulness and ruin. An Ork Colony reduces the
+                            Abundance of Organic Compound and Mineral deposits by 2d10+5.
+
+                            This degradation can affect any kind of Resource. In addition,
+                            roll 1d10; on a result of 6 or higher, the Territory nearest the
+                            Orks’ centre of activity has been reduced to a Wasteland, and
+                            a result of 9 or higher, the three nearest Territories have been
+                            ravaged in this way by the presence of the Orks."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_orks_colony
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Primitive Clans
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Orks
+              description: "The presence of planet-bound Orks on worlds throughout
+                            the Expanse is a phenomenon that is not fully understood. In
+                            Imperial space, they are typically found as a recurring menace
+                            on worlds that have successfully repelled a Greenskin assault or
+                            invasion force. Their presence is believed to be due to leftover
+                            Ork genetic material or spores from the earlier incident, a taint
+                            which has proven all but impossible to fully remove. Sometimes,
+                            worlds infested in this manner are found in the Expanse, with
+                            the local societies stamping out the clans as they emerge as
+                            best they can. What truly baffles the understanding of Rogue
+                            Traders and Magos Xenosbiologis alike, is the presence of these
+                            feral clans on worlds that could never have repelled an actual
+                            Ork attack. Savage Greenskins have been found roaming across
+                            planets that show no signs of having ever housed another
+                            sentient race. Careful examination of captured specimens
+                            and their limited technology shows no more than the typical
+                            deviations from Orky norms, further complicating the issue.
+
+                            The most common theory on the topic is that these Orks
+                            are exiles or other outcasts, abandoned by their clans and
+                            left behind as they travelled to new worlds. Detractors of the
+                            theory scornfully suggest that its popularity derives from an
+                            unwillingness to face unpleasant truths, and point out the lack
+                            of corroborating evidence. Not only is the theory wishful
+                            thinking, they say, but it flies in the face of actual observation
+                            of Ork migrations. They point out that there is no recorded
+                            instance of a known Ork stronghold weakening for any reason
+                            but a direct attack, by rival Orks or by another race.
+
+                            Still, if the popular theory seems unlikely, those put forth
+                            by the opposition range from the similarly improbable to the
+                            outright insane. The only rival school of thought to gain any
+                            significant ground is based around observations by Magos
+                            Severian, an Explorator in service to the Disciples of Thule.
+                            Severian’s Postulate, as it is known, claims that Ork spores
+                            can be found drifting through the void all across the galaxy,
+                            and regularly fall upon almost every world. Most are burned
+                            up in re-entry, and the remainder are rendered inert, due to
+                            their isolation from further Ork presence. The examples in the
+                            Expanse are often the result of spore clusters sufficiently dense
+                            to survive planetfall in the numbers necessary to generate a
+                            new Ork population. Those who have examined his arguments
+                            and evidence have yet to find a flaw, but the implications are
+                            disturbing enough that the Postulate does not spread far.
+
+                            These Orks usually lack the technically-minded Mekboyz
+                            that develop most Ork technology, but their primitive
+                            Pigdok equivalents are still capable of exceeding the
+                            commonly understood capabilities of their Development.
+                            They sometimes have limited supplies of the more
+                            common sorts of Ork weapons, including choppas and
+                            sluggas. Some Pigdoks
+                            have even mastered the
+                            construction of crude
+                            cybernetics, although they are as likely to apply them to
+                            the quasi-tamed fighting beasts they keep as they are to an
+                            actual Ork. These weapons and devices are primitive, even
+                            by Ork standards, and their makers lack the skills to modify
+                            them with a proper “kustom job.”
+
+                            The low-tech societies of Orks are the least destructive of
+                            their kind, although this is, of course, saying very little. This
+                            degradation can affect any kind of Resource. Their migrations
+                            are unlikely to deplete the lands around them as most Ork
+                            inhabitation does, so these Orks only convert a given Territory
+                            to a Wasteland on a 1d10 result of 10 when the GM creates
+                            the Territory. Feral Orks reduce the Abundance of Organic Compound
+                            deposits by 1d10+5."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_orks_primitive_clans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Voidfarers
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Orks
+              description: "While stranded Orks may represent the lowest end of
+                            their strange technology, voidfaring Orks and their bizarre
+                            Mekboyz are capable of incredible feats of insane engineering.
+                            Orks with access to voidships tend to fall into one of two
+                            categories. Of the first, the active and rampaging war machine
+                            known as the “Waaagh!,” the Expanse remains largely and
+                            mercifully free. Unfortunately, it is riddled with the fleets of
+                            the piratical Freebooterz who comprise the second category.
+                            The strongest of such fleets often make use of a planetary base.
+                            Their reasons for doing so vary tremendously, with recorded
+                            examples ranging from constructing vast armies of bizarre
+                            cybernetic constructs to one Kaptin’s
+                            legendary attempt to
+                            carve a moon in the
+                            shape of his face.
+
+                            Although the firepower possessed by Freebooter Kaptins is
+                            greater than that of any planetary warlord, the proliferation of
+                            new targets opened up by void travel mean that these worlds are
+                            often less devastated than might be expected from extensive Ork
+                            habitation. Ork Voidfarers do not deplete their Planet’s Resources
+                            any further than is typical for this level of Development, although
+                            they consume all Resource types. The frequent urges of the Kaptins
+                            to engage in acts such as carving insulting messages into a planet’s
+                            crust with orbital weaponry does result in an astounding degree
+                            of destruction in the local landscape, however. When creating a
+                            Territory on a Planet held by Ork Voidfarers, roll 1d10; on a
+                            result of 4 or higher, it has been depleted, and is a Wasteland
+                            that automatically possesses the Ruined Territory Trait in addition
+                            to any other results. Additionally, reduce the Abundance of all
+                            Resources on a Planet so inhabited by 1d10+5."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_orks_voidfarers
+
+- _type: Inspiration
+  name: Rak'Gol
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Inhabitants
+  description: "The Rak’Gol are believed to originate within the Alenic Depths,
+                although stories conflict over whether this is the location of
+                their profane home world, or simply the route they have taken
+                from a more distant region. The few brave or insane souls
+                who venture into the Depths to search for an answer never
+                return, although pieces of them or their ships occasionally
+                show up amidst the trophies recovered from Rak’Gol vessels.
+                Most consider the idea of seeking the Rak’Gol home world
+                with anything less than a full battlegroup of warships, or an
+                Imperial crusade, to be the height of lunacy.
+
+                Matters have grown considerably more complicated
+                since reports started filtering into Port Wander of
+                the xenos marauders claiming worlds beyond
+                the boundaries of the Depths, for unknown
+                reasons. It is unknown when such encounters first began occurring,
+                as the rumours were not substantiated until the recent Battle of
+                Holtsfall, in 801.M41, was fought in orbit of such a stronghold.
+                The battle’s victor, Lord-Captain Patronius Holt, was forced to
+                destroy the xenos structures with an orbital bombardment in
+                order to claim the world for his dynasty, and the rubble left few
+                clues as to their original purpose.
+
+                Regardless of whether the Rak’Gol simply seek to
+                expand their holdings, as would be expected of a less
+                deranged species, or if they have some other unfathomable
+                goal in mind, certain common factors have been found
+                among all Rak’Gol habitations discovered to date. In most
+                cases, the bulk of the xenos actually dwelled in orbit and
+                reduced vast swathes of the planet to irradiated deserts
+                for no discernible reason. In some cases, the Rak’Gol
+                constructed their warrens and fortresses in the midst of
+                the poisonous expanse they had created, while on other
+                worlds, they avoided setting foot in any of these areas,
+                even when driven back by assaulting troops.
+
+                All Rak’Gol worlds are marked by special Territories known
+                as Rad-Zones, even those that normally lack Territories of any
+                kind. These Territories are considered to have the Desolate and
+                Virulent Traits, although the ill effects of the latter trait are due
+                to the high levels of radiation present, as opposed to toxins. The
+                number of Rad-Zones present on a Rak’Gol Planet depends on
+                its Development level. Rak’Gol Planets frequently house a fleet
+                presence as well, with even minor encampments being defended
+                by at least a single ship. Their more significant holdings often
+                have a major battlegroup patrolling the reaches of the System.
+
+                When the Rak’Gol come into contact with another species,
+                only one side ever survives. No exceptions to this rule have
+                been encountered anywhere in the Expanse, unless one counts
+                conflicts as yet unresolved. As such, a System determined to have
+                inhabitants on multiple Planets cannot have Rak’Gol Planets
+                alongside the holdings of other species. Instead, Rak’Gol Planets
+                are often found near Planets with Archeotech Cache or Xenos
+                Ruins Resources, but these are usually of limited Abundance
+                (1d10+5 or lower), given the extremely thorough destruction
+                that the Rak’Gol visit on their enemies. Where Rak’Gol Planets
+                at the Voidfarer Development level are concerned, the GM might
+                consider applying these guidelines to nearby Systems, as well."
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Development
+        tags:
+          - _type: Tag
+            _exists: true
+            name: Rak'Gol
+        count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Colony
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Rak'Gol
+              description: "Newly-established Rak’Gol holdings have been found across
+                            much of the Expanse. They are most commonly encountered in
+                            the area between the God-Emperor’s Scourge and the Phaineal
+                            Echoes, a region of space already plagued with significant
+                            activity by their kind. Interestingly, these encampments often
+                            seem temporary, as if set up as part of a grander effort.
+
+                            The matter is further clouded by claims of Rak’Gol
+                            holdings far from any known activity by their fleets. There are
+                            a handful of verified reports regarding such activity, as far afield
+                            as Winterscale’s Realm and the Foundling Worlds. Rak’Gol
+                            planets have yet to be found near striking distance of Footfall
+                            and the Maw, but many fear it is only a matter of time.
+
+                            As far as can be told, establishment of a Rak’Gol Colony
+                            always precedes a devastating barrage of nuclear fire, to create
+                            one of their infamous Rad-Zones. The Colony’s main warren
+                            is often, but not always, established in or near the Rad-Zone,
+                            but its purpose remains unclear to outside observation. When
+                            creating this feature, roll 1d10; on a result of 8 or higher,
+                            there is a second Rad-Zone seared onto the Planet."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_rakgol_colony
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Colony
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Rak'Gol
+              description: "The Rak’Gol sometimes construct vast orbital stations, housing
+                            a population similar to those found on their colonies. As far as
+                            can be determined by the examination of reported encounters,
+                            there is no comprehensible pattern determining which worlds
+                            are occupied from the surface, and which from orbit. Issues of
+                            atmosphere, potential foodstuffs, and resources, do not seem to play
+                            into whatever alien priorities govern the decisions of the Rak’Gol
+                            in this matter. A widely circulated but unverified tale even claims
+                            that the xenos aboard an orbital station were once discovered in
+                            the process of examining to their planet’s surface, only to turn the
+                            station’s weaponry on the continent they occupied, reducing it to
+                            rubble as soon as the observers were detected.
+
+                            In all recorded encounters with Rak’Gol orbitals, their
+                            stations were heavily armed and well-protected, with even
+                            the most densely-populated habitats being the equivalent of
+                            dedicated defence stations. They bristle with the infamous
+                            Howler Cannons and Roarer Beams found on their warships,
+                            although they usually lack torpedoes or launch bays. Imperial
+                            strategists suggest that this could be due to the fact that the
+                            xenos are known to construct variants designed exclusively
+                            for raiding and slave-taking, rather than as actual weapons.
+
+                            Though Rak’Gol in Orbital Habitation do not seem
+                            to make significant use of the Planet they circle, they still
+                            scar it with the Rad-Zones for which they are known. It
+                            is believed that their stations are often constructed with a
+                            weapon specifically designed for such work, although this
+                            is impossible to verify, since no example has been captured
+                            intact. These Planets typically have 1d5 Rad-Zones."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_rakgol_orbital_habitation
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 6
+                dice_count: 0
+            value:
+              _type: Inspiration
+              name: Colony
+              tags:
+                - _type: Tag
+                  _exists: true
+                  name: Rak'Gol
+              description: "Major Rak’Gol worlds beyond the Alenic Depths remain
+                            scattered and rare for the time being, but each is a unique
+                            horror, surrounded by a fleet devoted to no other goal than
+                            annihilation. As long as a single such stronghold of foulness
+                            and depravity exists, it remains too many for the Imperium’s
+                            comfort, and their numbers are far greater than that. Where
+                            these worlds are known, they are denoted on every chart,
+                            rutter, and navigational primer as an area of extreme peril,
+                            but unfortunately, many more remain undocumented. Those
+                            systems which their ships can easily reach are often subjected
+                            to the same treatment, as an additional precaution.
+
+                            The surface of these planets is often reduced to nothing but
+                            a radioactive wasteland, broken only by cyclopean monoliths
+                            and hideous fortresses, with walls like enormous knives or
+                            fangs thrust forth from the earth. Innumerable minor Rad-
+                            Zones mark the surface like a pox, and 2d5 larger examples
+                            stand out like enormous scars. If doubles are rolled in the
+                            generation of the larger Rad-Zones, then the number instead
+                            represents those stretches of the surface not yet devastated
+                            enough to be considered such a Territory, and the rest of the
+                            Planet’s surface comprises a single enormous Rad-Zone.
+
+                            Mercifully, the Rak’Gol have concentrated most of their
+                            Planets at this Development level in or near the Alenic
+                            Depths, and the majority of the remainder can be found in
+                            the stretches of the Expanse known for Rak’Gol activity.
+                            If a Rak’Gol Planet at this level of Development would be
+                            found too far from the Alenic Depths or similar areas, the GM
+                            should consider treating it as a Colony instead."
+              perterbations:
+                - _type: Perterbation
+                  flags: planet_inhabitants_rakgol_voidfarers
+
+- _type: Inspiration
+  name: Unknown Xenos
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Inhabitants
+  description: "There are over a dozen known minor civilisations in the Expanse,
+                populated by a variety of unique xenos, and many more are sure to
+                be lurking on undiscovered worlds. The nature and scope of each
+                race’s holdings varies tremendously, from the scavenger tribes of
+                the Koeth Bone-Pickers, to the crystal cities orbiting worlds held
+                by the Dominion of Fhjor. A given civilisation is likely to belong
+                to a single Development level, with a handful of worlds varying
+                slightly from the norm in the case of fledgling empires.
+
+                There are no standardised rules by which new xenos races
+                can be understood. Particularly zealous or militant Rogue
+                Traders might prefer to deal with all such civilisations
+                similarly, as the thunderous fire of macrobatteries remains
+                a language that transcends any cultural, or even biological,
+                distinctions. This approach is blunt, uncompromising,
+                and yields predictable results, which means it is greatly
+                favoured by Imperial traditionalists. Nevertheless, it
+                can sometimes prove useful to negotiate with xenos
+                powers, particularly those who can threaten an
+                isolated ship, or who possess resources too
+                valuable to risk ruining in conflict.
+
+                Unfortunately, such negotiations are difficult in the extreme.
+                A handful of the more expansionistic cultures have some
+                knowledge of a language known to Imperial scholars, often
+                through contact with nomadic races like the Stryxis. Some
+                of these might be familiar with the common Low Gothic of
+                the Imperium, although such knowledge is rarely widespread
+                within a xenos culture. More commonly, exchanges are
+                conducted in tongues not native to any speaker present, or in a
+                broken pidgin, formed from half a dozen languages or more.
+
+                The story of Emil Vendigroth is held up as a cautionary
+                example of the dangers which this practice can present.
+                According to the records of his ship’s First Officer, Vendigroth
+                was negotiating safe passage with a xenos admiral, using the
+                Eldar tongue. The Rogue Trader agreed to what he believed to
+                be exceptionally favourable terms, only to find his counterpart
+                rejecting his payment out of hand. When they met again, in
+                an attempt to clear up the confusion, the shuttle holding both
+                their delegations was incinerated by a pulsar lance from a
+                passing Eldar corsair, who had intercepted their transmissions,
+                and considered the entire exchange an insult to his language
+                and culture. Vendigroth’s heir still avoids the region of space
+                where his predecessor fell, fearing he might be called to uphold
+                whatever bizarre bargain the xenos believe was struck.
+
+                In the event that there is no common language on either
+                side of the exchange, things can become considerably more
+                difficult. Some Rogue Traders make use of highly trained
+                lingua-savants or near-heretical cogitators to decipher
+                new languages more quickly, usually allowing
+                them to bridge this gap before tensions rise
+                too greatly. It is rumoured that the legendary Solomon Haarlock
+                trained himself to negotiate entirely in a series of easily understood
+                gestures, and thus bypassed many language barriers entirely.
+
+                The behaviours and common reactions of newly discovered
+                xenos races are little easier to classify and categorise than any
+                other aspect of their tremendous diversity. Aggression, fear, or
+                some combination of the two are all common responses to the
+                arrival of a Rogue Trader’s vessel in orbit above a primitive
+                culture, but they are far from universal. Furthermore, as the
+                power and knowledge of a xenos civilisation grows, it can
+                become harder and harder to predict. Even the most advanced
+                and powerful cultures have been known to react with fearful
+                awe when they learn of the scope and grandeur of the Imperium
+                represented by a Rogue Trader, while a lack of understanding
+                can lead to fearlessness in facing down an army many times
+                more powerful than the natives’ defence forces.
+
+                GMs developing a new xenos culture for use in their games
+                of ROGUE TRADER might find it useful to create a number of
+                basic beliefs and attitudes, central to their mindset. Considering
+                such details as dominant religions, previous off-world contact,
+                and the nature of their home world, can give a rough idea of
+                how the xenos would respond to the Explorers arriving, and
+                help inform how willing they are communicate or compromise
+                with outsiders. While it is possible to play this kind of situation
+                by ear, these preparations usually allow for greater feelings of
+                verisimilitude and consistency in the game, and can keep events
+                moving, when unanticipated events demand a reaction."
+
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Development
+        tags:
+          - _type: Tag
+            _exists: true
+            name: Humans
+        count:
+          - _type: Roll
+            _exists: true
+            required_flags: null
+            base: 1
+            dice_count: 0
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Advanced Industry
+              tags__name: Humans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Basic Industry
+              tags__name: Humans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Colony
+              tags__name: Humans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Orbital Habitation
+              tags__name: Humans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Pre-Industrial
+              tags__name: Humans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                required_flags: planet_habitability_(limited_ecosystem|verdant)
+                base: 2
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Primitive Clans
+              tags__name: humans
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+                dice_count: 0
+            value:
+              _type: Inspiration
+              _exists: true
+              name: Voidfarers
+              tags__name: Humans
