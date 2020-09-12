@@ -1202,6 +1202,33 @@
       base: 0
       dice_count: 1
       dice_size: 5
+  extras:
+    - _type: Inspiration_Extra
+      name: Rad-Zones
+      type:
+        _type: Config_Name
+        _exists: true
+        name: Wasteland
+      count:
+        - _type: Roll
+          required_flags: planet_inhabitants_rakgol_colony
+          dice_count: 0
+          base: 1
+          rolls:
+            - _type: Roll
+              dice_count: 1
+              dice_size: 10
+              base: 7
+              minimum: 0
+              maximum: 1
+        - _type: Roll
+          required_flags: planet_inhabitants_rakgol_orbital_habitation
+          dice_count: 1
+          dice_size: 5
+        - _type: Roll
+          required_flags: planet_inhabitants_rakgol_voidfarers
+          dice_count: 2
+          dice_size: 5
 
 - _type: Config_Group
   name: Additional Resources

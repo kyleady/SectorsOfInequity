@@ -1,5 +1,12 @@
+- _type: Tag
+  name: _Primary
+
 - _type: Perterbation
   name: Default
+  tags:
+    - _type: Tag
+      _exists: true
+      name: _Primary
   configs:
     - _type: Config_Asset
       _exists: true
