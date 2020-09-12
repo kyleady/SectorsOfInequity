@@ -4,6 +4,7 @@ import "database/sql"
 import "strings"
 
 type Roll struct {
+  Id int64 `sql:"id"`
   RequiredFlagsString sql.NullString `sql:"required_flags"`
   RejectedFlagsString sql.NullString `sql:"rejected_flags"`
 
@@ -14,6 +15,7 @@ type Roll struct {
   KeepHighest int `sql:"keep_highest"`
   Minimum sql.NullInt64 `sql:"minimum"`
   Maximum sql.NullInt64 `sql:"maximum"`
+  Rolls []*Roll
 
   requiredFlags []string
   rejectedFlags []string
@@ -24,7 +26,7 @@ func (roll *Roll) TableName(rollType string) string {
 }
 
 func (roll *Roll) GetId() *int64 {
-  panic("GetId() not implemented. Config should not be editted.")
+  return &roll.Id
 }
 
 func (roll *Roll) Roll(perterbation *Perterbation) int {
@@ -66,9 +68,9 @@ func (roll *Roll) Roll(perterbation *Perterbation) int {
       }
     }
 
-    result *= roll.Multiplier
-
     result += roll.Base
+
+    result += RollAll(roll.Rolls, perterbation)
 
     if roll.Minimum.Valid && result < int(roll.Minimum.Int64) {
       result = int(roll.Minimum.Int64)
@@ -77,6 +79,8 @@ func (roll *Roll) Roll(perterbation *Perterbation) int {
     if roll.Maximum.Valid && result > int(roll.Maximum.Int64) {
       result = int(roll.Maximum.Int64)
     }
+
+    result *= roll.Multiplier
 
     return result
 }
@@ -106,6 +110,8 @@ func FetchManyRolls(manager *ConfigManager, parentId int64, tableName string, va
     } else {
       roll.rejectedFlags = make([]string, 0)
     }
+
+    roll.Rolls = FetchManyRolls(manager, roll.Id, rollTableName, "rolls")
   }
 
   return rolls
@@ -122,6 +128,7 @@ func CreateConstantRoll(base int) *Roll {
     KeepHighest: 0,
     Minimum: sql.NullInt64{Valid: false, Int64: 0},
     Maximum: sql.NullInt64{Valid: false, Int64: 0},
+    Rolls: []*Roll{},
     requiredFlags: []string{},
     rejectedFlags: []string{},
   }

@@ -108,3 +108,4 @@ class Roll(models.Model):
     keep_highest = models.IntegerField(blank=True, default=0)
     minimum = models.PositiveSmallIntegerField(blank=True, null=True)
     maximum = models.PositiveSmallIntegerField(blank=True, null=True)
+    rolls = models.ManyToManyField('Roll', related_name='roll_rolls')
