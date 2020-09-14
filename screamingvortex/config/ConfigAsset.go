@@ -148,4 +148,11 @@ func (assetConfig *AssetConfig) Print(indent int) {
     fmt.Print(" ")
   }
   fmt.Printf("{Id:%d, TypeId:%d, |InspirationTables|:%d, |GroupConfigs|:%d, |GridConfigs|:%d}\n", assetConfig.Id, assetConfig.TypeId, len(assetConfig.InspirationTables), len(assetConfig.GroupConfigs), len(assetConfig.GridConfigs))
+
+  for _, inspirationTable := range assetConfig.InspirationTables {
+    for i := 0; i < indent+2; i++ {
+      fmt.Print(" ")
+    }
+    fmt.Println(inspirationTable.ValueName)
+  }
 }
