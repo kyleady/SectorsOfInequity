@@ -61,7 +61,7 @@ func(manager *ConfigManager) GetInspirationTable(tableIds []int64) *InspirationT
     if inspirationTable == nil {
       inspirationTable = manager.getInspirationTable(tableId)
     } else {
-      inspirationTable.AddPerterbation(manager.getInspirationTable(tableId))
+      inspirationTable = inspirationTable.AddPerterbation(manager.getInspirationTable(tableId))
     }
   }
 
