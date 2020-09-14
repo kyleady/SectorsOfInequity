@@ -1,0 +1,343 @@
+- _type: Tag
+  name: Treasure
+
+- _type: Inspiration_Table
+  name: Origin
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Treasure
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      rejected_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          rejected_flags: treasure_archeotech
+          base: 3
+      value:
+        _type: Inspiration
+        name: Finely Wrought
+        description: "This artefact is well-wrought and finely honed, despite decades
+                      or centuries of neglect."
+        perterbations:
+          - _type: Perterbation
+            flags: treasure_craftsmanship_best,treasure_firmly_wrought
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration
+        name: Ancient_Miracles
+        description: "Products of the Dark Age of Technology, when Mankind’s
+                      technology was at its zenith, these items are remarkable for
+                      their craftsmanship, precision, and effectiveness. Archeotech
+                      weapons and armour exceed even the finest craftsmanship of
+                      the 41st Millennium.
+
+                      Unfortunately, because of their
+                      venerable designs and the long-lost secrets used to create
+                      them, repairing Archeotech treasures (should they become
+                      damaged) requires the would-be tinkerer to succeed at a
+                      Challenging (+0) Forbidden Lore (Archeotech) Test
+                      before he can even make an attempt to repair it."
+        perterbations:
+          - _type: Perterbation
+            flags: treasure_ancient_miracles
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          rejected_flags: treasure_archeotech
+          base: 2
+      value:
+        _type: Inspiration
+        name: Alien Technology
+        description: "Crafted by xenos hands (or claws, as the case may be),
+                      alien technology is viewed with suspicion by most within
+                      the Imperium. At the fringes of the galaxy, there is less
+                      reticence to use the tools of xenos, though a Rogue Trader
+                      would be wise not to flaunt any objects of alien origin he
+                      may possess while in “civilised” company.
+
+                      Because of its alien origins, xenos technology requires
+                      anyone who wishes to repair it (should it become damaged)
+                      to succeed at a Challenging (+0) Forbidden Lore (Xenos)
+                      Test before he can attempt to repair it."
+        perterbations:
+          - _type: Perterbation
+            flags: treasure_alien_technology
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          rejected_flags: treasure_archeotech
+          base: 2
+      value:
+        _type: Inspiration
+        name: Cursed Artefact
+        description: "The origin of these items is a matter of speculation.
+                      Whether crafted by human or xenos artisans, these
+                      treasures are undoubtedly of surpassing quality, but they
+                      nonetheless all evoke some sort of dread, from obvious
+                      signs of Warp taint, to strange, glowing xenos crystals that
+                      are almost hypnotic, to dark whispers in the mind of the
+                      wielder."
+        perterbations:
+          - _type: Perterbation
+            flags: treasure_cursed_artefact
+
+- _type: Inspiration_Table
+  name: Special Rules
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Treasure
+
+- _type: Inspiration_Table
+  name: Quirks
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Treasure
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      rejected_flags: null
+      dice_count: 0
+      base: 1
+    - _type: Roll
+      required_flags: treasure_ancient_miracles
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Surly
+        description: "Past owners likely call this item “temperamental” (or things far less refined), if any are still alive to
+                      describe it. If this item’s user rolls a 96 or higher on any Test while using it, the item ceases to function for
+                      several moments (powering down, catching on a nearby object, or falling out of reach). The item’s owner gains
+                      a +2 bonus to his Initiative so long as he possesses it, however, due to the paranoia the device incites in him."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Cruel
+        description: "This item’s legacy is written in blood, cutting a red swath across the galaxy at a prodigious rate. Once
+                      per game session, the owner of this item may re-roll his Damage roll from a successful attack of any kind."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Patient
+        description: "Also sometimes called “sluggish,” this item is reliable and effective but slow to start. This item imposes
+                      a –3 penalty on its owner’s Initiative for time lost, but whenever its owner succeeds on a Test using the item, he
+                      adds one additional Degree of Success."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Unpredictable
+        description: "This item is notoriously capricious, and is said to favour its owner at some times and torment
+                      him at others. When its owner succeeds on a Test using the item, he adds one additional Degree of Success, but
+                      when he fails on a Test using it, he adds two additional Degrees of Failure."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Resplendent
+        description: "This item has a flair to it, completing tasks with an additional flourish. The owner of this item
+                      gains a +5 bonus to Charm and Intimidate Tests while it is in his possession, but Search Tests to find this item
+                      when it is concealed are made at a +30 bonus."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Vanishing
+        description: "This item is infuriatingly difficult to find, even when its owner only puts it out of sight for a
+                      moment. Search Tests to find this item (including when it is concealed on a body) suffer a –10 penalty. If the
+                      item is a voidship Component, Navigate Tests to find it aboard the vessel suffer a –10 penalty instead."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Trusty
+        description: "This item is widely known for its reliability. Once per game session, the owner of this item may gain a
+                      +10 bonus to the next Test he makes with it (this is cumulative with any other bonuses it provides)."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Zealous
+        description: "This object is without sentiment or mercy (it is, after all, an inanimate object), to its owner and his
+                      enemies alike. Tests made with this item can never gain a total bonus from circumstantial effects greater than
+                      +30, but can never suffer a total penalty from circumstantial effects greater than –30."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Dogged
+        description: "For better or for worse, this device seems near-impossible to lose. No matter the circumstances, it
+                      always seems to find its way back into its owner’s hands eventually."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Lucky
+        description: "Whatever else it might be, this item is considered a talisman of good fortune. So long as he is in
+                      contact with it (or the ship it is installed upon, for Components), the owner of this item counts as having one
+                      additional Fate Point that he may spend but may not “burn.”"
+
+
+- _type: Inspiration_Table
+  name: Craftsmanship
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Treasure
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      rejected_flags: null
+      dice_count: 0
+      base: 1
+  modifiers:
+    - _type: Roll
+      required_flags: treasure_ancient_miracles
+      base: 3
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      weights:
+        - _type: Roll
+          rejected_flags: treasure_craftsmanship_best
+          base: 2
+      value:
+        _type: Inspiration
+        name: Poor
+    - _type: Weighted_Inspiration
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      weights:
+        - _type: Roll
+          rejected_flags: treasure_craftsmanship_best
+          base: 5
+      value:
+        _type: Inspiration
+        name: Common
+    - _type: Weighted_Inspiration
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      weights:
+        - _type: Roll
+          rejected_flags: treasure_craftsmanship_best
+          base: 2
+      value:
+        _type: Inspiration
+        name: Good
+    - _type: Weighted_Inspiration
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 4
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Best

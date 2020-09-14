@@ -240,6 +240,7 @@
         - _type: Roll
           _exists: true
           required_flags: null
+          rejected_flags: null
           base: 3
           dice_count: 0
       value:
@@ -269,6 +270,7 @@
         - _type: Roll
           _exists: true
           required_flags: null
+          rejected_flags: null
           base: 2
           dice_count: 0
       value:

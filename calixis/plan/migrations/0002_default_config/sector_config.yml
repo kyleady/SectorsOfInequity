@@ -19,6 +19,7 @@
             - _type: Roll
               _exists: true
               required_flags: null
+              rejected_flags: null
               dice_count: 0
               base: 3
           value:
@@ -30,6 +31,7 @@
             - _type: Roll
               _exists: true
               required_flags: null
+              rejected_flags: null
               dice_count: 0
               base: 2
           value:
@@ -81,6 +83,7 @@
         - _type: Roll
           _exists: true
           required_flags: null
+          rejected_flags: null
           dice_count: 0
           base: 5
       population_percent:

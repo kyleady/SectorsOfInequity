@@ -160,6 +160,7 @@
         - _type: Roll
           _exists: true
           required_flags: null
+          rejected_flags: null
           dice_count: 0
           base: 5
       value:
@@ -277,6 +278,7 @@
               - _type: Roll
                 _exists: true
                 required_flags: null
+                rejected_flags: null
                 base: 3
                 dice_count: 1
                 dice_size: 5
@@ -395,6 +397,7 @@
         - _type: Roll
           _exists: true
           required_flags: null
+          rejected_flags: null
           dice_count: 0
           base: 2
       value:
@@ -493,6 +496,7 @@
         - _type: Roll
           _exists: true
           required_flags: null
+          rejected_flags: null
           dice_count: 0
           base: 2
       value:

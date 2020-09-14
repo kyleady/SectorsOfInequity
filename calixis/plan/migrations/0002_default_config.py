@@ -42,6 +42,7 @@ def _get_plan(instructions):
             m2m_dependencies = []
 
             if '_type' not in instruction:
+                pp.pprint(instruction)
                 raise Exception('Model does not have a _type key')
 
             for k, v in instruction.items():

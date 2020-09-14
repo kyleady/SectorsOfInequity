@@ -95,3 +95,6 @@
     - _type: Config_Asset
       _exists: true
       name: Default Xenos Ruins
+    - _type: Config_Asset
+      _exists: true
+      name: Default Melee Weapon
