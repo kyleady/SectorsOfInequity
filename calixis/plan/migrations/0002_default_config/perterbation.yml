@@ -98,3 +98,6 @@
     - _type: Config_Asset
       _exists: true
       name: Default Melee Weapon
+    - _type: Config_Asset
+      _exists: true
+      name: Default Ranged Weapon

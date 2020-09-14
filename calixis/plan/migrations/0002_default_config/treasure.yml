@@ -119,6 +119,9 @@
     - _type: Roll
       required_flags: treasure_ancient_miracles
       base: 1
+    - _type: Roll
+      required_flags: treasure_extra_quirk
+      base: 1
   weighted_inspirations:
     - _type: Weighted_Inspiration
       weights:

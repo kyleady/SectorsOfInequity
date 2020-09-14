@@ -3,6 +3,10 @@
   dice_count: 0
   dice_size: 0
 - _type: Roll
+  base: 0
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
   base: 1
   dice_count: 0
   dice_size: 0
@@ -95,7 +99,31 @@
   dice_count: 0
   dice_size: 0
 - _type: Roll
+  base: 35
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
+  base: 40
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
+  base: 48
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
   base: 50
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
+  base: 60
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
+  base: 90
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
+  base: 200
   dice_count: 0
   dice_size: 0
 - _type: Roll

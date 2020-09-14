@@ -1,15 +1,15 @@
 - _type: Tag
-  name: Melee Weapon
+  name: Ranged Weapon
 
 - _type: Config_Name
-  name: Melee Weapon
+  name: Ranged Weapon
 
 - _type: Config_Asset
-  name: Default Melee Weapon
+  name: Default Ranged Weapon
   type:
     _type: Config_Name
     _exists: true
-    name: Melee Weapon
+    name: Ranged Weapon
   inspiration_tables:
     - _type: Weighted_Table
       order:
@@ -23,7 +23,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Type
-        tags__name: Melee Weapon
+        tags__name: Ranged Weapon
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -49,7 +49,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Miracles of the Dark Age
-        tags__name: Melee Weapon
+        tags__name: Ranged Weapon
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -62,7 +62,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Xenos Construction
-        tags__name: Melee Weapon
+        tags__name: Ranged Weapon
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -75,7 +75,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Mark of the Curse
-        tags__name: Melee Weapon
+        tags__name: Ranged Weapon
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -101,7 +101,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Stats
-        tags__name: Melee Weapon
+        tags__name: Ranged Weapon
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -134,7 +134,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   count:
     - _type: Roll
       _exists: true
@@ -154,8 +154,34 @@
       value:
         _type: Inspiration
         _exists: true
-        name: Razorchain
-        tags__name: Melee Weapon
+        name: Relic Javelin
+        tags__name: Ranged Weapon
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Pistol
+        tags__name: Ranged Weapon
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Rifle
+        tags__name: Ranged Weapon
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -167,8 +193,8 @@
       value:
         _type: Inspiration
         _exists: true
-        name: Chainsword
-        tags__name: Melee Weapon
+        name: Flamer
+        tags__name: Ranged Weapon
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -180,8 +206,8 @@
       value:
         _type: Inspiration
         _exists: true
-        name: Chain Axe
-        tags__name: Melee Weapon
+        name: Thermal Cutter
+        tags__name: Ranged Weapon
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -193,8 +219,8 @@
       value:
         _type: Inspiration
         _exists: true
-        name: Relic Shield
-        tags__name: Melee Weapon
+        name: Heavy Rifle
+        tags__name: Ranged Weapon
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -206,8 +232,8 @@
       value:
         _type: Inspiration
         _exists: true
-        name: Relic Glaive
-        tags__name: Melee Weapon
+        name: Hunter's Rifle
+        tags__name: Ranged Weapon
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -219,67 +245,15 @@
       value:
         _type: Inspiration
         _exists: true
-        name: Relic Flail
-        tags__name: Melee Weapon
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          required_flags: null
-          rejected_flags: null
-          dice_count: 0
-          base: 1
-      value:
-        _type: Inspiration
-        _exists: true
-        name: Charged Gauntlet
-        tags__name: Melee Weapon
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          required_flags: null
-          rejected_flags: null
-          dice_count: 0
-          base: 1
-      value:
-        _type: Inspiration
-        _exists: true
-        name: Power Blade
-        tags__name: Melee Weapon
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          required_flags: null
-          rejected_flags: null
-          dice_count: 0
-          base: 1
-      value:
-        _type: Inspiration
-        _exists: true
-        name: Power Axe
-        tags__name: Melee Weapon
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          required_flags: null
-          rejected_flags: null
-          dice_count: 0
-          base: 1
-      value:
-        _type: Inspiration
-        _exists: true
-        name: Crystalline Blade
-        tags__name: Melee Weapon
+        name: Scattergun
+        tags__name: Ranged Weapon
 
 - _type: Inspiration_Table
   name: Stats
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   extra_inspirations:
     - _type: Weighted_Inspiration
       weights:
@@ -292,7 +266,6 @@
       value:
         _type: Inspiration
         name: Type
-        description: Melee
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -308,6 +281,25 @@
         roll_groups:
           - _type: Inspiration_Table
             name: range
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Rate of Fire
+        description: "{single}/{semi}/{full}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: single
+          - _type: Inspiration_Table
+            name: semi
+          - _type: Inspiration_Table
+            name: full
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -363,32 +355,64 @@
           base: 1
       value:
         _type: Inspiration
+        name: Clip
+        description: "{clip}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: clip
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Reload
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
         name: Weight
         description: "{weight}kg"
         roll_groups:
           - _type: Inspiration_Table
             name: weight
+
 - _type: Inspiration
-  name: Razorchain
+  name: Relic Javelin
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   perterbations:
     - _type: Perterbation
-      name: Razorchain
+      name: Relic Javelin
       configs:
         - _type: Config_Asset
           type:
             _type: Config_Name
             _exists: true
-            name: Melee Weapon
+            name: Ranged Weapon
           inspiration_tables:
             - _type: Weighted_Table
               value:
                 _type: Inspiration_Table
                 name: Stats
                 extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Thrown
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -402,14 +426,14 @@
                               required_flags: null
                               rejected_flags: null
                               dice_count: 0
-                              base: 5
+                              base: 10
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
-                      name: Damage
+                      name: Rate of Fire
                       roll_groups:
                         - _type: Inspiration_Table
-                          name: dice_count
+                          name: single
                           count:
                             - _type: Roll
                               _exists: true
@@ -417,106 +441,6 @@
                               rejected_flags: null
                               dice_count: 0
                               base: 1
-                        - _type: Inspiration_Table
-                          name: dice_size
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 5
-                        - _type: Inspiration_Table
-                          name: base
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 2
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage Type
-                      description: R
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Pen
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: pen
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 2
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Weight
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: weight
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 2
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Special Rules
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Balanced
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Flexible
-
-- _type: Inspiration
-  name: Chainsword
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Melee Weapon
-  perterbations:
-    - _type: Perterbation
-      name: Chainsword
-      configs:
-        - _type: Config_Asset
-          type:
-            _type: Config_Name
-            _exists: true
-            name: Melee Weapon
-          inspiration_tables:
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Stats
-                extra_inspirations:
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -547,8 +471,9 @@
                               _exists: true
                               required_flags: null
                               rejected_flags: null
+                              minimum: null
                               dice_count: 0
-                              base: 2
+                              base: 0
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -566,8 +491,15 @@
                               _exists: true
                               required_flags: null
                               rejected_flags: null
+                              minimum: null
                               dice_count: 0
-                              base: 2
+                              base: 0
+
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: "-"
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -580,8 +512,9 @@
                               _exists: true
                               required_flags: null
                               rejected_flags: null
+                              minimum: null
                               dice_count: 0
-                              base: 6
+                              base: 0
             - _type: Weighted_Table
               value:
                 _type: Inspiration_Table
@@ -597,40 +530,71 @@
                         base: 1
                     value:
                       _type: Inspiration
-                      name: Balanced
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Tearing
+                      name: Accurate
 
 - _type: Inspiration
-  name: Chain Axe
+  name: Pistol
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   perterbations:
     - _type: Perterbation
-      name: Chain Axe
+      name: Pistol
       configs:
         - _type: Config_Asset
           type:
             _type: Config_Name
             _exists: true
-            name: Melee Weapon
+            name: Ranged Weapon
           inspiration_tables:
             - _type: Weighted_Table
               value:
                 _type: Inspiration_Table
                 name: Stats
                 extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Pistol
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 30
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: semi
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 2
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -667,7 +631,7 @@
                     value:
                       _type: Inspiration
                       name: Damage Type
-                      description: R
+                      description: I
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -682,6 +646,321 @@
                               rejected_flags: null
                               dice_count: 0
                               base: 2
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Clip
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: clip
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 5
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: 2 Full
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 3
+
+- _type: Inspiration
+  name: Rifle
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Ranged Weapon
+  perterbations:
+    - _type: Perterbation
+      name: Rifle
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Ranged Weapon
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Basic
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 90
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: semi
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 3
+                        - _type: Inspiration_Table
+                          name: full
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 5
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: dice_count
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: dice_size
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 10
+                        - _type: Inspiration_Table
+                          name: base
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 5
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage Type
+                      description: I
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Pen
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: pen
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 4
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Clip
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: clip
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 20
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: Full
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 7
+
+- _type: Inspiration
+  name: Flamer
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Ranged Weapon
+  perterbations:
+    - _type: Perterbation
+      name: Flamer
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Ranged Weapon
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Basic
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 20
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: dice_count
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: dice_size
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 10
+                        - _type: Inspiration_Table
+                          name: base
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 4
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage Type
+                      description: I
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Pen
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: pen
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 2
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Clip
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: clip
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 4
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: 2 Full
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -711,29 +990,230 @@
                         base: 1
                     value:
                       _type: Inspiration
-                      name: Tearing
+                      name: Fire
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        required_flags: null
+                        rejected_flags: null
+                        dice_count: 0
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Spray
 
 - _type: Inspiration
-  name: Relic Shield
+  name: Thermal Cutter
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   perterbations:
     - _type: Perterbation
-      name: Relic Shield
+      name: Thermal Cutter
       configs:
         - _type: Config_Asset
           type:
             _type: Config_Name
             _exists: true
-            name: Melee Weapon
+            name: Ranged Weapon
           inspiration_tables:
             - _type: Weighted_Table
               value:
                 _type: Inspiration_Table
                 name: Stats
                 extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Basic
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 20
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: dice_count
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 2
+                        - _type: Inspiration_Table
+                          name: dice_size
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 10
+                        - _type: Inspiration_Table
+                          name: base
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 6
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage Type
+                      description: I
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Pen
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: pen
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 10
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Clip
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: clip
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 5
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: 2 Full
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 40
+
+- _type: Inspiration
+  name: Heavy Rifle
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Ranged Weapon
+  perterbations:
+    - _type: Perterbation
+      name: Heavy Rifle
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Ranged Weapon
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Basic
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 60
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: semi
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 4
+                        - _type: Inspiration_Table
+                          name: full
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 8
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -756,7 +1236,146 @@
                               required_flags: null
                               rejected_flags: null
                               dice_count: 0
+                              base: 10
+                        - _type: Inspiration_Table
+                          name: base
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
                               base: 5
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage Type
+                      description: I
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Pen
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: pen
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Clip
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: clip
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 48
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: 2 Full
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 35
+
+- _type: Inspiration
+  name: Hunter's Rifle
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Ranged Weapon
+  perterbations:
+    - _type: Perterbation
+      name: Hunter's Rifle
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Ranged Weapon
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Basic
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 200
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Damage
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: dice_count
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: dice_size
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 10
                         - _type: Inspiration_Table
                           name: base
                           count:
@@ -783,9 +1402,27 @@
                               _exists: true
                               required_flags: null
                               rejected_flags: null
-                              minimum: null
                               dice_count: 0
-                              base: 0
+                              base: 4
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Clip
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: clip
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 5
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Reload
+                      description: Full
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -799,7 +1436,7 @@
                               required_flags: null
                               rejected_flags: null
                               dice_count: 0
-                              base: 3
+                              base: 5
             - _type: Weighted_Table
               value:
                 _type: Inspiration_Table
@@ -815,29 +1452,71 @@
                         base: 1
                     value:
                       _type: Inspiration
-                      name: Defensive
+                      name: Accurate
 
 - _type: Inspiration
-  name: Relic Glaive
+  name: Scattergun
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   perterbations:
     - _type: Perterbation
-      name: Relic Glaive
+      name: Scattergun
       configs:
         - _type: Config_Asset
           type:
             _type: Config_Name
             _exists: true
-            name: Melee Weapon
+            name: Ranged Weapon
           inspiration_tables:
             - _type: Weighted_Table
               value:
                 _type: Inspiration_Table
                 name: Stats
                 extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Type
+                      description: Basic
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Range
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: range
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 30
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Rate of Fire
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: single
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 1
+                        - _type: Inspiration_Table
+                          name: semi
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              required_flags: null
+                              rejected_flags: null
+                              dice_count: 0
+                              base: 2
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -892,10 +1571,10 @@
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
-                      name: Weight
+                      name: Clip
                       roll_groups:
                         - _type: Inspiration_Table
-                          name: weight
+                          name: clip
                           count:
                             - _type: Roll
                               _exists: true
@@ -903,199 +1582,11 @@
                               rejected_flags: null
                               dice_count: 0
                               base: 12
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Special Rules
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Balanced
-
-- _type: Inspiration
-  name: Relic Flail
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Melee Weapon
-  perterbations:
-    - _type: Perterbation
-      name: Relic Flail
-      configs:
-        - _type: Config_Asset
-          type:
-            _type: Config_Name
-            _exists: true
-            name: Melee Weapon
-          inspiration_tables:
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Stats
-                extra_inspirations:
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
-                      name: Damage
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: dice_count
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 1
-                        - _type: Inspiration_Table
-                          name: dice_size
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 10
-                        - _type: Inspiration_Table
-                          name: base
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 8
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage Type
-                      description: I
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Pen
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: pen
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              minimum: null
-                              dice_count: 0
-                              base: 0
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Weight
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: weight
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 15
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Special Rules
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Unwieldy
-
-- _type: Inspiration
-  name: Charged Gauntlet
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Melee Weapon
-  perterbations:
-    - _type: Perterbation
-      name: Charged Gauntlet
-      configs:
-        - _type: Config_Asset
-          type:
-            _type: Config_Name
-            _exists: true
-            name: Melee Weapon
-          inspiration_tables:
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Stats
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: dice_count
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 1
-                        - _type: Inspiration_Table
-                          name: dice_size
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 10
-                        - _type: Inspiration_Table
-                          name: base
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 4
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage Type
-                      description: I
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Pen
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: pen
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 2
+                      name: Reload
+                      description: Full
                   - _type: Weighted_Inspiration
                     value:
                       _type: Inspiration
@@ -1125,345 +1616,14 @@
                         base: 1
                     value:
                       _type: Inspiration
-                      name: Balanced
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Unstable
-
-- _type: Inspiration
-  name: Power Blade
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Melee Weapon
-  perterbations:
-    - _type: Perterbation
-      name: Power Blade
-      configs:
-        - _type: Config_Asset
-          type:
-            _type: Config_Name
-            _exists: true
-            name: Melee Weapon
-          inspiration_tables:
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Stats
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: dice_count
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 1
-                        - _type: Inspiration_Table
-                          name: dice_size
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 10
-                        - _type: Inspiration_Table
-                          name: base
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 5
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage Type
-                      description: E
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Pen
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: pen
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 5
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Weight
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: weight
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 3
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Special Rules
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Power Field
-
-- _type: Inspiration
-  name: Power Axe
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Melee Weapon
-  perterbations:
-    - _type: Perterbation
-      name: Power Axe
-      configs:
-        - _type: Config_Asset
-          type:
-            _type: Config_Name
-            _exists: true
-            name: Melee Weapon
-          inspiration_tables:
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Stats
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: dice_count
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 1
-                        - _type: Inspiration_Table
-                          name: dice_size
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 10
-                        - _type: Inspiration_Table
-                          name: base
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 7
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage Type
-                      description: E
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Pen
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: pen
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 7
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Weight
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: weight
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 6
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Special Rules
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Power Field
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Unbalanced
-
-- _type: Inspiration
-  name: Crystalline Blade
-  tags:
-    - _type: Tag
-      _exists: true
-      name: Melee Weapon
-  perterbations:
-    - _type: Perterbation
-      name: Crystalline Blade
-      configs:
-        - _type: Config_Asset
-          type:
-            _type: Config_Name
-            _exists: true
-            name: Melee Weapon
-          inspiration_tables:
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Stats
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: dice_count
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 1
-                        - _type: Inspiration_Table
-                          name: dice_size
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 10
-                        - _type: Inspiration_Table
-                          name: base
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 2
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Damage Type
-                      description: R
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Pen
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: pen
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 8
-                  - _type: Weighted_Inspiration
-                    value:
-                      _type: Inspiration
-                      name: Weight
-                      roll_groups:
-                        - _type: Inspiration_Table
-                          name: weight
-                          count:
-                            - _type: Roll
-                              _exists: true
-                              required_flags: null
-                              rejected_flags: null
-                              dice_count: 0
-                              base: 3
-            - _type: Weighted_Table
-              value:
-                _type: Inspiration_Table
-                name: Special Rules
-                extra_inspirations:
-                  - _type: Weighted_Inspiration
-                    weights:
-                      - _type: Roll
-                        _exists: true
-                        required_flags: null
-                        rejected_flags: null
-                        dice_count: 0
-                        base: 1
-                    value:
-                      _type: Inspiration
-                      name: Power Field
+                      name: Scatter
 
 - _type: Inspiration_Table
   name: Miracles of the Dark Age
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   count:
     - _type: Roll
       required_flags: treasure_ancient_miracles
@@ -1525,10 +1685,10 @@
                       built to function reliably in all conditions, through challenges and
                       tests that would push lesser creations well beyond their limits.
 
-                      Melee Weapon: This weapon gains the Balanced Quality, so
-                      long as it does not already have that Quality or the Unbalanced
-                      or Unwieldy Qualities. If it does have any of those Qualities,
-                      increase its Penetration by 3 instead."
+                      Ranged Weapon: This weapon gains the Accurate Quality,
+                      so long as it does not already have that Quality or the Flame
+                      or Scatter Qualities. If it does have any of those Qualities,
+                      increase its Penetration by 2, and it gains the Reliable Quality."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -1630,7 +1790,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   count:
     - _type: Roll
       required_flags: treasure_alien_technology
@@ -1654,15 +1814,16 @@
                       baubles that serve no purpose at all, this device is an obvious
                       testament to the madness of xenos.
 
-                      Melee Weapon: This melee weapon is hefty, and designed
-                      to crush, impale, or otherwise perform its task in some
-                      equally unsubtle fashion. Increase its Damage by 4 and
-                      double its weight. If it has the Balanced Quality, it loses it.
-                      If it has the Power Field Quality, it loses it and gains the
-                      Unstable Quality. If it already has the Unstable Quality, it
-                      also gains the Shocking Quality. The GM should also roll
-                      one additional time on Table 2–35: Quirks (see page 92)
-                      for this weapon, and apply the result."
+                      Ranged Weapon: This ranged weapon looks less like
+                      a gun and more like a club with barrels mounted on it,
+                      its blocky construction largely superfluous to its role as a
+                      firearm. Increase its Damage by 2, double its weight, and
+                      if its Damage Type is Impact, change it to Explosive. If it
+                      has the Accurate Quality, it loses it. Otherwise, it gains the
+                      Inaccurate and Unreliable Qualities. Strangely, however, in
+                      the hands of an Ork, it loses the Unreliable Quality. The
+                      GM should also roll one additional time on Table 2–35:
+                      Quirks (see page 92) for this weapon, and apply the result."
         perterbations:
           - _type: Perterbation
             flags: treasure_extra_quirk
@@ -1682,14 +1843,13 @@
                       The device exudes an undeniable grace, even if it is the
                       work of foul aliens.
 
-                      Melee Weapon: This melee weapon is a work of art, all elegant
-                      curves and killing edges, made to specifications so precise that
-                      it could not possibly be of human design. Increase its Damage
-                      and Penetration by 2, and reduce its weight by half. If it has the
-                      Unwieldy Quality, it loses it and gains the Unbalanced Quality.
-                      If it has the Unbalanced Quality, it loses it. Otherwise, it grants
-                      a +5 bonus to Tests made to Parry with it (this is cumulative
-                      with the bonus provided by the Balanced Quality)."
+                      Ranged Weapon: This ranged weapon’s graceful design
+                      belies its killing power, and it spits forth monomolecular
+                      razors, lashing microfilament wires, or searing bursts of
+                      pinpoint energy that slay their targets without waste or
+                      mercy. If its Damage Type is Impact, change it to Rending.
+                      Increase its Damage by +2 and quadruple its Clip Size. It
+                      gains the Reliable Quality."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -1708,11 +1868,12 @@
                       Adeptus Mechanicus, and might well have delved into realms
                       not meant for mortal creators.
 
-                      Melee Weapon: This weapon is elegant in design and
-                      efficient in function, but is clearly meant as much for ceremony
-                      as function. It is largely unremarkable, except for obviously
-                      being of xenos manufacture. Reduce its weight by half and
-                      its Damage by 1."
+                      Ranged Weapon: This weapon is built for one purpose:
+                      killing with greatest efficiency, without malice or relish.
+                      Change its Damage Type to Energy, and increase its Damage
+                      and Penetration by 3. It is automatically equipped with
+                      an omni-scope (see page 134 of the ROGUE TRADER Core
+                      Rulebook). Double its Range."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -1729,12 +1890,11 @@
                       the entire time. They are marked by a silver sheen and odd
                       luminescence that disturbs most who look upon them.
 
-                      Melee Weapon: The weapon changes its Damage Type
-                      to Energy, gains the Power Field Quality if it does not have
-                      it, and increases its Penetration by 2. Further, if the attacker
-                      scores three or more Degrees of Success on any Weapon Skill
-                      Test to attack with this weapon, he ignores any Fields or
-                      psychic protections shielding his target."
+                      Ranged Weapon: The weapon changes its Damage Type
+                      to Energy and it never runs out of ammunition, nor needs to
+                      be reloaded (though it can still Jam). Further, if the attacker
+                      successfully inflicts Righteous Fury with this weapon, that
+                      attack also ignores all of the target’s Armour Points."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -1752,18 +1912,30 @@
                       no sane person would carry such a device, and those who do
                       have willingly taken the first steps on the road to madness.
 
-                      Melee Weapon: Wrought of twisted stone and crystal,
-                      this weapon is very alien indeed. Increase its Damage by
-                      2. Further, when wielded by a psyker, it increases his Psy
-                      Rating by 2 when he uses powers at the Push Psychic
-                      Strength (to a maximum of 10)."
+                      Ranged Weapon: Bulbous crystals and strange spines
+                      protrude from this weapon, and a constant static charge
+                      seems to cling to it. The weapon changes its Damage Type to
+                      Energy, and it discharges sparks of crackling light that seem
+                      to pursue their targets with the ferocity of hungry predators.
+                      The weapon’s Clip Size remains the same, but it cannot
+                      be reloaded as normal; instead, it seems to draw power by
+                      sapping the sanity of its victims. Any creature Damaged by
+                      the weapon must make a Challenging (+0) Willpower
+                      Test or suffer 1d10 Willpower Damage. Every time it causes
+                      Willpower Damage this way, the weapon’s Clip automatically
+                      refills. If its Clip ever reaches 0, its wielder gains 1d10
+                      Insanity Points, at which point its Clip automatically refills. If
+                      the weapon does not have a Clip Size, due to being a Thrown
+                      Weapon, or for any other reason, then this weapon causes
+                      any creature harmed by it to make a Challenging (+0)
+                      Willpower Test or gain 1d5 Insanity Points."
 
 - _type: Inspiration_Table
   name: Mark of the Curse
   tags:
     - _type: Tag
       _exists: true
-      name: Melee Weapon
+      name: Ranged Weapon
   count:
     - _type: Roll
       required_flags: treasure_cursed_artefact
