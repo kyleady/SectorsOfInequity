@@ -102,7 +102,7 @@ class Roll(models.Model):
     required_flags = models.CharField(blank=True, null=True, max_length=200)
     rejected_flags = models.CharField(blank=True, null=True, max_length=200)
     dice_count = models.PositiveSmallIntegerField(blank=True, default=0)
-    dice_size = models.PositiveSmallIntegerField(blank=True, default=6)
+    dice_size = models.PositiveSmallIntegerField(blank=True, default=0)
     base = models.IntegerField(blank=True, default=0)
     multiplier = models.IntegerField(blank=True, default=1)
     keep_highest = models.IntegerField(blank=True, default=0)
