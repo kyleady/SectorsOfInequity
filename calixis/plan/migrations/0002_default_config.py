@@ -22,74 +22,90 @@ def _fetch_instructions(directory):
 
     return instructions
 
+def _process_instruction(instruction, plan):
+    is_reference = False
+    counts = {
+        'reference': 0,
+        'row': 0,
+        'fk': 0,
+        'm2m': 0
+    }
+    fk_dependencies = []
+    m2m_dependencies = []
+
+    for k, v in instruction.items():
+        sub_plan = {
+            'references': [],
+            'rows': [],
+            'top_level': []
+        }
+        if isinstance(v, dict):
+            sub_plan = _get_plan([instruction[k]])
+            instruction[k] = {'_plan_id': sub_plan['plan_ids'][0]}
+            fk_dependencies += sub_plan['plan_ids']
+            counts['fk'] += 1
+        elif isinstance(v, list):
+            sub_plan = _get_plan(instruction[k])
+            instruction[k] = [{'_plan_id': plan_id} for plan_id in sub_plan['plan_ids']]
+            m2m_dependencies += sub_plan['plan_ids']
+            counts['m2m'] += len(v)
+        elif k == '_exists' and v == True:
+            is_reference = True
+
+        plan['references'] += sub_plan['references']
+        plan['rows'] += sub_plan['rows']
+        counts['reference'] += len(sub_plan['references'])
+        counts['row'] += len(sub_plan['rows'])
+
+    instruction['_fk_dependencies'] = fk_dependencies
+    instruction['_m2m_dependencies'] = m2m_dependencies
+    instruction['_plan_id'] = str(uuid.uuid4())
+    plan['plan_ids'].append(instruction['_plan_id'])
+    for count_type, count_total in counts.items():
+        instruction['_{}_count'.format(count_type)] = count_total
+
+    row_plan = {
+        'args': { key:value for key, value in instruction.items() if not key.startswith('_') and not isinstance(value, list) },
+        'metadata': { key:value for key, value in instruction.items() if key.startswith('_') },
+        'm2m_args': { key:value for key, value in instruction.items() if not key.startswith('_') and isinstance(value, list) }
+    }
+
+    if is_reference:
+        if counts['row'] > 0 or counts['reference'] > 0:
+            print("\nROW REFERENCE")
+            pp.pprint(row_plan)
+            raise Exception('A reference cannot create other rows or reference other rows. Query the related rows through this reference instead.')
+        plan['references'].append(row_plan)
+    else:
+        plan['rows'].append(row_plan)
+
+def _process_default(instruction, plan):
+    is_reference = instruction['_default'] == 'reference'
+    default_key = 'reference_defaults' if is_reference else 'row_defaults'
+    _type = instruction['_type']
+    del instruction['_type']
+    del instruction['_default']
+    plan[default_key][_type] = instruction
+
 def _get_plan(instructions):
     plan = {
+        'reference_defaults': {},
         'references': [],
         'rows': [],
+        'row_defaults': {},
         'plan_ids': []
     }
 
     for instruction in instructions:
         if isinstance(instruction, dict):
-            is_reference = False
-            counts = {
-                'reference': 0,
-                'row': 0,
-                'fk': 0,
-                'm2m': 0
-            }
-            fk_dependencies = []
-            m2m_dependencies = []
-
-            if '_type' not in instruction:
-                pp.pprint(instruction)
-                raise Exception('Model does not have a _type key')
-
-            for k, v in instruction.items():
-                sub_plan = {
-                    'references': [],
-                    'rows': [],
-                    'top_level': []
-                }
-                if isinstance(v, dict):
-                    sub_plan = _get_plan([instruction[k]])
-                    instruction[k] = {'_plan_id': sub_plan['plan_ids'][0]}
-                    fk_dependencies += sub_plan['plan_ids']
-                    counts['fk'] += 1
-                elif isinstance(v, list):
-                    sub_plan = _get_plan(instruction[k])
-                    instruction[k] = [{'_plan_id': plan_id} for plan_id in sub_plan['plan_ids']]
-                    m2m_dependencies += sub_plan['plan_ids']
-                    counts['m2m'] += len(v)
-                elif k == '_exists' and v == True:
-                    is_reference = True
-
-                plan['references'] += sub_plan['references']
-                plan['rows'] += sub_plan['rows']
-                counts['reference'] += len(sub_plan['references'])
-                counts['row'] += len(sub_plan['rows'])
-
-            instruction['_fk_dependencies'] = fk_dependencies
-            instruction['_m2m_dependencies'] = m2m_dependencies
-            instruction['_plan_id'] = str(uuid.uuid4())
-            plan['plan_ids'].append(instruction['_plan_id'])
-            for count_type, count_total in counts.items():
-                instruction['_{}_count'.format(count_type)] = count_total
-
-            row_plan = {
-                'args': { key:value for key, value in instruction.items() if not key.startswith('_') and not isinstance(value, list) },
-                'metadata': { key:value for key, value in instruction.items() if key.startswith('_') },
-                'm2m_args': { key:value for key, value in instruction.items() if not key.startswith('_') and isinstance(value, list) }
-            }
-
-            if is_reference:
-                if counts['row'] > 0 or counts['reference'] > 0:
-                    print("\nROW REFERENCE")
-                    pp.pprint(row_plan)
-                    raise Exception('A reference cannot create other rows or reference other rows. Query the related rows through this reference instead.')
-                plan['references'].append(row_plan)
+            if '_type' in instruction:
+                if '_default' in instruction:
+                    _process_default(instruction, plan)
+                else:
+                    _process_instruction(instruction, plan)
             else:
-                plan['rows'].append(row_plan)
+                pp.pprint(instruction)
+                raise Exception('Instruction needs a _type or a _default')
         else:
             raise Exception('Model of type {} is not a dict.'.format(type(instruction)))
 
@@ -104,8 +120,12 @@ def _dependencies_exist(row_plan, created_rows, dependency_type):
 
     return all_dependencies_have_been_created
 
-def _attempt_to_create_each(todo, created_rows, counts, model_constructors):
+def _attempt_to_create_each(todo, created_rows, counts, model_constructors, row_defaults):
     for _plan_id, row_plan in list(todo['rows'].items()):
+        row_plan_args = row_defaults.get(row_plan['metadata']['_type'], {}).copy()
+        row_plan_args.update(row_plan['args'])
+        row_plan['args'] = row_plan_args
+
         if not _dependencies_exist(row_plan, created_rows, 'fk'):
             continue
 
@@ -153,8 +173,12 @@ def _attempt_to_connect_each(todo, created_rows, counts):
         del todo['m2m'][_plan_id]
         counts['activity'] += 1
 
-def _attempt_to_reference_each(todo, created_rows, counts, model_constructors):
+def _attempt_to_reference_each(todo, created_rows, counts, model_constructors, reference_defaults):
     for _plan_id, reference_plan in list(todo['references'].items()):
+        reference_plan_args = reference_defaults.get(reference_plan['metadata']['_type'], {}).copy()
+        reference_plan_args.update(reference_plan['args'])
+        reference_plan['args'] = reference_plan_args
+
         try:
             found_objects = model_constructors[reference_plan['metadata']['_type']].objects.filter(**reference_plan['args'])
         except:
@@ -202,9 +226,9 @@ def _create_rows(apps, plan, default_app_name):
     created_rows = {}
     while counts['activity'] != 0:
         counts['activity'] = 0
-        _attempt_to_create_each(todo, created_rows, counts, model_constructors)
+        _attempt_to_create_each(todo, created_rows, counts, model_constructors, plan['row_defaults'])
         _attempt_to_connect_each(todo, created_rows, counts)
-        _attempt_to_reference_each(todo, created_rows, counts, model_constructors)
+        _attempt_to_reference_each(todo, created_rows, counts, model_constructors, plan['reference_defaults'])
 
     for todo_list in todo.values():
         if len(todo_list) > 0:

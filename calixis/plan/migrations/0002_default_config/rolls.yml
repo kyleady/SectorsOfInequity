@@ -1,3 +1,11 @@
+- _default: reference
+  _type: Roll
+  dice_count: 0
+  dice_size: 0
+  base: 0
+  required_flags: null
+  rejected_flags: null
+
 - _type: Roll
   base: -100
   dice_count: 0
