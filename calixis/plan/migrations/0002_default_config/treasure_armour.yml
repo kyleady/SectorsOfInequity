@@ -1,0 +1,1243 @@
+- _type: Tag
+  name: Armour
+
+- _type: Config_Name
+  name: Armour
+
+- _type: Config_Asset
+  name: Default Armour
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Armour
+  inspiration_tables:
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Type
+        tags__name: Armour
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Origin
+        tags__name: Treasure
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Miracles of the Dark Age
+        tags__name: Armour
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Xenos Construction
+        tags__name: Armour
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Mark of the Curse
+        tags__name: Armour
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Quirks
+        tags__name: Treasure
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 5
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Stats
+        tags__name: Armour
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 6
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Special Rules
+        tags__name: Treasure
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 7
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Craftsmanship
+        tags__name: Treasure
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      rejected_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Reinforced Hauberk
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Reinforced Helm
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Meshweave Cloak
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Carapace Chestplate
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Carapace Helm
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Assassin's Bodyglove
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Light Power Armour
+        tags__name: Armour
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Power Armour
+        tags__name: Armour
+
+- _type: Inspiration_Table
+  name: Stats
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  extra_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Head
+        description: "{head}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: head
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Body
+        description: "{body}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: body
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Arms
+        description: "{arms}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: arms
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Legs
+        description: "{legs}"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: legs
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Weight
+        description: "{weight}kg"
+        roll_groups:
+          - _type: Inspiration_Table
+            name: weight
+
+- _type: Inspiration
+  name: Reinforced Hauberk
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Reinforced Hauberk
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Body
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: body
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 4
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 15
+
+- _type: Inspiration
+  name: Reinforced Helm
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Reinforced Helm
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Head
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: head
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 9
+
+- _type: Inspiration
+  name: Meshweave Cloak
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Meshweave Cloak
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Head
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: head
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Body
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: body
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Arms
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: arms
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 6
+
+- _type: Inspiration
+  name: Carapace Chestplate
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Carapace Chestplate
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Body
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: body
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 6
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 7
+
+
+- _type: Inspiration
+  name: Carapace Helm
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Carapace Helm
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Head
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: head
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 4
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 2
+
+- _type: Inspiration
+  name: Assassin's Bodyglove
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Assassin's Bodyglove
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Head
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: head
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Body
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: body
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Arms
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: arms
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Legs
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: legs
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 3
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 5
+
+- _type: Inspiration
+  name: Light Power Armour
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Light Power Armour
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Head
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: head
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 7
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Body
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: body
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 7
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Arms
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: arms
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 7
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Legs
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: legs
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 7
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 40
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Special Rules
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Light Power Armour
+
+- _type: Inspiration
+  name: Power Armour
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  perterbations:
+    - _type: Perterbation
+      name: Power Armour
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Armour
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Stats
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Head
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: head
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 8
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Body
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: body
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 8
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Arms
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: arms
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 8
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Legs
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: legs
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 8
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Weight
+                      roll_groups:
+                        - _type: Inspiration_Table
+                          name: weight
+                          count:
+                            - _type: Roll
+                              _exists: true
+                              base: 65
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Special Rules
+                extra_inspirations:
+                  - _type: Weighted_Inspiration
+                    value:
+                      _type: Inspiration
+                      name: Power Armour
+
+- _type: Inspiration_Table
+  name: Miracles of the Dark Age
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  count:
+    - _type: Roll
+      required_flags: treasure_ancient_miracles
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Imposing
+        description: "While none can say why its creators ornamented this device
+                      so noticeably, it makes an undeniable impression upon any
+                      who see it, reminding them why the Dark Age of Technology
+                      is so fabled and so feared.
+
+                      Armour: This armour is utterly striking, wrought from
+                      solid metal, adorned with beautiful and terrifying imagery,
+                      or swathed by mysterious black wisps that conceal the
+                      wearer’s features. Its wearer gains a +10 bonus on
+                      Command and Intimidate Tests, and gains the Air of
+                      Authority Talent while wearing it."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Compact
+        description: "This device is unbelievably small, given its purpose, or can
+                      be folded to fit in places one would not expect to look.
+                      Though the techno-arcane rites used to miniaturize its internal
+                      workings are long-lost, it remains as an impressive testament
+                      to the miraculous knowledge of the Dark Age of Technology.
+
+                      Armour: This armour is extremely lightweight. Reduce its
+                      weight by half. Awareness Tests to notice this armour on
+                      its wearer suffer a –10 penalty (or a –20 penalty, if he is
+                      wearing it beneath clothes or something else to conceal it)."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Steady
+        description: "Though not as flashy as other archeotech treasures, this item is
+                      built to function reliably in all conditions, through challenges and
+                      tests that would push lesser creations well beyond their limits.
+
+                      Armour: This armour helps to keep its wearer in place,
+                      supporting him by dynamically redistributing its weight as
+                      necessary. It grants a +10 bonus to all Climb and Acrobatics
+                      Tests that its wearer makes."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Potent
+        description: "This device surges with the raw might available to its creators
+                      during the Dark Age of Technology.
+
+                      Armour: This armour is extraordinarily sturdy. Increase the
+                      Armour Points that it grants by 4."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Swirling Energy
+        description: "A shroud of energy surrounds this object, shimmering,
+                      glowing, or perhaps even flaring into existence before
+                      vanishing periodically.
+
+                      Armour: This armour is wreathed in an invisible protective
+                      field that periodically springs to life to protect its wearer,
+                      forcibly pushing aside projectiles or the swing of a sword.
+                      The first time an attack successfully strikes the armour’s
+                      wearer each Round, the attacker must re-roll his Weapon
+                      Skill or Ballistic Skill Test with a –10 penalty."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Incalculable Precision
+        description: "The manufacture of this device was so utterly precise that many
+                      users find its exactness disconcerting until they grow used to the
+                      greater level of meticulousness in craftsmanship that it displays.
+
+                      Armour: This armour allows its wearer to move with utmost
+                      freedom, sliding past those attacks that might penetrate it.
+                      This armour grants its wearer a +10 bonus to Dodge Tests.
+                      Increase the Armour Points that it provides by 1."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Indestructable
+        description: "Carved from a material that defies explanation or analysis, forged
+                      from a lost alloy, or otherwise created in a miraculous fashion, this
+                      item is nearly impossible to damage by natural means.
+
+                      Armour: Forged by means unknown from a mysterious
+                      material, even the sharpest of blades seem to slide off it
+                      without piercing. Penetration does not affect any Armour
+                      Points provided by this armour."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Multiple Blessings
+        extra_rolls: 2
+        description: "Roll again twice on this table (re-rolling any further results of “Multiple Blessings” and
+                      duplicate results), and apply both results to the item."
+
+- _type: Inspiration_Table
+  name: Xenos Construction
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  count:
+    - _type: Roll
+      required_flags: treasure_alien_technology
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Ramshackle
+        description: "Whatever hand wrought this device was a rough one indeed,
+                      and the mind guiding it was even more jagged and deranged.
+                      Erupting with spines and blades that serve no obvious purpose
+                      besides creating a risk to the user, or fitted with shining
+                      baubles that serve no purpose at all, this device is an obvious
+                      testament to the madness of xenos.
+
+                      Armour: This armour is incredibly bulky and festooned with
+                      absurdly think armour plates, whirring motors, and smokebelching
+                      engines. Double its weight, and increase all Armour
+                      Points it provides by 3. If it is Power Armour or Light Power
+                      Armour, it increases the wearer’s Strength Bonus by +2. It also
+                      imposes a –30 penalty on all Agility-based Tests."
+        perterbations:
+          - _type: Perterbation
+            flags: treasure_extra_quirk
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Peerless Elegance
+        description: "The hand of xenos of some sort is evident in the design of
+                      this device, for no human could have made such a thing.
+                      The device exudes an undeniable grace, even if it is the
+                      work of foul aliens.
+
+                      Armour: This armour conforms perfectly to its wearer,
+                      shifting imperceptibly to provide optimal protection without
+                      hindering movement. Halve its weight and increase all
+                      Armour Points it provides by 1. If it is Power Armour or
+                      Light Power Armour, it provides no bonuses to Strength,
+                      but also has no power requirements and does not inflict
+                      penalties on Concealment and Silent Move Tests for
+                      providing 7 or more Armour Points."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Innovative Design
+        description: "Treasure in this category was obviously created to serve its
+                      users as effectively as possible. It could be new or it could
+                      be ancient, but the xenos who designed it were clearly
+                      unrestrained by the protective rituals and traditions of the
+                      Adeptus Mechanicus, and might well have delved into realms
+                      not meant for mortal creators.
+
+                      Armour: This Armour is practical and effective, granting
+                      respectable protection without sacrificing freedom of
+                      movement. Increase all Armour Points it provides by 1.
+                      If it covers the Head location, it comes equipped with a
+                      photo-visor (see page 140 of the ROGUE TRADER Core
+                      Rulebook). If it is Power Armour or Light Power Armour, it
+                      automatically comes equipped with a Jump Pack (see page
+                      144 of the ROGUE TRADER Core Rulebook)."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Remnant of the Endless
+        description: "These items seem ageless, and despite unfathomable ages of
+                      neglect, they function as if they had been well-maintained
+                      the entire time. They are marked by a silver sheen and odd
+                      luminescence that disturbs most who look upon them.
+
+                      Armour: This Armour is infused with a crackling field
+                      of verdant energy that flicks out menacingly to drive off
+                      attackers. Whenever the wearer is hit with a Melee
+                      Attack, the attacker must make a Challenging (+0)
+                      Agility Test or suffer 1d5+2 Energy Damage
+                      with the Shocking Quality."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Death-Dream's Fragment
+        description: "This device is infused with a strange, crystalline material
+                      that seems almost organic, and catches the light in eerie and
+                      maddening ways. Regardless of its quality, one thing is clear:
+                      no sane person would carry such a device, and those who do
+                      have willingly taken the first steps on the road to madness.
+
+                      Armour: This armour has been wrought with lines of living
+                      crystal that can rapidly expand to seal rents and the wounds
+                      of the wearer alike. Whenever the wearer of this armour
+                      suffers Critical Damage to a location it protects, he may
+                      reduce that Damage by 1d5. If he does so, he gains that many
+                      Insanity Points, as the armour grows into his body, forcibly
+                      holding his collapsing form together and eroding away at his
+                      sanity. As the armour fuses with his biology this way, more
+                      and more, he might also find himself incapable of removing it."
+
+- _type: Inspiration_Table
+  name: Mark of the Curse
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Armour
+  count:
+    - _type: Roll
+      required_flags: treasure_cursed_artefact
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Bloodlust
+        description: "This device is possessed of a dire thirst for carnage.
+
+                      Armour: This armour incites its wearer to new heights of
+                      fury, granting him great power at a terrible cost. Whenever
+                      the wearer attacks, he may dangerously overexert himself,
+                      suffering 1d5 Damage, not reduced by Armour or Toughness
+                      Bonus. If he does so, he increases the Damage dealt by that
+                      attack by twice the amount of he inflicts on himself."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Mindkiller
+        description: "This device elicits nothing less than panic and terror in most
+                      people who see it. Whether it is a weapon with an oddly
+                      organic eye or maw protruding from it, or a vast, churning
+                      voidship component that seems to patter with the footsteps
+                      of all who have passed through it, it is utterly disconcerting.
+
+                      Armour: This armour is terrifying, with symbols of doom
+                      and dread carved upon it, and possessing a terrifying mien.
+                      Every time its wearer kills a foe in combat, he gains the Fear
+                      (1) Trait until the end of the encounter."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Alluring
+        description: "All treasures are in some way desirable by their very
+                      classification as “treasures,” but this device inflames the
+                      avarice of all who see it. It is almost unnaturally beautiful,
+                      and let any owner beware, for scoundrels in the Koronus
+                      Expanse kill for far less.
+
+                      Armour: This armour seems perfectly suited for its owner,
+                      its sleek and aristocratic design giving the wearer a regal,
+                      authoritative bearing. The wearer of this armour gains an
+                      additional +10 bonus on all Interaction Skill Tests."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Entropic
+        description: "This treasure answers the silent call of the universe to expend
+                      without replenishing, to rust away. No matter how hard the
+                      owner of this treasure works, it never seems to stay clean.
+
+                      Armour: This armour is covered in an unusual patina of
+                      dust, slime, or other corrosive material. While this has
+                      no effect on its wearer, weapons that touch it begin to
+                      degrade rapidly. Whenever a melee weapon strikes this
+                      armour, that weapon’s Damage is reduced by 1 until
+                      it can be repaired."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Deceitful
+        description: "Seemingly possessed of a treacherous nature, this treasure is
+                      created in a counter-intuitive and misleading way that causes
+                      those who look upon it to draw false conclusions, often to
+                      their own terrible detriment. Whether this trickery is based
+                      in illusion, strange construction, or something else varies
+                      based on the item, but it is always capricious and spiteful.
+
+                      Armour: This armour conceals a deadly threat, in the
+                      form of poisoned blades fiendishly disguised in the wrists,
+                      legguards, or some other suitable location. It can always be
+                      used to make a Melee Attack with the following profile:
+                      (Melee; 1d10+4 R; Pen 4; Toxic). Further, thanks to its
+                      disarming nature, this armour grants its wearer a +5 bonus
+                      on Deceive Tests."

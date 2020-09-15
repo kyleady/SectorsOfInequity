@@ -302,7 +302,7 @@
   count:
     - _type: Roll
       _exists: true
-      required_flags: null
       dice_count: 1
       dice_size: 5
       base: -1
+      minimum: 1

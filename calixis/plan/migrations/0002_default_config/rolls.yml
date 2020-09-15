@@ -5,6 +5,9 @@
   base: 0
   required_flags: null
   rejected_flags: null
+  minimum: null
+  maximum: null
+  rolls: null
 
 - _type: Roll
   base: -100
@@ -124,6 +127,10 @@
   dice_size: 0
 - _type: Roll
   base: 60
+  dice_count: 0
+  dice_size: 0
+- _type: Roll
+  base: 65
   dice_count: 0
   dice_size: 0
 - _type: Roll
