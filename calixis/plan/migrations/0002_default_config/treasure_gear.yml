@@ -154,6 +154,220 @@
       value:
         _type: Inspiration
         name: Cybernetic Attachment
+        inspiration_tables:
+          - _type: Weighted_Table
+            value:
+              _type: Inspiration_Table
+              name: Cybernetics
+              weighted_inspirations:
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Bionic Arm
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Bionic Leg
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Bionic Respiratory System
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Implant Auger Array
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Augmented Senses
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Ballistic Mechadendrite
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Bionic Heart
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Calculus Logi Upgrade
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Cortex Implants
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Cranial Armour
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Cybernetic Senses
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Locator Matrix
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Manipulator Mechadendrite
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Medicae Mechadendrite
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Memorance Implant
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: MIU
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: MIU Weapon Interface
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Optical Mechadendrite
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Respiratory Filter Implant
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Scribe-tines
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Subskin Armour
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Synthetic Muscle Glove
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Utility Mechadendrite
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Voidskin
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Volitor Implant
+                - _type: Weighted_Inspiration
+                  weights:
+                    - _type: Roll
+                      _exists: true
+                      base: 1
+                  value:
+                    _type: Inspiration
+                    name: Vox Implant
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
