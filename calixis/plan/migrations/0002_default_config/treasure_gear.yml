@@ -1,0 +1,619 @@
+- _type: Tag
+  name: Gear and Tools
+
+- _type: Config_Name
+  name: Gear and Tools
+
+- _type: Config_Asset
+  name: Default Gear and Tools
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Gear and Tools
+  inspiration_tables:
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Type
+        tags__name: Gear and Tools
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Origin
+        tags__name: Treasure
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Miracles of the Dark Age
+        tags__name: Gear and Tools
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Xenos Construction
+        tags__name: Gear and Tools
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Mark of the Curse
+        tags__name: Gear and Tools
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 4
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Quirks
+        tags__name: Treasure
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 6
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Special Rules
+        tags__name: Treasure
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 7
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Craftsmanship
+        tags__name: Treasure
+
+- _type: Inspiration_Table
+  name: Type
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gear and Tools
+  count:
+    - _type: Roll
+      _exists: true
+      required_flags: null
+      rejected_flags: null
+      dice_count: 0
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Aspex/Scanner
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Combi-tool
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Cybernetic Attachment
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Multicompass
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Multikey
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Navis Prima
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Preysense Goggles
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Chameleoline Cloak
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Jump Pack
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration
+        name: Void Suit
+
+- _type: Inspiration_Table
+  name: Miracles of the Dark Age
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gear and Tools
+  count:
+    - _type: Roll
+      required_flags: treasure_ancient_miracles
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Imposing
+        description: "While none can say why its creators ornamented this device
+                      so noticeably, it makes an undeniable impression upon any
+                      who see it, reminding them why the Dark Age of Technology
+                      is so fabled and so feared.
+
+                      Gear or Tool: It is hard to overlook this device,
+                      graven as it is with symbols of ancient power.
+                      This device grants its owner a +20 bonus to all Opposed Tests
+                      he makes while using it if his opponent can see it."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 2
+      value:
+        _type: Inspiration
+        name: Compact
+        description: "This device is unbelievably small, given its purpose, or can
+                      be folded to fit in places one would not expect to look.
+                      Though the techno-arcane rites used to miniaturize its internal
+                      workings are long-lost, it remains as an impressive testament
+                      to the miraculous knowledge of the Dark Age of Technology.
+
+                      Gear or Tool: This device has been miniaturized, but
+                      nonetheless performs all of its functions as well as its larger
+                      counterparts. Reduce its weight by half. Search Tests to find
+                      this item when it has been concealed on its owner’s body
+                      suffer a –30 penalty."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Steady
+        description: "Though not as flashy as other archeotech treasures, this item is
+                      built to function reliably in all conditions, through challenges and
+                      tests that would push lesser creations well beyond their limits.
+
+                      Gear or Tool: This device is steadfast and reliable, and its
+                      users often come to depend upon it. Its user may re-roll one
+                      failed Test that he makes with it per Game Session."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Potent
+        description: "This device surges with the raw might available to its creators
+                      during the Dark Age of Technology.
+
+                      Gear or Tool: The workings of this device are difficult to
+                      master. In the hands of an expert, though, its seemingly excessive
+                      design can prove to be extremely useful. The device imposes a
+                      –5 penalty on all Tests to use it, but if the user succeeds, he adds
+                      an additional two Degrees of Success to the result."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Swirling Energy
+        description: "A shroud of energy surrounds this object, shimmering,
+                      glowing, or perhaps even flaring into existence before
+                      vanishing periodically.
+
+                      Gear or Tool: This device makes use of a small internal
+                      generator that vastly improves its functionality and longevity
+                      in the field. It never needs to be recharged, and grants a +5
+                      bonus on all Tests made using it. If it would not normally
+                      require power, this generator makes it easier to use properly,
+                      and helps to preserve and maintain the device."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Incalculable Precision
+        description: "The manufacture of this device was so utterly precise that many
+                      users find its exactness disconcerting until they grow used to the
+                      greater level of meticulousness in craftsmanship that it displays.
+
+                      Gear or Tool: This device grants an additional +15 bonus
+                      on all Tests made using it."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Indestructable
+        description: "Carved from a material that defies explanation or analysis, forged
+                      from a lost alloy, or otherwise created in a miraculous fashion, this
+                      item is nearly impossible to damage by natural means.
+
+                      Gear or Tool: This device is virtually unbreakable, and even
+                      its complex, moving parts never seem to need maintenance.
+                      Though it can run out of power if it requires energy to function,
+                      it never breaks, and cannot be rendered inoperable by external
+                      effects (other than being shut down via normal procedures)."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Multiple Blessings
+        extra_rolls: 2
+        description: "Roll again twice on this table (re-rolling any further results of “Multiple Blessings” and
+                      duplicate results), and apply both results to the item."
+
+- _type: Inspiration_Table
+  name: Xenos Construction
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gear and Tools
+  count:
+    - _type: Roll
+      required_flags: treasure_alien_technology
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Ramshackle
+        description: "Whatever hand wrought this device was a rough one indeed,
+                      and the mind guiding it was even more jagged and deranged.
+                      Erupting with spines and blades that serve no obvious purpose
+                      besides creating a risk to the user, or fitted with shining
+                      baubles that serve no purpose at all, this device is an obvious
+                      testament to the madness of xenos.
+
+                      Gear or Tool: This device is ruggedly constructed—so
+                      much so that it could be used as a blunt force weapon in a
+                      pinch. Judging by the bloodstains, it has already been used
+                      this way in the past. If used as an improvised weapon, this
+                      piece of equipment has the following profile: (Melee; 1d10 I
+                      or R; Pen 0; Unwieldy)."
+        perterbations:
+          - _type: Perterbation
+            flags: treasure_extra_quirk
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Peerless Elegance
+        description: "The hand of xenos of some sort is evident in the design of
+                      this device, for no human could have made such a thing.
+                      The device exudes an undeniable grace, even if it is the
+                      work of foul aliens.
+
+                      Gear or Tool: This device is solidly constructed, if lacking
+                      in the adornment and flair that shows dedication and
+                      mastery in Imperial manufacture. If it provides a bonus to
+                      Skill Tests, increase that bonus by an additional +5."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Innovative Design
+        description: "Treasure in this category was obviously created to serve its
+                      users as effectively as possible. It could be new or it could
+                      be ancient, but the xenos who designed it were clearly
+                      unrestrained by the protective rituals and traditions of the
+                      Adeptus Mechanicus, and might well have delved into realms
+                      not meant for mortal creators.
+
+                      Gear or Tool: This device is elegantly constructed,
+                      designed with both aesthetics and utility in mind. Reduce its
+                      weight by half. If it provides a bonus to Skill Tests, increase
+                      that bonus by an additional +5."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Remnant of the Endless
+        description: "These items seem ageless, and despite unfathomable ages of
+                      neglect, they function as if they had been well-maintained
+                      the entire time. They are marked by a silver sheen and odd
+                      luminescence that disturbs most who look upon them.
+
+                      Gear or Tool: This device never runs out of power
+                      (if it requires it) and never shorts out due to electrical
+                      interference. If it does not require power to function, it is
+                      extraordinarily resilient—it takes minimal effort to maintain,
+                      and takes a great deal of effort to damage or destroy."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Death-Dream's Fragment
+        description: "This device is infused with a strange, crystalline material
+                      that seems almost organic, and catches the light in eerie and
+                      maddening ways. Regardless of its quality, one thing is clear:
+                      no sane person would carry such a device, and those who do
+                      have willingly taken the first steps on the road to madness.
+
+                      Gear or Tool: This device is bizarre and inscrutable, made
+                      for minds that now slumber beneath stars that have shifted
+                      since they last lived. The user must make an Ordinary (+10)
+                      Intelligence Test to use it. If he succeeds, he gains an
+                      additional +10 bonus to any Tests to which it provides
+                      bonuses. If he fails, however, he gains only its normal
+                      bonuses, and also gains 1 Insanity Point as the
+                      alien contraption stares back into his mind."
+
+- _type: Inspiration_Table
+  name: Mark of the Curse
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Gear and Tools
+  count:
+    - _type: Roll
+      required_flags: treasure_cursed_artefact
+      base: 1
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Bloodlust
+        description: "This device is possessed of a dire thirst for carnage.
+
+                      Gear or Tool: This device rapidly absorbs any blood shed
+                      on it, greedily lapping it up. It grants a +10 bonus to all Tests
+                      made using it, but only if its user regularly douses it in blood."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Mindkiller
+        description: "This device elicits nothing less than panic and terror in most
+                      people who see it. Whether it is a weapon with an oddly
+                      organic eye or maw protruding from it, or a vast, churning
+                      voidship component that seems to patter with the footsteps
+                      of all who have passed through it, it is utterly disconcerting.
+
+                      Gear or Tool: Fed by fear, this device tends to fail at times
+                      of greatest need. Under normal circumstances, it grants a
+                      +10 bonus to all Tests made using it. However, if its wielder
+                      ever fails a time-sensitive Test using it, it ceases to function
+                      entirely for 1d10 minutes."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Alluring
+        description: "All treasures are in some way desirable by their very
+                      classification as “treasures,” but this device inflames the
+                      avarice of all who see it. It is almost unnaturally beautiful,
+                      and let any owner beware, for scoundrels in the Koronus
+                      Expanse kill for far less.
+
+                      Gear or Tool: This piece of equipment is wrought with
+                      gemstones, or crafted from some sort of exotic and beautiful
+                      material, but people seem to desire it even more than this
+                      might warrant. It counts as being of Best Quality, and, at the
+                      GM’s discretion, Explorers may offer to trade items of far
+                      greater value to own it."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Entropic
+        description: "This treasure answers the silent call of the universe to expend
+                      without replenishing, to rust away. No matter how hard the
+                      owner of this treasure works, it never seems to stay clean.
+
+                      Gear or Tool: This device works better than
+                      one might expect, but also seems to drain
+                      away at the vitality of its owner. It provides
+                      a +10 bonus to Tests made using it, but if the user fails
+                      a Test while using it, he must make a Challenging (+0)
+                      Toughness Test. If he fails, he gains 1 level of Fatigue."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          rejected_flags: null
+          dice_count: 0
+          base: 1
+      value:
+        _type: Inspiration
+        name: Deceitful
+        description: "Seemingly possessed of a treacherous nature, this treasure is
+                      created in a counter-intuitive and misleading way that causes
+                      those who look upon it to draw false conclusions, often to
+                      their own terrible detriment. Whether this trickery is based
+                      in illusion, strange construction, or something else varies
+                      based on the item, but it is always capricious and spiteful.
+
+                      Gear or Tool: This device is not what it appears to be, and
+                      it can easily be concealed or disguised as something more
+                      innocuous. Observers must make a Hard (–20) Scrutiny
+                      Test to determine its true purpose, and Search Tests to find
+                      it hidden on its owner suffer a –20 Penalty."

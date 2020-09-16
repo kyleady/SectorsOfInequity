@@ -104,3 +104,6 @@
     - _type: Config_Asset
       _exists: true
       name: Default Armour
+    - _type: Config_Asset
+      _exists: true
+      name: Default Gear and Tools
