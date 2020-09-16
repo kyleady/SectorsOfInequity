@@ -107,3 +107,6 @@
     - _type: Config_Asset
       _exists: true
       name: Default Gear and Tools
+    - _type: Config_Asset
+      _exists: true
+      name: Default Ship Component

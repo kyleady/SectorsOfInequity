@@ -1021,9 +1021,6 @@
                       Points it provides by 3. If it is Power Armour or Light Power
                       Armour, it increases the wearer’s Strength Bonus by +2. It also
                       imposes a –30 penalty on all Agility-based Tests."
-        perterbations:
-          - _type: Perterbation
-            flags: treasure_extra_quirk
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll

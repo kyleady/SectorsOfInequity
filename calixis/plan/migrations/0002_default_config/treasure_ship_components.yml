@@ -1,15 +1,15 @@
 - _type: Tag
-  name: Gear and Tools
+  name: Ship Component
 
 - _type: Config_Name
-  name: Gear and Tools
+  name: Ship Component
 
 - _type: Config_Asset
-  name: Default Gear and Tools
+  name: Default Ship Component
   type:
     _type: Config_Name
     _exists: true
-    name: Gear and Tools
+    name: Ship Component
   inspiration_tables:
     - _type: Weighted_Table
       order:
@@ -23,7 +23,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Type
-        tags__name: Gear and Tools
+        tags__name: Ship Component
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -49,7 +49,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Miracles of the Dark Age
-        tags__name: Gear and Tools
+        tags__name: Ship Component
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -62,7 +62,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Xenos Construction
-        tags__name: Gear and Tools
+        tags__name: Ship Component
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -75,7 +75,7 @@
         _type: Inspiration_Table
         _exists: true
         name: Mark of the Curse
-        tags__name: Gear and Tools
+        tags__name: Ship Component
     - _type: Weighted_Table
       order:
         - _type: Roll
@@ -121,7 +121,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: Gear and Tools
+      name: Ship Component
   count:
     - _type: Roll
       _exists: true
@@ -134,10 +134,10 @@
       weights:
         - _type: Roll
           _exists: true
-          base: 1
+          base: 2
       value:
         _type: Inspiration
-        name: Aspex/Scanner
+        name: Plasma Drive
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -145,7 +145,7 @@
           base: 1
       value:
         _type: Inspiration
-        name: Combi-tool
+        name: Warp Drive
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -153,221 +153,7 @@
           base: 1
       value:
         _type: Inspiration
-        name: Cybernetic Attachment
-        inspiration_tables:
-          - _type: Weighted_Table
-            value:
-              _type: Inspiration_Table
-              name: Cybernetics
-              weighted_inspirations:
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Bionic Arm
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Bionic Leg
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Bionic Respiratory System
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Implant Auger Array
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Augmented Senses
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Ballistic Mechadendrite
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Bionic Heart
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Calculus Logi Upgrade
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Cortex Implants
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Cranial Armour
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Cybernetic Senses
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Locator Matrix
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Manipulator Mechadendrite
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Medicae Mechadendrite
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Memorance Implant
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: MIU
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: MIU Weapon Interface
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Optical Mechadendrite
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Respiratory Filter Implant
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Scribe-tines
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Subskin Armour
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Synthetic Muscle Glove
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Utility Mechadendrite
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Voidskin
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Volitor Implant
-                - _type: Weighted_Inspiration
-                  weights:
-                    - _type: Roll
-                      _exists: true
-                      base: 1
-                  value:
-                    _type: Inspiration
-                    name: Vox Implant
+        name: Gellar Field
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -375,7 +161,7 @@
           base: 1
       value:
         _type: Inspiration
-        name: Multicompass
+        name: Void Shield
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -383,7 +169,7 @@
           base: 1
       value:
         _type: Inspiration
-        name: Multikey
+        name: Ship's Bridge
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -391,7 +177,15 @@
           base: 1
       value:
         _type: Inspiration
-        name: Navis Prima
+        name: Auger Array
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 2
+      value:
+        _type: Inspiration
+        name: Lance
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -399,38 +193,14 @@
           base: 1
       value:
         _type: Inspiration
-        name: Preysense Goggles
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          base: 1
-      value:
-        _type: Inspiration
-        name: Chameleoline Cloak
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          base: 1
-      value:
-        _type: Inspiration
-        name: Jump Pack
-    - _type: Weighted_Inspiration
-      weights:
-        - _type: Roll
-          _exists: true
-          base: 1
-      value:
-        _type: Inspiration
-        name: Void Suit
+        name: Macrocannon
 
 - _type: Inspiration_Table
   name: Miracles of the Dark Age
   tags:
     - _type: Tag
       _exists: true
-      name: Gear and Tools
+      name: Ship Component
   count:
     - _type: Roll
       required_flags: treasure_ancient_miracles
@@ -452,10 +222,11 @@
                       who see it, reminding them why the Dark Age of Technology
                       is so fabled and so feared.
 
-                      Gear or Tool: It is hard to overlook this device,
-                      graven as it is with symbols of ancient power.
-                      This device grants its owner a +20 bonus to all Opposed Tests
-                      he makes while using it if his opponent can see it."
+                      Ship Component: An ancient and overwhelming testament
+                      to ages long past and knowledge long forgotten, this
+                      Component grants the vessel’s commanders a +10 bonus
+                      to all Intimidate and Command Tests made aboard a vessel
+                      upon which it has been installed."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -473,11 +244,8 @@
                       workings are long-lost, it remains as an impressive testament
                       to the miraculous knowledge of the Dark Age of Technology.
 
-                      Gear or Tool: This device has been miniaturized, but
-                      nonetheless performs all of its functions as well as its larger
-                      counterparts. Reduce its weight by half. Search Tests to find
-                      this item when it has been concealed on its owner’s body
-                      suffer a –30 penalty."
+                      Ship Component: Its Space requirement is reduced by 4
+                      (to a minimum of 1 if it is Internal or 0 if it is External)."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -493,9 +261,10 @@
                       built to function reliably in all conditions, through challenges and
                       tests that would push lesser creations well beyond their limits.
 
-                      Gear or Tool: This device is steadfast and reliable, and its
-                      users often come to depend upon it. Its user may re-roll one
-                      failed Test that he makes with it per Game Session."
+                      Ship Component: This Component is extremely reliable.
+                      Tests made using this Component receive a +5 bonus.
+                      Further, thanks to the crew’s faith in this Component, its
+                      presence increases the ship’s Morale by 5."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -510,11 +279,12 @@
         description: "This device surges with the raw might available to its creators
                       during the Dark Age of Technology.
 
-                      Gear or Tool: The workings of this device are difficult to
-                      master. In the hands of an expert, though, its seemingly excessive
-                      design can prove to be extremely useful. The device imposes a
-                      –5 penalty on all Tests to use it, but if the user succeeds, he adds
-                      an additional two Degrees of Success to the result."
+                      Ship Component: This Component is unfailingly powerful,
+                      and its grandeur strikes all who see it in action. If it is a
+                      weapon, increase its Damage by 4. If it is a Plasma Drive,
+                      increase the Power it generates by 10. Otherwise, it simply
+                      works extremely well; it increases the vessel’s Morale by 3, to
+                      reflect the crew’s awe of such an impressive Component."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -530,12 +300,10 @@
                       glowing, or perhaps even flaring into existence before
                       vanishing periodically.
 
-                      Gear or Tool: This device makes use of a small internal
-                      generator that vastly improves its functionality and longevity
-                      in the field. It never needs to be recharged, and grants a +5
-                      bonus on all Tests made using it. If it would not normally
-                      require power, this generator makes it easier to use properly,
-                      and helps to preserve and maintain the device."
+                      Ship Component: If this Component would ever become
+                      unpowered or stop generating Power, so long as it is not
+                      destroyed in the process, it continues to do so for 1d10
+                      minutes after it would normally shut down."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -551,8 +319,12 @@
                       users find its exactness disconcerting until they grow used to the
                       greater level of meticulousness in craftsmanship that it displays.
 
-                      Gear or Tool: This device grants an additional +15 bonus
-                      on all Tests made using it."
+                      Ship Component: This Component is so finely honed that it
+                      draws less power than it might otherwise, takes up a minimum
+                      of space, and often makes maintenance unnecessary. Decrease
+                      its Size and Power Requirements by 1 (to a minimum of 0). Its
+                      presence increases the ship’s Morale by 1, as ratings occasionally
+                      find their assigned toil far less onerous than expected."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -568,11 +340,15 @@
                       from a lost alloy, or otherwise created in a miraculous fashion, this
                       item is nearly impossible to damage by natural means.
 
-                      Gear or Tool: This device is virtually unbreakable, and even
-                      its complex, moving parts never seem to need maintenance.
-                      Though it can run out of power if it requires energy to function,
-                      it never breaks, and cannot be rendered inoperable by external
-                      effects (other than being shut down via normal procedures)."
+                      Ship Component: This Component is shielded by a vast
+                      and powerful field that crackles to life whenever it would
+                      be damaged. Unfortunately, this field draws a great deal
+                      of power away from the Component itself. Whenever this
+                      Component would suffer the effects of a Critical Hit,
+                      it ignores those effects, but becomes unpowered
+                      or otherwise non-functional for 1d5 Strategic
+                      Rounds as the field overdraws the energy that it
+                      normally uses (or the Power that it generates)."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -593,7 +369,7 @@
   tags:
     - _type: Tag
       _exists: true
-      name: Gear and Tools
+      name: Ship Component
   count:
     - _type: Roll
       required_flags: treasure_alien_technology
@@ -617,12 +393,14 @@
                       baubles that serve no purpose at all, this device is an obvious
                       testament to the madness of xenos.
 
-                      Gear or Tool: This device is ruggedly constructed—so
-                      much so that it could be used as a blunt force weapon in a
-                      pinch. Judging by the bloodstains, it has already been used
-                      this way in the past. If used as an improvised weapon, this
-                      piece of equipment has the following profile: (Melee; 1d10 I
-                      or R; Pen 0; Unwieldy)."
+                      Ship Component: This Component is massive and power-
+                      inefficient, constantly belching smoke (which may or may
+                      not be toxic to human crewmen assigned to work on it).
+                      Increase its Power and Space requirements by 2 (or its Space
+                      requirement by 3, if it generates Power). However, thanks to
+                      its sheer bulk, this Component ignores the first Critical that
+                      would affect it each session. Finally, its obvious xenos origin
+                      permanently decreases Morale aboard the ship by 1."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -639,10 +417,17 @@
                       The device exudes an undeniable grace, even if it is the
                       work of foul aliens.
 
-                      Gear or Tool: This device is solidly constructed, if lacking
-                      in the adornment and flair that shows dedication and
-                      mastery in Imperial manufacture. If it provides a bonus to
-                      Skill Tests, increase that bonus by an additional +5."
+                      Ship Component: This Component was clearly created
+                      by a species of master starfarers, and is meant to perform
+                      in the void, working in perfect harmony with the vessel
+                      on which it is mounted. Reduce its Power Requirement
+                      by 2 (to a minimum of 0) and the Space it needs by 1
+                      (to a minimum of 0). If it generates Power, it generates
+                      the normal amount. However, once per game session,
+                      it can overcharge any weapon system that draws power
+                      from it, increasing its Damage by 1d5 the next time it is
+                      fired this Strategic Turn. Finally, its obvious xenos origin
+                      permanently decreases Morale aboard the ship by 1."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -661,10 +446,10 @@
                       Adeptus Mechanicus, and might well have delved into realms
                       not meant for mortal creators.
 
-                      Gear or Tool: This device is elegantly constructed,
-                      designed with both aesthetics and utility in mind. Reduce its
-                      weight by half. If it provides a bonus to Skill Tests, increase
-                      that bonus by an additional +5."
+                      Ship Component: This component is highly modular, for
+                      ease of replacement. In addition to taking up 1 less Space
+                      than usual, it can be much more rapidly detached from the
+                      vessel than other Components."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -681,11 +466,13 @@
                       the entire time. They are marked by a silver sheen and odd
                       luminescence that disturbs most who look upon them.
 
-                      Gear or Tool: This device never runs out of power
-                      (if it requires it) and never shorts out due to electrical
-                      interference. If it does not require power to function, it is
-                      extraordinarily resilient—it takes minimal effort to maintain,
-                      and takes a great deal of effort to damage or destroy."
+                      Ship Component: Eerily, this component has no Power
+                      Requirements at all—it seems to generate its own energy
+                      from the glowing green coils set within. If it is a Plasma
+                      Drive (or rather, the inscrutable and sinister equivalent
+                      device), it generates 5 additional Power. However, the
+                      Component’s sickening glow permanently reduces Morale
+                      aboard the vessel by 3."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -703,21 +490,23 @@
                       no sane person would carry such a device, and those who do
                       have willingly taken the first steps on the road to madness.
 
-                      Gear or Tool: This device is bizarre and inscrutable, made
-                      for minds that now slumber beneath stars that have shifted
-                      since they last lived. The user must make an Ordinary (+10)
-                      Intelligence Test to use it. If he succeeds, he gains an
-                      additional +10 bonus to any Tests to which it provides
-                      bonuses. If he fails, however, he gains only its normal
-                      bonuses, and also gains 1 Insanity Point as the
-                      alien contraption stares back into his mind."
+                      Ship Component: To install a thrumming crystal relic
+                      wrought by accursed xenos upon one’s vessel is to invite
+                      doom, even ignoring the prohibitions on such things set
+                      forth in Imperial scripture and law. This Component is
+                      miraculously never affected by Critical Hit effects that would
+                      damage or disrupt it—instead, two other Components of
+                      the GM’s choice suffer the effects that it ignores this way.
+                      Additionally, its foreboding aura and the rumour-mongering
+                      that it inspires in the crew permanently reduces Morale
+                      aboard the vessel by 3."
 
 - _type: Inspiration_Table
   name: Mark of the Curse
   tags:
     - _type: Tag
       _exists: true
-      name: Gear and Tools
+      name: Ship Component
   count:
     - _type: Roll
       required_flags: treasure_cursed_artefact
@@ -736,9 +525,15 @@
         name: Bloodlust
         description: "This device is possessed of a dire thirst for carnage.
 
-                      Gear or Tool: This device rapidly absorbs any blood shed
-                      on it, greedily lapping it up. It grants a +10 bonus to all Tests
-                      made using it, but only if its user regularly douses it in blood."
+                      Ship Component: This ship component seems to work
+                      better than it should, given its specifications, but is also
+                      prone to housing terrible and gruesome accidents. If it is a
+                      weapon, increase its Damage by 3. Its Power requirement
+                      is reduced by 3 (to a minimum of 0), or, if it generates
+                      Power, this number is increased by 3. However, every time
+                      this cursed Component is affected by a Critical Hit, reduce
+                      the ship’s Population by 1 and its Morale by 3, as mayhem
+                      and panic ensue around it."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -756,11 +551,12 @@
                       voidship component that seems to patter with the footsteps
                       of all who have passed through it, it is utterly disconcerting.
 
-                      Gear or Tool: Fed by fear, this device tends to fail at times
-                      of greatest need. Under normal circumstances, it grants a
-                      +10 bonus to all Tests made using it. However, if its wielder
-                      ever fails a time-sensitive Test using it, it ceases to function
-                      entirely for 1d10 minutes."
+                      Ship Component: An aura of dread surrounds this
+                      Component. Its chilling presence permanently reduces
+                      Morale by 3, but this effect is even more pronounced on
+                      unwanted interlopers. Boarders suffer a –20 penalty to
+                      their Command Tests aboard this vessel so long as this
+                      Component remains functional."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -778,12 +574,12 @@
                       and let any owner beware, for scoundrels in the Koronus
                       Expanse kill for far less.
 
-                      Gear or Tool: This piece of equipment is wrought with
-                      gemstones, or crafted from some sort of exotic and beautiful
-                      material, but people seem to desire it even more than this
-                      might warrant. It counts as being of Best Quality, and, at the
-                      GM’s discretion, Explorers may offer to trade items of far
-                      greater value to own it."
+                      Ship Component: This Component is surprisingly (some
+                      might say disturbingly) pleasant. Whether because of its
+                      elegant design, less noxious smells, or other possible qualities,
+                      ratings tend to loiter there when possible. This Component
+                      increases the vessel’s Morale by 3, but if it is ever removed,
+                      lost, or replaced, its absence decreases Morale by 6."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -799,12 +595,11 @@
                       without replenishing, to rust away. No matter how hard the
                       owner of this treasure works, it never seems to stay clean.
 
-                      Gear or Tool: This device works better than
-                      one might expect, but also seems to drain
-                      away at the vitality of its owner. It provides
-                      a +10 bonus to Tests made using it, but if the user fails
-                      a Test while using it, he must make a Challenging (+0)
-                      Toughness Test. If he fails, he gains 1 level of Fatigue."
+                      Ship Component: Rusted and leaking, this Component
+                      ever seems to be in need of repair or additional energy.
+                      Increase this Component’s Power requirement by 3. However,
+                      whenever it would be affected by the results of a Critical Hit
+                      result of 5 or lower, it ignores the effects of that result."
     - _type: Weighted_Inspiration
       weights:
         - _type: Roll
@@ -823,8 +618,12 @@
                       in illusion, strange construction, or something else varies
                       based on the item, but it is always capricious and spiteful.
 
-                      Gear or Tool: This device is not what it appears to be, and
-                      it can easily be concealed or disguised as something more
-                      innocuous. Observers must make a Hard (–20) Scrutiny
-                      Test to determine its true purpose, and Search Tests to find
-                      it hidden on its owner suffer a –20 Penalty."
+                      Ship Component: This Component is not what it appears
+                      to be, deceiving any onlookers. Roll again on Table 2–29:
+                      Ship Components (see page 85) determine the true
+                      nature of this Component. Viewers must pass a Hard (–20)
+                      Scrutiny Test to determine this Component’s true function;
+                      otherwise, they are taken in by the deception and believe
+                      it to be the Component that it masquerades as. However,
+                      due to internal confusion caused by this ruse, permanently
+                      reduce Morale by 1 on any vessel into which it installed."
