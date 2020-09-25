@@ -27,6 +27,34 @@
     - _type: Config_Group
       _exists: true
       name: Outer Reaches
+    - _type: Config_Group
+      _exists: true
+      name: Quests
+      tags__name: Star Cluster
+
+- _type: Config_Group
+  name: Quests
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Star Cluster
+  count:
+    - _type: Roll
+      _exists: true
+      base: -5
+      dice_count: 1
+      dice_size: 10
+      minimum: 1
+  types:
+    - _type: Weighted_Type
+      weights:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Config_Name
+        _exists: true
+        name: Encounter
 
 - _type: Inspiration_Table
   name: Stars

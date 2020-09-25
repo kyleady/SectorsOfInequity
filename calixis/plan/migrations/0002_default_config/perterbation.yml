@@ -110,3 +110,6 @@
     - _type: Config_Asset
       _exists: true
       name: Default Ship Component
+    - _type: Config_Asset
+      _exists: true
+      name: Default Encounter

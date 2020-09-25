@@ -1,0 +1,3094 @@
+- _type: Config_Name
+  name: Encounter
+
+- _type: Tag
+  name: Encounter
+
+- _type: Config_Asset
+  name: Default Encounter
+  type:
+    _type: Config_Name
+    _exists: true
+    name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          base: 1
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Profit Motive
+        tags__name: Encounter
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          base: 2
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Encounter Site
+        tags__name: Encounter
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          base: 3
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Dangers
+        tags__name: Encounter
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          base: 4
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Rewards
+        tags__name: Encounter
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          base: 5
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Hazards
+        tags__name: Encounter
+    - _type: Weighted_Table
+      order:
+        - _type: Roll
+          _exists: true
+          base: 6
+      value:
+        _type: Inspiration_Table
+        _exists: true
+        name: Complications
+        tags__name: Encounter
+
+- _type: Inspiration_Table
+  name: Profit Motive
+  count:
+    - _type: Roll
+      _exists: true
+      base: 1
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Lost Treasures
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Undiscovered Worlds
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Imperial Interests
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 2
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Mapping the Void
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Holy Pilgrimage
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ancient Glories
+        tags__name: Encounter
+
+- _type: Inspiration_Table
+  name: Encounter Site
+  count:
+    - _type: Roll
+      _exists: true
+      base: 1
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Derelict Vessel
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Death Zone
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Lost City
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Warrens and Hollows
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Xenoform Biome
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Hidden Oases
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Caverns
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Jungles
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Chaos-scarred Regions
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Ancient Warzone Regions
+        tags__name: Encounter
+
+- _type: Inspiration_Table
+  name: Dangers
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+
+- _type: Inspiration_Table
+  name: Rewards
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+
+- _type: Inspiration_Table
+  name: Hazards
+  count:
+    - _type: Roll
+      _exists: true
+      base: -9
+      dice_count: 1
+      dice_size: 10
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Gravity and Celestial Phenomena
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Weather and Atmospheric Disturbances
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 3
+      value:
+        _type: Inspiration
+        _exists: true
+        name: Cursed Earth
+        tags__name: Encounter
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Additional Hazards
+        extra_rolls: 2
+
+- _type: Inspiration_Table
+  name: Complications
+  count:
+    - _type: Roll
+      _exists: true
+      base: -9
+      dice_count: 1
+      dice_size: 10
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  weighted_inspirations:
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: The Passing Storm
+        description: "The Explorers enter a psychically charged area—the site of an ancient Chaos ritual,
+                      the dark heart of a Yu’Vath tomb, or some other ill-omened place, where the skin between reality and the
+                      madness of the Warp blisters and bursts. There, they are assailed by a group of 3–5 Ebon Geists (see page 378
+                      of the ROGUE TRADER Core Rulebook). Even once they vanquish these creatures, questions likely linger in the
+                      Explorers’ minds: what was the cause of this intrusion, and what might it portend?"
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: The Green Menace
+        description: "Wandering through the Environment, the Explorers stumble upon a large crash site, at the
+                      centre of which sits a massive stone, which appears to have been fitted with pipes, tubes, and tremendous engines.
+                      The crash is surrounded by primitive fortifications and signs of a local population. It is inhabited by a number of
+                      Stranded Orks equal to the number of Explorers, plus twice their number of Gretchin Headhunters and Huntin’
+                      Squigs (see pages 76–77), though half of these xenos are currently away from the camp, hunting. Of course, even
+                      if they purge this nest of xenos, one never finds a single Ork encampment."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Marked for Death
+        description: "Even as the Explorers encounter an Encounter Site Danger, they are ambushed by a group of
+                      hired killers. There should be one Death Cult Assassin or Gunslinger (see pages 77–78) for every two Explorers
+                      (rounding up). The mercenaries attempt to take advantage of the confusion created by the environmental hazard and
+                      strike quickly, putting priority on a particular target above the others in some obvious fashion. They are dangerous
+                      enough in their own right, but what these killers truly indicate—the ire of a powerful individual towards one of the
+                      Explorers—might be an even greater danger to the success of this venture, to say nothing of the target’s life!"
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Scoundrels!
+        description: "The Explorers suddenly find themselves surrounded by a group of privateers. The group consists
+                      of one Void Pirate Captain flanked by two Oathsworn Bodyguards, and backed by a number of Renegades
+                      equal to the number of Explorers (see page 373–374 of the ROGUE TRADER Core Rulebook). The Explorers can
+                      solve this predicament with bullets, bribes, or bluster, but even if they drive the pirates off or form a temporary
+                      alliance with them, they now know that others are aware of their goal—and if these lowlife pirates knew of
+                      their mission on this world, who else knows?"
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Devouring Infection
+        description: "The Explorers are ambushed by a pack of Genestealers equal in number to their group (see page
+                      79). If they survive the onslaught of the ravenous creatures, the encounter has surely burned a terrifying fact into their
+                      minds: this place is infested by these horrifying xenos. And somewhere in the dark lurks a creature that dwarfs even the
+                      Genestealers in obscene killing power and fiendish cunning—the Broodlord (see page 79)."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Hunter and Prey
+        description: "The Explorers encounter Sanger Krin, a famed killer for hire who has chosen them to be his
+                      next set of trophies (see page 80). Krin stalks them from a distance, taking shots of opportunity when he can,
+                      and attempting to lure them into terrain hazards. Even if they can stay out of Krin’s sights or turn the tables on
+                      the depraved killer, his presence is disturbing indeed, for it means that an enemy of the Explorers was willing to
+                      pay his exorbitant fees to see their heads mounted on a wall."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: In Shadows Cast
+        description: "When entering a darkened area, the Explorers stumble upon a mutant infestation. It fifirst appears
+                      as flflickering shadows around the edges of their vision, but they soon encounter a pack of the vicious Mutant
+                      Outcasts (see page 372 of the ROGUE TRADER Core Rulebook), equal in number to their group. The mutants attack
+                      aggressively while they outnumber the Explorers, but once half of their number have been slain, they attempt to
+                      retreat, vanishing into the shadows like smoke. These shadowy scavengers can be deadly in large numbers—and in
+                      the dark, who can say how many of the loathsome creatures there really are?"
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Tomb of the Ancients
+        description: "Around a darkened bend or deep at the bottom of a pit, a dull, sickly light casts a sheen across
+                      the ground the Explorers tread. Choose one of the traps in Pitfalls and Perils on page 81—the Explorers encounter this
+                      trap as they intrude upon domains best left alone, upturning the stones above those who are best left sleeping. Even if the
+                      Explorers survive the deadly trap and any others planted in this area, its very activation is a grave threat to them, and any
+                      other unfortunates upon this world. In the dark, terrible things stir in their sleep, as the dream of aeons is disrupted..."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Silence Amongst the Stars
+        description: "It can happen with an audible crackle or merely ominous silence, only noticed in a
+                      time of need, but due to stellar interference, the Explorers’ communication devices fall silent for 1d5 hours, leaving
+                      them stranded from the support normally offered by their mighty vessel (see page 81)."
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Rak'Gol Scouts
+        description: "Suddenly, as if from nowhere, the group is assailed by a group of Rak’Gol Marauders. There is
+                      one Rak’Gol Carver (see page 82) for every two Explorers (rounding up), and the creatures fifight savagely, attacking
+                      the Explorers until either they or their targets are dead. Rak’Gol are known to seek the dread relics of the Yu’Vath.
+                      If these advance scouts are here, more could be on the way. When will they arrive, and might the dark secrets that
+                      they sought here be even more terrible than the Rak’Gol themselves?"
+    - _type: Weighted_Inspiration
+      weights:
+        - _type: Roll
+          _exists: true
+          required_flags: null
+          base: 1
+      value:
+        _type: Inspiration
+        name: Additional Complications
+        extra_rolls: 2
+
+- _type: Inspiration
+  name: Lost Treasures
+  description: "The Expanse is filled with tales of lost vessels and ancient outposts,
+                and even a brief visit to the Halls of the Dead in Port Wander can
+                turn up dozens of so called “authentic” maps to worlds beyond
+                the maw, where some great saint or ill-fated expedition met its
+                end. While most of these stories are about as trustworthy as the
+                dock scum which spread them, there are always grains of truth
+                in the lies, and the Expanse has its fair share of actual wrecks and
+                hidden treasure. The GM can use the lure of wealth to draw the
+                Explorers to remote worlds or tempt them into braving dense
+                jungles or frozen caverns, all in the hope of finding a wondrous
+                rewards with which to make their fame and fortune."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Lost Treasures
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Lost Explorator
+              description: "A famed Explorator vessel, The Oculus of Mars, led by a renowned Mechanicus Magos Apis Sempronius,
+                            has been lost on a world somewhere on the edges of the Rifts of Hecaton. The Explorers are approached by a servant of
+                            the missing Magos, Morgehnin Sland with clues to the ship’s location and a promise of salvage rights in exchange for his
+                            master’s life. If the Rogue Trader and his crew can return the Magos or his vessel to the Adeptus Mechanicus, they earn the
+                            Peer (Adeptus Mechanicus) Talent in addition to any Profifit Factor they earn from this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Cold Trade Ratlines
+              description: "The markets of Footfall are suddenly inundated with trinkets and artefacts from the depths of
+                            the Expanse, all of which seem strangely related in some way. An individual of substantial means from the Belerephos
+                            Dynasty has asked the Explorers to track down the source of these items, and uncover the world from which they
+                            come. If the Rogue Trader and his crew can bring the location of this hidden world back to this individual, he offers
+                            them a single Xenotech Voidship Component that he can procure as reward for their efforts."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 6
+            value:
+              _type: Inspiration
+              name: Martyr's Toil
+              description: "Tales tell of an ancient crusade ship, The Martyr’s Toil, lost long ago while transporting much-needed
+                            supplies to the Angevin Crusade—including certain, signifificant relics. The Explorers come across a map which seems
+                            to indicate the fifinal resting place of the Martyr’s Toil, though it lies deep in the Ork-held Undred-Undred Teef. If
+                            the Rogue Trader and his crew can bring the vessel back to the Emperor’s light and return it to emissaries of the
+                            Ecclesiarchy, they receive the Peer (Ecclesiarchy) Talent in addition to any Profifit Factor they earn from this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Winterscale's Lost World
+              description: "Descendants of the famed Rogue Trader Winterscale have discovered records laying
+                            claim to a world which appears on no known chart, but is presumed to rest somewhere in Winterscale’s Realm.
+                            They offer great rewards for the Explorers who can fifind this world—but so would elements from the Chorda
+                            Dynasty, for its shadowy leader ever seeks to gain the advantage over the Winterscale Dynasty in the Koronus
+                            Expanse. If the Explorers can bring a reliable map of the Warp routes to this world to either the Winterscale or
+                            Chorda Dynasty, they gain the Peer and Good Reputation Talents for that Dynasty, but also receive the Rival
+                            Talent for the Dynasty that they spurned, in addition to any Profit Factor they earn from this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: A Missing Dynasty
+              description: "A sole survivor of a long-lost dynasty has washed up in Footfall, claiming rights to his
+                            family’s fortunes and its worlds within the Expanse. He offers great favour if the Explorers can help him find the
+                            world which has become the final resting place of his dynasty. If the Explorers can find this world, they find an
+                            abandoned Colony that grants them 300 Achievement Points towards any Endeavour to found a Colony on that
+                            site—provided they can wrest it from whatever scourge drove it to ruin in the first place (see page 98 for Colonies)."
+
+- _type: Inspiration
+  name: Undiscovered Worlds
+  description: "Rogue Traders often make much of their profit from trading
+                in scarce resources, or by securing minerals, local goods,
+                or even slaves for worlds where such commodities are in
+                demand. For a Rogue Trader, a fresh, untouched world can
+                be an impressive prize, one which he can strip bare and sell to
+                Imperial worlds, or to resource starved outposts like Footfall.
+                Above and beyond the more “mundane” profits, such worlds
+                are notorious for housing lost or forbidden technology, from
+                archeotech miracles to the dreaded remnants of the Yu’Vath."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Undiscovered Worlds
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 6
+            value:
+              _type: Inspiration
+              name: Heretic Gold
+              description: "The Explorers hear of a planet in the Heathen Stars rich in natural resources but yet unclaimed
+                            by the Imperium. If they can sway the population and convince its leaders of their divine right to rule, they can
+                            plunder it at will. The Explorers gain an additional +25 Achievement Points towards their current Endeavour
+                            whenever they fulfil a Creed Objective on this world."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Dark Secrets of the Yu'Vath
+              description: "There is a dark trade in Yu’vath artefacts, and the Explorers have discovered a world rich
+                            in them. Unfortunately for the Explorers, the Yu’vath have left behind some nasty surprises for those who seek to scavenge
+                            from the ruins of their empire. When generating artefacts from this site, the GM should choose “Alien Technology”
+                            on Table 2–30: Origin (see page 85) and “Peerless Elegance” on Table 2–32: Xenos Construction (see page 88).
+                            Whenever an Explorer would gain Insanity Points during this venture, he gains the normal amount plus 1 instead."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Bones of the Eldar
+              description: "The Explorers have found a path to a world controlled and protected by the Eldar for
+                            millennia. It is ripe for profit, and the plundering of its many ruins and remains, if the Explorers can slip past the vigil
+                            of any hidden defenders or traps. When generating artefacts from this site, the GM should choose “Alien Technology”
+                            on Table 2–30: Origin (see page 85) and “Peerless Elegance” on Table 2–32: Xenos Construction (see page 88)."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: A Jewel Amidst the Sand
+              description: "A rare, unblemished world, filled with life and virgin resources, untouched by war, solar
+                            catastrophe, or xenos hands. Such a planet is a great prize—if the Explorers can keep it a secret from others who are
+                            equally interested in its untapped resources. Any Resource deposits on this world have an Abundance of 100–1d10."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: Off the Well-Tread Path
+              description: "A previously undiscovered Warp route leads the Explorers to a system never before
+                            visited by man. Every world is a potential chance for profit, but also could hold dangers and secrets of great
+                            and terrible power. The Explorers gain an additional +25 Achievement Points towards their current Endeavour
+                            whenever they complete an Exploration Objective on this world."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: Off the Well-Tread Path
+              description: "A previously undiscovered Warp route leads the Explorers to a system never before
+                            visited by man. Every world is a potential chance for profit, but also could hold dangers and secrets of great
+                            and terrible power. The Explorers gain an additional +25 Achievement Points towards their current Endeavour
+                            whenever they complete an Exploration Objective on this world."
+
+- _type: Inspiration
+  name: Imperial Interests
+  description: "The Imperium is constantly expanding and contracting as it fights
+                its endless war for galactic dominance. As part of the ebb and
+                flow of this ceaseless conflict, the Explorers can make substantial
+                profits by aiding local Imperial forces or contracting themselves
+                to further their interests. This can range from scouting out worlds
+                for Imperial outposts to aiding battlefleets in their efforts to
+                scourge the Expanse clean of xenos influence. Imperial Interests
+                also includes the sacred task of restoring lost Imperial worlds to
+                the fold—regardless of whether or not the locals wish to return."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Imperial Interests
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 6
+            value:
+              _type: Inspiration
+              name: The Green Menace
+              description: "The Explorers are “invited” by an officer of Battlefleet Koronus to aid in clearing the Orks from a
+                            world in Accursed Demesne. If they help rout the xenos, they earn rights to the spoils. The Explorers gain an additional
+                            +25 Achievement Points towards their current Endeavour whenever they complete a Military Objective on this world."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 6
+            value:
+              _type: Inspiration
+              name: Mauraders and Pirates
+              description: "The Expanse is dotted with pirate bases, hidden in remote systems and on secluded
+                            worlds. The Imperial Navy wants to contract the Explorers to investigate some of these sites, offering great rewards
+                            as well as salvage rights should they find and destroy such a base. If the Explorers can wipe out these pirate bases,
+                            they gain the Peer (Imperial Navy) Talent in addition to any Profit Factor they earn from this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: A Personal Errand
+              description: "A member of the Battlefleet Koronus admiralty has a personal request which cannot be
+                            executed by his subordinates. He wants the Explorers to discreetly look for a missing officer and suspected traitor,
+                            who could be very embarrassing for their contact, should the Navy find him first. If the Explorers can track down
+                            this traitor and bring him to the Imperial Navy to meet justice, they earn a favour from this Naval Officer in
+                            addition to any Profit Factor this Endeavour rewards. This favour can be used a later date to negate a Misfortune or
+                            help them overcome a similar problem, thanks to the Imperial Navy’s intervention (at the GM’s discretion)."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Echoes of Grandeur
+              description: "Numerous worlds within the Expanse were once under Imperial control, and it is a constant
+                            effort to reclaim them. The Explorers are tasked with finding a particular colony and returning it to the fold. This
+                            world is has a Mining Colony of Size 3 with Productivity 10, Complacency 8, Order 8, and Piety 8, which the
+                            Explorers might be able to conquer, with words or with swords (see pages 101–102 for Colony Characteristics)."
+
+- _type: Inspiration
+  name: Mapping the Void
+  description: "Maps of the Koronus Expanse usually show only the mouth
+                of the Maw and the environs close to Footfall in any degree
+                of detail, before becoming more and more indistinct as they
+                spiral out toward the Rifts of Hecaton. Some charts may try
+                to add more details to the void, but for every world shown
+                there lurk dozens more hidden, undiscovered, or forgotten.
+                An extensive chart showing the location of such places is a
+                prize almost as priceless as the worlds themselves, and each
+                dynasty jealously guards its own maps of the places its Rogue
+                Traders have explored. For most, the only way to find a path
+                to an untouched region is to find the way themselves, and it
+                falls to brave and daring Explorers to blaze such a trail."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Mapping the Void
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Across the Expanse
+              description: "More than one Rogue Trader has tried to map a path from one end of the Expanse to the
+                            other. The Explorers have learnt of an ancient star map carved into a ruined city, depicting such a route through the
+                            Warp, that would let travellers bypass the dreaded Rifts of Hecaton—a secret that has eluded all Navigator Houses in
+                            the Koronus Expanse, and one that they all very much wish to possess. The map is hidden in the wilds of a remote
+                            world, though who, or what, made the map remains a mystery. If the Explorers can create a working transcription—
+                            and translation—of this city-sized map, they receive the Peer (Navis Nobilite) Talent and are offered the services of
+                            the best Navigators that the Houses of the Expanse can offer. However, they also risk becoming embroiled in the
+                            constant and mercurial feuds of the Navis Nobilite merely by obtaining such knowledge."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 6
+            value:
+              _type: Inspiration
+              name: A Better Path
+              description: "The worlds of the Maw remain a mystery to most, even though scores of ships brave the Warp storms each
+                            cycle to reach the Expanse. An expedition is being formed to properly chart these worlds and even survey them for the
+                            possibility of settlement, though saner minds consider these places best left alone. The Explorers gain an additional +50
+                            Achievement Points towards Exploration Objectives during this Endeavour for each habitable world they chart."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Untouched by Humanity
+              description: "The Explorers have come across an ancient Administratum document detailing a world
+                            on the edge of the Calyx Expanse marked for settlement, though it seems this ripe world was never claimed by the
+                            Imperium. Such a prize is surely worth investigation, as is the reason it was abandoned. The Explorers gain an additional
+                            +25 Achievement Points towards their current Endeavour whenever they complete a Trade Objective on this world."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 4
+            value:
+              _type: Inspiration
+              name: Gifts of the Machine God
+              description: "There are regions of the Expanse of interest to the Adeptus Mechanicus which they lack
+                            the resources to explore. The Explorers can fulfifil such a task in exchange for the promise of reward and settlement
+                            rights. However, something does not seem right about the mission, and the Mechanicum’s unwillingness to send their
+                            own to this world raises further questions. If the Explorers can establish a Colony on this world in the name of the
+                            Adeptus Mechanicus, they receive a single Archeotech Starship Component of their choice as payment."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: Safe Passage
+              description: "The Explorers come across a salvation beacon from the surface of a remote moon, offering the location
+                            of a world rich in abandoned xenos ruins in exchange for a rescue. When they investigate the ship, they find the crew
+                            long-dead, but scavenge the coordinates to the lost world of xenos treasures. The Explorers gain an additional +25
+                            Achievement Points towards their current Endeavour whenever they complete a Criminal Objective on this world."
+
+- _type: Inspiration
+  name: Holy Pilgrimage
+  description: "Rogue Traders are not the only ones who have a vested interest
+                in forging lasting paths across the void, or in creating a secure
+                way to reach worlds both within the Expanse and beyond its
+                borders. The Ministorum lays down the paths of countless holy
+                pilgrimages within the Calixis Sector and the near regions of
+                the Expanse, growing wealthy on the passage of pilgrims and
+                the lines of travel to holy places and sacred worlds. Rogue
+                Traders might find themselves embroiled in such pilgrimages,
+                either through their own sense of religious faith and the desire
+                to honour the saints, or to exploit the faith of others, charging
+                exorbitant sums for the privilege of setting foot on places once
+                visited by Drusus, Angevin, or other such blessed individuals."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Holy Pilgrimage
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+            value:
+              _type: Inspiration
+              name: Footsteps of Drusus
+              description: "There are numerous worlds along the edges of the Expanse said to have once been graced
+                            by Saint Drusus. The Explorers are offered substantial rewards by the Ministorum for mapping out such a world
+                            and deeming it “safe” for pilgrims. The Explorers gain an additional +50 Achievement Points towards Creed
+                            Objectives for each shrine they establish on worlds tread by Drusus during this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+            value:
+              _type: Inspiration
+              name: Winterscale's Resting Place
+              description: "A descendant of the great Rogue Trader Winterscale is keen to recover the bones of one of
+                            his glorious ancestors from a far flung world of the Expanse. The Explorers can lend aid, but this is more than a mission
+                            to honour the dead. The descendant wants the remains for his own glory and status, and is willing to go to great lengths
+                            to get them. If the Explorers can unearth the remains and return them to the descendent of Winterscale, they earn a token
+                            of favour from this great Dynasty, which can either be exchanged for 1d5 Profifit Factor, or assistance in overcoming a
+                            Misfortune or other crisis (at the GM’s discretion), in addition to any other Profifit Factor earned during this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: The Lost Crusade
+              description: "The Margin Crusade was lost years ago in the wilds of the Expanse, though only a handful
+                            know of its true fate. A powerful Scintillan noble widow wants the Explorers to fifind the Crusade, promising them
+                            rights to her holdings in the Expanse. If they can discover the flfleet’s fate amidst the cold stars of the Expanse, the
+                            Explorers receive a Research Outpost Colony with the following profifile (Size 3, Productivity 8, Complacency 8,
+                            Order 3, Piety 7) (see pages 102–103 for Colony Characteristics)."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: Broken Shrine
+              description: "Failed missions of the Imperial Cult litter the Expanse. They rest in places where the Ministorum
+                            has tried to impose the worship of the God-Emperor on worlds too harsh to tame. The Explorers have found such
+                            a world and the remains of its keepers, near to madness and death. If the Explorers can return these lost souls to the
+                            Ecclesiarchy, they receive a sacred relic of Saint Drusus, which the faithful value highly, and may even have truly
+                            miraculous properties, in addition to any Profit Factor earned from the Endeavour."
+
+- _type: Inspiration
+  name: Ancient Glories
+  description: "In the wake of the Imperium’s constant growth and decline,
+                whole sectors of space can be abandoned, cut off, or destroyed
+                by the tides of war and time. Examples of this exist within the
+                Expanse, the follies of past human attempts to settle the Halo
+                Stars or the more recent remnants of the ambition of Sector
+                Lords and Rogue Traders. Many of these locations only reside
+                for certain in Administratum archives or Ministorum directives,
+                exact positions and secrets long forgotten by even those who
+                ply the gulfs of space along the edges of the Calixis Sector.
+                With the right amount of Thrones or the promise of favour,
+                the Explorers might come across clues or maps to the location
+                of such places, and get the chance to plunder their wealth or
+                return them to the blessed fold of the Imperium."
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Ancient Glories
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 3
+            value:
+              _type: Inspiration
+              name: Colony of Man
+              description: "The Explorers have been offered the chance to create a settlement on a world within the Expanse, as
+                            a port of call for Imperial trade. Working closely with the Imperium has its price, and though the potential profifit is high,
+                            they must suffer meddling offificials and secret Administratum agendas. They gain 200 Achievement Points towards the
+                            Endeavour to found the Colony to reflect the Imperium’s support (see page 98 for Colonies). If the Explorers manage
+                            to create the sort of upstanding outpost that matches the stringent and maddening standards of the Administratum, they
+                            gain the Peer (Administratum) Talent in addition to any Profit Factor they earn from this Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: Powder Keg
+              description: "Among the Heathen Stars are planets settled by man long ago, cut off from the Imperium and
+                            unaware of its existence. On one such world, the Explorers face the seeds of a Chaos cult. Such a taint sometimes
+                            even calls for Exterminatus, the fifinal judgement of the Emperor upon a world, but the world also contains a vastly
+                            lucrative store of promethium, so far untapped by the heretics who inhabit it. If the Explorers can purge the world
+                            of the heretics—without igniting the promethium reserves in the process, and blasting the world apart—they gain
+                            exclusive access to a world with three Mineral Resources with an Abundance of 50+3d10 (see page 27)."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: Descendants of the God-Emperor
+              description: "A stable, advanced society cut off from the Imperium is a rare thing, though one
+                            the Explorers have discovered. They must now decide whether to keep the world secret and try and draw profifit from it,
+                            or plunder what they can before the arrival of the Imperium’s more fanatical elements. The inhabitants worship the God-
+                            Emperor, but their faith diverges in ways that some might see as heretical. The world counts as having an Agricultural
+                            Colony with the following profifile (Size 2, Productivity 5, Complacency 8, Order 8, Piety 4) (see pages 102–103 for
+                            Colony Characteristics) which, if they are subtle, the Explorers might win to their service without fifiring a shot."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 2
+            value:
+              _type: Inspiration
+              name: A Failed Mission
+              description: "During the early centuries of human exploration within the Expanse, countless ships were
+                            lost. While surveying a lonely world, the Explorers come across such an ancient vessel, a vessel that, apart from
+                            salvage, holds an archeotech component that enhances the powers of an Astropathic Choir. If the Explorers can
+                            get this component into the hands of the Adeptus Astra Telepathica, they gain the Peer (Astropaths) Talent in
+                            addition to any Profit Factor they earn from the Endeavour."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                required_flags: null
+                base: 1
+            value:
+              _type: Inspiration
+              name: Imperial Cache
+              description: "Long ago, a renegade Imperial Guard general secreted away a vast number of war machines somewhere
+                            in the Koronus Expanse, planning to use them for a coup. He was slain under highly mysterious circumstances, but his
+                            cache was never found—until the Explorers uncover it on an uncharted world in the Expanse. If the Explorers can get
+                            these vehicles back into the rightful hands of the Imperial Guard, either in the Spinward Front or the Jericho Reach, they
+                            gain the Peer (Imperial Guard) Talent in addition to any Profit Factor they earn from the Endeavour."
+
+- _type: Inspiration
+  name: Derelict Vessel
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "The void is scattered with the remains of ill-starred travellers, their
+                vessels drifting in space or their broken hulls rusting in the depths
+                of alien wildernesses. These wrecks are extraordinarily valuable
+                finds, as there are usually components or parts to salvage. Crashed
+                vessels can still hold valuable cargos, rare and expensive goods
+                which never made it to their intended destination, but have lost
+                none of their potential profit. These could include fuel or raw
+                materials, rare minerals and precious metals, or finished goods in
+                the form of weapons and munitions. Explorers, pirates, and even
+                Rogue Traders can also be a source of crashed ships, lost when
+                trying to plunder wrecks themselves. Given the size and perils of
+                the Expanse, more of these treasure hunters vanish into the void
+                than return with brimming cargo holds. Most who do return do
+                so empty handed, with tales of brushes with disaster while trying
+                to recover the remains of a crashed vessel from a hostile world.
+
+                In addition to Imperial vessels, the Expanse is also home
+                to the remains of thousands of xenos wrecks, vessels from the
+                scores of alien empires which once plied the darkness beyond
+                the Maw. These kinds of wrecks bring their own dangers, as
+                the Explorers will often face not only the perils of the world
+                where the ship has come to rest and whatever creatures or
+                hazards might have taken up residence in the hulk, but also
+                the alien nature of the ship itself. The rewards of plundering a
+                xenos ship can be well worth the risks, and for a Rogue Trader
+                willing to deal in such forbidden goods, it presents a chance for
+                the Explorers to get their hands on exotic weapons, tech and
+                artefacts which they would otherwise never come across.
+
+                A crashed ship can be almost anything, from a downed
+                guncutter to the wreckage of an Emperor-class battleship spread
+                across a continent. Smaller vessels make for good encounters
+                within a larger adventure, such as the Explorers coming across the
+                remains of a shuttle in the depths of an alien jungle, the skeletons
+                of nearby crewmen and the remains of a broken vox telling a sorry
+                tale of their last days. Explorers in dire need of shelter (such as
+                from the acid rain or frozen storms of a hostile world) or supplies
+                would be grateful for the discovery of such a vessel. Equally, it
+                could be home to a hungry predator or an insane survivor, who
+                will turn on the Explorers as they explore the wreck.
+
+                Larger vessels are adventure settings in their own
+                right, especially if they are the remains of Warp capable
+                ships which once held tens of thousands of crew and were
+                kilometres long. These vessels might be largely intact,
+                depending on where they came to rest (such as the bottom
+                of an ocean or the heart of a swamp) or may be little more
+                than fragments (like the bridge of a cruiser rising out of the
+                sands of a desert, hundreds of kilometres from the rest of
+                the vessel). Over time, larger vessels will also become part
+                of the Encounter Site in which they crashed, local flora and
+                fauna making it their home, until it is possible for Explorers
+                to wander into the interior of a vessel without realising they
+                have left the forest, tundra, or jungle behind.
+
+                Deciding why a ship crashed is an important part of
+                figuring out what kinds of dangers and challenges the
+                Explorers must overcome to reach it and loot its
+                remains. There are a variety of reasons why a
+                ship might find its final resting place on some
+                remote world or system: it could have been damaged in battle
+                and forced down from orbit, suffered a mishap in the Warp and
+                struggled back to realspace only to crash, or fallen afoul of the
+                myriad of celestial phenomena found within the Expanse. Solar
+                storms, gravity wells, and debris fields could all have damaged
+                or grounded a ship which came too close to a volatile or hostile
+                world. Quite often a captain does not recognise the danger
+                before it is too late, whether it is a yet-unrecorded local effect
+                (like changing gravity patterns or rogue worlds) or some forgotten
+                xenos perils (such as ancient defence grids or alien sentinels like
+                those left behind by the Eldar, Yu’vath, or other ancient species).
+                Mutinous crews and insane captains can also cause a ship
+                to crash, deliberately plunging into a world’s atmosphere,
+                either as an act of rebellion against their lord or as a last,
+                desperate act against a seditious crew. Such vessels usually still
+                bear signs of their final, dark moments: barricades and battle
+                scars might remain where factions fought for control of the
+                bridge, engine room, and core cogitator. Survivors from such
+                wrecks often still cling to the memories of these rebellions,
+                and the descendants of a centuries old crash might still war
+                over the ancient wreck without knowing why."
+  perterbations:
+    - _type: Perterbation
+      name: Derelict Vessel
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Automated Defences
+                      description: "The interior of the derelict vessel is still outfitted with automated defences, which include
+                                    devastating heavy weapons emplacements. These emplacements fire on any intruders who stray within their range. They
+                                    have Ballistic Skill 30, 5 Armour Points, 15 Wounds, and are equipped with a Red-Dot Laser Sight (or appropriate xenos
+                                    equivalent) and one of the following, depending on the vessel: heavy bolter (Heavy; 120m; –/–/10; 2d10+2 X; Pen 5;
+                                    Clip 60; Reload Full; Tearing), shuriken cannon (Heavy; 120m; S/–/10; 1d10+7 R; Pen 6; Clip 60; Reload 2 Full), big
+                                    shoota (Basic; 80m; S/3/10; Pen 1; Clip 40; Reload Full; Inaccurate, Unreliable), or another appropriate Heavy Weapon."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Vicious Residents
+                      description: "The ship was brought down by alien infestation or Daemonic taint, and this peril might remain, such as
+                                    Genestealer broods or Warp spawn hiding within its depths. Alternatively, the former occupants of the vessel might still reside
+                                    within, twisted by the influence of the Warp and generations of neglect. The party is assailed by one of the following: A pack
+                                    of Genestealers equal in number to the Explorers (plus a Broodlord, if the GM deems it appropriate) (see page 79), a group
+                                    of three terrifying Ebon Geists (see page 378 of the ROGUE TRADER Core Rulebook), or a cadre of twisted Mutant Outcasts
+                                    twice the number of the Explorers, led by a Mutant Abomination (see page 371 of the ROGUE TRADER Core Rulebook)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Structural Decay
+                      description: "The combination of crashing into a world from space and the passage of time often means that the
+                                    ship itself is in a decaying state, making its twisted corridors unstable, power conduits volatile, and some areas simply
+                                    impassable, forcing long or dangerous detours. This portion of the vessel collapses when the Explorers enter it, dropping any
+                                    unfortunate who fails a Challenging (+0) Agility Test into the unseen depths. At the very least, this means that he suffers
+                                    an appropriate amount of Damage from falling (see page 261 of the ROGUE TRADER Core Rulebook)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Ion Storm
+                      description: "The most obvious danger presented by a crashed ship is whatever brought it down in the first place. If
+                                    it is a recurring natural hazard, like atmospheric storms or null zones, then it may pose the same danger to the Rogue
+                                    Trader’s own vessel. This is represented by an electrical surge that deals 1d10+5 Energy Damage with the Shocking
+                                    Quality to any Explorer who is not sufficiently grounded at the time it sweeps through the ship’s hull."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: The World Inverted
+                      description: "There are countless systems on a void ship which can go awry, especially after decades or centuries
+                                    rotting in the wilds of an alien world. One of the greatest dangers is comes from warped gravity plates, which can throw
+                                    scavengers down corridors or into ceilings without warning. If an Explorer enters a zone under the effects of a damaged
+                                    gravity plate, he is thrown in whatever direction it is facing (suffering Damage from falling if appropriate), and then becomes
+                                    trapped by the crushing weight of the artificial gravity. Any Explorer trapped this way must make a Punishing (–50)
+                                    Strength Test to wrench himself free—or his comrades must find a way to free him, perhaps by deactivating the plate."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Prime Salvage
+                      description: "A relatively intact void ship is a great prize for
+                                    salvagers, with basic components, tempered metals, and machines
+                                    worth millions of Thrones. The real wealth of such a ship is to find
+                                    an intact plasma core, Warp engine, or weapon system, any one
+                                    of which would make the trouble of recovery more than worth
+                                    it. Generate 1d5–2 (to a minimum of 1) Voidship Components
+                                    using the Treasure Generator (see page 83)."
+                      perterbations:
+                        - _type: Perterbation
+                          flags: encounter_reward_prime_salvage
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Valuable Survivors
+                      description: "Crashed ships can contain important
+                                    survivors, such as Astropaths, Navigators, or notable captains,
+                                    either held in stasis or surviving in the ruins. Noble houses,
+                                    Imperial organisations, and even other Rogue Traders often
+                                    pay well for the return of such individuals. Any such notable
+                                    survivors returned to their factions are worth 15 Achievement
+                                    Points towards the Explorers’ current Endeavour."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Lost Cargo
+                      description: "In addition to what can be salvaged from the
+                                    wreck, ships frequently hold valuable cargo. At very least, a chartist
+                                    vessel or Warp trader might hold trade goods and minerals, or
+                                    machinery of substantial value. If the Explorers can recover this
+                                    cargo and find a port at which to sell it (while avoiding others
+                                    who claim ownership), they earn 1 Profit Factor."
+
+- _type: Inspiration
+  name: Death Zone
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "Many worlds within the Expanse have never been able
+                to support life, be they cold spheres of rocks with thin
+                atmospheres or hostile stars that alternately freeze or burn
+                their surfaces clean of anything down to even the smallest of
+                bacteria. Others were once thriving biospheres, or even the
+                centres of vast planetary empires, now turned into endless
+                graveyards by some great horror or tragedy. However,
+                sometimes a catastrophe can afflict a single region of a planet
+                without even disrupting the other biomes of the world. Over
+                centuries and millennia, deserts can crawl across a continent
+                or magma can be thrust to the surface, the ash choking away
+                all life that it does not scour away in the eruptions. Other
+                times, a species might devour its way to extinction, greedily
+                consuming all of the natural resources in an area before
+                starving along with the ecosystem it has devastated. Though
+                these Encounter Sites are often dust-coated wastelands
+                inhospitable to humans, environmental catastrophe sometimes
+                pushes rare minerals or exotic compounds to the surface.
+
+                Of greatest interest and most potential profit are regions that
+                were once alive, but have perished as a result of some great
+                catastrophe or died a slow, strangling death. These can exist on
+                almost any world, from once thriving industrialised worlds, to
+                feral planets, or even Imperial outposts, lost to the numberless
+                dangers found within the Expanse. In the same manner as a
+                crashed vessel, a once-inhabited Death Zone presents a rotting
+                carcass for the Explorers to pick over, with empty city streets
+                and broken highways to navigate in search of wealth. These
+                abandoned regions can be found on even the mightiest of hive
+                worlds or forge worlds, amidst the continent-sized dumping
+                grounds or in the irradiated underhives where none dare tread.
+
+                If the region did, in fact, once support life, the GM should
+                decide how it met its end, what grand catastrophe annihilated
+                it, and if the danger posed by such an event still lingers to
+                threaten the Explorers. The most dangerous kind of Death
+                Zones is one for which there is no apparent evidence of what
+                destroyed it. The Explorers might find the wasted remains
+                of forests, empty cities, and abandoned orbital stations with
+                no sign of people or any signs of violence. This could be the
+                work of the Warp, the dark powers of Chaos scouring a world
+                of life in a single night of horror, and leaving little evidence
+                of its passing, or it could be the actions of xenos, interested
+                only in the living for their own obscure reasons. In both cases,
+                it is possible that the arrival of the Explorers might reawaken
+                such powers, stirred to action by the presence of life and fresh
+                souls for their dark masters."
+  perterbations:
+    - _type: Perterbation
+      name: Death Zones
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Sinkhole
+                      description: "Created by the apocalyptic blasts of weapons or scouring storms and floods, sinkholes are a mundane, but
+                                    nonetheless terrible danger to Explorers who make their way into Death Zones. Explorers who enter the destabilised
+                                    area of a sinkhole must make a Routine (+20) Agility Test to escape the collapsing pit. At best, the unfortunates
+                                    who fail might find themselves in caverns beneath the Death Zone—at worst, they end up buried beneath soil and
+                                    rock, in desperate need of rescue from without."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Lingering Curses
+                      description: "Void-farers are superstitious for good reason, and some worlds can be “cursed,” their sorry
+                                    histories a collection of one tragedy after another, leading to their eventual demise. These ill-fated places are usually
+                                    well known to travellers in the Expanse, and always come with tales of captains too foolish or greedy to heed the
+                                    curse and who met their end upon its surface. When the Explorers encounter an incontrovertible omen (a pool of
+                                    blood that slowly swirls with images of the viewer’s demise, a set of chained corpses that hang up towards the sky, a
+                                    great whispering stone wrought with glowing gems, or some other sign of the GM’s creation) they must all make a
+                                    Fear Test against a difficulty of Fear (1) Disturbing. This is considered a supernatural source of Fear."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Insane Machines
+                      description: "Both alien machines and those wrought by the Adeptus Mechanicus can fail over the long march
+                                    of years, their complex functions becoming corrupted and twisted until they are a danger to all who cross their path.
+                                    The Explorers are assailed by a number of these constructs, which use the profile for a Battle Servitor (sees page
+                                    374–375 in the ROGUE TRADER Core Rulebook) equal to twice their number."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Rad Storm
+                      description: "Whether the result of weapons or celestial forces, this region is plagued by radioactive storms and
+                                    distorted magnetic fields, making landing and exploration dangerous. In addition to the perils of trying to navigate
+                                    the atmosphere, risking power failure or sensor blindness, the Explorers will not be able to remain for long on the
+                                    world’s surface, the intense radiation eventually overcoming even the best defences. When a rad storm sweeps in,
+                                    each living thing in its path must make a Difficult (–10) Toughness Test or gain 1 level of Fatigue that cannot
+                                    be removed until it escapes such exposure for at least a 24 hour period. Any living creature that passes out due to
+                                    Fatigue acquired this way succumbs to radiation poisoning and perishes."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Sandstorm
+                      description: "Death Zones are typically characterised by a layer of silt, ash, or caustic material that covers all surfaces
+                                    in the absence of life. When such a storm blows in, the Explorers all suffer 1d10+5 Rending Damage and are
+                                    Blinded, unless they can find proper shelter from the whipping gale. Further, this storm imposes a –30 penalty on all
+                                    Navigate (Surface) Tests the Explorers make while caught inside of it."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Rare Minerals
+                      description: "Even worlds with no indigenous life
+                                    or the ruins of ancient civilisations can yield great wealth
+                                    for a cunning Rogue Trader. Some worlds are home to
+                                    unique ores and minerals, like living crystals that can be
+                                    grown into any shape or obsidian-like stones that hold
+                                    a monofilament edge sharper than anything man can
+                                    create. The depths of gas giants and the atmospheres of
+                                    toxic worlds can also hold rare chemical compounds, such
+                                    as vapours that burn far faster and hotter than even the
+                                    purest promethium. Add an Mineral deposit (see page 29)
+                                    to this Encounter Site, or increase the Abundance of any
+                                    such deposits at or near this site by 1d10+5."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Ancient Plunder
+                      description: "A world which once held a civilisation
+                                    (Imperial or otherwise) is a treasure house of salvage for a
+                                    Rogue Trader. Great spires, vast cities and even scattered
+                                    outposts can all be stripped for both raw materials and hidden
+                                    treasures. Abandoned orbital installations and even decaying
+                                    shipyards are also possible finds, which can be dragged away
+                                    or carved up for plunder. Add an Archeotech Cache (see page
+                                    28) to this Encounter Site, or increase the Abundance of any
+                                    such deposits at or near this site by 1d10+5."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: New Colonies
+                      description: "If a ruin is sufficiently intact, or a
+                                    world not too hostile to life to possibly support the living
+                                    again, a Rogue Trader can use it as a basis for a Colony. By
+                                    transplanting a population, he can restore fallen factories
+                                    and crumbling cities to part of their former glory, and
+                                    accelerate the growth of a world tenfold. If a Rogue Trader
+                                    chooses to begin a Colony at such a site in the manner
+                                    described in Chapter III: Populating the Expanse (see
+                                    page 98), the Endeavour to found the Colony begins with
+                                    200 Achievement Points to reflect the Rogue Trader’s novel
+                                    use of the ancient infrastructure."
+
+- _type: Inspiration
+  name: Lost City
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "Among dead worlds and lost planets are the remains of
+                countless outposts and civilisations, testaments to the entropic
+                nature of the universe that wipes away nearly all traces of even
+                the greatest empires. Some of these lost cities are ruins, like
+                those found on worlds touched by catastrophe, while others are
+                remote outposts, the remains of much larger galactic kingdoms
+                and races, long since cut off from their distant home worlds.
+                Something nearly all lost cities have in common is their isolation
+                from the rest of the Expanse, being located in places where, for
+                one reason or another, they have prospered alone without the
+                support of other worlds. In many cases, the inhabitants of a
+                lost city will be unaware of the galaxy beyond their sky, seeing
+                only empty darkness and cold stars, without any thought to the
+                spectre of the Imperium that lays claim to them.
+
+                A lost city could have once been the heart of a powerful
+                planetary or even interplanetary realm, its inhabitants unaware
+                of the glories of their ancestors or of the inheritance they have
+                lost. This can happen if a space-faring empire falls prey to some
+                great disaster, like alien invasion or celestial catastrophe. Warp
+                storms can cut off a world from its neighbours and trigger such
+                a decline, leading to centuries of isolation and that reduce a once
+                thriving world to ruins prowled by primitive gangs, living off
+                the scraps and rubbish of their ancestors. Unlike a dead world,
+                lost cities usually still hold some degree of life, rather than being
+                scoured clean by tragedy. They are places where beasts or the
+                descendants of man cling to a world they no longer recognise,
+                locked into a grim downward spiral of devolution.
+
+                Lost cities can also be the result of deliberate human or alien
+                intervention, such as in the case of a greater empire keeping a
+                lesser one subservient to its desires. Among the heretic human
+                empires of the Expanse, it has been documented that some
+                human worlds are kept in a permanent primitive state after
+                being subdued by a greater force, stripped of their technology
+                and kept alive only as a source of labour or conscript soldiers
+                in a vile parody of the Imperium’s own system of planetary
+                tithes. It is suspected that alien races like the Dark Eldar also
+                “farm” such primitive worlds for slaves, descending from the
+                sky to take humans when they require new stock, and creating
+                a world living in terror of their dark sky gods. The Yu’vath
+                were another race to indulge in this practise of reducing a
+                conquered race to a primitive tribal state, and then exploiting
+                its human population for their own dark ends.
+
+                The most interesting lost cities a Rogue Trader can visit,
+                far more profitable than mere ruins or the debased remains of
+                human and alien civilisations, are those that choose to remain
+                lost for a reason. Among the Halo Stars are worlds and cities
+                whose inhabitants have chosen to live apart from the galaxy,
+                isolating themselves not because of the whims of the Warp or
+                the intervention of alien races, but by conscious choice."
+  perterbations:
+    - _type: Perterbation
+      name: Lost City
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Hostile Inhabitants
+                      description: "Lost but not abandoned, this city still has guardians who wish to see intruders expunged at
+                                    all costs. The Explorers are ambushed by a cadre of defenders equal in number to their group. The specififics of these
+                                    defenders depend on who is currently inhabiting the city—they might be native Orks (see page 76), long-lost human
+                                    colonists (see page 376 of the ROGUE TRADER Core Rulebook), or some other enemy entirely, such as the Yu’Vath
+                                    horrors found in other volumes like THE KORONUS BESTIARY."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Pitfall Trap
+                      description: "If a city was destroyed by war, or was hidden for a reason, it might be protected by traps and tricks
+                                    to foil attackers. A pitfall trap requires any Explorer who triggers it to make a Difficult (–10) Agility Test to avoid
+                                    falling in, or suffer a two metre fall followed by 1d10+4 Rending Damage with the Toxic Quality from spikes."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Snare
+                      description: "Some traps are not meant to kill their targets, but instead to immobilise them for later interrogation (or
+                                    boiling). Whatever the case, any Explorer who triggers such a trap is struck with an attack that deals 1d5+2 Impact
+                                    Damage with the Primitive and Snare Qualities."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Weapon Trap
+                      description: "One intimidating (if, perhaps, excessively complex) form of trap involves rigging blades to swing
+                                    out of the walls, or weapons to pelt intruders with projectiles. Any Explorer who enters the zone of such a trap is
+                                    immediately struck by 1d5 attacks that each deal 1d10+4 Rending or Impact Damage with the Primitive Quality. At
+                                    the GM’s discretion (when dealing with groups capable of building more deadly traps), these attacks gain the Toxic
+                                    Quality, lose the Primitive Quality, or both."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Urban Decay
+                      description: "One intimidating (if, perhaps, excessively complex) form of trap involves rigging blades to swing
+                                    out of the walls, or weapons to pelt intruders with projectiles. Any Explorer who enters the zone of such a trap is
+                                    immediately struck by 1d5 attacks that each deal 1d10+4 Rending or Impact Damage with the Primitive Quality. At
+                                    the GM’s discretion (when dealing with groups capable of building more deadly traps), these attacks gain the Toxic
+                                    Quality, lose the Primitive Quality, or both."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Safe Harbour
+                      description: "A lost city can make a suitable safe port
+                                    for a Rogue Trader, especially if he alone knows its location
+                                    and understands its inhabitants (if any). Such a remote and
+                                    protected domain can become a place to hide goods, secure
+                                    prisoners, or simply to rest, many of the reasons such places
+                                    are also favoured by pirates as ideal bases. Any bases, large
+                                    caches, or other significant operations hidden here impose a
+                                    –30 penalty on relevant Tests to locate them from afar."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Secret Lore
+                      description: "The bones of a dead city or the ruins in which
+                                    its tribes survive can be a source of secret and useful lore for
+                                    the Explorers. Among the decaying structures and streets rests
+                                    lost tech, powerful lore, valuable star charts, or long-forgotten
+                                    weapons. Scattered throughout the city are 1d5+1 randomly
+                                    generated items from the Treasure Generator (see page 83)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Glory and Renown
+                      description: "There are numerous fabled cities
+                                    that glitter in the lore of the Calixis Sector and the Koronus
+                                    Expanse, places mentioned in the teachings of Saint Drusus,
+                                    the records of the Angevin Crusade, and even the whispered
+                                    tales of the Haarlock dynasty. Discovering such a fabled
+                                    city—and surviving to tell the tale—yields 50 Achievement
+                                    Points towards the Explorers current Endeavour as their legend
+                                    grows."
+
+- _type: Inspiration
+  name: Warrens and Hollows
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "Humans are not alone in cultivating planets for their own needs.
+                Even primitive alien species raise up cities or tunnel out warrens
+                for their growing kind. These artificial domains can be maddening
+                places for a human, the xenos architecture and incomprehensible
+                design both taking their toll. Such places are also built for the needs
+                of alien biology and ecosystems where the air, ground, and plant
+                life might all be toxic or hostile to human intrusion. This could be
+                because the alien settlement exists in a remote and
+                dangerous location, like the depths of a chemical
+                ocean or high in the willowy fronds of a microgravity
+                forest. Alternatively, the xenos
+                themselves might create a
+                substance in the creation of
+                their city; toxic secretions and
+                solid excreta that are used as
+                building materials.
+
+                Alien hives come in a number of forms, primarily those
+                created by sentient minds and those created by insect or
+                animal instincts. The latter are obviously more common,
+                and many worlds show the presence of creatures which have
+                reshaped their environment to their own needs. On a small
+                scale, this can mean mounds of vegetation or unnatural caves
+                where a beast or creature has made its home, a place where the
+                Explorers themselves seek shelter from the perils of a world
+                or, if they are in search of food or trophies, track down the
+                creature itself. On a larger scale, a colony of creatures could
+                create an entire warren of tunnels, level a whole section of
+                jungle for their nests, or even drain a swamp to create a vast,
+                muddy sinkhole for a home. These larger nests can become
+                quite a challenge for Explorers, as they can span kilometres
+                both above and below ground, and hide unexpected treasures
+                as well as more unpredictable dangers.
+
+                Hives created by sentient creatures are an altogether more
+                daunting prospect for the Explorer, as they demonstrate some
+                of the intelligence mankind puts into his own cities and
+                colonies. In a nest crafted by thinking minds, there is an alien
+                reasoning behind its design, and often it includes defences
+                and traps to confound or repel invaders. For Explorers,
+                discerning the difference between a hive or warren created
+                by a thinking mind and the instinctive burrowing of a xenos
+                beast can a challenge, and the truth might only become
+                apparent once they have ventured deep into its interior.
+                Sealing portals, mechanical devices and traps, as well as a
+                coordinated defensive response can all indicate
+                the presence of
+                something more
+                than mere feral
+                instinct behind
+                the creation of a
+                such a hive."
+  perterbations:
+    - _type: Perterbation
+      name: Warrens and Hollows
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Toxic Spores
+                      description: "The presence of xenos leaves its mark upon a place, the vile essence of their being spread out
+                                    among the caverns or tunnels in which they nest. This could be sticky excretion from their skin, shed hides or
+                                    shells, or even bile, vomited up and used as building material. Each Explorer who enters a zone fifilled with such
+                                    contaminants must make a Diffificult (–10) Toughness Test or suffer 1d10+5 Toughness Damage that does not
+                                    begin to heal until he leaves the polluted region."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Twisting Labyrinth
+                      description: "Alien creatures rarely build with human visitors in mind, and their instinctive architecture
+                                    is often counter-intuitive or downright maddening. When the Explorers enter such a zone, they must make a
+                                    Challenging (+0) Navigate (Surface) or a Hard (–20) Logic Test. If no Explorer succeeds, they become
+                                    woefully lost; in addition to wandering off course, they immediately wander into another Hazard from this Table."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Natural Snare
+                      description: "Some xenos predators build elaborate traps by instinct, trapping their prey in organic nets, shallow
+                                    pits, grasping tendrils, or other fifiendishly clever snares. Whatever the case, any Explorer who triggers such a trap is
+                                    struck with an attack that deals 1d5+2 Impact Damage with the Primitive and Snare Qualities. Additionally, predators
+                                    almost invariably monitor their traps, and it can only be a matter of time before one arrives to seek its meal..."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Disgestion Pit
+                      description: "Some creatures digest their food outside of their bodies, spewing acidic slime on stockpiled
+                                    organic material to break it down before consuming it. The Explorers stumble across such a pit in the centre
+                                    of a tunnel, and must make a Challenging (+0) Agility Test to avoid falling in and suffering 1d5 Impact
+                                    Damage that ignores Armour and Toughness Bonus per Round, until they can escape. Note that due to
+                                    the smell, however, the Explorers receive a +20 bonus to any Awareness or other Exploration Skill Test to
+                                    notice or find the pit before stepping into it."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Bio-electric Field
+                      description: "Some organisms innately generate energies that hinder communications and can even disrupt
+                                    the functioning of complex electronics. When they encounter such an organism, the Explorers lose long-range
+                                    electronic communications and, at the GM’s discretion, any of their complex electronics fail."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Meat Locker
+                      description: "Wild and bestial xenos care only for
+                                    the meat and bones of their prey, and think little of the
+                                    worthless and inedible trinkets they might carry. Finding
+                                    the food stores of a hive, or its refuse heaps, can prove a
+                                    treasure trove for Explorers who are willing to dig through
+                                    the piles of corpses or get their hands dirty searching
+                                    mounds of alien excrement. Any time the Explorers discovery
+                                    such a waste pile, the group may make a single Hard (-20)
+                                    Search Test; if they succeed, they discover one item from
+                                    the Treasure Generator (see page 83), plus one additional
+                                    item for every two Degrees of Success on the Test."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Purge and Cleanse
+                      description: "Wiping out a nest can
+                                    have its own rewards, such as the glory of the God-
+                                    Emperor satisfied by the destruction of another foul
+                                    xenos species staining a world intended for humans.
+                                    If there is a human colony or society already present
+                                    on the planet, the locals might also be grateful to have
+                                    such a threat gone. The Explorers receive 15 Achievement
+                                    Points towards their current Endeavor for purging such a
+                                    xenos taint, but only so long there is someone to compensate
+                                    them or an intristic value to their own venture in doing so."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Rare Specimens
+                      description: "Some xenos might be of value to the
+                                    Explorers because of their biological makeup, or because
+                                    they have a value to the right buyers. Of these “valuable”
+                                    alien specimens, the rarest and most coveted are always in the
+                                    deepest parts of their hives, protected by their lesser kin; if the
+                                    Explorers slay the creature in question and claim its remains,
+                                    they receive 10 Achievement Points towards their current
+                                    Endeavour; if they take it alive, however, they receive 20
+                                    Achievement Points towards their current Endeavour instead."
+
+- _type: Inspiration
+  name: Xenoform Biome
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "Humanity is far from the most dangerous creature in the galaxy,
+                though it might like to believe in its own superiority. It is also is
+                not the only species to dominate its environment so thoroughly
+                that the terrain becomes a reflection of its own nature. Many
+                alien creatures present little danger to a traveller, be they
+                innocuous insects, plants, or small animals, which are no match
+                for a cunning mind and a ready boltgun. Unfortunately for the
+                Explorer, hidden among the xenos jungles, forests, and oceans
+                of an alien world there lurk real dangers, things which can spell
+                death for a traveller should he cross their path. In some cases,
+                these things are obvious and terrifying; towering carnivorous
+                plants, or hulking sea-beasts which are all fangs, claws and
+                tentacles, clearly a foe to be wary of. However, in other cases,
+                the dangers of indigenous xenoforms are much harder to detect:
+                sometimes, the entire environment moves to the beat of a single
+                heart, or shifts to the thoughts of a single intelligence.
+
+                The environment itself can be a predator, and threaten
+                the Explorers as soon as they set foot on a world. Continent
+                spanning jungles (sharing a single root system and single mind),
+                sentient oceans, and living storms are all possible, hiding from
+                the Explorers in plain sight and often revealing their true
+                danger only when it is too late. Beyond those xenoforms
+                which the Explorers can see and destroy with a wellplaced
+                bolt-shell are the multitudes of invisible
+                predators a world can be host to; alien viruses
+                and xenos pathogens, potentially expelled by plants, living in
+                the local wildlife, or simply part of the world’s atmosphere.
+                These insidious threats can infect an Explorer’s crew, either
+                tearing through its ranks like a plague or lurking dormant for
+                weeks or months before making its presence known, long after
+                the Rogue Trader has left the world behind.
+
+                Xenoform Biomes can also be found on settled worlds, where
+                the presence of mankind (or another alien race) is seemingly well
+                established. When the Imperium settles a world, it will often purge
+                much of the local wildlife if it is not immediately useful or poses a
+                threat to humans. Such purges are often incomplete, however, and
+                a virus that controls an entire ecosystem, or a cavern complex that
+                is in fact a great beast, might never be noticed."
+  perterbations:
+    - _type: Perterbation
+      name: Xenoform Biome
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Hallucinogenic Spores
+                      description: "There are many ways in which xenoform regions repel intruders. One method is to
+                                    introduce airborne toxins or contaminants that react with the physiology of sentient creatures by causing terrifying
+                                    hallucinations. Each Explorer who enters a zone filled with such contaminants must make a Hard (–20) Toughness
+                                    Test or roll on Table 5–5: Hallucinogen Effects (see page 126 of the ROGUE TRADER Core Rulebook)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Shifting Maze
+                      description: "Some alien creatures can dynamically bend their environment to their whim, moving organic or
+                                    even seemingly inorganic structures to and fro as they please within their dominion. When the Explorers traipse into
+                                    a place where a native organism is changing the terrain, they must make a Very Hard (–30) Navigate (Surface)
+                                    or Logic Test to make their way through the shifting environment. If no Explorer succeeds, they simply make no
+                                    progress, passing the same trees over and over again and wandering into one more Hazard from this chart before
+                                    they can attempt the Test again. If the Explorers realise that the environment is actively shifting around them, and
+                                    modify their methods to compensate, they gain a +20 bonus on these Tests."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Oppresive Mind
+                      description: "Creatures capable of bending entire environments to their own ends are often intelligent—even
+                                    if only in a gestalt and instinctive sense—and possessed of a terrifying will to survive. If the Explorers stumble into
+                                    a particularly vital area, this desire manifests itself not only in pitfalls and defenders, but in a raw, mental force that
+                                    pushes all but the most iron-willed to their knees. When the Explorers enter such an area, they must make a Hard
+                                    (–20) Willpower Test. Any Explorers who fail suffer 1d10+5 Intelligence and Perception Damage, which they
+                                    remove immediately upon exiting the xenoform region."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Acid Pool
+                      description: "Xenoform regions often create areas in which the life form that dominates the environment can digest its
+                                    food—either in large, secondary stomachs or pools filled with biting acid. The Explorers stumble across such a pit,
+                                    concealed beneath some form of cover, and must make a Hard (–20) Agility Test to avoid falling in and suffering 1d5
+                                    Impact Damage that ignores Armour and Toughness Bonus per Round until they can escape. Note that due to the smell, the
+                                    Explorers gain a +20 bonus to any Awareness or other Exploration Skill Tests to notice or find the pit before falling into it."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Aggressive Antibodies
+                      description: "Xenoform regions often have aggressive guardians, creatures grown or repurposed to
+                                    destroy any invaders who brazenly enter their domain. When the Explorers enter a region guarded by these
+                                    creatures, the defenders launch their ambush. Most disturbingly of all, however, these creatures almost look as if
+                                    they might once have been human. There are as many of these creatures as there are Explorers, and they use the
+                                    profile for Mutant Abominations (see page 371–372 of the ROGUE TRADER Core Rulebook)."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Cleared for Colonisation
+                      description: "Once any indigenous
+                                    alien menace has been dealt with, the Explorers can begin
+                                    harvesting the world for themselves. This is an important step
+                                    in the colonisation of a world, as it allows the Explorers to
+                                    take their potent weapons and unique skills elsewhere without
+                                    worrying about the colony’s immediate destruction."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Unnatural Interest
+                      description: "There are many parties within the
+                                    Imperium of Mankind that might take a worrisome but
+                                    also highly lucrative interest in a xenoform environment.
+                                    From a renegade Magos Biologis to certain members of
+                                    the Holy Ordos of the Inquisition, there are influential and
+                                    powerful individuals aplenty who might ask a group of
+                                    Explorers to enter such an environment, offering massive
+                                    rewards to offset the tremendous risk. Of course, only the
+                                    GM can say whether such individuals would actually tell
+                                    the Explorers of the sinister truth behind the place they
+                                    have been sent to investigate..."
+
+- _type: Inspiration
+  name: Hidden Oases
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "While most planets are littered with clearly hazardous
+                regions, ranging from explosive magma eruptions to
+                bellicose native xenos, many also have quiet areas, where
+                life not only thrives, but seemingly welcomes the weary
+                traveller. Veiled away through forbidding jagged cliffs or
+                obscuring smoke clouds, the appearance of an oasis often
+                mean the difference between a lethally failed mission and
+                continued profitable exploration.
+
+                The exact nature of an oasis varies from planet to
+                planet, and sometimes even within a single world. In desert
+                environments, an oasis might be a mere cluster of edible
+                green and a pool of clear water, fed through underground
+                aquifers. Death Worlds might instead have a haven of peaceful
+                quiet atop a sheer mountain peak, keeping the surrounding
+                bloodthirsty predators at bay. While each offers a different
+                appearance, each oasis generally has three basic offerings:
+                potable water, edible flora (and sometimes fauna), and an
+                overall restful setting. The latter especially can turn quickly
+                on the Explorers, however, for they are most certainly not
+                alone in seeking out such regions for relief"
+  perterbations:
+    - _type: Perterbation
+      name: Hidden Oases
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Native Predators
+                      description: "A group of vicious predatory animals creep out of the surroundings; where they once only
+                                    wished to slake their thirst, they are now eager to slake their hunger! The Explorers face four of some sort of local
+                                    and particularly dangerous predator (see Native Species on page 34 for tools to create such beasts)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Deadly Flora
+                      description: "The oasis is devoid of animal life, but not animal bones, as the plant life in this area is much more
+                                    dangerous! There could be plants with attacking branches, leaves that grip and hold, or maws that spew digestive
+                                    acids, all designed to make unwary predators (and Explorers) into prey. The Explorers must make a Difficult (–10)
+                                    Agility Test to avoid these attacks, or suffer 1d10 Rending Damage with the Tearing Quality. If they fail with two
+                                    or more Degrees of Failure, the attack also gains the Snare Quality."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Natural Traps
+                      description: "The oasis’s peaceful appearance is only an illusion, for the area is festooned with all manner of
+                                    deadly hazards. Here the clear, inviting waters might be filled with harmful chemicals, the tempting fruits dripping
+                                    with poisons, or the cool breezes wafting with soporific gases, all ready to lay low any Explorer who mistakenly
+                                    trusts the calm surface the oasis presents. The Explorers must make a Hard (–20) Awareness Test to avoid these
+                                    dangers, or suffer 2d10 Energy Damage with the Toxic Quality."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Hostile Xenos
+                      description: "The Explorers are not alone in wishing to enjoy the oasis! There might be Eldar Rangers lurking
+                                    in the foliage, seeking out relics of their lost glory, Stryxis traders examining the area for valuables, Orks lumbering
+                                    about in a destructive rampage, or any other host of potentially threatening aliens who would keep the Explorers
+                                    from properly enjoying the oasis. The Explorers face half their number of any one type of Xenos from the ROGUE
+                                    TRADER Core Rulebook (see pages 376–378)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Renegade Psyker
+                      description: "The oasis is maintained and defended by a small group of rogue psykers who have escaped the
+                                    Black Ships. They now use this quiet area to practice their powers, but, when disturbed, are more than ready to deal
+                                    with any who might sell them out to the hated Imperium. The hermits are represented with one Warp Witch (see
+                                    page 374 of the ROGUE TRADER Core Rulebook) for every two Explorers."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Profitable Resources
+                      description: "The oasis reveals new sources of
+                                    enticing plants, minerals, or other items that the Explorers
+                                    can trade. They can gather seeds, sink wells, strike veins
+                                    of rare metals, or in some other manner pillage the oasis
+                                    for their own profit."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Salvaged Valuables
+                      description: "Not all who visit the oasis leave, but
+                                    the remains and the equipment they leave behind are now
+                                    sources of profit for the Explorers who uncover them!"
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Trade Centre Establishment
+                      description: "The Explorers use the area
+                                    as a trading site. Other Rogue Traders or even xenos travellers
+                                    frequent the location to do business, with the Explorers taking
+                                    a healthy cut of the traffic for maintaining the centre."
+
+- _type: Inspiration
+  name: Caverns
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "The planet’s surface is only the beginning for the Explorers,
+                for this area reveals dark holes in the barren rock, leading deep
+                underground. These tunnels could be located on the ground,
+                or along the sides of mountain ranges, or almost anywhere
+                else where the foundation is strong enough to support
+                such passageways. Though dimly lit at best, perhaps from
+                phosphorescent fungi or glowing crystals, the tunnels often
+                extend into vast caves far inside the rock, totally quiet aside
+                from isolated sound of water ceaselessly dripping into stagnant
+                ponds and other unpleasant noises not recognisable in the
+                blackness. Many caverns resist even auspex scans attempting
+                to reveal their secrets, and only dedicated exploration can
+                determine what lies at the end of their labyrinthine passages."
+  perterbations:
+    - _type: Perterbation
+      name: Caverns
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Cave-in!
+                      description: "The tunnels groan ominously, and sand falls from the ceiling as the caverns begin to collapse. The
+                                    Explorers must make haste to escape or buttress their surroundings, lest they too become relics for others in the far
+                                    future to discover. The Explorers must make a Challenging (+0) Agility Test or become trapped under the rock,
+                                    and take 10 points of Impact Damage for each Degree of Failure."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Dwellers Within
+                      description: "There are others under the ground, ready to defend or preserve the caverns from intruders. These
+                                    might be near-feral primitives, huge-eyed and pale from life in the dark, or advanced xenos still thriving in cities that
+                                    sank below the rock long ago, but no matter their level, the Explorers must defend themselves from those that resent any
+                                    disturbances. These natives use the rules for Mutant Outcasts (see pages 371–372 of the ROGUE TRADER Core Rulebook)
+                                    and should number three times the number of Explorers in all, with one in four of the Outcasts as Mutant Abominations."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Natural Traps
+                      description: "The caverns are not naturally conducive to easy travel, and the Explorers must face acidic fungal growths
+                                    that eat away at armour, pools of radioactive liquids, frictionless surfaces where footing is impossible, fractal crystals that
+                                    slice flesh with ease, and more. The Explorers must make a Difficult (–10) Agility Test to avoid these attacks, or suffer
+                                    2d10 Impact Damage. If they fail with two or more Degrees of Failure, the attack gains the Toxic Quality."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Horrors from the Dark
+                      description: "The dark holds awful truths, including gruesome creatures from the void above. The Explorers
+                                    are assailed by a pack of Genestealers equal in number to their group, with a Broodlord if the GM sees fit (see page 79)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Passages Without End
+                      description: "The tunnels seem to twist into arcane arrangements, and worse yet, each remains identical
+                                    despite attempts to mark them. Measurements reveal impossible angles and lengths, and the Explorers are hard-pressed
+                                    to escape the dark, dank depths before their lights (and probably their lives) are extinguished. The Explorers must make
+                                    a Hard (–20) Awareness Test or be lost for 1d5 hours, with each Degree of Failure adding an additional hour."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Profitable Resources
+                      description: "The caverns reveal huge pools of
+                                    the purest promethium ores, or open veins of other valuable
+                                    minerals, all ready for extraction."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Safe Havens
+                      description: "The caverns are stable, defensible, and
+                                    easy to access, with passages large enough for shuttles and
+                                    flyers. The Explorers can turn these into excellent bases for
+                                    future operations, or as caches for storing ill-gotten or illicit
+                                    goods away from inquisitive eyes. Any bases, large caches,
+                                    or other significant operations hidden here impose a –30
+                                    penalty on relevant Tests to locate them from afar."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Lost Relics
+                      description: "The Explorers uncover an interconnected
+                                    series of enormous caves, each hosting the remains of a xenos
+                                    city. Millions must have lived here many ages ago, but now
+                                    there is only dust and decay. Dedicated Explorers who are
+                                    willing to investigate these areas may find invaluable devices
+                                    and weaponry, enough to found a new lineage."
+
+- _type: Inspiration
+  name: Jungles
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "These dense regions of intense foliage are common on many
+                planets, and usually indicate areas where plentiful water, rich
+                soil, and abundant sunlight combine to create ideal growing
+                conditions. This also often means there are many creatures
+                ready to feed on the plants and many predators ready to feed
+                on the plant-eaters. This cycle can become intense, with each
+                organism striving to stay alive and developing even more
+                powerful defensive and offensive weaponry to aid in the
+                struggle. Even the plants develop their own methods to deter
+                and hunt other organisms, and can become as dangerous as
+                the animals dwelling within the jungle’s violent depths.
+
+                Explorers travelling though such areas, often on hunting
+                expeditions or as a result of vehicular failure, can quickly find
+                themselves prey to the multitudes of life forms that surround
+                them on all sides. While not as intense as a proper Death
+                World setting, travellers can easily find themselves under
+                attack, should they not sufficiently prepare themselves."
+  perterbations:
+    - _type: Perterbation
+      name: Jungles
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Apex Hunters
+                      description: "Jungles often host the most dangerous of creatures, those that have carved out a place amidst
+                                    dozens of other predators fighting to survive. Such animals (and even plants) are cunning, and can attack
+                                    without warning from out of the thick foliage. Each Explorer faces two native creatures (see Native Species on
+                                    page 34 for tools to create such beasts)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Dangerous Terrain
+                      description: "While searching above for dangers in the trees, the Explorers may not notice the threats
+                                    below them. Dust pits, quickslyme, razor vines, and more are found along the ground, ready to befall those unwary
+                                    of such dangers. Each Explorer must take a Difficult (–10) Awareness Test, and if they fail, must take a Hard
+                                    (–20) Agility Test to avoid the terrain or take 2d5 Rending Damage."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Xenos Tribes
+                      description: "Deep within the jungle are native gatherings of lost human or xenos, in such a wild state that it
+                                    is difficult to tell one from another. No matter their origin and the primitive level of their weapons, their natural
+                                    ferocity and knowledge of the local conditions can make them dangerous, even to the Explorers with their
+                                    advanced technology. These primitives use the rules for Bloodskinner Colonists (see page 370 of the ROGUE
+                                    TRADER Core Rulebook) and should number eight times the number of Explorers."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Intense Weather
+                      description: "Jungles are often located in areas of rapidly changing weather, especially powerful rainstorms
+                                    that can drive even a proud Rogue Trader to his knees. Each Explorer must take a Challenging (+0) Toughness
+                                    Test or be battered down, taking 1d10 Impact Damage."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Deadly Swarms
+                      description: "Even the smallest of creatures can be a threat, especially in the jungle. Vast torrents of insects
+                                    and tiny animals march across the ground or fly above it, devouring everything in their path. They can swarm
+                                    into unsealed armours, rip apart clothing, and take down foes many times larger than themselves, including the
+                                    Explorers. Each Explorer must pass a Difficult (–10) Toughness Test, or suffer 2d10 Rending Damage."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Xenotech Cache
+                      description: "Deep in the jungle rests a large
+                                    collection of xenos gear, including weapons and devices
+                                    that no human can understand. These should fetch huge
+                                    prices from discerning patrons. Of course, it could also draw
+                                    the wrath of sundry others, from the Holy Ordos of the
+                                    Inquisition to the xenos in question themselves, but such
+                                    are the dangers of the Cold Trade. Such a cache should
+                                    generally consist of 1d5+3 items of Xenos Origin from the
+                                    Treasure Generator (see page 83)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: New Species
+                      description: "The Explorers discover a new species of
+                                    plant or animal, be it distinctive and decorative, or perhaps a
+                                    source of valuable alchæmical medicines. Through controlling
+                                    access to the species, the Explorers can establish a very
+                                    profitable market. Add an Organic Compound Resource to
+                                    the area around this Encounter Site (see page 30)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Lost Colony
+                      description: "Deep within the emerald depths is a lost tribe
+                                    of humans, all that is left of some crashed voidship or forgotten
+                                    colony. Though far from properly civilised, returning them to the
+                                    Emperor’s grace can surely lead to profitable relations with the
+                                    Adeptus Ministorum and other Imperial agencies within the Calixis
+                                    Sector. If the Explorers decide to start their own Colony here with
+                                    the rules in Chapter III: Populating the Expanse (see page
+                                    98), they gain 150 Achievement Points towards the Endeavour to
+                                    found the Colony thanks to the current population."
+
+- _type: Inspiration
+  name: Chaos-scarred Regions
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "These areas have known the foul blessings of the Warp, and are
+                forever more tainted and unnatural. They are blighted regions,
+                anathema to all true servants of the Emperor, but many a Rogue
+                Trader has been forced into them due to cruel fate or lured into
+                risking their very souls to search these places for cursed treasures.
+
+                Some are the result of Warp intrusions into the Materium,
+                but none can say if they are the result of random chance or the
+                unfathomable designs of the Chaos Gods. Others represent where
+                overreaching psykers allowed their powers to consume them, in
+                eruptions of scouring energies that blasted the land down to the
+                bedrock. A few planets host the remains of crashed voidships,
+                where Warp engines have exploded, leaving glowing regions
+                where the Immaterium seeps out like a bloody wound. Most
+                hazardous, though, are those areas where the Ruinous Powers
+                have launched invasions against mankind, or fought massive
+                battles against the Imperium. Here, little remains to indicate life
+                once existed, and Daemonic flesh pollutes the soil, along with the
+                remnants of Chaos war machines and weapons which only the
+                most foolhardy would seek out, despite the incredible profits they
+                would bring in the darker areas of the Calixis Sector."
+  perterbations:
+    - _type: Perterbation
+      name: Chaos-scarred Regions
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Daemonic Incursions
+                      description: "Reality rips open as rifts into the Warp appear, releasing foul creatures onto the land. One
+                                    Ebon Geist (see page 378 of the ROGUE TRADER Core Rulebook) is unleashed for every three Explorers (rounding up)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Corrupting Terrain
+                      description: "The very ground beneath the Explorers’ feet has become twisted and grotesque, and actively
+                                    pollutes their souls. The Explorers must make a Challenging (+0) Toughness Test or suffer one Corruption Point
+                                    for every Degree of Failure on the Test."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Unnatural Gravities
+                      description: "The energies of the Warp ripple through the area, disrupting the planet’s natural gravity in
+                                    waves of coruscating force. At random intervals, gravity shifts between Low, High, Normal, and Zero Gravity (see
+                                    page 269 of the ROGUE TRADER Core Rulebook). Explorers must pass an Ordinary (+10) Agility Test when this
+                                    happens, or suffer 1d5 Impact Damage from the shift."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Corrosive Air
+                      description: "The effects of Chaos infect the air, and each wheezing breath becomes painful, as the Explorers
+                                    cough up bloody phlegm. Explorers without sealed breathing support must take a Challenging (+0) Toughness
+                                    Test or take 1 point of Fatigue for each Degree of Failure on the Test."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Mutant Attack
+                      description: "The area is infested with foul mutants, deviant humans fallen to the corruption of Chaos. These primitives
+                                    use the rules for Mutant Outcasts (see pages 371–372 of the ROGUE TRADER Core Rulebook) and should number three
+                                    times the number of Explorers in all, with one in four of the Outcasts as Mutant Abominations."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Wonders of the Expanse
+                      description: "Warp energies have mutated
+                                    the local life into bizarre and unique forms. While
+                                    few would countenance such creatures on civilised
+                                    worlds, wealthy collectors and hive-nobles in
+                                    the Calixis Sector will pay handsomely for these curiosities, so
+                                    they can show them off and impress their peers at future galas.
+                                    For every such creature the Explorers can extract and sell, they
+                                    gain +15 Achievement Points towards their current Endeavour."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Potent Relics
+                      description: "Scattered around the scarred land are devices
+                                    and icons that are bizarrely constructed, and some even say
+                                    cursed. From time to time, each seems to writhe and twist
+                                    when held, or cast a pall over the mood of its owner. Generate
+                                    1d10+1 items from the Treasure Generator (see page 83),
+                                    automatically selecting the “Cursed Treasure” result from
+                                    Table 2–30: Origin (see page 85). These items should be
+                                    scattered across the region, and always in the hands or dens
+                                    of hostile inhabitants, only to be claimed through conflict."
+
+- _type: Inspiration
+  name: Ancient Warzone Regions
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  description: "The one constant of the galaxy is endless war, and there
+                are few planets that do not have at least one region where
+                desperate armies once clashed over searing hatreds and
+                vicious betrayals long since forgotten. Massive craters pit
+                these areas, some so large that multiple other craters line their
+                interior. Bodies, weapons, tanks, and other instruments of
+                war are also plentiful, half-buried under shifting sands and
+                creeping foliage. Some might have been crucial conflicts that
+                turned the tide in a war, others only minor skirmishes that
+                only mattered to the dead, but by now, all are so ancient that
+                even the records of their details have turned to dust.
+
+                The sheer violence that marked some battles still mars the
+                area, though, leaving a more permanent record visible from orbit.
+                Where unspeakable weapons devastated enemy emplacements,
+                molten and irradiated metal has fused into the native rock to form
+                bubbling masses of liquid sludge. Titanic war machines, many
+                larger than cities, lie in ruins where they fell against engines even
+                more powerful than they. Not all is quiet, however, as for some,
+                the war never ended. They lie in wait, still prepared to repulse the
+                next attackers, or simply anyone venturing into their line of fire."
+  perterbations:
+    - _type: Perterbation
+      name: Ancient Warzone Regions
+      configs:
+        - _type: Config_Asset
+          type:
+            _type: Config_Name
+            _exists: true
+            name: Encounter
+          inspiration_tables:
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Dangers
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Active Defences
+                      description: "Though the battles are long over, the technology is still functional. Automated defences, which
+                                    include devastating heavy weapons emplacements, come to mechanical life as the Explorers enter the area. These
+                                    emplacements have 5 Armour Points, 15 Wounds, and are equipped with any one appropriate Heavy Weapon from
+                                    the Armoury chapter of the ROGUE TRADER Core Rulebook. They react and fifire as per the rules for a Battle Servitor."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Unexploded Munitions
+                      description: "Many of the explosives from the war rest silently, awaiting only a false step, rough
+                                    landing, or even a loud noise for activation. Explorers moving through an area must take a Difficult (–10)
+                                    Awareness Test (or, if they have the ability, a Routine (+20) Demolition Test) to notice and avoid these
+                                    dangers, or suffer 2d10 Explosive Damage."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Warriors of the Long Watch
+                      description: "Though the war is long over, not all of the warriors have forgotten how to fifight.
+                                    The Explorers face a contingent of soldiers, ready to kill anyone that could be an enemy. The contingent is made up
+                                    of two of the following for each Explorer: Battle Servitor, Renegade, Hired Gun, Mutant Abomination, Eldar Corsair,
+                                    Ork Freebooter, or Kroot Mercenary (see pages 370–378 of the ROGUE TRADER Core Rulebook for profiles)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Radiation Slag
+                      description: "This area is permeated with hazardous energies where weapons of forbidden power were unleashed in
+                                    desperate battle, possibly annihilating both sides. Explorers must make a Challenging (+0) Awareness Test in order to
+                                    avoid these areas, or take 1d10 Energy Damage not reduced by Armour as they blunder through the wracking radiation."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Tectonic Disruptions
+                      description: "The land itself is fifinally collapsing from the forces applied against it long ago. Volcanic
+                                    eruptions fifire up through the ground, as if the ancient battles have been rejoined. Each Explorer must make a
+                                    Difficult (–10) Agility Test, or fall to the shaking ground amidst the molten rock, taking 1d10 Energy Damage."
+            - _type: Weighted_Table
+              value:
+                _type: Inspiration_Table
+                name: Rewards
+                count:
+                  - _type: Roll
+                    _exists: true
+                    base: 1
+                weighted_inspirations:
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Weapons Cache
+                      description: "Amidst piles of corpses and bones, the
+                                    Explorers find mounds of weaponry and vehicles still in some
+                                    semblance of working order. All can make for excellent trade
+                                    items for the next would-be warlord ready to launch his
+                                    conquest in the Koronus Expanse, most of whom are too eager
+                                    for battle to carefully examine the goods. Generate a cache
+                                    of 1d10 items with the Treasure Generator (see page 83),
+                                    hidden amidst the ancient remnants of the endless battlefield,
+                                    automatically selecting “Ranged Weapon” or “Melee Weapon”
+                                    on Table 2–24: Treasure Type (see page 83)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Relics of Battle
+                      description: "The Explorers uncover valuable remains from
+                                    the battlefield, such as blessed sigils, the bones of warlords now
+                                    canonised as saints, and other remnants highly prized in a society
+                                    where war is the sacred charge of the chosen. Generate 1d10+5
+                                    items with the Treasure Generator (see page 83) that have
+                                    been scattered across this zone, automatically selecting “Gear and
+                                    Equipment” on Table 2–24: Treasure Type (see page 83)."
+                  - _type: Weighted_Inspiration
+                    weights:
+                      - _type: Roll
+                        _exists: true
+                        base: 1
+                    value:
+                      _type: Inspiration
+                      name: Unknown Archeotech
+                      description: "Ancient Warzones mean ancient
+                                    weapons, and the Explorers chance upon a rare archeotech device
+                                    near a blasted mountain or kilometres-deep crater. Its age indicates
+                                    its value, though only the most brave or rash amongst them would
+                                    dare test the weapon except from a very long distance away.
+                                    Generate 1d5 items with the Treasure Generator (see page 83)
+                                    that have been scattered across this zone, automatically selecting
+                                    “Ancient Miracle” on Table 2–30: Origin (see page 85)."
+
+- _type: Inspiration
+  name: Weather and Atmospheric Disturbances
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Weather and Atmospheric Disturbances
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Temperature Extremes
+              description: "Freezing or blistering temperatures help to define this Environment, making it inhospitable at
+                            best, and extremely dangerous to unprepared Explorers at worst. The Explorers need to overcome the extreme temperatures
+                            wherever they travel in this Environment. GMs can use the guidelines from Handing Extreme Temperatures (see page )."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Rage of Storms
+              description: "Perpetual tempests wrack this Environment, slashing the sky above with blasts of lightning, and driving
+                            all aerial transport to the ground with howling winds and curtains of rain. Explorers suffer a –20 penalty to all Operator
+                            and Exploration Skill Tests in this environment, and, at the GM’s discretion, aerial extraction might be unavailable at any
+                            time. The Explorers do not suffer the penalties to Operator or Exploration Skill Tests while in sheltered areas."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Atmospheric Rot
+              description: "Something in the region’s atmosphere attacks the synthetic materials carried by the Explorers,
+                            but has no effect on organic matter. For every day the Explorers spend in this Environment, reduce the Armour
+                            Points of any inorganic armour they are wearing by 1 (on each location). After a day of exposure, all complex
+                            technology begins to shut down intermittently, and all weapons gain the Unreliable Quality (or lose the Reliable
+                            Quality if they had it). After a month, technology and weapons alike are rendered useless due to corrosion."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Corruptive Rain
+              description: "The rainfall in this area carries with it a strange poison, and the tang of mutation. Each day
+                            (and each time they are caught in the open during one of the frequent rainstorms), each Explorer must make a
+                            Challenging (+0) Toughness Test or gain 1 Corruption Point."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Layered Cloud
+              description: "The planet’s atmosphere is thin and cold, but layered with clouds of heavier, breathable air. Use
+                            the guidelines from Table 1–9: Atmospheric Presence on page 21. However, the GM can change the type of
+                            atmosphere depending on the Explorers’ locale, having heavier air down in canyons, breathable oceans, or even
+                            roaming patches of air that nomadic people must follow or perish."
+
+- _type: Inspiration
+  name: Cursed Earth
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Cursed Earth
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Toxic Jungle
+              description: "The region is covered in toxic vegetation, the presence of which can be deadly if disturbed. This Encounter
+                            Site is considered to have a Toxic Atmosphere (see page 21). If the GM prefers, this toxic element only becomes apparent if
+                            the foliage is disturbed (cut, shot, or pushed aside), creating clouds around them which will poison Explorers. This can be
+                            especially dangerous in fire-fights, where stray rounds cause the surrounding jungle to erupt into a toxic fog."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Chemical Rivers and Lakes
+              description: "The water or other primary liquid in this area contains a chemical or biological
+                            composition that is anathema to the physiology of most species. Whenever one of the Explorers comes into contact
+                            with the water in this region, he must make a Hard (–20) Toughness Test or suffer 1d10 Agility Damage that
+                            does not begin to heal until he exits this Environment."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Broken Ground
+              description: "This region of the world is broken and cracked from constant tectonic motion. This means
+                            that the landscape can change overnight, and that there are few direct paths across the surface—Explorers suffer
+                            a –10 penalty to Navigate (Surface) Tests in this Environment. Further, sudden shifts can throw the Explorers off
+                            balance—at the GM’s discretion, everything in the Environment must make an Ordinary (+10) Strength Test or
+                            a Challenging (+0) Agility Test or be knocked to the ground."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Volcanic Actvity
+              description: "The planet’s molten core burns close to its surface, creating scores of towering volcanos and
+                            rivers of magma. This raises the temperature of the Encounter Site as compared to the Planet it is on, making a
+                            Temperate Environment turn Hot, or a Hot Environment into a Burning one (see pages 22–23). In addition to
+                            creating impassable regions where flaming rivers prevent land travel, there is also the danger of choking ash storms
+                            and clouds of toxic gas. If the Explorers stumble into one of these, they must make a Hard (–20) Toughness Test
+                            or suffer 1d10+5 Impact Damage with the Toxic Quality each Round until they escape it."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Warp Touched
+              description: "A place which exists too close to a Warp rift, or one where the fabric between the Materium and
+                            Immaterium is thin, can become saturated in Warp energy. Though the world might have no outward signs of Warp
+                            taint, the Explorers might feel uneasy without knowing why. Psykers can sense this phenomenon without a Test, and
+                            it affects their powers, adding +2 to their Psy Rating but also adding +20 to any rolls they make on Table 6–2:
+                            Psychic Phenomena or Table 6–3: Perils of the Warp (see page 160–161 of the ROGUE TRADER Core Rulebook)."
+
+
+- _type: Inspiration
+  name: Gravity and Celestial Phenomena
+  tags:
+    - _type: Tag
+      _exists: true
+      name: Encounter
+  inspiration_tables:
+    - _type: Weighted_Table
+      value:
+        _type: Inspiration_Table
+        name: Gravity and Celestial Phenomena
+        count:
+          - _type: Roll
+            _exists: true
+            base: 1
+        weighted_inspirations:
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Strange Gravity
+              description: "Some Environments are subject to strange gravities caused by celestial forces, strange xenos
+                            devices, or even interference from the Immaterium. This Environment, regardless of what the world around it is
+                            like, is subject to the conditions of either Low Gravity, High Gravity, or Zero Gravity (see page 269 of the ROGUE
+                            TRADER Core Rulebook)."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Endless Night
+              description: "Tide-locked worlds (planets which perpetually face their star), those surrounded by dense, dark
+                            atmospheres, or those shielded by other moons or planets can all exist in a state of perpetual night. Underground
+                            Environments exist in a similar state by default, unless they have native flora or fauna or artificial devices that provide
+                            light. Traversing these regions means doing so in pitch or near pitch darkness, along with all the problems that brings
+                            (see page 247–248 of the ROGUE TRADER Core Rulebook). For humans, extended periods in darkness can also be
+                            mentally taxing, and the GM can impose a –10 or greater penalty on Willpower or Fellowship Tests for those who
+                            spend more than a week in darkness (this is especially appropriate for the Explorers’ followers, if they have any)."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Enduring Day
+              description: "The light-side of a tide-locked world, worlds at an extreme axial tilt, or those exposed to binary or
+                            trinary star clusters can all experience endless day. Some Environments are also permanently bathed in artificial or
+                            natural light due to quirks of their existence. The constant presence of the sun can fatigue Explorers as they spend
+                            days or weeks bathed in solar light. Fatigue recovery (see page 251 of ROGUE TRADER Core Rulebook) take twice as
+                            long during extended periods on these worlds, unless the Explorers can find a place of blessed darkness to rest."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Baleful Stars
+              description: "Some stars are ill-omened, and their mere presence is enough to unnerve those who must pass beneath
+                            their evil gaze. The sight of such a stellar omen, like the dark red eye of a vengeful god, always puts the crew on edge,
+                            reducing a ship’s Morale by 10 and inflicting a –10 penalty on all Command Tests to control the crew so long as the
+                            vessel sits under its dread gaze. Further, Explorers in such a location suffer a –10 penalty to all Willpower-based Tests."
+          - _type: Weighted_Inspiration
+            weights:
+              - _type: Roll
+                _exists: true
+                base: 1
+            value:
+              _type: Inspiration
+              name: Irradiated
+              description: "This place is scarred by low levels of radiation that bear down from the heavens, searing and twisting
+                            what little life can survive it. At the end of each day in this Environment, each Explorer must make a Hard (–20)
+                            Toughness Test or gain one level of Fatigue that cannot be removed until he leaves the Irradiated Environment. If
+                            an Explorer passes out due to Fatigue accrued this way, he succumbs to radiation poisoning and perishes."

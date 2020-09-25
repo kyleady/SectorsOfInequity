@@ -217,6 +217,10 @@
   keep_highest: -1
   base: 0
 - _type: Roll
+  base: -9
+  dice_count: 1
+  dice_size: 10
+- _type: Roll
   base: -5
   dice_count: 1
   dice_size: 10
