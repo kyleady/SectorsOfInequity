@@ -1,5 +1,5 @@
 boto3==1.13.19
 mysqlclient==1.4.4
-Django==2.2.13
+Django==2.2.22
 requests==2.20.0
 requests-unixsocket==0.1.5
